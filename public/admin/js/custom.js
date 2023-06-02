@@ -1,0 +1,147 @@
+$(document).ready(function () {
+    // Check current admin password is correct or not
+    $("#current_pwd").keyup(function () {
+        var currentpwd = $("#current_pwd").val();
+        var link = "../admin/check-current-password";
+        //alert(current_pwd);
+
+        $.ajax({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            type: "POST",
+            url: link,
+            data: {
+                current_pwd: currentpwd,
+            },
+            success: function (resp) {
+                if (resp == "true") {
+                    $("#verifyCurrentPwd").html(
+                        "Current Password is Correct!!"
+                    );
+                } else if (resp == "false") {
+                    $("#verifyCurrentPwd").html(
+                        "Current Password is Incorrect!!"
+                    );
+                }
+            },
+
+            error: function () {
+                alert("Error");
+            },
+        });
+    });
+
+    //Update CMS Page Status (cms-pages.blade.php) - Option 1
+    // $(document).on("click",".updateSmsPageStatus", function () {
+    //     var status = $(this).children("i").attr("status");
+    //     //"this" refer to <a href=""></a>.
+    //     //"children" refer to <i class=""></i>
+    //     //"status" refere t0 <i class="" status="Active"></i>
+    //     alert(status);
+    // });
+    
+});
+
+//Update CMS Page Status (cms-pages.blade.php) - Option 2
+$(".updateCmsPageStatus").click(function () {
+    var status = $(this).children("i").attr("status");
+    //alert(status);
+    //"this" refer to <a href=""></a>. "children" refer to <i class=""></i>. attr "status" refer to <i class="" status="Active"></i>
+    var page_id = $(this).attr("page_id");
+    //"this" refer to <a href=""></a>. attr "page_id" refer to page_id in the link <a href="" page_id="{{$page->id}}">
+    //alert(page_id);
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "post",
+        url: "../admin/update-cms-page-status",
+        data: {
+            status: status,
+            page_id: page_id,
+        },
+        success: function (resp) {
+            if (resp["status"] == 0) {
+                $("#page-" + page_id).html(
+                    "<i class='fas fa-toggle-off' status='Inactive' style='color:grey'></i>"
+                );
+            } else if (resp["status"] == 1) {
+                $("#page-" + page_id).html(
+                    "<i class='fas fa-toggle-on' status='Active' style='color:#007bff'></i>"
+                );
+            }
+        },
+        error: function () {
+            alert("Error");
+        },
+    });
+});
+
+//Update Subadmin Status (subadmins.blade.php)
+$(".updateSubadminStatus").click(function () {
+    var status = $(this).children("i").attr("status");
+    //alert(status);
+    //"this" refer to <a href=""></a>. "children" refer to <i class=""></i>. attr "status" refer to <i class="" status="Active"></i>
+    var subadmin_id = $(this).attr("subadmin_id");
+    //"this" refer to <a href=""></a>. attr "subadmin_id" refer to subadmin_id in the link <a href="" subadmin_id="{{$page->id}}">
+    //alert(subadmin_id);
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "post",
+        url: "../admin/update-subadmin-status",
+        data: {
+            status: status,
+            subadmin_id: subadmin_id,
+        },
+        success: function (resp) {
+            if (resp["status"] == 0) {
+                $("#subadmin-" + subadmin_id).html(
+                    "<i class='fas fa-toggle-off' status='Inactive' style='color:grey'></i>"
+                );
+            } else if (resp["status"] == 1) {
+                $("#subadmin-" + subadmin_id).html(
+                    "<i class='fas fa-toggle-on' status='Active' style='color:#007bff'></i>"
+                );
+            }
+        },
+        error: function () {
+            alert("Error");
+        },
+    });
+});
+
+/*//Option 1 (alert biasa saja)- Confirm the deletion of CMS Page (cms_pages.blade.php)
+$(".confirmDelete").click(function () {
+    //alert("test");  return false;
+    var name = $(this).attr('name');
+    if (confirm('Are sure to delete this ' + name + '?')) {
+        return true;
+    }
+    return false;
+}); */
+
+//Option 2 (SweetAlert2)- Confirm the deletion of CMS Page (cms_pages.blade.php)
+// This SweetAlert2 can be used on all of delete method with pre-requisite route is "delete-xx-yy"
+$(".confirmDelete").click(function () {
+    var record = $(this).attr("record");
+    var recordid = $(this).attr("recordid");
+    var name = $(this).attr("name");
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Delete this "+ name + "?",
+        //text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            window.location.href = "../admin/delete-" + record + "/" + recordid;            //route must be delete-xx-yy
+        }
+    });
+});
