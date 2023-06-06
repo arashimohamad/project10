@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\CmsPage;
+use App\Models\AdminsRole;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class CmsPageController extends Controller
@@ -18,8 +20,23 @@ class CmsPageController extends Controller
 
         $CmsPages = CmsPage::get();                       // Option 1 will call data on blade {{$page->title}}
         //$CmsPages = CmsPage::get()->toArray();          // Option 2 will call data on blade {{$page['title']}}
-        
-        return view('admin.pages.cms_pages', compact('CmsPages'));
+
+        //Set Admin/Subadmins Permission for CMS Pages
+        $cmspagesModuleCount = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'cms_pages'])->count();   //dd($cmspagesModuleCount);    
+        $pagesModule= [];
+        //Check if admin, so give a full access
+        if (Auth::guard('admin')->user()->type == 'admin') {
+            $pagesModule['view_access'] = 1;
+            $pagesModule['edit_access'] = 1;
+            $pagesModule['full_access'] = 1;
+        } else if($cmspagesModuleCount == 0) {                   //if subadmin not set anything permission, give it message
+            $message = "This feature is restricted for you!"; 
+            return redirect('admin/dashboard')->with('error_message', $message);
+        }else{                                                  //check if subadmin is set permission
+            $pagesModule = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'cms_pages'])->first();
+        }
+
+        return view('admin.pages.cms_pages', compact('CmsPages','pagesModule'));
     }
 
     /**
@@ -137,6 +154,7 @@ class CmsPageController extends Controller
     }
 }
 
+// tutorial completed 32 
 
 /*
     Laravel 10 Tutorial #16 - Laravel 10 CRUD Operations - Manage CMS _ Dynamic Pages (I) - Create Table

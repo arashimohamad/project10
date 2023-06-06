@@ -20,6 +20,8 @@
     </div>
     <!-- /.content-header -->
 
+    @include('admin.includes.messages')
+
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
