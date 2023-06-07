@@ -68,7 +68,7 @@ class CmsPageController extends Controller
      */
     public function edit(Request $request, $id=null)            // id = null sbb data tiada lagi
     {   //Add dan Edit buat kat sini
-        Session::put('page','cms-pages');
+        Session::put('page','cms-pages');                       // related use to highlight menu/submenu selection
 
         if ($id =="") {
             $title = "Add CMS Page";
