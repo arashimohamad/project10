@@ -16,10 +16,38 @@ class CategoryController extends Controller
         //dd($categories);
         return view('admin.categories.categories', compact('categories'));
     }
+
+    public function updateCategoryStatus(Request $request)              
+    {        
+        //echo "AAAA"; die;
+        if ($request->ajax()) {
+            $data = $request->all();
+            //dd($data);
+            //echo "<pre>"; print_r($data); die;
+
+            if ($data['status']=="Active") {
+                $status = 0;    // Initial value is 1 (active) that set direct to database b4 and displayed as an active.  after user click to inactive, this toggle button will change to 0 value
+            } else {
+                $status = 1;    
+            }
+            
+            Category::where('id', $data['category_id'])->update([
+                'status' => $status,
+            ]);
+
+            return response()->json(['status'=>$status, 'category_id'=>$data['category_id']]);
+        }         
+    }
+
+    public function deleteCategory($id)
+    {
+        $category = Category::findOrFail($id)->delete();
+        return redirect()->back()->with('success_message', 'Category deleted successfully');   
+    }
 }
 
 
-// tutorial completed 35 
+// tutorial completed 36
 
 /*
     Laravel 10 Tutorial #34 - Categories Module (I) - Create Table _ Insert Categories with Seeder
@@ -43,5 +71,10 @@ class CategoryController extends Controller
             return $this->hasOne(Category::class, 'id', 'parent_id')->select('id', 'category_name', 'url')->where('status', 1);
         }
     6. call parentcategory() on public function categories() and set on ui index
+
+    Laravel 10 Tutorial #36 - Categories Module (III) - Active_Inactive_Delete Categories in Admin Panel
+    1. add Catalogue menu on sidebar
+    2. add javascript to custom.js
+    3. setting route
 
 */

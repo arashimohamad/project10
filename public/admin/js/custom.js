@@ -78,6 +78,41 @@ $(".updateCmsPageStatus").click(function () {
     });
 });
 
+//Update Category Status (categories.blade.php) 
+$(".updateCategoryStatus").click(function () {
+    var status = $(this).children("i").attr("status");
+    //alert(status);
+    //"this" refer to <a href=""></a>. "children" refer to <i class=""></i>. attr "status" refer to <i class="" status="Active"></i>
+    var category_id = $(this).attr("category_id");
+    //"this" refer to <a href=""></a>. attr "category_id" refer to category_id in the link <a href="" category_id="{{$page->id}}">
+    //alert(category_id);
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "post",
+        url: "../admin/update-category-status",
+        data: {
+            status: status,
+            category_id: category_id,
+        },
+        success: function (resp) {
+            if (resp["status"] == 0) {
+                $("#category-" + category_id).html(
+                    "<i class='fas fa-toggle-off' status='Inactive' style='color:grey'></i>"
+                );
+            } else if (resp["status"] == 1) {
+                $("#category-" + category_id).html(
+                    "<i class='fas fa-toggle-on' status='Active' style='color:#007bff'></i>"
+                );
+            }
+        },
+        error: function () {
+            alert("Error");
+        },
+    });
+});
+
 //Update Subadmin Status (subadmins.blade.php)
 $(".updateSubadminStatus").click(function () {
     var status = $(this).children("i").attr("status");

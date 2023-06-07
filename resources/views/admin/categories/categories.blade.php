@@ -46,24 +46,42 @@
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($categories as $category)
+                    @foreach ($categories as $cat)
                       <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$category->category_name}}</td>
+                        <td>{{$cat->category_name}}</td>
                         <td>                          
                           {{-- Option 1 --}}
-                          @isset($category->parentcategory->category_name)
-                            {{$category->parentcategory->category_name}}                            
+                          @isset($cat->parentcategory->category_name)
+                            {{$cat->parentcategory->category_name}}                            
                           @endisset
 
                           {{-- Option 2 --}}
-                          {{-- @isset($category['parentcategory']['category_name'])
-                            {{$category['parentcategory']['category_name']}}                            
+                          {{-- @isset($cat['parentcategory']['category_name'])
+                            {{$cat['parentcategory']['category_name']}}                            
                           @endisset --}}
                         </td>
-                        <td>{{$category->url}}</td>
-                        <td>{{date("j F Y, g:i a", strtotime($category->created_at))}}</td>
-                        <td></td>
+                        <td>{{$cat->url}}</td>
+                        <td>{{date("j F Y, g:i a", strtotime($cat->created_at))}}</td>
+                        <td>
+                          @if ($cat->status == 1)
+                            {{-- Please refer to custom.js on layout for updateCategoryStatus --}}
+                            <a href="javascript:void(0)" class="updateCategoryStatus" id="category-{{$cat->id}}" category_id="{{$cat->id}}" style="color:#007bff">
+                              <i class="fas fa-toggle-on" status="Active"></i>
+                            </a>                            
+                          @else
+                            <a href="javascript:void(0)" class="updateCategoryStatus" id="category-{{$cat->id}}" category_id="{{$cat->id}}" style="color: grey">
+                              <i class="fas fa-toggle-off" status="Inactive"></i>
+                            </a>
+                          @endif
+                          &nbsp;&nbsp;                            
+                          <a href="{{url('admin/add-edit-category/'.$cat->id)}}" style="color:#007bff"><i class="fas fa-edit"></i></a>
+                          &nbsp;&nbsp;
+                          {{-- for SweetAlert2 --}}
+                          <a href="javascript:void(0)" record="category" recordid="{{$cat->id}}" name="{{$cat->category_name}} Category" class="confirmDelete" title="Delete Category" style="color:#007bff">
+                            <i class="fas fa-trash"></i>
+                          </a>
+                      </td>
                       </tr> 
                     @endforeach
                   </tbody>
