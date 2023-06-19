@@ -44,11 +44,11 @@
 
                 <form id="categoryForm" name="categoryForm" 
                   @if (empty($category['id']))
-                    action="{{url('admin/add-edit-cms-page')}}"                  
+                    action="{{url('admin/add-edit-category')}}"                  
                   @else
-                    action="{{url('admin/add-edit-cms-page/'.$category['id'])}}"
+                    action="{{url('admin/add-edit-category/'.$category['id'])}}"
                   @endif 
-                  method="post">
+                  method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="card-body">
                     <div class="form-group">
@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group">
                       <label for="catdiscount">Category Discount*</label>
-                      <input type="text" class="form-control" id="catdiscount" discount="catdiscount" placeholder="Enter Category Discount">
+                      <input type="text" class="form-control" id="catdiscount" name="catdiscount" placeholder="Enter Category Discount">
                     </div>
                     <div class="form-group">
                       <label for="url">Category URL*</label>

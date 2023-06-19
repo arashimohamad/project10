@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
@@ -43,18 +44,55 @@ class CategoryController extends Controller
     {
         //Add dan Edit buat kat sini        
         Session::put('page', 'categories');                             //Session::put setara dgn $request->session()->put('page', 'categories');
+        
         if ($id == "") {
             $title = 'Add Category';
             $category = new Category;
-            $message = 'Category Added Successfully!';
+            $message = 'Category added successfully!';
         } else {
             $title = 'Edit Category';
             $category = Category::find($id);
-            $message = 'Category Update Successfully';
+            $message = 'Category updated successfully';
         }
 
-        return view('admin.categories.add_edit_category', compact('title'));
-        //return view('dmin.categories.add_edit_category', compact('title', 'a'));
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+
+            //Upload Category Image
+            if ($request->hasfile('catimage')) {
+                $image_tmp = $request->file('catimage');
+                if ($image_tmp->isValid()) {
+                    // Get image extension
+                    $extension = $image_tmp->getClientOriginalExtension();
+
+                    //Generate New Image Name
+                    $imageName = rand(111,99999).'.'.$extension;        //123.jpg
+                    $image_path = 'front/images/categories/'.$imageName;        
+
+                    //Upload the Category Image   
+                    Image::make($image_tmp)->save($image_path);         //save image path on table admins
+                    $category->category_image = $imageName;
+                }            
+            }else{
+                $category->category_image = "";
+            }
+
+            // add or edit process
+            $category->category_name     = $data['catname'];
+            $category->category_discount = $data['catdiscount']; 
+            $category->description       = $data['description'];
+            $category->url               = $data['url']; 
+            $category->meta_title        = $data['metatitle'];
+            $category->meta_description  = $data['metadesc'];
+            $category->meta_keywords     = $data['metakey'];
+            $category->status            = 1;                            // Default = 1
+            $category->save();
+
+            return redirect('admin/categories')->with('success_message', $message);            
+        }
+
+        //return view('admin.categories.add_edit_category', compact('title'));
+        return view('admin.categories.add_edit_category', compact('title', 'category'));
         
     }
 
