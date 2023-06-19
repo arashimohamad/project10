@@ -42,44 +42,44 @@
                 
                 @include('admin.includes.messages')
 
-                <form id="cmsForm" name="cmsForm" 
-                  @if (empty($cmspage['id']))
+                <form id="categoryForm" name="categoryForm" 
+                  @if (empty($category['id']))
                     action="{{url('admin/add-edit-cms-page')}}"                  
                   @else
-                    action="{{url('admin/add-edit-cms-page/'.$cmspage['id'])}}"
+                    action="{{url('admin/add-edit-cms-page/'.$category['id'])}}"
                   @endif 
                   method="post">
                   @csrf
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="title">Title*</label>
-                      <input type="text" class="form-control" id="title" name="title" placeholder="Enter Page Title" @if (!empty($cmspage['title'])) value="{{$cmspage['title']}}" @endif>
+                      <label for="category_name">Category Name*</label>
+                      <input type="text" class="form-control" id="category_name" name="category_name" placeholder="Enter Category Name" @if (!empty($category['category_name'])) value="{{$category['category_name']}}" @endif>
                     </div>
                     <div class="form-group">
                       <label for="url">URL*</label>
-                      <input type="text" class="form-control" id="url" name="url" placeholder="Enter Page URL" @if (!empty($cmspage['url'])) value="{{$cmspage['url']}}" @endif>
+                      <input type="text" class="form-control" id="url" name="url" placeholder="Enter Page URL" @if (!empty($category['url'])) value="{{$category['url']}}" @endif>
                     </div>
                     <div class="form-group">
                       <label for="description">Description*</label>
-                      <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter Page Description">@if (!empty($cmspage['description'])) {{$cmspage['description']}} @endif</textarea>
+                      <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter Page Description">@if (!empty($category['description'])) {{$category['description']}} @endif</textarea>
                     </div>
                     <div class="form-group">
                       <label for="metatitle">Meta Title</label>
-                      <input type="text" class="form-control" id="metatitle" name="metatitle" placeholder="Enter Meta Title" @if (!empty($cmspage['meta_title'])) value="{{$cmspage['meta_title']}}" @endif>
+                      <input type="text" class="form-control" id="metatitle" name="metatitle" placeholder="Enter Meta Title" @if (!empty($category['meta_title'])) value="{{$category['meta_title']}}" @endif>
                     </div>
                     <div class="form-group">
                       <label for="metadesc">Meta Description</label>
-                      <input type="text" class="form-control" id="metadesc" name="metadesc" placeholder="Enter Meta Description" @if (!empty($cmspage['meta_description'])) value="{{$cmspage['meta_description']}}" @endif>
+                      <input type="text" class="form-control" id="metadesc" name="metadesc" placeholder="Enter Meta Description" @if (!empty($category['meta_description'])) value="{{$category['meta_description']}}" @endif>
                     </div>
                     <div class="form-group">
                       <label for="metakey">Meta Keywords</label>
-                      <input type="text" class="form-control" id="metakey" name="metakey" placeholder="Enter Meta Keywords" @if (!empty($cmspage['meta_keywords'])) value="{{$cmspage['meta_keywords']}}" @endif>
-                    </div>
-                    <div class="form-group">
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <input type="text" class="form-control" id="metakey" name="metakey" placeholder="Enter Meta Keywords" @if (!empty($category['meta_keywords'])) value="{{$category['meta_keywords']}}" @endif>
                     </div>
                   </div>
                   <!-- /.card-body -->
+                  <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
                 </form>
                 <!-- /.form-group -->
               </div>

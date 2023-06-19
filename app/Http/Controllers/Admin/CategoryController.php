@@ -39,6 +39,25 @@ class CategoryController extends Controller
         }         
     }
 
+    public function addEditCategory(Request $request, $id=null)         // id = null sbb data tiada lagi
+    {
+        //Add dan Edit buat kat sini        
+        Session::put('page', 'categories');                             //Session::put setara dgn $request->session()->put('page', 'categories');
+        if ($id == "") {
+            $title = 'Add Category';
+            $category = new Category;
+            $message = 'Category Added Successfully!';
+        } else {
+            $title = 'Edit Category';
+            $category = Category::find($id);
+            $message = 'Category Update Successfully';
+        }
+
+        return view('admin.categories.add_edit_category', compact('title'));
+        //return view('dmin.categories.add_edit_category', compact('title', 'a'));
+        
+    }
+
     public function deleteCategory($id)
     {
         $category = Category::findOrFail($id)->delete();
