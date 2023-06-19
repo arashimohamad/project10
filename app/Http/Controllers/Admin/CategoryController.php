@@ -44,7 +44,10 @@ class CategoryController extends Controller
     {
         //Add dan Edit buat kat sini        
         Session::put('page', 'categories');                             //Session::put setara dgn $request->session()->put('page', 'categories');
-        
+
+        $getCategories = Category::getCategories();                     //recall function getCategories() dari Model Category dan baru boleh buat dropdown menu di blade
+        //dd($getCategories);
+
         if ($id == "") {
             $title = 'Add Category';
             $category = new Category;
@@ -57,6 +60,21 @@ class CategoryController extends Controller
 
         if ($request->isMethod('post')) {
             $data = $request->all();
+
+            //Category Validation
+            $rules = [
+                'catname'       =>  'required',                
+                'url'           =>  'required|unique:categories',           //unique:categories merujuk kpd data url dalam table categories
+            ];
+
+            $customMessages = [
+                'catname.required' =>  'Category Name is required',
+                'url.required'     =>  'Category URL is required',
+                'url.unique'       =>  'Unique Category URL is required',
+                'url.required'     =>  'URL is required',
+            ];
+
+            $this->validate($request, $rules, $customMessages);
 
             //Upload Category Image
             if ($request->hasfile('catimage')) {
@@ -77,9 +95,15 @@ class CategoryController extends Controller
                 $category->category_image = "";
             }
 
+
+            if (empty($data['catdiscount'])) {
+                $data['catdiscount'] = 0;                               //fasilitator ubah dlm table category dgn nilai 0 sbg default value.
+            }
+            
             // add or edit process
             $category->category_name     = $data['catname'];
-            $category->category_discount = $data['catdiscount']; 
+            $category->parent_id         = $data['parentID'];            
+            $category->category_discount = $data['catdiscount'];             
             $category->description       = $data['description'];
             $category->url               = $data['url']; 
             $category->meta_title        = $data['metatitle'];
@@ -92,7 +116,7 @@ class CategoryController extends Controller
         }
 
         //return view('admin.categories.add_edit_category', compact('title'));
-        return view('admin.categories.add_edit_category', compact('title', 'category'));
+        return view('admin.categories.add_edit_category', compact('title', 'category', 'getCategories'));
         
     }
 

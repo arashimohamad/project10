@@ -27,4 +27,24 @@ class Category extends Model
 
     //$this->hasOne(Category::class, 'id', 'parent_id') equally select * from categories where id =1 and where parent id=0
     //Category::class = App\Models\Category
+
+    public function subcategories()
+    {   
+        return $this->hasMany(Category::class, 'parent_id')->where('status', 1);         // sintaks return $this->hasMany(Category::class, 'foreign_key', 'local_key');     
+    }
+
+    //Perform One Category Level 
+    public static function getCategories() 
+    {
+        //lepas tu call function ni dlm addEditController
+        $getCategories = Category::with(['subcategories'=>function($query) {
+                                $query->with('subcategories');                              // perform sub sub categories
+                            }])
+                            ->where('parent_id', 0)
+                            ->where('status', 1)
+                            ->get();                            // panggilan di blade sbg {{cat->category_name}}
+                            //->toArray();                      // panggilan di blade sbg {{cat['category_name']}}
+        //dd($getCategories);
+        return $getCategories;
+    }
 }
