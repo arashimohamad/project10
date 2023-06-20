@@ -53,19 +53,19 @@
                   <div class="card-body">
                     <div class="form-group">
                       <label for="catname">Category Name*</label>
-                      <input type="text" class="form-control" id="catname" name="catname" placeholder="Enter Category Name" value="{{old('catname')}}">
+                      <input type="text" class="form-control" id="catname" name="catname" placeholder="Enter Category Name" @if (!empty($category['category_name'])) value="{{$category['category_name']}}" @else value="{{old('catname')}}" @endif> 
                     </div>
                     <div class="form-group">
-                      <label for="getcat">Category Level*</label>
+                      <label for="getcat">Category Level (Parent Category)*</label>
                       <select name="parentID" class="form-control">
                         <option value="">Select</option>
-                        <option value="0">Main Category</option>
+                        <option value="0" @if ($category->parent_id == 0) selected="" @endif>Main Category</option>
                         @foreach ($getCategories as $cat)                 {{-- one category level --}}               
-                          <option value="{{$cat->id}}" style="font-weight: bold;">{{$cat->category_name}}</option>
+                          <option @if(isset($category->parent_id) && $category->parent_id == $cat->id) selected @endif value="{{$cat->id}}" style="font-weight: bold;">{{$cat->category_name}}</option>
                           {{-- cek jika subcategories ada/tidak, sila rujuk Category model --}}
                           @if (!empty($cat->subcategories))
                             @foreach ($cat->subcategories as $subcat)     {{-- sub category --}}
-                              <option value="{{$subcat->id}}" style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;{{$subcat->category_name}}</option>
+                              <option @if(isset($category->parent_id) && $category->parent_id == $subcat->id) selected @endif value="{{$subcat->id}}" style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;{{$subcat->category_name}}</option>
                               @if (!empty($subcat->subcategories))        {{-- sub sub category --}}
                                 @foreach ($subcat->subcategories as $subsubcat)
                                   <option value="{{$subsubcat->id}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;{{$subsubcat->category_name}}</option>
@@ -78,11 +78,16 @@
                     </div>
                     <div class="form-group">
                       <label for="catimage">Category Image</label>
-                      <input type="file" class="form-control" id="catimage" name="catimage">
+                      <input type="file" class="form-control" id="catimage" name="catimage">                     
+                      @if (!empty($category['category_image']))
+                        <br><img style="width: 15%;" src="{{URL::asset('/front/images/categories/'. $category['category_image'])}}">
+                        <input type="hidden" name="hidden_image" value="{{$category['category_image']}}">
+                        {{-- <a href="{{url('front/images/categories/'.Auth::guard('admin')->user()->image)}}" target="_blank">View Photo</a> --}}
+                      @endif
                     </div>
                     <div class="form-group">
                       <label for="catdiscount">Category Discount</label>
-                      <input type="text" class="form-control" id="catdiscount" name="catdiscount" placeholder="Enter Category Discount" value="{{old('catdiscount')}}">
+                      <input type="text" class="form-control" id="catdiscount" name="catdiscount" placeholder="Enter Category Discount" @if (!empty($category['category_discount'])) value="{{$category['category_discount']}}" @else value="{{old('catdiscount')}}" @endif>                    
                     </div>
                     <div class="form-group">
                       <label for="url">Category URL*</label>
@@ -90,19 +95,19 @@
                     </div>
                     <div class="form-group">
                       <label for="description">Description*</label>
-                      <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter Category Description">{{old('catdiscount')}}</textarea>
+                      <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter Category Description">@if (!empty($category['description'])) {{$category['description']}} @else {{old('description')}} @endif</textarea>
                     </div>
                     <div class="form-group">
                       <label for="metatitle">Meta Title</label>
-                      <input type="text" class="form-control" id="metatitle" name="metatitle" placeholder="Enter Meta Title" value="{{old('metatitle')}}">
+                      <input type="text" class="form-control" id="metatitle" name="metatitle" placeholder="Enter Meta Title" @if (!empty($category['meta_title'])) value="{{$category['meta_title']}}" @else value="{{old('metatitle')}}" @endif>
                     </div>
                     <div class="form-group">
                       <label for="metadesc">Meta Description</label>
-                      <input type="text" class="form-control" id="metadesc" name="metadesc" placeholder="Enter Meta Description" value="{{old('metadesc')}}">
+                      <input type="text" class="form-control" id="metadesc" name="metadesc" placeholder="Enter Meta Description" @if (!empty($category['meta_description'])) value="{{$category['meta_description']}}" @else value="{{old('metadesc')}}" @endif>
                     </div>
                     <div class="form-group">
                       <label for="metakey">Meta Keywords</label>
-                      <input type="text" class="form-control" id="metakey" name="metakey" placeholder="Enter Meta Keywords" value="{{old('metakey')}}">
+                      <input type="text" class="form-control" id="metakey" name="metakey" placeholder="Enter Meta Keywords" @if (!empty($category['meta_keywords'])) value="{{$category['meta_keywords']}}" @else value="{{old('metakey')}}" @endif>
                     </div>
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary">Submit</button>

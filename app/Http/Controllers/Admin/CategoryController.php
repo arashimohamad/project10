@@ -55,17 +55,24 @@ class CategoryController extends Controller
         } else {
             $title = 'Edit Category';
             $category = Category::find($id);
-            $message = 'Category updated successfully';
+            $message = 'Category updated successfully!';
         }
 
         if ($request->isMethod('post')) {
             $data = $request->all();
 
             //Category Validation
-            $rules = [
-                'catname'       =>  'required',                
-                'url'           =>  'required|unique:categories',           //unique:categories merujuk kpd data url dalam table categories
-            ];
+            if ($id == "") {
+                $rules = [
+                    'catname' => 'required',                
+                    'url'     => 'required|unique:categories',           //unique:categories merujuk kpd data url dalam table categories
+                ];
+            } else {
+                $rules = [
+                    'catname' => 'required',
+                    'url'     => 'required',
+                ];
+            }            
 
             $customMessages = [
                 'catname.required' =>  'Category Name is required',
@@ -91,10 +98,11 @@ class CategoryController extends Controller
                     Image::make($image_tmp)->save($image_path);         //save image path on table admins
                     $category->category_image = $imageName;
                 }            
+            }else if(!empty($data['hidden_image'])){
+                $category->category_image = $data['hidden_image'];
             }else{
                 $category->category_image = "";
             }
-
 
             if (empty($data['catdiscount'])) {
                 $data['catdiscount'] = 0;                               //fasilitator ubah dlm table category dgn nilai 0 sbg default value.
@@ -115,8 +123,7 @@ class CategoryController extends Controller
             return redirect('admin/categories')->with('success_message', $message);            
         }
 
-        //return view('admin.categories.add_edit_category', compact('title'));
-        return view('admin.categories.add_edit_category', compact('title', 'category', 'getCategories'));
+        return view('admin.categories.add_edit_category', compact('title', 'getCategories', 'category'));
         
     }
 
