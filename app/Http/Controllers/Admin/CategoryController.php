@@ -127,10 +127,29 @@ class CategoryController extends Controller
         
     }
 
+    public function deleteCategoryImage($id)
+    {
+        //Get Category Image
+        $catImage = Category::select('category_image')->where('id', $id)->first();
+
+        //Get Category Image Path
+        $category_image_path = 'front/images/categories/';
+
+        //Delete Category Image from categories folder if exists
+        if (file_exists($category_image_path.$catImage->category_image)) {
+            unlink($category_image_path.$catImage->category_image);            
+        }
+
+        //Delete Category Image from categories table
+        $deleteCatImage = Category::where('id', $id)->update(['category_image'=>'']);
+
+        return redirect()->back()->with('success_message', 'Category image deleted successfully!');   
+    }
+
     public function deleteCategory($id)
     {
         $category = Category::findOrFail($id)->delete();
-        return redirect()->back()->with('success_message', 'Category deleted successfully');   
+        return redirect()->back()->with('success_message', 'Category deleted successfully!');   
     }
 }
 

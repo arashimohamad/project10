@@ -80,9 +80,15 @@
                       <label for="catimage">Category Image</label>
                       <input type="file" class="form-control" id="catimage" name="catimage">                     
                       @if (!empty($category['category_image']))
-                        <br><img style="width: 15%;" src="{{URL::asset('/front/images/categories/'. $category['category_image'])}}">
+                        <br>
+                        <a href="{{url('/front/images/categories/'. $category['category_image'])}}" target="_blank">
+                          <img style="width: 80px; margin: 10px" src="{{URL::asset('/front/images/categories/'. $category['category_image'])}}">
+                        </a>                       
                         <input type="hidden" name="hidden_image" value="{{$category['category_image']}}">
                         {{-- <a href="{{url('front/images/categories/'.Auth::guard('admin')->user()->image)}}" target="_blank">View Photo</a> --}}
+                        <a href="javascript:void(0)" record="category-image" recordid="{{$category->id}}" name="{{$category->category_image}}" class="confirmDeleteImage" title="Delete Category Image" style="color:#007bff">
+                          <i class="fas fa-trash" style="color: white"></i>
+                        </a>
                       @endif
                     </div>
                     <div class="form-group">

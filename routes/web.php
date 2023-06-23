@@ -68,6 +68,7 @@ Route::group(['prefix' => 'admin'], function () {                               
         Route::get('categories', [CategoryController::class, 'categories']);
         Route::post('update-category-status', [CategoryController::class, 'updateCategoryStatus']);
         Route::match(['get', 'post'], 'add-edit-category/{id?}', [CategoryController::class, 'addEditCategory']);
+        Route::get('delete-category-image/{id?}', [CategoryController::class, 'deleteCategoryImage']);
         Route::get('delete-category/{id?}', [CategoryController::class, 'deleteCategory']);
 
 
