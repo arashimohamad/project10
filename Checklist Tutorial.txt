@@ -39,8 +39,8 @@
 39	Laravel 10 Tutorial #39	
 40	Laravel 10 Tutorial #40	
 41	Laravel 10 Tutorial #41	
-42	Laravel 10 Tutorial #42	- Done
-43	Laravel 10 Tutorial #43	
+42	Laravel 10 Tutorial #42	
+43	Laravel 10 Tutorial #43	- Done
 44	Laravel 10 Tutorial #44	
 45	Laravel 10 Tutorial #45	
 46	Laravel 10 Tutorial #46	

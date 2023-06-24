@@ -48,6 +48,7 @@
                   {{-- check if subadminRoles data is coming or not --}}
                   @if (!empty($subadminRoles))
                     @foreach ($subadminRoles as $role)                   
+                      
                       @if ($role->module == "cms_pages")
                         @if ($role->view_access == 1)
                           @php $viewCMSPages = "checked" @endphp
@@ -64,11 +65,31 @@
                         @else
                           @php $fullCMSPages = "" @endphp
                         @endif
-                      @endif                       
+                      @endif
+
+                      @if ($role->module == "categories")
+                        @if ($role->view_access == 1)
+                          @php $viewCategories = "checked" @endphp
+                        @else
+                          @php $viewCategories = "" @endphp
+                        @endif
+                        @if ($role->edit_access == 1)
+                          @php $editCategories = "checked" @endphp
+                        @else
+                          @php $editCategories = "" @endphp
+                        @endif
+                        @if ($role->full_access == 1)
+                          @php $fullCategories = "checked" @endphp
+                        @else
+                          @php $fullCategories = "" @endphp
+                        @endif
+                      @endif                        
+                    
                     @endforeach                    
                   @endif
                   <div class="card-body">
                     <input type="hidden" name="subadmin_id" value="{{$id}}">
+                    
                     <div class="form-group col-md-6">
                       <label for="cms_pages">CMS Pages:&nbsp;&nbsp;&nbsp;</label>
                       <input type="checkbox" name="cms_pages[view]" value="1" @isset($viewCMSPages) {{$viewCMSPages}} @endisset>&nbsp;View Access
@@ -76,7 +97,17 @@
                       <input type="checkbox" name="cms_pages[edit]" value="1" @isset($editCMSPages) {{$editCMSPages}} @endisset>&nbsp;View/Edit Access
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <input type="checkbox" name="cms_pages[full]" value="1" @isset($fullCMSPages) {{$fullCMSPages}} @endisset>&nbsp;Full Access
-                    </div>                     
+                    </div>
+                    
+                    <div class="form-group col-md-6">
+                      <label for="categories">Categories:&nbsp;&nbsp;&nbsp;</label>
+                      <input type="checkbox" name="categories[view]" value="1" @isset($viewCategories) {{$viewCategories}} @endisset>&nbsp;View Access
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="categories[edit]" value="1" @isset($editCategories) {{$editCategories}} @endisset>&nbsp;View/Edit Access
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="categories[full]" value="1" @isset($fullCategories) {{$fullCategories}} @endisset>&nbsp;Full Access
+                    </div> 
+                    
                     <div class="form-group col-md-6">
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

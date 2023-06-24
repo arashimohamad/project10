@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Category;
+use App\Models\AdminsRole;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 
@@ -15,7 +17,23 @@ class CategoryController extends Controller
         Session::put('page','categories');                       // related use to highlight menu/submenu selection
         $categories = Category::with('parentcategory')->get();
         //dd($categories);
-        return view('admin.categories.categories', compact('categories'));
+
+        //Set Admin/Subadmins Permission for Categories
+        $categoriesModuleCount = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'categories'])->count();   //dd($cmspagesModuleCount);    
+        $categoriesModule= [];
+        //Check if admin, so give a full access
+        if (Auth::guard('admin')->user()->type == 'admin') {
+            $categoriesModule['view_access'] = 1;
+            $categoriesModule['edit_access'] = 1;
+            $categoriesModule['full_access'] = 1;
+        } else if($categoriesModuleCount == 0) {                   //if subadmin not set anything permission, give it message
+            $message = "This feature is restricted for you!"; 
+            return redirect('admin/dashboard')->with('error_message', $message);
+        }else{                                                  //check if subadmin is set permission
+            $categoriesModule = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'categories'])->first();
+        }
+
+        return view('admin.categories.categories', compact('categories','categoriesModule'));
     }
 
     public function updateCategoryStatus(Request $request)              
