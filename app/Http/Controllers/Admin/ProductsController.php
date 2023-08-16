@@ -11,7 +11,13 @@ class ProductsController extends Controller
     //use doc_fun snippet to call public function name()    
     public function products()
     {
-        $products = Product::get();
+        //When we use "with('category')", make sure on Product Model has a relation (BelongTo, HasMany or etc).
+        //Other way is joint table of Products and Categories
+        
+        //$products = Product::with('category')->get()->toArray();        // utk lihat susunan array yg cantik
+        //dd($products);
+        
+        $products = Product::with('category')->get();
         return view('admin.products.products', compact('products'));
     }
 

@@ -44,6 +44,8 @@
                       <th>Product Name</th>
                       <th>Product Code</th>
                       <th>Product Color</th>
+                      <th>Category</th>
+                      <th>Parent Category</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -54,6 +56,12 @@
                         <td>{{$prod->product_name}}</td>
                         <td>{{$prod->product_code}}</td>
                         <td>{{$prod->product_color}}</td>
+                        <td>{{$prod->category->category_name}}</td>
+                        <td>
+                          @isset($prod->category->parentcategory->category_name)
+                            {{$prod->category->parentcategory->category_name}}                              
+                          @endisset
+                        </td>
                         <td>
                           
                             @if ($prod->status == 1)
@@ -88,6 +96,8 @@
                       <th>Product Name</th>
                       <th>Product Code</th>
                       <th>Product Color</th>
+                      <th>Category</th>
+                      <th>Parent Category</th>
                       <th>Actions</th>
                     </tr>
                   </tfoot>
