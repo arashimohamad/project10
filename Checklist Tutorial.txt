@@ -40,8 +40,8 @@
 40	Laravel 10 Tutorial #40	
 41	Laravel 10 Tutorial #41	
 42	Laravel 10 Tutorial #42	
-43	Laravel 10 Tutorial #43	- Done
-44	Laravel 10 Tutorial #44	
+43	Laravel 10 Tutorial #43	
+44	Laravel 10 Tutorial #44	- Done
 45	Laravel 10 Tutorial #45	
 46	Laravel 10 Tutorial #46	
 47	Laravel 10 Tutorial #47	
@@ -98,3 +98,8 @@
 98	Laravel 10 Tutorial #98	
 99	Laravel 10 Tutorial #99	
 100	Laravel 10 Tutorial #100	
+
+
+
+Email : admin@admin.com / lisa@admin.com / john@admin.com
+Password : 123456
