@@ -87,10 +87,12 @@
 
 <!-- Page specific script -->
 <script>
+  //For pagination
   $(function () {   
     $('#cmspages').DataTable();
     $('#subadmins').DataTable();
     $('#categories').DataTable();
+    $('#products').DataTable();
   });
 </script>
 

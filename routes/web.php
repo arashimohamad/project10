@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\CmsPageController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +71,11 @@ Route::group(['prefix' => 'admin'], function () {                               
         Route::match(['get', 'post'], 'add-edit-category/{id?}', [CategoryController::class, 'addEditCategory']);
         Route::get('delete-category-image/{id?}', [CategoryController::class, 'deleteCategoryImage']);
         Route::get('delete-category/{id?}', [CategoryController::class, 'deleteCategory']);
+
+        //Products              
+        Route::get('products', [ProductsController::class, 'products']);
+        Route::post('update-product-status', [ProductsController::class, 'updateProductStatus']);
+        Route::get('delete-product/{id?}', [ProductsController::class, 'deleteProduct']);
 
 
     });    
