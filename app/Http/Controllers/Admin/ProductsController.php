@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,6 +40,28 @@ class ProductsController extends Controller
 
             return response()->json(['status'=>$status, 'product_id'=>$data['product_id']]);
         }         
+    }
+
+    public function addEditProduct(Request $request, $id=null)
+    {
+        //Add dan Edit buat kat sini        
+        //Session::put('page', 'categories');                             //Session::put setara dgn $request->session()->put('page', 'categories');
+
+        $getCategories = Category::getCategories();                     //recall function getCategories() dari Model Category dan baru boleh buat dropdown menu di blade
+        //dd($getCategories);
+
+        if ($id == "") {
+            # Add product
+            $title   = "Add product";
+            $product = new Product;
+            $message = "Product added successfully!";
+        } else {
+            $title   = "Edit product";
+            $product =  Product::find($id);
+            $message = "Product updated successfully!";
+        }
+        
+        return view('admin.products.add_edit_product', compact('title', 'getCategories', 'product'));
     }
 
     public function deleteProduct($id)
