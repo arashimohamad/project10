@@ -45,10 +45,7 @@ class ProductsController extends Controller
     public function addEditProduct(Request $request, $id=null)
     {
         //Add dan Edit buat kat sini        
-        //Session::put('page', 'categories');                             //Session::put setara dgn $request->session()->put('page', 'categories');
-
-        $getCategories = Category::getCategories();                     //recall function getCategories() dari Model Category dan baru boleh buat dropdown menu di blade
-        //dd($getCategories);
+        //Session::put('page', 'categories');                             //Session::put setara dgn $request->session()->put('page', 'categories');        
 
         if ($id == "") {
             # Add product
@@ -60,8 +57,15 @@ class ProductsController extends Controller
             $product =  Product::find($id);
             $message = "Product updated successfully!";
         }
+
+        //Get Categories and their Sub Categories
+        $getCategories = Category::getCategories();                     //recall function getCategories() dari Model Category dan baru boleh buat dropdown menu di blade
         
-        return view('admin.products.add_edit_product', compact('title', 'getCategories', 'product'));
+        //Product filter that perform on product model
+        $productsFilters = Product::productsFilters();
+        //dd($productsFilters);
+        
+        return view('admin.products.add_edit_product', compact('title', 'product', 'getCategories', 'productsFilters'));
     }
 
     public function deleteProduct($id)

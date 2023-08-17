@@ -280,7 +280,7 @@ CREATE TABLE `products` (
   `product_video` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `wash_care` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `search_keywords` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `fabric` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `pattern` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `sleeve` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -346,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-16 14:46:31
+-- Dump completed on 2023-08-17  0:44:46

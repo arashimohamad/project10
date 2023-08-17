@@ -16,4 +16,16 @@ class Product extends Model
     {
         return $this->belongsTo(Category::class, 'category_id')->with('parentcategory');
     }
+
+    //Product filters will be displayed on add_edit_product blade   
+    public static function productsFilters()
+    {
+        $productsFilters['fabricArray'] = ['Cotton', 'Polyester', 'Wool'];
+        $productsFilters['sleeveArray'] = ['Full Sleeve', 'Half Sleeve', 'Short Sleeve', 'Sleeveless'];
+        $productsFilters['patternArray'] = ['Checked', 'Plain', 'Printed', 'Self', 'Solid'];
+        $productsFilters['fitArray'] = ['Regular', 'Slim'];
+        $productsFilters['occasionArray'] = ['Casual', 'Formal'];
+
+        return $productsFilters;
+    }
 }

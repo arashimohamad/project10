@@ -120,6 +120,51 @@
                       <input type="file" class="form-control" id="prodvideo" name="prodvideo">                                           
                     </div>
                     <div class="form-group">
+                      <label for="fabric">Fabric</label>                      
+                      <select class="form-control" name="fabric" id="fabric">
+                        <option value="">Select</option>
+                        @foreach ($productsFilters['fabricArray'] as $fa )
+                          <option value="{{$fa}}">{{$fa}}</option>                                                  
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="sleeve">Sleeve</label>                      
+                      <select class="form-control" name="sleeve" id="sleeve">
+                        <option value="">Select</option>
+                        @foreach ($productsFilters['sleeveArray'] as $sleeve )
+                          <option value="{{$sleeve}}">{{$sleeve}}</option>                                                  
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="pattern">Pattern</label>                      
+                      <select class="form-control" name="pattern" id="pattern">
+                        <option value="">Select</option>
+                        @foreach ($productsFilters['patternArray'] as $pattern )
+                          <option value="{{$pattern}}">{{$pattern}}</option>                                                  
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="fit">Fit</label>                      
+                      <select class="form-control" name="fitArray" id="fit">
+                        <option value="">Select</option>
+                        @foreach ($productsFilters['fitArray'] as $fit )
+                          <option value="{{$fit}}">{{$fit}}</option>                                                  
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
+                      <label for="occasionArray">Occasion</label>                      
+                      <select class="form-control" name="occasionArray" id="occasionArray">
+                        <option value="">Select</option>
+                        @foreach ($productsFilters['occasionArray'] as $occasion )
+                          <option value="{{$occasion}}">{{$occasion}}</option>                                                  
+                        @endforeach
+                      </select>
+                    </div>
+                    <div class="form-group">
                       <label for="descr">Description</label>
                       <textarea class="form-control" name="descr" id="descr" rows="3" placeholder="Enter Description">
                         @if (!empty($product['description'])) {{$product['description']}} @else {{old('descr')}} @endif
