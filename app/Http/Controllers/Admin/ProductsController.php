@@ -58,6 +58,86 @@ class ProductsController extends Controller
             $message = "Product updated successfully!";
         }
 
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+
+            //Product validation
+            if ($id == "") {
+                $rules = [
+                    'categoryID' => 'required',
+                    'prodname'    => 'required|regex:/^[\pL\s\-]+$/u|max:200',
+                    'prodcode'    => 'required|regex:/^[\w-]*$/|max:30',
+                    'prodcolor'   => 'required|regex:/^[\pL\s\-]+$/u|max:200',
+                    'familycolor' => 'required|regex:/^[\pL\s\-]+$/u|max:200',
+                    'prodprice'   => 'required|numeric',
+                ];
+            } else {
+                $rules = [
+                    'categoryID' => 'required',
+                    'prodname'    => 'required|regex:/^[\pL\s\-]+$/u|max:200',
+                    'prodcode'    => 'required|regex:/^[\w-]*$/|max:30',
+                    'prodcolor'   => 'required|regex:/^[\pL\s\-]+$/u|max:200',
+                    'familycolor' => 'required|regex:/^[\pL\s\-]+$/u|max:200',
+                    'prodprice'   => 'required|numeric',
+                ];
+            }
+
+            $customMessages = [
+                'categoryID.required'   => 'Category is required',
+
+                'prodname.required'     => 'Product Name is required',
+                'prodname.regex'        => 'Valid Product Name is required',
+                
+                'prodcode.required'     => 'Product Code is required',
+                'prodcode.regex'        => 'Valid Product Code is required',
+                
+                'prodcolor.required'    => 'Product Color is required',
+                'prodcolor.regex'       => 'Valid Product Color is required',
+
+                'familycolor.required'  => 'Family Color is required',
+                'familycolor.regex'     => 'Valid Family Color is required',
+
+                'prodprice.required'    => 'Product Price is required',
+                'prodprice.numeric'     => 'Valid Product Price is required',
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
+            // add or update data
+            $product->category_id       = $data['categoryID'];
+            $product->product_name      = $data['prodname'];
+            $product->product_code      = $data['prodcode'];
+            $product->product_color     = $data['prodcolor'];
+            $product->family_color      = $data['familycolor'];
+            $product->group_code        = $data['groupcode'];
+            $product->product_price     = $data['prodprice'];
+            $product->product_discount  = $data['proddiscount'];
+            $product->product_weight    = $data['prodweight'];
+            $product->description       = $data['descr'];
+            $product->wash_care         = $data['washcare'];
+            $product->fabric            = $data['fabric'];
+            $product->pattern           = $data['pattern'];
+            $product->sleeve            = $data['sleeve'];
+            $product->fit               = $data['fit'];
+            $product->occasion          = $data['occasion'];
+            $product->search_keywords   = $data['searchkeywords'];
+            $product->meta_title        = $data['metatitle'];
+            $product->meta_description  = $data['metadesc'];
+            $product->meta_keywords     = $data['metakeys'];
+            $product->status            = 1;
+
+            if (!empty($data['isfeatured'])) {
+                $product->is_featured = $data['isfeatured'];                
+            } else {
+                $product->is_featured = "No";
+            }
+            
+            $product->save();
+
+            return redirect('admin/products')->with('success_message', $message);  
+            
+        }
+
         //Get Categories and their Sub Categories
         $getCategories = Category::getCategories();                     //recall function getCategories() dari Model Category dan baru boleh buat dropdown menu di blade
         
