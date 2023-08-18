@@ -138,6 +138,26 @@ class ProductsController extends Controller
             $product->group_code        = $data['groupcode'];
             $product->product_price     = $data['prodprice'];
             $product->product_discount  = $data['proddiscount'];
+
+            //Calculate discount and must check if it has a discount/not for Product and Category
+            if (!empty($data['proddiscount']) && $data['proddiscount'] > 0) {
+                // Product Discount
+                $product->discount_type = 'product';
+                $product->final_price = $data['prodprice'] - ($data['prodprice'] * $data['proddiscount'])/100;
+            } else {
+                //Category Discount
+                $getCategoryDiscount = Category::select('category_discount')->where('id', $data['categoryUD'])->first();
+
+                if ($getCategoryDiscount->category_discount == 0) {             
+                    //No discount because category discount is 0            
+                    $product->discount_type = "";
+                    $product->final_price = $data['prodprice'];
+                } else {
+                    $product->discount_type = 'category';
+                    $product->final_price = $data['prodprice'] - ($data['prodprice'] * $getCategoryDiscount->category_discount)/100;
+                }
+            }
+
             $product->product_weight    = $data['prodweight'];
             $product->description       = $data['descr'];
             $product->wash_care         = $data['washcare'];
@@ -151,7 +171,7 @@ class ProductsController extends Controller
             $product->meta_description  = $data['metadesc'];
             $product->meta_keywords     = $data['metakeys'];
             $product->status            = 1;
-                        
+
             $product->save();
 
             return redirect('admin/products')->with('success_message', $message);  

@@ -48,8 +48,8 @@
 48	Laravel 10 Tutorial #48	
 49	Laravel 10 Tutorial #49	
 50	Laravel 10 Tutorial #50	
-51	Laravel 10 Tutorial #51	- Done
-52	Laravel 10 Tutorial #52	
+51	Laravel 10 Tutorial #51	
+52	Laravel 10 Tutorial #52	- Done
 53	Laravel 10 Tutorial #53	
 54	Laravel 10 Tutorial #54	
 55	Laravel 10 Tutorial #55	
