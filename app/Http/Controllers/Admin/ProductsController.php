@@ -6,12 +6,15 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 
 class ProductsController extends Controller
 {
     //use doc_fun snippet to call public function name()    
     public function products()
     {
+        Session::put('page', 'products');                             //Session::put setara dgn $request->session()->put('page', 'prodducts');    
+        
         //When we use "with('category')", make sure on Product Model has a relation (BelongTo, HasMany or etc).
         //Other way is joint table of Products and Categories
         
@@ -45,15 +48,16 @@ class ProductsController extends Controller
     public function addEditProduct(Request $request, $id=null)
     {
         //Add dan Edit buat kat sini        
-        //Session::put('page', 'categories');                             //Session::put setara dgn $request->session()->put('page', 'categories');        
+        Session::put('page', 'products');                             //Session::put setara dgn $request->session()->put('page', 'prodducts');        
 
         if ($id == "") {
             # Add product
-            $title   = "Add product";
+            $title   = "Add Product";
             $product = new Product;
             $message = "Product added successfully!";
         } else {
-            $title   = "Edit product";
+            # Edit product
+            $title   = "Edit Product";
             $product =  Product::find($id);
             $message = "Product updated successfully!";
         }
@@ -137,7 +141,7 @@ class ProductsController extends Controller
             $product->family_color      = $data['familycolor'];
             $product->group_code        = $data['groupcode'];
             $product->product_price     = $data['prodprice'];
-            $product->product_discount  = $data['proddiscount'];
+            $product->product_discount  = $data['proddiscount'];        //If the data HAS a value, then "discount type = product". If there is NO data, then "discount type = category"
 
             //Calculate discount and must check if it has a discount/not for Product and Category
             if (!empty($data['proddiscount']) && $data['proddiscount'] > 0) {
@@ -146,7 +150,7 @@ class ProductsController extends Controller
                 $product->final_price = $data['prodprice'] - ($data['prodprice'] * $data['proddiscount'])/100;
             } else {
                 //Category Discount
-                $getCategoryDiscount = Category::select('category_discount')->where('id', $data['categoryUD'])->first();
+                $getCategoryDiscount = Category::select('category_discount')->where('id', $data['categoryID'])->first();
 
                 if ($getCategoryDiscount->category_discount == 0) {             
                     //No discount because category discount is 0            
