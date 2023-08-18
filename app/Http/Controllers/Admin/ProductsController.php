@@ -103,7 +103,33 @@ class ProductsController extends Controller
 
             $this->validate($request, $rules, $customMessages);
 
-            // add or update data
+            // Upload product video
+            if ($request->hasFile('prodvideo')) {
+                $video_tmp = $request->file('prodvideo');
+
+                //Checking is it video valid / invalid extension format (.mkv/.mp4/.flv or etc)
+                if ($video_tmp->isValid()) {
+                    //Upload video
+                    // $video_name = $video_tmp->getClientOriginalName();
+                    $video_extension = $video_tmp->getClientOriginalExtension();
+
+                    //give a random name for video to avoid overwrite file
+                    $videoName = rand().'.'. $video_extension;
+                    $videoPath= "front/videos";
+                    $video_tmp->move($videoPath, $videoName);
+
+                    //Save Video name in products table
+                    $product->product_video = $videoName;
+                }
+            }         
+            
+            if (!empty($data['isfeatured'])) {
+                $product->is_featured = $data['isfeatured'];                
+            } else {
+                $product->is_featured = "No";
+            }
+
+            // Add or update data
             $product->category_id       = $data['categoryID'];
             $product->product_name      = $data['prodname'];
             $product->product_code      = $data['prodcode'];
@@ -125,13 +151,7 @@ class ProductsController extends Controller
             $product->meta_description  = $data['metadesc'];
             $product->meta_keywords     = $data['metakeys'];
             $product->status            = 1;
-
-            if (!empty($data['isfeatured'])) {
-                $product->is_featured = $data['isfeatured'];                
-            } else {
-                $product->is_featured = "No";
-            }
-            
+                        
             $product->save();
 
             return redirect('admin/products')->with('success_message', $message);  
@@ -143,7 +163,6 @@ class ProductsController extends Controller
         
         //Product filter that perform on product model
         $productsFilters = Product::productsFilters();
-        //dd($productsFilters);
         
         return view('admin.products.add_edit_product', compact('title', 'product', 'getCategories', 'productsFilters'));
     }

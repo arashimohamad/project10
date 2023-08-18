@@ -58,14 +58,14 @@
                     <select name="categoryID" class="form-control">
                       <option value="">Select</option>                        
                       @foreach ($getCategories as $cat)                 {{-- one category level --}}               
-                        <option value="{{$cat->id}}" style="font-weight: bold;">{{$cat->category_name}}</option>
+                        <option @if (!empty(@old('categoryID')) && $cat->id == @old('categoryID')) selected=""@endif value="{{$cat->id}}" style="font-weight: bold;">{{$cat->category_name}}</option>
                         {{-- cek jika subcategories ada/tidak, sila rujuk Category model --}}
                         @if (!empty($cat->subcategories))
                           @foreach ($cat->subcategories as $subcat)     {{-- sub category --}}
-                            <option value="{{$subcat->id}}" style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;{{$subcat->category_name}}</option>
+                            <option @if (!empty(@old('categoryID')) && $subcat->id == @old('categoryID')) selected=""@endif value="{{$subcat->id}}" style="font-weight: bold;">&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;{{$subcat->category_name}}</option>
                             @if (!empty($subcat->subcategories))        {{-- sub sub category --}}
                               @foreach ($subcat->subcategories as $subsubcat)
-                                <option value="{{$subsubcat->id}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;{{$subsubcat->category_name}}</option>
+                                <option @if (!empty(@old('categoryID')) && $subsubcat->id == @old('categoryID')) selected=""@endif value="{{$subsubcat->id}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&raquo;&raquo;{{$subsubcat->category_name}}</option>
                               @endforeach
                             @endif
                           @endforeach
@@ -75,47 +75,47 @@
                   </div>
                   <div class="form-group">
                     <label for="prodname">Product Name *</label>
-                    <input type="text" class="form-control" id="prodname" name="prodname" placeholder="Enter Product Name" @if (!empty($product['product_name'])) value="{{$product['product_name']}}" @else value="{{old('prodname')}}" @endif>                    
+                    <input type="text" class="form-control" id="prodname" name="prodname" placeholder="Enter Product Name" @if (!empty($product['product_name'])) value="{{$product['product_name']}}" @else value="{{@old('prodname')}}" @endif>                    
                   </div>
                   <div class="form-group">
                     <label for="prodcode">Product Code *</label>
-                    <input type="text" class="form-control" id="prodcode" name="prodcode" placeholder="Enter Product Code" @if (!empty($product['product_code'])) value="{{$product['product_code']}}" @else value="{{old('prodcode')}}" @endif>                    
+                    <input type="text" class="form-control" id="prodcode" name="prodcode" placeholder="Enter Product Code" @if (!empty($product['product_code'])) value="{{$product['product_code']}}" @else value="{{@old('prodcode')}}" @endif>                    
                   </div>
                   <div class="form-group">
                     <label for="prodcolor">Product Color *</label>
-                    <input type="text" class="form-control" id="prodcolor" name="prodcolor" placeholder="Enter Product Color" @if (!empty($product['product_color'])) value="{{$product['product_color']}}" @else value="{{old('prodcolor')}}" @endif>                    
+                    <input type="text" class="form-control" id="prodcolor" name="prodcolor" placeholder="Enter Product Color" @if (!empty($product['product_color'])) value="{{$product['product_color']}}" @else value="{{@old('prodcolor')}}" @endif>                    
                   </div>
                   <div class="form-group">
                     <label for="familycolor">Family Color *</label>                      
                     <select class="form-control" name="familycolor" id="familycolor">
                       <option value="">Select</option>
-                      <option value="Black">Black</option>
-                      <option value="Blue">Blue</option>
-                      <option value="Green">Green</option>
-                      <option value="Grey">Grey</option>
-                      <option value="Golden">Golden</option>
-                      <option value="Orange">Orange</option>
-                      <option value="Red">Red</option>
-                      <option value="Silver">Silver</option>
-                      <option value="White">White</option>
-                      <option value="Yellow">Yellow</option>
+                      <option value="Black" @if (!empty(@old('familycolor')) && @old('familycolor')=="Black") {{"selected"}} @endif>Black</option>
+                      <option value="Blue" @if (!empty(@old('familycolor')) && @old('familycolor')=="Blue") {{"selected"}} @endif>Blue</option>
+                      <option value="Green" @if (!empty(@old('familycolor')) && @old('familycolor')=="Green") {{"selected"}} @endif>Green</option>
+                      <option value="Grey" @if (!empty(@old('familycolor')) && @old('familycolor')=="Grey") {{"selected"}} @endif>Grey</option>
+                      <option value="Golden" @if (!empty(@old('familycolor')) && @old('familycolor')=="Golden") {{"selected"}} @endif>Golden</option>
+                      <option value="Orange" @if (!empty(@old('familycolor')) && @old('familycolor')=="Orange") {{"selected"}} @endif>Orange</option>
+                      <option value="Red" @if (!empty(@old('familycolor')) && @old('familycolor')=="Red") {{"selected"}} @endif>Red</option>
+                      <option value="Silver" @if (!empty(@old('familycolor')) && @old('familycolor')=="Silver") {{"selected"}} @endif>Silver</option>
+                      <option value="White" @if (!empty(@old('familycolor')) && @old('familycolor')=="White") {{"selected"}} @endif>White</option>
+                      <option value="Yellow" @if (!empty(@old('familycolor')) && @old('familycolor')=="Yellow") {{"selected"}} @endif>Yellow</option>
                     </select>
                   </div>
                   <div class="form-group">
                     <label for="groupcode">Group Code</label>
-                    <input type="text" class="form-control" id="groupcode" name="groupcode" placeholder="Enter Group Code" @if (!empty($product['group_code'])) value="{{$product['group_code']}}" @else value="{{old('groupcode')}}" @endif>                    
+                    <input type="text" class="form-control" id="groupcode" name="groupcode" placeholder="Enter Group Code" @if (!empty($product['group_code'])) value="{{$product['group_code']}}" @else value="{{@old('groupcode')}}" @endif>                    
                   </div>
                   <div class="form-group">
                     <label for="prodprice">Product Price *</label>
-                    <input type="text" class="form-control" id="prodprice" name="prodprice" placeholder="Enter Product Price" @if (!empty($product['product_price'])) value="{{$product['product_price']}}" @else value="{{old('prodprice')}}" @endif>                    
+                    <input type="text" class="form-control" id="prodprice" name="prodprice" placeholder="Enter Product Price" @if (!empty($product['product_price'])) value="{{$product['product_price']}}" @else value="{{@old('prodprice')}}" @endif>                    
                   </div>
                   <div class="form-group">
                     <label for="proddiscount">Product Discount (%)</label>
-                    <input type="text" class="form-control" id="proddiscount" name="proddiscount" placeholder="Enter Product Discount (%)" @if (!empty($product['product_discount'])) value="{{$product['product_discount']}}" @else value="{{old('proddiscount')}}" @endif>                    
+                    <input type="text" class="form-control" id="proddiscount" name="proddiscount" placeholder="Enter Product Discount (%)" @if (!empty($product['product_discount'])) value="{{$product['product_discount']}}" @else value="{{@old('proddiscount')}}" @endif>                    
                   </div>
                   <div class="form-group">
                     <label for="prodweight">Product Weight</label>
-                    <input type="text" class="form-control" id="prodweight" name="prodweight" placeholder="Enter Product Weight" @if (!empty($product['product_weight'])) value="{{$product['product_weight']}}" @else value="{{old('prodweight')}}" @endif>                    
+                    <input type="text" class="form-control" id="prodweight" name="prodweight" placeholder="Enter Product Weight" @if (!empty($product['product_weight'])) value="{{$product['product_weight']}}" @else value="{{@old('prodweight')}}" @endif>                    
                   </div>
                   <div class="form-group">
                     <label for="prodvideo">Product Video</label>
@@ -124,8 +124,8 @@
                   <div class="form-group">
                     <label for="fabric">Fabric</label>                      
                     <select class="form-control" name="fabric" id="fabric">
-                      <option value="">Select</option>
-                      @foreach ($productsFilters['fabricArray'] as $fa )
+                      <option value="">Select</option>                      
+                      @foreach ($productsFilters['fabricArray'] as $fa )                       
                         <option value="{{$fa}}">{{$fa}}</option>                                                  
                       @endforeach
                     </select>
@@ -168,26 +168,26 @@
                   </div>
                   <div class="form-group">
                     <label for="descr">Description</label>
-                    <textarea class="form-control" name="descr" id="descr" rows="3" placeholder="Enter Description">@if (!empty($product['description'])) {{$product['description']}} @else {{old('descr')}} @endif</textarea>                                       
+                    <textarea class="form-control" name="descr" id="descr" rows="3" placeholder="Enter Description">@if (!empty($product['description'])) {{$product['description']}} @else {{@old('descr')}} @endif</textarea>                                       
                   </div>
                   <div class="form-group">
                     <label for="washcare">Wash Care</label>
-                    <textarea class="form-control" name="washcare" id="washcare" rows="3" placeholder="Enter Wash Care">@if (!empty($product['wash_care'])) {{$product['wash_care']}} @else {{old('washcare')}} @endif</textarea>                                                                         
+                    <textarea class="form-control" name="washcare" id="washcare" rows="3" placeholder="Enter Wash Care">@if (!empty($product['wash_care'])) {{$product['wash_care']}} @else {{@old('washcare')}} @endif</textarea>                                                                         
                   </div>
                   <div class="form-group">
                     <label for="searchkeywords">Search Keywords</label>
-                    <textarea class="form-control" id="searchkeywords" name="searchkeywords" rows="3" placeholder="Enter Search Keywords">@if (!empty($product['search_keywords'])) {{$product['search_keywords']}} @else {{old('searchkeywords')}} @endif</textarea>                      
+                    <textarea class="form-control" id="searchkeywords" name="searchkeywords" rows="3" placeholder="Enter Search Keywords">@if (!empty($product['search_keywords'])) {{$product['search_keywords']}} @else {{@old('searchkeywords')}} @endif</textarea>                      
                   <div class="form-group">
                     <label for="metatitle">Meta Title</label>
-                    <input type="text" class="form-control" id="metatitle" name="metatitle" placeholder="Enter Meta Title" @if (!empty($product['meta_title'])) value="{{$product['meta_title']}}" @else value="{{old('metatitle')}}" @endif>
+                    <input type="text" class="form-control" id="metatitle" name="metatitle" placeholder="Enter Meta Title" @if (!empty($product['meta_title'])) value="{{$product['meta_title']}}" @else value="{{@old('metatitle')}}" @endif>
                   </div>
                   <div class="form-group">
                     <label for="metadesc">Meta Description</label>
-                    <input type="text" class="form-control" id="metadesc" name="metadesc" placeholder="Enter Meta Description" @if (!empty($product['meta_description'])) value="{{$product['meta_description']}}" @else value="{{old('metadesc')}}" @endif>
+                    <input type="text" class="form-control" id="metadesc" name="metadesc" placeholder="Enter Meta Description" @if (!empty($product['meta_description'])) value="{{$product['meta_description']}}" @else value="{{@old('metadesc')}}" @endif>
                   </div>
                   <div class="form-group">
                     <label for="metakeys">Meta Keywords</label>
-                    <input type="text" class="form-control" id="metakeys" name="metakeys" placeholder="Enter Meta Keywords" @if (!empty($product['meta_keywords'])) value="{{$product['meta_keywords']}}" @else value="{{old('metakeys')}}" @endif>
+                    <input type="text" class="form-control" id="metakeys" name="metakeys" placeholder="Enter Meta Keywords" @if (!empty($product['meta_keywords'])) value="{{$product['meta_keywords']}}" @else value="{{@old('metakeys')}}" @endif>
                   </div>
                   <div class="form-group">
                     <div class="form-check">
