@@ -122,7 +122,7 @@
                     <input type="file" class="form-control" id="prodvideo" name="prodvideo"> 
                     @if (!empty($product['product_video']))
                       {{-- <a href="{{ url('front/videos/products/'.$product['product_video']) }}" target="_blank" style="color:#ccc">View TEST</a> --}}
-                      <a href="" style="text-decoration:none !important; color:#ccc" data-toggle="modal" data-target="#modalproductvideo"><i class="fa fa-eye"></i></a>
+                      <a href="" style="text-decoration:none !important; color:#ccc" data-toggle="modal" data-target="#modalproductvideo" onclick="enableAutoplay()"><i class="fa fa-eye"></i></a>
                       &nbsp; |&nbsp;
                       <a href="javascript:void(0)" record="product-video" recordid="{{$product->id}}" name="{{$product->product_name}} Product" class="confirmDeleteVideo" title="Delete Product Video" style="color:#ccc">
                         <i class="fa fa-trash-alt"></i>

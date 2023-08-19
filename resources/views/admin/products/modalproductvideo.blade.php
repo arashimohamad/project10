@@ -23,3 +23,10 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<script>
+    let vid = document.getElementById("productVideo");
+    function enableAutoplay() { 
+        vid.autoplay = true;
+        vid.load();
+    }
+</script>
