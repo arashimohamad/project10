@@ -8,7 +8,7 @@
             </button>
         </div>
         <div class="modal-body">
-            <video id="productVideo" width="100%" height="95%" controls>
+            <video id="productVideo" width="100%" height="95%" controls="" autoplay="">
                 <source src="{{ url('front/videos/products/'.$product['product_video'])}}">
                 {{-- <source src="{{ url('front/videos/products/'.$product['product_video'])}}" type="video/mp4"> --}}
                 Your browser does not support the video tag.
