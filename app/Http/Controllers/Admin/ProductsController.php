@@ -119,7 +119,7 @@ class ProductsController extends Controller
 
                     //give a random name for video to avoid overwrite file
                     $videoName = rand().'.'. $video_extension;
-                    $videoPath= "front/videos";
+                    $videoPath= "front/videos/products/";
                     $video_tmp->move($videoPath, $videoName);
 
                     //Save Video name in products table
@@ -195,5 +195,24 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id)->delete();
         return redirect()->back()->with('success_message', 'Product deleted successfully!');   
+    }
+    
+    public function deleteProductVideo($id)
+    {
+        //Get Product Video
+        $productVideo = Product::select('product_video')->where('id', $id)->first();
+
+        //Get Product Video Path
+        $product_video_path = 'front/videos/products/';
+
+        //Delete Product Video from product folder if exists
+        if (file_exists($product_video_path.$productVideo->product_video)) {
+            unlink($product_video_path.$productVideo->product_video);
+        }
+
+        //Delete Product Video Name from products table
+        $deleteVideo = Product::where('id', $id)->update(['product_video'=>'']);
+
+        return redirect()->back()->with('success_message', 'Product video deleted successfully!'); 
     }
 }

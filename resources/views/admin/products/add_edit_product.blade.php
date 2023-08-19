@@ -119,7 +119,15 @@
                   </div>
                   <div class="form-group">
                     <label for="prodvideo">Product Video</label>
-                    <input type="file" class="form-control" id="prodvideo" name="prodvideo">                                           
+                    <input type="file" class="form-control" id="prodvideo" name="prodvideo"> 
+                    @if (!empty($product['product_video']))
+                      {{-- <a href="{{ url('front/videos/products/'.$product['product_video']) }}" target="_blank" style="color:#ccc">View TEST</a> --}}
+                      <a href="" style="text-decoration:none !important; color:#ccc" data-toggle="modal" data-target="#modalproductvideo"><i class="fa fa-eye"></i></a>
+                      &nbsp; |&nbsp;
+                      <a href="javascript:void(0)" record="product-video" recordid="{{$product->id}}" name="{{$product->product_name}} Product" class="confirmDeleteVideo" title="Delete Product Video" style="color:#ccc">
+                        <i class="fa fa-trash-alt"></i>
+                      </a>                     
+                    @endif                                          
                   </div>
                   <div class="form-group">
                     <label for="fabric">Fabric</label>                      
@@ -219,4 +227,9 @@
   <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+
+<!-- Start Modal Product Video -->   
+  @include('admin.products.modalproductvideo')   
+<!-- End Modal Product Video -->
+
 @endsection

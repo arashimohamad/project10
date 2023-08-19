@@ -109,7 +109,7 @@ CREATE TABLE `categories` (
 
 LOCK TABLES `categories` WRITE;
 /*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,0,'Clothing',NULL,0,NULL,'clothing',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 23:10:18'),(2,0,'Electronics',NULL,0,NULL,'electronics',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 23:10:26'),(3,0,'Appliances',NULL,0,NULL,'appliances',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),(4,1,'Men',NULL,0,NULL,'men',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),(5,1,'Women',NULL,0,NULL,'women',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),(6,1,'Kids',NULL,0,NULL,'kids',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),(7,0,'Accessories','65511.jpg',10,'This is accessories','accessories','Accessories','Accessories info','accessories',1,'2023-06-19 05:48:15','2023-06-19 05:48:15'),(8,4,'T-Shirts','',0,NULL,'tshirts',NULL,NULL,NULL,1,'2023-06-19 11:00:06','2023-06-19 11:00:06'),(9,5,'Women Shirts','60955.jpg',20,'Women Shirts','women-shirts','Women Shirts','women shirts are available','women shirts',1,'2023-06-19 11:35:48','2023-06-20 03:01:04');
+INSERT INTO `categories` VALUES (1,0,'Clothing',NULL,0,NULL,'clothing',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 23:10:18'),(2,0,'Electronics',NULL,0,NULL,'electronics',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 23:10:26'),(3,0,'Appliances',NULL,0,NULL,'appliances',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),(4,1,'Men',NULL,0,NULL,'men',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),(5,1,'Women',NULL,0,NULL,'women',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),(6,1,'Kids',NULL,0,NULL,'kids',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),(7,0,'Accessories','65511.jpg',10,'This is accessories','accessories','Accessories','Accessories info','accessories',1,'2023-06-19 05:48:15','2023-06-19 05:48:15'),(8,4,'T-Shirts','',20,NULL,'tshirts',NULL,NULL,NULL,1,'2023-06-19 11:00:06','2023-08-18 10:19:40'),(9,5,'Women Shirts','60955.jpg',20,'Women Shirts','women-shirts','Women Shirts','women shirts are available','women shirts',1,'2023-06-19 11:35:48','2023-06-20 03:01:04');
 /*!40000 ALTER TABLE `categories` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -294,7 +294,7 @@ CREATE TABLE `products` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -303,7 +303,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,8,0,'Blue T-Shirt','BT001','Dark Blue','Blue','TSHIRT0000',150.00,10.00,'product',135.00,'500','','Test Product','','','','','','','','','','','Yes',1,'2023-08-16 03:44:29','2023-08-16 06:44:52'),(2,8,0,'Red T-Shirt','RT001','Red','Red','TSHIRT0000',100.00,0.00,'',100.00,'400','','Test Product','','','','','','','','','','','No',1,'2023-08-16 03:44:29','2023-08-16 06:44:53');
+INSERT INTO `products` VALUES (1,8,0,'Blue T-Shirt','BT001','Dark Blue','Blue','TSHIRT0000',150.00,10.00,'product',135.00,'500','','Test Product','','','','','','','','','','','Yes',1,'2023-08-16 03:44:29','2023-08-16 06:44:52'),(2,8,0,'Red T-Shirt','RT001','Red','Red','TSHIRT0000',100.00,0.00,'',100.00,'400','','Test Product','','','','','','','','','','','No',1,'2023-08-16 03:44:29','2023-08-16 06:44:53'),(3,9,NULL,'Green Women T-Shirt','GWT011','Dark Gren','Black','1000',40.00,NULL,'category',32.00,'100',NULL,'Women Shirt','TESTING','tshirts','Polyester','Printed','Short Sleeve','Slim','Formal','tshirt','good tshirts','tshirt','Yes',1,'2023-08-17 11:34:17','2023-08-18 18:38:24'),(4,8,NULL,'Yellow T-Shirt','YT001','Yellow','Yellow','10',70.00,NULL,NULL,NULL,NULL,'701721522.mp4','TEST','TEST','TEST','Cotton','Plain','Short Sleeve','Regular','Casual','TEST','TEST','TEST','Yes',1,'2023-08-18 04:03:43','2023-08-18 04:03:43');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -346,4 +346,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-17 18:42:25
+-- Dump completed on 2023-08-19  2:57:25
