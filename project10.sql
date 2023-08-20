@@ -146,6 +146,34 @@ INSERT INTO `cms_pages` VALUES (1,'Terms & Conditions','Testing','terms-conditio
 UNLOCK TABLES;
 
 --
+-- Table structure for table `colors`
+--
+
+DROP TABLE IF EXISTS `colors`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `colors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `color_name` varchar(255) DEFAULT NULL,
+  `color_code` varchar(255) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL COMMENT 'Active-1, Disable-0',
+  `created_at` datetime DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `colors`
+--
+
+LOCK TABLES `colors` WRITE;
+/*!40000 ALTER TABLE `colors` DISABLE KEYS */;
+INSERT INTO `colors` VALUES (1,'Black','#000000',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(2,'Blue','#0000FF',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(3,'Brown','#964B00',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(4,'Gray','#808080',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(5,'Green','#00FF00',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(6,'Multi','',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(7,'Olive','#808000',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(8,'Orange','#FFA500',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(9,'Pink ','#FFC0CB',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(10,'Purple','#800080',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(11,'Red','#FF0000',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(12,'White','#FFFFFF',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),(13,'Yellow','#FFFF00',1,'2023-08-20 00:00:00','2023-08-19 16:00:00');
+/*!40000 ALTER TABLE `colors` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -186,7 +214,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -195,7 +223,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_reset_tokens_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_05_09_062716_create_admins_table',1),(6,'2023_05_17_013024_create_cms_pages_table',2),(7,'2023_05_23_113937_create_admins_roles_table',3),(8,'2023_06_07_091414_create_categories_table',4),(9,'2023_08_16_104036_create_products_table',5);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_reset_tokens_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_05_09_062716_create_admins_table',1),(6,'2023_05_17_013024_create_cms_pages_table',2),(7,'2023_05_23_113937_create_admins_roles_table',3),(8,'2023_06_07_091414_create_categories_table',4),(9,'2023_08_16_104036_create_products_table',5),(10,'2023_08_20_144501_create_products_images_table',6);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,6 +336,35 @@ INSERT INTO `products` VALUES (1,8,0,'Blue T-Shirt','BT001','Dark Blue','Blue','
 UNLOCK TABLES;
 
 --
+-- Table structure for table `products_images`
+--
+
+DROP TABLE IF EXISTS `products_images`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products_images` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_sort` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products_images`
+--
+
+LOCK TABLES `products_images` WRITE;
+/*!40000 ALTER TABLE `products_images` DISABLE KEYS */;
+INSERT INTO `products_images` VALUES (1,1,'1.jpg',1,1,'2023-08-20 07:06:01','2023-08-20 07:06:01'),(2,1,'2.jpg',2,1,'2023-08-20 07:06:01','2023-08-20 07:06:01'),(3,1,'3.jpg',3,1,'2023-08-20 07:06:01','2023-08-20 07:06:01');
+/*!40000 ALTER TABLE `products_images` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -346,4 +403,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-19  2:57:25
+-- Dump completed on 2023-08-20 15:09:40
