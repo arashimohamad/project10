@@ -1,5 +1,6 @@
 @extends('admin.layout.layout')
-@section('content')    
+@section('content') 
+@php use App\Models\Color; @endphp
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
   <!-- Content Header (Page header) -->
@@ -85,22 +86,24 @@
                     <label for="prodcolor">Product Color *</label>
                     <input type="text" class="form-control" id="prodcolor" name="prodcolor" placeholder="Enter Product Color" @if (!empty($product['product_color'])) value="{{$product['product_color']}}" @else value="{{@old('prodcolor')}}" @endif>                    
                   </div>
+
                   <div class="form-group">
+                    @php $familyColors = Color::colors(); @endphp
                     <label for="familycolor">Family Color *</label>                      
                     <select class="form-control" name="familycolor" id="familycolor">
                       <option value="">Select</option>
-                      <option value="Black" @if (!empty(@old('familycolor')) && @old('familycolor')=="Black") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "Black")) {{"selected"}} @endif>Black</option>
-                      <option value="Blue" @if (!empty(@old('familycolor')) && @old('familycolor')=="Blue") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "Blue")) {{"selected"}} @endif>Blue</option>
-                      <option value="Green" @if (!empty(@old('familycolor')) && @old('familycolor')=="Green") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "Green")) {{"selected"}} @endif>Green</option>
-                      <option value="Grey" @if (!empty(@old('familycolor')) && @old('familycolor')=="Grey") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "Grey")) {{"selected"}} @endif>Grey</option>
-                      <option value="Golden" @if (!empty(@old('familycolor')) && @old('familycolor')=="Golden") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "Golden")) {{"selected"}} @endif>Golden</option>
-                      <option value="Orange" @if (!empty(@old('familycolor')) && @old('familycolor')=="Orange") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "Orange")) {{"selected"}} @endif>Orange</option>
-                      <option value="Red" @if (!empty(@old('familycolor')) && @old('familycolor')=="Red") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "Red")) {{"selected"}} @endif>Red</option>
-                      <option value="Silver" @if (!empty(@old('familycolor')) && @old('familycolor')=="Silver") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "Silver")) {{"selected"}} @endif>Silver</option>
-                      <option value="White" @if (!empty(@old('familycolor')) && @old('familycolor')=="White") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "White")) {{"selected"}} @endif>White</option>
-                      <option value="Yellow" @if (!empty(@old('familycolor')) && @old('familycolor')=="Yellow") {{"selected"}} @elseif(!empty($product['family_color'] && $product['family_color'] == "Yellow")) {{"selected"}} @endif>Yellow</option>
+                      @foreach ($familyColors as $color)
+                          <option value="{{$color['color_name']}}" 
+                            @if (!empty(@old('familycolor')) && @old('familycolor') == $color['color_name']) 
+                              {{"selected"}} 
+                            @elseif(!empty($product['family_color'] && $product['family_color'] == $color['color_name'])) 
+                              {{"selected"}} 
+                            @endif>{{$color->color_name}}                          
+                          </option>
+                      @endforeach
                     </select>
                   </div>
+                  
                   <div class="form-group">
                     <label for="groupcode">Group Code</label>
                     <input type="text" class="form-control" id="groupcode" name="groupcode" placeholder="Enter Group Code" @if (!empty($product['group_code'])) value="{{$product['group_code']}}" @else value="{{@old('groupcode')}}" @endif>                    
@@ -121,11 +124,12 @@
                     <label for="prodvideo">Product Video</label>
                     <input type="file" class="form-control" id="prodvideo" name="prodvideo"> 
                     @if (!empty($product['product_video']))
-                      {{-- <a href="{{ url('front/videos/products/'.$product['product_video']) }}" target="_blank" style="color:#ccc">View TEST</a> --}}
-                      <a href="" style="text-decoration:none !important; color:#ccc" data-toggle="modal" data-target="#modalproductvideo" onclick="enableAutoplay()"><i class="fa fa-eye"></i></a>
-                      &nbsp; |&nbsp;
+                      <a href="" style="text-decoration:none !important; color:#ccc" data-toggle="modal" data-target="#modalproductvideo" onclick="enableAutoplay()">
+                        <i class="fas fa-laptop"></i>
+                      </a>
+                      &nbsp; | &nbsp;
                       <a href="javascript:void(0)" record="product-video" recordid="{{$product->id}}" name="{{$product->product_name}} Product" class="confirmDeleteVideo" title="Delete Product Video" style="color:#ccc">
-                        <i class="fa fa-trash-alt"></i>
+                        <i class="fas fa-trash-alt"></i>
                       </a>                     
                     @endif                                          
                   </div>
@@ -134,7 +138,13 @@
                     <select class="form-control" name="fabric" id="fabric">
                       <option value="">Select</option>                      
                       @foreach ($productsFilters['fabricArray'] as $fa )                       
-                        <option value="{{$fa}}" @if (!empty(@old('fabric')) && @old('fabric')==$fa) {{"selected"}} @elseif(!empty($product['fabric'] && $product['fabric'] == $fa)) {{"selected"}} @endif>{{$fa}}</option>                                                  
+                        <option value="{{$fa}}" 
+                          @if (!empty(@old('fabric')) && @old('fabric')==$fa) 
+                            {{"selected"}} 
+                          @elseif(!empty($product['fabric'] && $product['fabric'] == $fa)) 
+                            {{"selected"}} 
+                          @endif>{{$fa}}
+                        </option>                                                  
                       @endforeach
                     </select>
                   </div>
@@ -143,7 +153,13 @@
                     <select class="form-control" name="sleeve" id="sleeve">
                       <option value="">Select</option>
                       @foreach ($productsFilters['sleeveArray'] as $sleeve )
-                        <option value="{{$sleeve}}" @if (!empty(@old('sleeve')) && @old('sleeve')==$sleeve) {{"selected"}} @elseif(!empty($product['sleeve'] && $product['sleeve'] == $sleeve)) {{"selected"}} @endif>{{$sleeve}}</option>                                                  
+                        <option value="{{$sleeve}}" 
+                          @if (!empty(@old('sleeve')) && @old('sleeve')==$sleeve) 
+                            {{"selected"}} 
+                          @elseif(!empty($product['sleeve'] && $product['sleeve'] == $sleeve)) 
+                            {{"selected"}} 
+                          @endif>{{$sleeve}}
+                        </option>                                                  
                       @endforeach
                     </select>
                   </div>
@@ -152,7 +168,13 @@
                     <select class="form-control" name="pattern" id="pattern">
                       <option value="">Select</option>
                       @foreach ($productsFilters['patternArray'] as $pattern )
-                        <option value="{{$pattern}}" @if (!empty(@old('pattern')) && @old('pattern')==$pattern) {{"selected"}} @elseif(!empty($product['pattern'] && $product['pattern'] == $pattern)) {{"selected"}} @endif>{{$pattern}}</option>                                                  
+                        <option value="{{$pattern}}" 
+                          @if (!empty(@old('pattern')) && @old('pattern')==$pattern) 
+                            {{"selected"}} 
+                          @elseif(!empty($product['pattern'] && $product['pattern'] == $pattern)) 
+                            {{"selected"}}
+                          @endif>{{$pattern}}
+                        </option>                                                  
                       @endforeach
                     </select>
                   </div>
@@ -161,7 +183,13 @@
                     <select class="form-control" name="fit" id="fit">
                       <option value="">Select</option>
                       @foreach ($productsFilters['fitArray'] as $fit )
-                        <option value="{{$fit}}" @if (!empty(@old('fit')) && @old('fit')==$fit) {{"selected"}} @elseif(!empty($product['fit'] && $product['fit'] == $fit)) {{"selected"}} @endif>{{$fit}}</option>                                                  
+                        <option value="{{$fit}}" 
+                          @if (!empty(@old('fit')) && @old('fit')==$fit) 
+                            {{"selected"}} 
+                          @elseif(!empty($product['fit'] && $product['fit'] == $fit)) 
+                            {{"selected"}} 
+                          @endif>{{$fit}}
+                        </option>                                                  
                       @endforeach
                     </select>
                   </div>
@@ -170,7 +198,13 @@
                     <select class="form-control" name="occasion" id="occasion">
                       <option value="">Select</option>
                       @foreach ($productsFilters['occasionArray'] as $occasion )
-                        <option value="{{$occasion}}" @if (!empty(@old('occasion')) && @old('occasion')==$occasion) {{"selected"}} @elseif(!empty($product['occasion'] && $product['occasion'] == $occasion)) {{"selected"}} @endif>{{$occasion}}</option>                                                  
+                        <option value="{{$occasion}}" 
+                          @if (!empty(@old('occasion')) && @old('occasion')==$occasion) 
+                            {{"selected"}} 
+                          @elseif(!empty($product['occasion'] && $product['occasion'] == $occasion)) 
+                            {{"selected"}} 
+                          @endif>{{$occasion}}
+                        </option>                                                  
                       @endforeach
                     </select>
                   </div>
