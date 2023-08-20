@@ -5,7 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\ProductsImage;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 
 class ProductsController extends Controller
@@ -26,8 +29,7 @@ class ProductsController extends Controller
     }
 
     public function updateProductStatus(Request $request)              
-    {        
-        //echo "AAAA"; die;
+    {         
         if ($request->ajax()) {
             $data = $request->all();
             //dd($data);
@@ -46,8 +48,7 @@ class ProductsController extends Controller
     }
 
     public function addEditProduct(Request $request, $id=null)
-    {
-        //Add dan Edit buat kat sini        
+    {      
         Session::put('page', 'products');                             //Session::put setara dgn $request->session()->put('page', 'prodducts');        
 
         if ($id == "") {
@@ -117,12 +118,12 @@ class ProductsController extends Controller
                     // $video_name = $video_tmp->getClientOriginalName();
                     $video_extension = $video_tmp->getClientOriginalExtension();
 
-                    //give a random name for video to avoid overwrite file
+                    //Give a random name for video to avoid overwrite file
                     $videoName = rand().'.'. $video_extension;
-                    $videoPath= "front/videos/products/";
+                    $videoPath = "front/videos/products/";
                     $video_tmp->move($videoPath, $videoName);
 
-                    //Save Video name in products table
+                    //Save Video Name into products table
                     $product->product_video = $videoName;
                 }
             }         
@@ -175,15 +176,61 @@ class ProductsController extends Controller
             $product->meta_description  = $data['metadesc'];
             $product->meta_keywords     = $data['metakeys'];
             $product->status            = 1;
-
             $product->save();
 
-            return redirect('admin/products')->with('success_message', $message);  
+            $newID = $product->id; 
+
+            //Save Product Images
+            if ($id == "") {
+                # Add product images
+                //$productID = $newID;                         // Option 1. The id must be obtained after newly product saved
+                $productID = DB::getPdo()->lastInsertId();     // Option 2. The id must be obtained after newly product saved
+            } else {
+                # Edit product images
+                $productID = $id;
+            }
+
+            //Upload Product Images
+            if ($request->hasFile('prodimages')) {
+                $images = $request->file('prodimages');
+
+                // Must loop because user input multiple images more than 1 image
+                foreach ($images as $key => $img) {
+                    //Generate Temp Image Resource From File
+                    $image_tmp = Image::make($img);
+
+                    //Get Image Extension
+                    $extension = $img->getClientOriginalExtension();
+                    
+                    //Generate New Image Name
+                    $imageName = 'product-'.rand(1, 9999999).'.'.$extension;
+                    
+                    //Image Path for Small, Medium and Large Images Size
+                    $smallImagePath  = 'front/images/products/small/'.$imageName;
+                    $mediumImagePath = 'front/images/products/medium/'.$imageName;
+                    $largeImagePath  = 'front/images/products/large/'.$imageName;
+
+                    //Upload the Small, Medium and Large Images After Resizes
+                    Image::make($image_tmp)->resize(260,300)->save($smallImagePath);
+                    Image::make($image_tmp)->resize(520,600)->save($mediumImagePath);
+                    Image::make($image_tmp)->resize(1040,1200)->save($largeImagePath);
+
+                    //Insert Image data into products_images table
+                    $image = new ProductsImage;
+                    $image->product_id  = $productID;
+                    $image->image       = $imageName;
+                    $image->status      = 1;
+                    $image->save();
+                }
+            }
             
+            return redirect('admin/products')->with('success_message', $message);              
         }
 
         //Get Categories and their Sub Categories
-        $getCategories = Category::getCategories();                     //recall function getCategories() dari Model Category dan baru boleh buat dropdown menu di blade
+        //Recall the getCategories() function from the Category Model and
+        //After that you can create a dropdown menu in the blade
+        $getCategories = Category::getCategories();         
         
         //Product filter that perform on product model
         $productsFilters = Product::productsFilters();

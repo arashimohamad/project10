@@ -74,6 +74,7 @@
                       @endforeach
                     </select>                      
                   </div>
+
                   <div class="form-group">
                     <label for="prodname">Product Name *</label>
                     <input type="text" class="form-control" id="prodname" name="prodname" placeholder="Enter Product Name" @if (!empty($product['product_name'])) value="{{$product['product_name']}}" @else value="{{@old('prodname')}}" @endif>                    
@@ -120,8 +121,23 @@
                     <label for="prodweight">Product Weight</label>
                     <input type="text" class="form-control" id="prodweight" name="prodweight" placeholder="Enter Product Weight" @if (!empty($product['product_weight'])) value="{{$product['product_weight']}}" @else value="{{@old('prodweight')}}" @endif>                    
                   </div>
+
                   <div class="form-group">
-                    <label for="prodvideo">Product Video</label>
+                    <label for="prodimages">Product Images (Recommend Size: 1040 x 1200)</label>
+                    <input type="file" class="form-control" id="prodimages" name="prodimages[]" multiple> 
+                    {{-- @if (!empty($product['product_video']))
+                      <a href="" style="text-decoration:none !important; color:#ccc" data-toggle="modal" data-target="#modalproductvideo" onclick="enableAutoplay()">
+                        <i class="fas fa-laptop"></i>
+                      </a>
+                      &nbsp; | &nbsp;
+                      <a href="javascript:void(0)" record="product-video" recordid="{{$product->id}}" name="{{$product->product_name}} Product" class="confirmDeleteVideo" title="Delete Product Video" style="color:#ccc">
+                        <i class="fas fa-trash-alt"></i>
+                      </a>                     
+                    @endif --}}
+                  </div>
+
+                  <div class="form-group">
+                    <label for="prodvideo">Product Video (Recommend Size: Less than 2MB)</label>
                     <input type="file" class="form-control" id="prodvideo" name="prodvideo"> 
                     @if (!empty($product['product_video']))
                       <a href="" style="text-decoration:none !important; color:#ccc" data-toggle="modal" data-target="#modalproductvideo" onclick="enableAutoplay()">
@@ -133,6 +149,7 @@
                       </a>                     
                     @endif                                          
                   </div>
+
                   <div class="form-group">
                     <label for="fabric">Fabric</label>                      
                     <select class="form-control" name="fabric" id="fabric">
@@ -148,6 +165,7 @@
                       @endforeach
                     </select>
                   </div>
+
                   <div class="form-group">
                     <label for="sleeve">Sleeve</label>                      
                     <select class="form-control" name="sleeve" id="sleeve">
@@ -163,6 +181,7 @@
                       @endforeach
                     </select>
                   </div>
+
                   <div class="form-group">
                     <label for="pattern">Pattern</label>                      
                     <select class="form-control" name="pattern" id="pattern">
@@ -178,6 +197,7 @@
                       @endforeach
                     </select>
                   </div>
+
                   <div class="form-group">
                     <label for="fit">Fit</label>                      
                     <select class="form-control" name="fit" id="fit">
@@ -193,6 +213,7 @@
                       @endforeach
                     </select>
                   </div>
+
                   <div class="form-group">
                     <label for="occasion">Occasion</label>                      
                     <select class="form-control" name="occasion" id="occasion">
@@ -208,6 +229,7 @@
                       @endforeach
                     </select>
                   </div>
+
                   <div class="form-group">
                     <label for="descr">Description</label>
                     <textarea class="form-control" name="descr" id="descr" rows="3" placeholder="Enter Description">@if (!empty($product['description'])) {{$product['description']}} @else {{@old('descr')}} @endif</textarea>                                       

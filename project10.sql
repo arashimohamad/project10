@@ -351,7 +351,7 @@ CREATE TABLE `products_images` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -360,7 +360,6 @@ CREATE TABLE `products_images` (
 
 LOCK TABLES `products_images` WRITE;
 /*!40000 ALTER TABLE `products_images` DISABLE KEYS */;
-INSERT INTO `products_images` VALUES (1,1,'1.jpg',1,1,'2023-08-20 07:06:01','2023-08-20 07:06:01'),(2,1,'2.jpg',2,1,'2023-08-20 07:06:01','2023-08-20 07:06:01'),(3,1,'3.jpg',3,1,'2023-08-20 07:06:01','2023-08-20 07:06:01');
 /*!40000 ALTER TABLE `products_images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -403,4 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-20 15:09:40
+-- Dump completed on 2023-08-21  0:00:55
