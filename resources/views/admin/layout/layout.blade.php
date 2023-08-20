@@ -63,7 +63,7 @@
 <script src="{{asset('admin/plugins/chart.js/Chart.min.js')}}"></script>
 
 <!-- AdminLTE for demo purposes -->
-{{-- <script src="{{asset('admin/js/demo.js')}}"></script> --}}
+<script src="{{asset('admin/js/demo.js')}}"></script>
 
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('admin/js/pages/dashboard2.js')}}"></script>
