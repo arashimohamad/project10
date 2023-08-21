@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('product_id')->nullable();
             $table->string('image')->nullable();
-            $table->integer('image_sort')->nullable();            
+            $table->integer('image_sort')->default('0');            
             $table->tinyInteger('status')->nullable();
             $table->timestamp('created_at')->nullable()->useCurrent();  //current_timestamp() 
             $table->timestamp('updated_at')->nullable()->useCurrent();  //current_timestamp()    

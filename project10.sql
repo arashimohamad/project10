@@ -346,7 +346,7 @@ CREATE TABLE `products_images` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
   `product_id` int(11) DEFAULT NULL,
   `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `image_sort` int(11) DEFAULT NULL,
+  `image_sort` int(11) DEFAULT 0,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
@@ -402,4 +402,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-21 16:06:50
+-- Dump completed on 2023-08-21 23:51:35

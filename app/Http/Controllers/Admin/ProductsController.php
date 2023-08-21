@@ -224,7 +224,18 @@ class ProductsController extends Controller
                     $image->save();
                 }
             }
-            
+
+            //Sort Product Image On Edit Mode            
+            if ($id != "") {                        // id not equal 0 means, the id must has figure and normally it is in edit mode                 
+                if (isset($data['img'])) {          //Check whether any sorting incoming / not $data['img'] that whether it is incoming / not
+                    foreach ($data['img'] as $key => $image) {
+                        ProductsImage::where(['product_id'=>$id, 'image'=>$image])->update([
+                            'image_sort'=>$data['imgsort'][$key]     //$key is really necessary and based on name="imgsort[]" ---> bracket [] is refer to key
+                        ]);
+                    }
+                }
+            } 
+
             return redirect('admin/products')->with('success_message', $message);              
         }
 

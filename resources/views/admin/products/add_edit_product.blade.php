@@ -131,7 +131,9 @@
                           <td style="background-color:#f9f9f9">
                             <a href="{{ url('front/images/products/large/'.$image['image']) }}" target="_blank">
                               <img src="{{ asset('front/images/products/small/'.$image['image']) }}" style="width:60px;">  {{---small image as thumbnail--}}
-                            </a>
+                            </a>&nbsp;
+                            <input type="hidden" id="img" name="img[]" value="{{$image['image']}}" style="width: 160px">
+                            <input type="text" id="imgsort" name="imgsort[]" value="{{$image['image_sort']}}" style="width: 30px">
                             <a href="javascript:void(0)" record="product-image" recordid="{{$image->id}}" class="confirmDeleteImage" title="Delete Product Image" style="color:#3f6ed3;">
                               <i class="fas fa-trash"></i>
                             </a>
