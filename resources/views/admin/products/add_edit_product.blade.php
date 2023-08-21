@@ -124,7 +124,21 @@
 
                   <div class="form-group">
                     <label for="prodimages">Product Images (Recommend Size: 1040 x 1200)</label>
-                    <input type="file" class="form-control" id="prodimages" name="prodimages[]" multiple> 
+                    <input type="file" class="form-control" id="prodimages" name="prodimages[]" multiple>
+                    <table cellpadding="4" cellspacing="4" border="1" style="margin:10px">
+                      <tr>
+                        @foreach ($product['images'] as $image)
+                          <td style="background-color:#f9f9f9">
+                            <a href="{{ url('front/images/products/large/'.$image['image']) }}" target="_blank">
+                              <img src="{{ asset('front/images/products/small/'.$image['image']) }}" style="width:60px;">  {{---small image as thumbnail--}}
+                            </a>
+                            <a href="javascript:void(0)" record="product-image" recordid="{{$image->id}}" class="confirmDeleteImage" title="Delete Product Image" style="color:#3f6ed3;">
+                              <i class="fas fa-trash"></i>
+                            </a>
+                          </td>
+                        @endforeach
+                      </tr>
+                    </table> 
                     {{-- @if (!empty($product['product_video']))
                       <a href="" style="text-decoration:none !important; color:#ccc" data-toggle="modal" data-target="#modalproductvideo" onclick="enableAutoplay()">
                         <i class="fas fa-laptop"></i>

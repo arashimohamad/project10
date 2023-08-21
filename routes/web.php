@@ -77,6 +77,7 @@ Route::group(['prefix' => 'admin'], function () {                               
         Route::post('update-product-status', [ProductsController::class, 'updateProductStatus']);
         Route::get('delete-product/{id?}', [ProductsController::class, 'deleteProduct']);
         Route::get('delete-product-video/{id?}', [ProductsController::class, 'deleteProductVideo']);
+        Route::get('delete-product-image/{id?}', [ProductsController::class, 'deleteProductImage']);
         Route::match(['get', 'post'], 'add-edit-product/{id?}', [ProductsController::class, 'addEditProduct']);
 
     });    

@@ -59,7 +59,8 @@ class ProductsController extends Controller
         } else {
             # Edit product
             $title   = "Edit Product";
-            $product =  Product::find($id);
+            $product =  Product::with('images')->find($id);         //When we use "with('images')", make sure on Product Model has a relation (BelongTo, HasMany or etc). Other way is joint the products table and products_images table 
+            //dd($product->images);       
             $message = "Product updated successfully!";
         }
 
@@ -236,13 +237,7 @@ class ProductsController extends Controller
         $productsFilters = Product::productsFilters();
         
         return view('admin.products.add_edit_product', compact('title', 'product', 'getCategories', 'productsFilters'));
-    }
-
-    public function deleteProduct($id)
-    {
-        $product = Product::findOrFail($id)->delete();
-        return redirect()->back()->with('success_message', 'Product deleted successfully!');   
-    }
+    }   
     
     public function deleteProductVideo($id)
     {
@@ -261,5 +256,44 @@ class ProductsController extends Controller
         $deleteVideo = Product::where('id', $id)->update(['product_video'=>'']);
 
         return redirect()->back()->with('success_message', 'Product video deleted successfully!'); 
+    }
+
+    public function deleteProductImage($id)
+    {
+        //Get Product Image
+        $productImage = ProductsImage::select('image')->where('id', $id)->first();
+
+        //Get Product Image Path
+        $small_image_path   = 'front/images/products/small/';
+        $medium_image_path  = 'front/images/products/medium/';
+        $large_image_path   = 'front/images/products/large/';
+
+        //Delete Product Image from folder if exists for: 
+
+        //Small
+        if (file_exists($small_image_path.$productImage->image)) {
+            unlink($small_image_path.$productImage->image);
+        }
+
+        //Medium
+        if (file_exists($medium_image_path.$productImage->image)) {
+            unlink($medium_image_path.$productImage->image);
+        }
+
+        //Large
+        if (file_exists($large_image_path.$productImage->image)) {
+            unlink($large_image_path.$productImage->image);
+        }
+
+        //Delete Product Video Name from products table
+        $deleteImage = ProductsImage::where('id', $id)->delete();
+
+        return redirect()->back()->with('success_message', 'Product Image deleted successfully!'); 
+    }
+
+    public function deleteProduct($id)
+    {
+        $product = Product::findOrFail($id)->delete();
+        return redirect()->back()->with('success_message', 'Product deleted successfully!');   
     }
 }
