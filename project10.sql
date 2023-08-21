@@ -214,7 +214,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,7 +223,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_reset_tokens_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_05_09_062716_create_admins_table',1),(6,'2023_05_17_013024_create_cms_pages_table',2),(7,'2023_05_23_113937_create_admins_roles_table',3),(8,'2023_06_07_091414_create_categories_table',4),(9,'2023_08_16_104036_create_products_table',5),(10,'2023_08_20_144501_create_products_images_table',6);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_reset_tokens_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_05_09_062716_create_admins_table',1),(6,'2023_05_17_013024_create_cms_pages_table',2),(7,'2023_05_23_113937_create_admins_roles_table',3),(8,'2023_06_07_091414_create_categories_table',4),(9,'2023_08_16_104036_create_products_table',5),(10,'2023_08_20_144501_create_products_images_table',6),(11,'2023_08_22_005139_create_products_attributes_table',7);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -331,8 +331,39 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,8,0,'Blue T-Shirt','BT001','Dark Blue','Blue','TSHIRT0000',150.00,10.00,'product',135.00,'500','','Test Product','','','','','','','','','','','Yes',1,'2023-08-16 03:44:29','2023-08-16 06:44:52'),(2,8,0,'Red T-Shirt','RT001','Red','Red','TSHIRT0000',100.00,0.00,'',100.00,'400','','Test Product','','','','','','','','','','','No',1,'2023-08-16 03:44:29','2023-08-16 06:44:53'),(3,9,NULL,'Green Women T-Shirt','GWT011','Dark Gren','Black','1000',40.00,NULL,'category',32.00,'100',NULL,'Women Shirt','TESTING','tshirts','Polyester','Printed','Short Sleeve','Slim','Formal','tshirt','good tshirts','tshirt','Yes',1,'2023-08-17 11:34:17','2023-08-18 18:38:24'),(4,8,NULL,'Yellow T-Shirt','YT001','Yellow','Yellow','10',70.00,NULL,NULL,NULL,NULL,'701721522.mp4','TEST','TEST','TEST','Cotton','Plain','Short Sleeve','Regular','Casual','TEST','TEST','TEST','Yes',1,'2023-08-18 04:03:43','2023-08-18 04:03:43');
+INSERT INTO `products` VALUES (1,8,0,'Blue T-Shirt','BT001','Dark Blue','Blue','TSHIRT0000',150.00,10.00,'product',135.00,'500','','Test Product','','','','','','','','','','','Yes',1,'2023-08-16 03:44:29','2023-08-16 06:44:52'),(2,8,0,'Red T-Shirt','RT001','Red','Red','TSHIRT0000',100.00,0.00,'',100.00,'400','','Test Product','','','','','','','','','','','No',1,'2023-08-16 03:44:29','2023-08-16 06:44:53'),(3,9,NULL,'Green Women T-Shirt','GWT011','Dark Gren','Black','1000',40.00,NULL,'category',32.00,'100',NULL,'Women Shirt','TESTING','tshirts','Polyester','Printed','Short Sleeve','Slim','Formal','tshirt','good tshirts','tshirt','Yes',1,'2023-08-17 11:34:17','2023-08-18 18:38:24'),(4,8,NULL,'Yellow T-Shirt','YT001','Yellow','Yellow','10',70.00,NULL,'category',56.00,NULL,'701721522.mp4','TEST','TEST','TEST','Cotton','Plain','Short Sleeve','Regular','Casual','TEST','TEST','TEST','Yes',1,'2023-08-18 04:03:43','2023-08-21 16:34:04');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `products_attributes`
+--
+
+DROP TABLE IF EXISTS `products_attributes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `products_attributes` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `product_id` int(11) DEFAULT NULL,
+  `size` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sku` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `price` double(8,2) DEFAULT NULL,
+  `stock` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `products_attributes`
+--
+
+LOCK TABLES `products_attributes` WRITE;
+/*!40000 ALTER TABLE `products_attributes` DISABLE KEYS */;
+INSERT INTO `products_attributes` VALUES (1,1,'Small','BT001S',10.00,100,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(2,1,'Medium','BT001M',15.00,80,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(3,1,'Large','BT001L',20.00,60,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(4,1,'Extra Large','BT001XL',25.00,40,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(5,1,'Double Extra Large','BT001XXL',30.00,30,1,'2023-08-21 17:15:35','2023-08-21 17:15:35');
+/*!40000 ALTER TABLE `products_attributes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -351,7 +382,7 @@ CREATE TABLE `products_images` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -360,6 +391,7 @@ CREATE TABLE `products_images` (
 
 LOCK TABLES `products_images` WRITE;
 /*!40000 ALTER TABLE `products_images` DISABLE KEYS */;
+INSERT INTO `products_images` VALUES (1,4,'product-4188587.jpg',2,1,'2023-08-21 16:34:05','2023-08-21 16:34:17'),(2,4,'product-5974464.jpg',1,1,'2023-08-21 16:34:05','2023-08-21 16:34:17');
 /*!40000 ALTER TABLE `products_images` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -402,4 +434,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-21 23:51:35
+-- Dump completed on 2023-08-22  1:20:38
