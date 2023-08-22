@@ -29,9 +29,17 @@ class Product extends Model
         return $productsFilters;
     }
     
-    //Perform relation between products table and products_images table or Other way is joint the products table and products_images table  
+    //Perform relation between products table and products_images table.
+    //Other way is joint the products table and products_images table.  
     public function images()
     {
         return $this->hasMany(ProductsImage::class);
     }
-}
+
+    //Perform relation between products table and products_attributes table.
+    //Other way is joint the products table and products_attributes table.
+    public function attributes()
+    {
+        return $this->hasMany(ProductsAttribute::class);
+    }
+}   

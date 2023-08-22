@@ -60,8 +60,8 @@ class ProductsController extends Controller
         } else {
             # Edit product
             $title   = "Edit Product";
-            $product =  Product::with('images')->find($id);         //When we use "with('images')", make sure on Product Model has a relation (BelongTo, HasMany or etc). Other way is joint the products table and products_images table 
-            //dd($product->images);       
+            $product =  Product::with(['images','attributes'])->find($id);         //When we use "with(['images','attributes'])", make sure on Product Model has a relation (BelongTo, HasMany or etc). Other way is joint the products table and products_images/attributes table 
+            //dd($product);       
             $message = "Product updated successfully!";
         }
 

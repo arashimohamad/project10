@@ -322,7 +322,7 @@ CREATE TABLE `products` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -331,7 +331,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,8,0,'Blue T-Shirt','BT001','Dark Blue','Blue','TSHIRT0000',150.00,10.00,'product',135.00,'500','','Test Product','','','','','','','','','','','Yes',1,'2023-08-16 03:44:29','2023-08-16 06:44:52'),(2,8,0,'Red T-Shirt','RT001','Red','Red','TSHIRT0000',100.00,0.00,'',100.00,'400','','Test Product','','','','','','','','','','','No',1,'2023-08-16 03:44:29','2023-08-16 06:44:53'),(3,9,NULL,'Green Women T-Shirt','GWT011','Dark Gren','Black','1000',40.00,NULL,'category',32.00,'100',NULL,'Women Shirt','TESTING','tshirts','Polyester','Printed','Short Sleeve','Slim','Formal','tshirt','good tshirts','tshirt','Yes',1,'2023-08-17 11:34:17','2023-08-18 18:38:24'),(4,8,NULL,'Yellow T-Shirt','YT001','Yellow','Yellow','10',70.00,NULL,'category',56.00,NULL,'701721522.mp4','TEST','TEST','TEST','Cotton','Plain','Short Sleeve','Regular','Casual','TEST','TEST','TEST','Yes',1,'2023-08-18 04:03:43','2023-08-21 16:34:04');
+INSERT INTO `products` VALUES (1,8,0,'Blue T-Shirt','BT001','Dark Blue','Blue','TSHIRT0000',150.00,10.00,'product',135.00,'500','','Test Product','','','','','','','','','','','Yes',1,'2023-08-16 03:44:29','2023-08-16 06:44:52'),(2,8,0,'Red T-Shirt','RT001','Red','Red','TSHIRT0000',100.00,0.00,'',100.00,'400','','Test Product','','','','','','','','','','','No',1,'2023-08-16 03:44:29','2023-08-16 06:44:53'),(3,9,NULL,'Green Women T-Shirt','GWT011','Dark Gren','Black','1000',40.00,NULL,'category',32.00,'100',NULL,'Women Shirt','TESTING','tshirts','Polyester','Printed','Short Sleeve','Slim','Formal','tshirt','good tshirts','tshirt','Yes',1,'2023-08-17 11:34:17','2023-08-18 18:38:24'),(4,8,NULL,'Yellow T-Shirt','YT001','Yellow','Yellow','10',70.00,NULL,'category',56.00,NULL,'701721522.mp4','TEST','TEST','TEST','Cotton','Plain','Short Sleeve','Regular','Casual','TEST','TEST','TEST','Yes',1,'2023-08-18 04:03:43','2023-08-21 16:34:04'),(5,8,NULL,'Green Casual T-Shirt','GCT001','Green','Green',NULL,10.00,NULL,'category',8.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'No',1,'2023-08-22 10:28:39','2023-08-22 10:28:39');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -353,7 +353,7 @@ CREATE TABLE `products_attributes` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -362,7 +362,7 @@ CREATE TABLE `products_attributes` (
 
 LOCK TABLES `products_attributes` WRITE;
 /*!40000 ALTER TABLE `products_attributes` DISABLE KEYS */;
-INSERT INTO `products_attributes` VALUES (1,1,'Small','BT001S',10.00,100,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(2,1,'Medium','BT001M',15.00,80,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(3,1,'Large','BT001L',20.00,60,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(4,1,'Extra Large','BT001XL',25.00,40,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(5,1,'Double Extra Large','BT001XXL',30.00,30,1,'2023-08-21 17:15:35','2023-08-21 17:15:35');
+INSERT INTO `products_attributes` VALUES (1,1,'Small','BT001S',10.00,100,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(2,1,'Medium','BT001M',15.00,80,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(3,1,'Large','BT001L',20.00,60,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(4,1,'Extra Large','BT001XL',25.00,40,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(5,1,'Double Extra Large','BT001XXL',30.00,30,1,'2023-08-21 17:15:35','2023-08-21 17:15:35'),(6,5,'Small','GCT001S',10.00,100,1,'2023-08-22 10:28:39','2023-08-22 10:28:39'),(7,5,'Medium','GCT001M',15.00,60,1,'2023-08-22 10:28:39','2023-08-22 10:28:39'),(8,5,'Large','GCT001L',20.00,80,1,'2023-08-22 10:28:39','2023-08-22 10:28:39'),(9,5,'Extra Large','GCT001XL',25.00,30,1,'2023-08-22 10:28:39','2023-08-22 10:28:39'),(10,5,'Double Extra Large','GCT001XXL',30.00,20,1,'2023-08-22 10:28:39','2023-08-22 10:28:39');
 /*!40000 ALTER TABLE `products_attributes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -434,4 +434,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-22 15:21:50
+-- Dump completed on 2023-08-22 19:15:52

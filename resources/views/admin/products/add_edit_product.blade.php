@@ -143,8 +143,34 @@
                     </table> 
                   </div>
 
+                  @if (count($product['attributes']) > 0)
+                    <div class="form-group">
+                      <label>Added Attributes</label>
+                      <table style="background-color: #52585E; width:40%;" cellpadding="5" border="0">                      
+                        <tr style="text-align: center">
+                          <th>#</th>
+                          <th>Size</th>
+                          <th>SKU</th>
+                          <th>Price (RM)</th>
+                          <th>Stock</th>
+                          <th>Actions</th>
+                        </tr>                    
+                        @foreach ($product['attributes'] as $attribute)
+                          <tr>
+                            <td style="text-align: center">{{$loop->iteration}}</td>
+                            <td>{{$attribute['size']}}</td>
+                            <td style="text-align: center">{{$attribute['sku']}}</td>
+                            <td style="text-align: center">{{$attribute['price']}}</td>
+                            <td style="text-align: center">{{$attribute['stock']}}</td>                            
+                            <td style="text-align: center"></td>
+                          </tr>
+                        @endforeach                      
+                      </table>
+                    </div>
+                  @endif
+
                   <div class="form-group">
-                    <label>Product Attributes</label>
+                    <label>Add Attributes</label>
                     <div class="field_wrapper">
                         <div>
                             <input type="text" id="size" name="size[]" placeholder="Size" style="width: 120px">
