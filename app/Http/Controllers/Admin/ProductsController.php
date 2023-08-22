@@ -238,7 +238,7 @@ class ProductsController extends Controller
                 }
             } 
 
-            //Product Attributes
+            //Add Product Attributes
             //Loop product attributes that user inserted
             foreach ($data['sku'] as $key => $value) {
                 //check if SKU and Size exist / not. If exist, so display error message
@@ -267,9 +267,18 @@ class ProductsController extends Controller
                     $saveAttribute->stock       = $data['stock'][$key];
                     $saveAttribute->status      = 1;
                     $saveAttribute->save();
+                }                 
+            }
 
-                } 
-                
+            //Edit Product Attributes
+            //Loop product attributes that user inserted
+            foreach ($data['attributeID'] as $akey => $attribute) {
+                if (!empty($attribute)) {
+                    ProductsAttribute::where(['id'=>$data['attributeID'][$akey]])->update([           //$key based on name="attributeID[]" ---> bracket [] is refer to key
+                        'price'=>$data['price'][$akey],
+                        'stock'=>$data['stock'][$akey] 
+                    ]);
+                }
             }
 
             return redirect('admin/products')->with('success_message', $message);              
