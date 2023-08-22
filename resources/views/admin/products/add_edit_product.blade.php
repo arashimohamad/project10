@@ -141,15 +141,19 @@
                         @endforeach
                       </tr>
                     </table> 
-                    {{-- @if (!empty($product['product_video']))
-                      <a href="" style="text-decoration:none !important; color:#ccc" data-toggle="modal" data-target="#modalproductvideo" onclick="enableAutoplay()">
-                        <i class="fas fa-laptop"></i>
-                      </a>
-                      &nbsp; | &nbsp;
-                      <a href="javascript:void(0)" record="product-video" recordid="{{$product->id}}" name="{{$product->product_name}} Product" class="confirmDeleteVideo" title="Delete Product Video" style="color:#ccc">
-                        <i class="fas fa-trash-alt"></i>
-                      </a>                     
-                    @endif --}}
+                  </div>
+
+                  <div class="form-group">
+                    <label>Product Attributes</label>
+                    <div class="field_wrapper">
+                        <div>
+                            <input type="text" id="size" name="size[]" placeholder="Size" style="width: 120px">
+                            <input type="text" id="sku" name="sku[]" placeholder="SKU" style="width: 120px">
+                            <input type="text" id="price" name="price[]" placeholder="Price" style="width: 120px">
+                            <input type="text" id="stock" name="stock[]" placeholder="Stock" style="width: 120px">&nbsp;&nbsp;
+                            <a href="javascript:void(0);" class="add_button" title="Add field">&nbsp;<i class="fas fa-plus-circle" style="color: #f9f9f9"></i></a>
+                        </div>
+                    </div>
                   </div>
 
                   <div class="form-group">

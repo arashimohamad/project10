@@ -66,7 +66,8 @@ class ProductsController extends Controller
 
         if ($request->isMethod('post')) {
             $data = $request->all();
-
+            //dd($data);
+            
             //Product validation
             if ($id == "") {
                 $rules = [
