@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\ProductsImage;
+use App\Models\ProductsAttribute;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Intervention\Image\Facades\Image;
@@ -236,6 +237,40 @@ class ProductsController extends Controller
                     }
                 }
             } 
+
+            //Product Attributes
+            //Loop product attributes that user inserted
+            foreach ($data['sku'] as $key => $value) {
+                //check if SKU and Size exist / not. If exist, so display error message
+                if (!empty($data['sku'])) {
+
+                    # Check if SKU existed or not. If existed, display eroor message
+                    $countSKU = ProductsAttribute::where('sku',$value)->count();
+                    if($countSKU > 0) {
+                        $message = "SKU already existed! Please add another SKU";
+                        return redirect()->back()->with('error_message', $message);
+                    }
+
+                    # Check if Size existed or not. If existed, display eroor message
+                    $countSize = ProductsAttribute::where(['product_id'=>$productID, 'size'=>$data['size'][$key]])->count();
+                    if ($countSize > 0) {
+                        $message = "Size already existed! Please add another Size";
+                        return redirect()->back()->with('error_message', $message);
+                    }
+
+                    //Save all if SKU and Size are different
+                    $saveAttribute = new ProductsAttribute;
+                    $saveAttribute->product_id  = $productID;
+                    $saveAttribute->sku         = $value;
+                    $saveAttribute->size        = $data['size'][$key];     //$key based on name="size[]" ---> bracket [] is refer to key
+                    $saveAttribute->price       = $data['price'][$key];
+                    $saveAttribute->stock       = $data['stock'][$key];
+                    $saveAttribute->status      = 1;
+                    $saveAttribute->save();
+
+                } 
+                
+            }
 
             return redirect('admin/products')->with('success_message', $message);              
         }
