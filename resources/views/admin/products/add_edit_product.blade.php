@@ -12,7 +12,7 @@
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{url('admin/dashboard')}}">Home</a></li>
             <li class="breadcrumb-item active">{{$title}}</li>
           </ol>
         </div>
@@ -162,12 +162,28 @@
                             <td>{{$attribute['size']}}</td>
                             <td style="text-align: center">{{$attribute['sku']}}</td>
                             <td style="text-align: center">
-                              <input type="number" style="width:80px;" name="price[]" value="{{$attribute['price']}}">
+                              <input type="number" style="width:80px;" name="attr_price[]" value="{{$attribute['price']}}">
                             </td>
                             <td style="text-align: center">
-                              <input type="number" style="width:80px;" name="stock[]" value="{{$attribute['stock']}}">
+                              <input type="number" style="width:80px;" name="attr_stock[]" value="{{$attribute['stock']}}">
                             </td>                            
-                            <td style="text-align: center"></td>
+                            <td style="text-align: center">
+                              @if ($attribute->status == 1)
+                                {{-- Please refer to custom.js on layout for updateAttributeStatus --}}
+                                <a href="javascript:void(0)" class="updateAttributeStatus" id="attribute-{{$attribute->id}}" attribute_id="{{$attribute->id}}" style="color:#f9f9f9">
+                                  <i class="fas fa-toggle-on" status="Active"></i>
+                                </a>                            
+                              @else
+                                <a href="javascript:void(0)" class="updateAttributeStatus" id="attribute-{{$attribute->id}}" attribute_id="{{$attribute->id}}" style="color: grey">
+                                  <i class="fas fa-toggle-off" status="Inactive"></i>
+                                </a>
+                              @endif
+                              &nbsp;&nbsp;                                      
+                              {{-- for SweetAlert2 --}}
+                              <a href="javascript:void(0)" record="attribute" recordid="{{$attribute->id}}" name="{{$attribute->size}} Attribute" class="confirmDeleteAttribute" title="Delete Attribute" style="color:#007bff">
+                                <i class="fas fa-trash" style="color:#f9f9f9"></i>
+                              </a>
+                            </td>
                           </tr>
                         @endforeach                      
                       </table>

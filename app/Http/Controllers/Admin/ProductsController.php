@@ -241,7 +241,12 @@ class ProductsController extends Controller
             //Add Product Attributes
             //Loop product attributes that user inserted
             foreach ($data['sku'] as $key => $value) {
+                
+                $test = [$data['price'][$key], $data['stock'][$key]];  
+                //dd($test);
+                
                 //check if SKU and Size exist / not. If exist, so display error message
+
                 if (!empty($data['sku'])) {
 
                     # Check if SKU existed or not. If existed, display eroor message
@@ -260,13 +265,15 @@ class ProductsController extends Controller
 
                     //Save all if SKU and Size are different
                     $saveAttribute = new ProductsAttribute;
-                    $saveAttribute->product_id  = $productID;
-                    $saveAttribute->sku         = $value;
-                    $saveAttribute->size        = $data['size'][$key];     //$key based on name="size[]" ---> bracket [] is refer to key
-                    $saveAttribute->price       = $data['price'][$key];
-                    $saveAttribute->stock       = $data['stock'][$key];
-                    $saveAttribute->status      = 1;
-                    $saveAttribute->save();
+                    if (!empty($data['size'][$key] && $data['price'][$key] && $data['stock'][$key] && $value)) {
+                        $saveAttribute->product_id  = $productID;
+                        $saveAttribute->sku         = $value;
+                        $saveAttribute->size        = $data['size'][$key];     //$key based on name="size[]" ---> bracket [] is refer to key
+                        $saveAttribute->price       = $data['price'][$key];
+                        $saveAttribute->stock       = $data['stock'][$key];
+                        $saveAttribute->status      = 1;    
+                        $saveAttribute->save();                        
+                    }                    
                 }                 
             }
 
@@ -275,8 +282,8 @@ class ProductsController extends Controller
             foreach ($data['attributeID'] as $akey => $attribute) {
                 if (!empty($attribute)) {
                     ProductsAttribute::where(['id'=>$data['attributeID'][$akey]])->update([           //$key based on name="attributeID[]" ---> bracket [] is refer to key
-                        'price'=>$data['price'][$akey],
-                        'stock'=>$data['stock'][$akey] 
+                        'price'=>$data['attr_price'][$akey],
+                        'stock'=>$data['attr_stock'][$akey] 
                     ]);
                 }
             }
@@ -293,7 +300,32 @@ class ProductsController extends Controller
         $productsFilters = Product::productsFilters();
         
         return view('admin.products.add_edit_product', compact('title', 'product', 'getCategories', 'productsFilters'));
-    }   
+    }  
+    
+    public function updateAttributeStatus(Request $request)              
+    {         
+        if ($request->ajax()) {
+            $data = $request->all();
+            //dd($data);
+            //echo "<pre>"; print_r($data); die;
+
+            if ($data['status']=="Active") {
+                $status = 0;    // Initial value is 1 (active) that set direct to database b4 and displayed as an active.  after user click to inactive, this toggle button will change to 0 value
+            } else {
+                $status = 1;    
+            }
+            
+            ProductsAttribute::where('id', $data['attribute_id'])->update(['status' => $status]);
+
+            return response()->json(['status'=>$status, 'attribute_id'=>$data['attribute_id']]);
+        }         
+    }
+
+    public function deleteAttribute($id)
+    {
+        $deleteAttribute = ProductsAttribute::findOrFail($id)->delete();
+        return redirect()->back()->with('success_message', 'Attribute deleted successfully!');   
+    }
     
     public function deleteProductVideo($id)
     {
@@ -351,5 +383,5 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id)->delete();
         return redirect()->back()->with('success_message', 'Product deleted successfully!');   
-    }
+    }    
 }

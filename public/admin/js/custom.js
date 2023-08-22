@@ -149,6 +149,41 @@ $(".updateProductStatus").click(function () {
     });
 });
 
+//Update Attribute Status (add_edit_product.blade.php) 
+$(".updateAttributeStatus").click(function () {
+    var status = $(this).children("i").attr("status");
+    //alert(status);
+    //"this" refer to <a href=""></a>. "children" refer to <i class=""></i>. attr "status" refer to <i class="" status="Active"></i>
+    var attribute_id = $(this).attr("attribute_id");
+    //"this" refer to <a href=""></a>. attr "attribute_id" refer to attribute_id in the link <a href="" attribute_id="{{$page->id}}">
+    //alert(attribute_id);
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "post",
+        url: "../update-attribute-status",
+        data: {
+            status: status,
+            attribute_id: attribute_id,
+        },
+        success: function (resp) {
+            if (resp["status"] == 0) {
+                $("#attribute-" + attribute_id).html(
+                    "<i class='fas fa-toggle-off' status='Inactive' style='color:grey'></i>"
+                );
+            } else if (resp["status"] == 1) {
+                $("#attribute-" + attribute_id).html(
+                    "<i class='fas fa-toggle-on' status='Active' style='color:#f9f9f9'></i>"
+                );
+            }
+        },
+        error: function () {
+            alert("Error");
+        },
+    });
+});
+
 //Update Subadmin Status (subadmins.blade.php)
 $(".updateSubadminStatus").click(function () {
     var status = $(this).children("i").attr("status");
@@ -213,6 +248,27 @@ $(".confirmDelete").click(function () {
         if (result.isConfirmed) {
             Swal.fire("Deleted!", "Your file has been deleted.", "success");
             window.location.href = "../admin/delete-" + record + "/" + recordid;            //route must be delete-xx-yy
+        }
+    });
+});
+
+$(".confirmDeleteAttribute").click(function () {
+    var record = $(this).attr("record");
+    var recordid = $(this).attr("recordid");
+    var name = $(this).attr("name");
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Delete this " + name + "?",
+        //text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
+            window.location.href = "../delete-" + record + "/" + recordid; //route must be delete-xx-yy
         }
     });
 });

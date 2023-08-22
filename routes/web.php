@@ -74,11 +74,19 @@ Route::group(['prefix' => 'admin'], function () {                               
 
         //Products              
         Route::get('products', [ProductsController::class, 'products']);
-        Route::post('update-product-status', [ProductsController::class, 'updateProductStatus']);
-        Route::get('delete-product/{id?}', [ProductsController::class, 'deleteProduct']);
-        Route::get('delete-product-video/{id?}', [ProductsController::class, 'deleteProductVideo']);
-        Route::get('delete-product-image/{id?}', [ProductsController::class, 'deleteProductImage']);
+        Route::post('update-product-status', [ProductsController::class, 'updateProductStatus']);        
+        Route::get('delete-product/{id?}', [ProductsController::class, 'deleteProduct']);        
         Route::match(['get', 'post'], 'add-edit-product/{id?}', [ProductsController::class, 'addEditProduct']);
+
+        //Product Images
+        Route::get('delete-product-image/{id?}', [ProductsController::class, 'deleteProductImage']);
+
+        //Product Video
+        Route::get('delete-product-video/{id?}', [ProductsController::class, 'deleteProductVideo']);
+
+        //Product Attributes
+        Route::post('update-attribute-status', [ProductsController::class, 'updateAttributeStatus']);
+        Route::get('delete-attribute/{id?}', [ProductsController::class, 'deleteAttribute']);   
 
     });    
 });                                        
