@@ -29,12 +29,12 @@
           @include('admin.includes.messages')
           
           <div class="card">
-            
+            @if ($productsModule['edit_access'] == 1 || $productsModule['full_access'] == 1)
               <div class="card-header">
                 <h3 class="card-title">Products</h3> 
                 <a href="{{url('admin/add-edit-product')}}" class="btn btn-primary btn-block" style="max-width: 150px; float:right; display:inline-block">Add Product</a>               
               </div>
-            
+            @endif
             <!-- /.card-header -->
             <div class="card-body">
               <table id="products" class="table table-bordered table-striped">
@@ -46,7 +46,9 @@
                     <th>Product Color</th>
                     <th>Category</th>
                     <th>Parent Category</th>
-                    <th>Actions</th>
+                    @if ($productsModule['edit_access'] == 1 || $productsModule['full_access'] == 1)
+                      <th>Actions</th>
+                    @endif
                   </tr>
                 </thead>
                 <tbody>
@@ -62,29 +64,37 @@
                           {{$prod->category->parentcategory->category_name}}                              
                         @endisset
                       </td>
-                      <td>
-                        
-                          @if ($prod->status == 1)
-                            {{-- Please refer to custom.js on layout for updateProductStatus --}}
-                            <a href="javascript:void(0)" class="updateProductStatus" id="product-{{$prod->id}}" product_id="{{$prod->id}}" style="color:#007bff">
-                              <i class="fas fa-toggle-on" status="Active"></i>
-                            </a>                            
-                          @else
-                            <a href="javascript:void(0)" class="updateProductStatus" id="product-{{$prod->id}}" product_id="{{$prod->id}}" style="color: grey">
-                              <i class="fas fa-toggle-off" status="Inactive"></i>
+                      @if ($productsModule['edit_access'] == 1 || $productsModule['full_access'] == 1)
+                        <td>
+                          @if ($productsModule['edit_access'] == 1 || $productsModule['full_access'] == 1)
+                            @if ($prod->status == 1)
+                              {{-- Please refer to custom.js on layout for updateProductStatus --}}
+                              <a href="javascript:void(0)" class="updateProductStatus" id="product-{{$prod->id}}" product_id="{{$prod->id}}" style="color:#007bff">
+                                <i class="fas fa-toggle-on" status="Active"></i>
+                              </a>                            
+                            @else
+                              <a href="javascript:void(0)" class="updateProductStatus" id="product-{{$prod->id}}" product_id="{{$prod->id}}" style="color: grey">
+                                <i class="fas fa-toggle-off" status="Inactive"></i>
+                              </a>
+                            @endif
+                          @endif
+                          
+                          &nbsp;&nbsp;
+                          
+                          @if ($productsModule['edit_access'] == 1 || $productsModule['full_access'] == 1)
+                            <a href="{{url('admin/add-edit-product/'.$prod->id)}}" style="color:#007bff"><i class="fas fa-edit"></i></a>
+                          @endif                          
+                          
+                          &nbsp;&nbsp;                
+                          
+                          @if ($productsModule['full_access'] == 1)
+                            {{-- for SweetAlert2 --}}
+                            <a href="javascript:void(0)" record="product" recordid="{{$prod->id}}" name="{{$prod->product_name}} Product" class="confirmDelete" title="Delete Product" style="color:#007bff">
+                              <i class="fas fa-trash"></i>
                             </a>
                           @endif
-                          &nbsp;&nbsp;
-
-                          <a href="{{url('admin/add-edit-product/'.$prod->id)}}" style="color:#007bff"><i class="fas fa-edit"></i></a>
-                          &nbsp;&nbsp;                
-                        
-                          {{-- for SweetAlert2 --}}
-                          <a href="javascript:void(0)" record="product" recordid="{{$prod->id}}" name="{{$prod->product_name}} Product" class="confirmDelete" title="Delete Product" style="color:#007bff">
-                            <i class="fas fa-trash"></i>
-                          </a>
-                        
-                      </td>
+                        </td>
+                      @endif
                     </tr> 
                   @endforeach
                 </tbody>
@@ -96,7 +106,9 @@
                     <th>Product Color</th>
                     <th>Category</th>
                     <th>Parent Category</th>
-                    <th>Actions</th>
+                    @if ($productsModule['edit_access'] == 1 || $productsModule['full_access'] == 1)
+                      <th>Actions</th>
+                    @endif
                   </tr>
                 </tfoot>
               </table>

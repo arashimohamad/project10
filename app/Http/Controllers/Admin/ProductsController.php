@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\AdminsRole;
 use Illuminate\Http\Request;
 use App\Models\ProductsImage;
 use App\Models\ProductsAttribute;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 
@@ -22,11 +24,28 @@ class ProductsController extends Controller
         //When we use "with('category')", make sure on Product Model has a relation (BelongTo, HasMany or etc).
         //Other way is joint table of Products and Categories
         
-        //$products = Product::with('category')->get()->toArray();        // utk lihat susunan array yg cantik
+        //$products = Product::with('category')->get()->toArray();    // utk lihat susunan array yg cantik
         //dd($products);
         
         $products = Product::with('category')->get();
-        return view('admin.products.products', compact('products'));
+
+        //Set Admin/Subadmins Permission for Product
+        $productsModuleCount = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'products'])->count();       
+        $productsModule= [];
+        
+        //Check if admin, so give a full access
+        if (Auth::guard('admin')->user()->type == 'admin') {
+            $productsModule['view_access'] = 1;
+            $productsModule['edit_access'] = 1;
+            $productsModule['full_access'] = 1;
+        } else if($productsModuleCount == 0) {                   //if subadmin not set anything permission, give it message
+            $message = "This feature is restricted for you!"; 
+            return redirect('admin/dashboard')->with('error_message', $message);
+        }else{                                                  //check if subadmin is set permission
+            $productsModule = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'products'])->first();
+        }
+
+        return view('admin.products.products', compact('products', 'productsModule'));
     }
 
     public function updateProductStatus(Request $request)              

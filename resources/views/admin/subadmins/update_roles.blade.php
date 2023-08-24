@@ -45,6 +45,7 @@
 
                 <form id="subadminPermissionForm" name="subadminPermissionForm" action="{{url('admin/update-role/'.$id)}}" method="post" enctype="multipart/form-data">
                   @csrf
+                  
                   {{-- check if subadminRoles data is coming or not --}}
                   @if (!empty($subadminRoles))
                     @foreach ($subadminRoles as $role)                   
@@ -83,10 +84,29 @@
                         @else
                           @php $fullCategories = "" @endphp
                         @endif
-                      @endif                        
+                      @endif 
+                      
+                      @if ($role->module == "products")
+                        @if ($role->view_access == 1)
+                          @php $viewProducts = "checked" @endphp
+                        @else
+                          @php $viewProducts = "" @endphp
+                        @endif
+                        @if ($role->edit_access == 1)
+                          @php $editProducts = "checked" @endphp
+                        @else
+                          @php $editProducts = "" @endphp
+                        @endif
+                        @if ($role->full_access == 1)
+                          @php $fullProducts = "checked" @endphp
+                        @else
+                          @php $fullProducts = "" @endphp
+                        @endif
+                      @endif      
                     
                     @endforeach                    
                   @endif
+
                   <div class="card-body">
                     <input type="hidden" name="subadmin_id" value="{{$id}}">
                     
@@ -106,6 +126,15 @@
                       <input type="checkbox" name="categories[edit]" value="1" @isset($editCategories) {{$editCategories}} @endisset>&nbsp;View/Edit Access
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <input type="checkbox" name="categories[full]" value="1" @isset($fullCategories) {{$fullCategories}} @endisset>&nbsp;Full Access
+                    </div> 
+
+                    <div class="form-group col-md-6">
+                      <label for="products">Products:&nbsp;&nbsp;&nbsp;</label>
+                      <input type="checkbox" name="products[view]" value="1" @isset($viewProducts) {{$viewProducts}} @endisset>&nbsp;View Access
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="products[edit]" value="1" @isset($editProducts) {{$editProducts}} @endisset>&nbsp;View/Edit Access
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="products[full]" value="1" @isset($fullProducts) {{$fullProducts}} @endisset>&nbsp;Full Access
                     </div> 
                     
                     <div class="form-group col-md-6">

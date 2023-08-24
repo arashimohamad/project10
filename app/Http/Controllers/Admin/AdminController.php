@@ -377,7 +377,7 @@ class AdminController extends Controller
                         Penerangan: 
                         Array ([view] => 1) bersamaan dengan $data[$key][$value] = $data['cms_pages']['view'] = 1, rujuk OPTION 2.
                         $key = 'cms_pages'
-                        $value = 'view'  ---> 'view' ini drpd blade 
+                        $value = 'view'  ---> 'view/edit/full' ini drpd blade 
                         $data[$key][$value] = $data['cms_pages']['view'] = ['cms_pages']['view'] = 1
                         $key telah termasuk secara automatik ada pun $value['view'] = 1 
                     */
@@ -400,10 +400,10 @@ class AdminController extends Controller
 
             $role = new AdminsRole;
             $role->subadmin_id  = $id;
-            $role->module       = $key;                         //cms-pages
-            $role->view_access  = $view;
-            $role->edit_access  = $edit;
-            $role->full_access  = $full;
+            $role->module       = $key;                         //$key based on name="products[view]" ---> "products" is refer to the key. Refer to penerangan above
+            $role->view_access  = $view;                        //name="products[view]" value="1/0"
+            $role->edit_access  = $edit;                        //name="products[edit]" value="1/0"
+            $role->full_access  = $full;                        //name="products[full]" value="1/0"
             $role->save();
             
             /*  
