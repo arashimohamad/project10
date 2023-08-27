@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Just type "Column" and laravel snippet will display $table->xxx()
+        // Pre requisite : must install Laravel Snippet extension
         Schema::create('admins', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();

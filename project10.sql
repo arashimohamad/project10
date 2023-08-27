@@ -65,7 +65,7 @@ CREATE TABLE `admins_roles` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -74,8 +74,43 @@ CREATE TABLE `admins_roles` (
 
 LOCK TABLES `admins_roles` WRITE;
 /*!40000 ALTER TABLE `admins_roles` DISABLE KEYS */;
-INSERT INTO `admins_roles` VALUES (14,2,'categories','1','1','1','2023-06-24 11:02:46','2023-06-24 11:02:46');
+INSERT INTO `admins_roles` VALUES (18,3,'subadmin_id','0','0','0','2023-08-24 15:24:38','2023-08-24 15:24:38'),(21,2,'products','1','0','0','2023-08-24 15:26:36','2023-08-24 15:26:36');
 /*!40000 ALTER TABLE `admins_roles` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `brands`
+--
+
+DROP TABLE IF EXISTS `brands`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `brands` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `brand_name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `brand_image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `brand_logo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `brand_discount` double(8,2) DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `meta_keywords` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `brands`
+--
+
+LOCK TABLES `brands` WRITE;
+/*!40000 ALTER TABLE `brands` DISABLE KEYS */;
+INSERT INTO `brands` VALUES (1,'Arrow','','',0.00,'','arrow','','','',1,'2023-08-27 16:10:12','2023-08-27 16:10:12'),(2,'Gap','','',0.00,'','gap','','','',1,'2023-08-27 16:10:12','2023-08-27 16:10:12'),(3,'Monte Carlo','','',0.00,'','monte-carlo','','','',1,'2023-08-27 16:10:12','2023-08-27 16:10:12'),(4,'Nike','','',0.00,'','nike','','','',1,'2023-08-27 16:10:12','2023-08-27 16:10:12'),(5,'Puma','','',0.00,'','puma','','','',1,'2023-08-27 16:10:12','2023-08-27 16:10:12');
+/*!40000 ALTER TABLE `brands` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -214,7 +249,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -223,7 +258,7 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_reset_tokens_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_05_09_062716_create_admins_table',1),(6,'2023_05_17_013024_create_cms_pages_table',2),(7,'2023_05_23_113937_create_admins_roles_table',3),(8,'2023_06_07_091414_create_categories_table',4),(9,'2023_08_16_104036_create_products_table',5),(10,'2023_08_20_144501_create_products_images_table',6),(11,'2023_08_22_005139_create_products_attributes_table',7);
+INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_reset_tokens_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2019_12_14_000001_create_personal_access_tokens_table',1),(5,'2023_05_09_062716_create_admins_table',1),(6,'2023_05_17_013024_create_cms_pages_table',2),(7,'2023_05_23_113937_create_admins_roles_table',3),(8,'2023_06_07_091414_create_categories_table',4),(9,'2023_08_16_104036_create_products_table',5),(10,'2023_08_20_144501_create_products_images_table',6),(11,'2023_08_22_005139_create_products_attributes_table',7),(12,'2023_08_24_235418_create_brands_table',8);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -434,4 +469,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-08-23  1:53:58
+-- Dump completed on 2023-08-28  0:18:48

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\CmsPageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -50,7 +51,7 @@ Route::group(['prefix' => 'admin'], function () {                               
         Route::post('check-current-password', [AdminController::class, 'checkCurrentPassword'])->name('checkcurrentpassword');
         Route::get('logout', [AdminController::class, 'logout']);
 
-        //Display CMS Pages (CRUD - READ)
+        #Display CMS Pages (CRUD - READ)
         Route::get('cms-pages', [CmsPageController::class, 'index']);
         Route::post('update-cms-page-status', [CmsPageController::class, 'update']);
         //masukkan tanda ? ke dlm {id?}. maksudnya jika ada id maka link akan aktif sbg add-edit-cms-page/{id?} utk edit
@@ -58,21 +59,21 @@ Route::group(['prefix' => 'admin'], function () {                               
         Route::match(['get', 'post'],'add-edit-cms-page/{id?}', [CmsPageController::class, 'edit']);
         Route::get('delete-cms-page/{id?}', [CmsPageController::class, 'destroy']);
 
-        //Subadmins
+        #Subadmins
         Route::get('subadmins', [AdminController::class, 'subadmins']);
         Route::post('update-subadmin-status', [AdminController::class, 'updateSubadminStatus']);
         Route::match(['get', 'post'],'add-edit-subadmin/{id?}', [AdminController::class, 'addEditSubadmin']);
         Route::get('delete-subadmin/{id?}', [AdminController::class, 'deleteSubadmin']);
         Route::match(['get', 'post'], 'update-role/{id}', [AdminController::class, 'updateRole']);
 
-        //Categories
+        #Categories
         Route::get('categories', [CategoryController::class, 'categories']);
         Route::post('update-category-status', [CategoryController::class, 'updateCategoryStatus']);
         Route::match(['get', 'post'], 'add-edit-category/{id?}', [CategoryController::class, 'addEditCategory']);
         Route::get('delete-category-image/{id?}', [CategoryController::class, 'deleteCategoryImage']);
         Route::get('delete-category/{id?}', [CategoryController::class, 'deleteCategory']);
 
-        //Products              
+        #Products              
         Route::get('products', [ProductsController::class, 'products']);
         Route::post('update-product-status', [ProductsController::class, 'updateProductStatus']);        
         Route::get('delete-product/{id?}', [ProductsController::class, 'deleteProduct']);        
@@ -87,6 +88,13 @@ Route::group(['prefix' => 'admin'], function () {                               
         //Product Attributes
         Route::post('update-attribute-status', [ProductsController::class, 'updateAttributeStatus']);
         Route::get('delete-attribute/{id?}', [ProductsController::class, 'deleteAttribute']);   
+
+        #Brands 
+        Route::get('brands', [BrandController::class, 'brands']);
+        Route::post('update-brand-status', [BrandController::class, 'updateBrandStatus']);
+        Route::match(['get', 'post'], 'add-edit-brand/{id?}', [BrandController::class, 'addEditBrand']);
+        Route::get('delete-brand-image/{id?}', [BrandController::class, 'deleteBrandImage']);        
+        Route::get('delete-brand/{id?}', [BrandController::class, 'deleteBrand']);
 
     });    
 });                                        

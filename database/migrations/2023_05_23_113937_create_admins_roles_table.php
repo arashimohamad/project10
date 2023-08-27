@@ -11,6 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
+        // Just type "Column" and laravel snippet will display $table->xxx()
+        // Pre requisite : must install Laravel Snippet extension
         Schema::create('admins_roles', function (Blueprint $table) {
             $table->id();                                                           //default bgint(20)
             $table->integer('subadmin_id')->nullable()->comment('admin_id');        //int(20), subadmin_id refer to admins table's id
