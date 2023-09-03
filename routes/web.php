@@ -93,7 +93,7 @@ Route::group(['prefix' => 'admin'], function () {                               
         Route::get('brands', [BrandController::class, 'brands']);
         Route::post('update-brand-status', [BrandController::class, 'updateBrandStatus']);
         Route::match(['get', 'post'], 'add-edit-brand/{id?}', [BrandController::class, 'addEditBrand']);
-        Route::get('delete-brand-image/{id?}', [BrandController::class, 'deleteBrandImage']);        
+        Route::get('delete-brand-image/{id?}', [BrandController::class, 'deleteBrandImage']);
         Route::get('delete-brand/{id?}', [BrandController::class, 'deleteBrand']);
 
     });    
