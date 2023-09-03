@@ -65,8 +65,8 @@
 65	Laravel 10 Tutorial #65	
 66	Laravel 10 Tutorial #66	
 67	Laravel 10 Tutorial #67	
-68	Laravel 10 Tutorial #68	- Done
-69	Laravel 10 Tutorial #69	
+68	Laravel 10 Tutorial #68	
+69	Laravel 10 Tutorial #69	- Done
 70	Laravel 10 Tutorial #70	
 71	Laravel 10 Tutorial #71	
 72	Laravel 10 Tutorial #72	
