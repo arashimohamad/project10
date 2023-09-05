@@ -160,9 +160,42 @@ class BrandController extends Controller
         
     }
 
-    public function FunctionName4(Request $request)
+    public function deleteBrandImage($id)
     {
-        #Session::put('page', 'brands'); 
+        //Get Brand Image
+        $brandImage = Brand::select('brand_image')->where('id', $id)->first();
+
+        //Get Brand Image Path
+        $brand_image_path = 'front/images/brands/';
+
+        //Delete Brand Image from product folder if exists
+        if (file_exists($brand_image_path.$brandImage->brand_image)) {
+            unlink($brand_image_path.$brandImage->brand_image);
+        }
+
+        //Delete Brand Image Name from brands table
+        $deleteImage = Brand::where('id', $id)->update(['brand_image'=>'']);
+
+        return redirect()->back()->with('success_message', 'Brand image deleted successfully!'); 
+    }
+
+    public function deleteBrandLogo($id)
+    {
+        //Get Logo Image
+        $brandLogo = Brand::select('brand_logo')->where('id', $id)->first();
+
+        //Get Logo Image Path
+        $brand_logo_path = 'front/images/brands/';
+
+        //Delete Brand Image from brands folder if exists
+        if (file_exists($brand_logo_path.$brandLogo->brand_logo)) {
+            unlink($brand_logo_path.$brandLogo->brand_logo);
+        }
+
+        //Delete Brand Image Name from products table
+        $deleteLogo = Brand::where('id', $id)->update(['brand_logo'=>'']);
+
+        return redirect()->back()->with('success_message', 'Brand logo deleted successfully!'); 
     }
 
     public function FunctionName5(Request $request)
