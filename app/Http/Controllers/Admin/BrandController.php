@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Brand;
 use App\Models\Product;
+use App\Models\AdminsRole;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Session;
 
@@ -15,7 +17,24 @@ class BrandController extends Controller
     {
         Session::put('page', 'brands');                      //Session::put setara dgn $request->session()->put('page', 'prodducts');
         $brands = Brand::get();
-        return view('admin.brands.brands', compact('brands'));        
+
+        //Set Admin/Subadmins Permission for Brand
+        $brandsModuleCount = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'brands'])->count();       
+        $brandsModule= [];
+        
+        //Check if admin, so give a full access
+        if (Auth::guard('admin')->user()->type == 'admin') {
+            $brandsModule['view_access'] = 1;
+            $brandsModule['edit_access'] = 1;
+            $brandsModule['full_access'] = 1;
+        } else if($brandsModuleCount == 0) {                     //if subadmin not set anything permission, give it message
+            $message = "This feature is restricted for you!"; 
+            return redirect('admin/dashboard')->with('error_message', $message);
+        }else{                                                  //check if subadmin is set permission
+            $brandsModule = AdminsRole::where(['subadmin_id'=>Auth::guard('admin')->user()->id, 'module'=>'brands'])->first();
+        }
+
+        return view('admin.brands.brands', compact('brands', 'brandsModule'));        
     }
 
     public function updateBrandStatus(Request $request)              

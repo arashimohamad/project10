@@ -103,6 +103,24 @@
                           @php $fullProducts = "" @endphp
                         @endif
                       @endif      
+
+                      @if ($role->module == "brands")
+                        @if ($role->view_access == 1)
+                          @php $viewBrands = "checked" @endphp
+                        @else
+                          @php $viewBrands = "" @endphp
+                        @endif
+                        @if ($role->edit_access == 1)
+                          @php $editBrands = "checked" @endphp
+                        @else
+                          @php $editBrands = "" @endphp
+                        @endif
+                        @if ($role->full_access == 1)
+                          @php $fullBrands = "checked" @endphp
+                        @else
+                          @php $fullBrands = "" @endphp
+                        @endif
+                      @endif      
                     
                     @endforeach                    
                   @endif
@@ -135,6 +153,15 @@
                       <input type="checkbox" name="products[edit]" value="1" @isset($editProducts) {{$editProducts}} @endisset>&nbsp;View/Edit Access
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <input type="checkbox" name="products[full]" value="1" @isset($fullProducts) {{$fullProducts}} @endisset>&nbsp;Full Access
+                    </div> 
+
+                    <div class="form-group col-md-6">
+                      <label for="brands">Brands:&nbsp;&nbsp;&nbsp;</label>
+                      <input type="checkbox" name="brands[view]" value="1" @isset($viewBrands) {{$viewBrands}} @endisset>&nbsp;View Access
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="brands[edit]" value="1" @isset($editBrands) {{$editBrands}} @endisset>&nbsp;View/Edit Access
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="brands[full]" value="1" @isset($fullBrands) {{$fullBrands}} @endisset>&nbsp;Full Access
                     </div> 
                     
                     <div class="form-group col-md-6">

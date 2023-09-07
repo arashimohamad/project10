@@ -449,7 +449,7 @@ class AdminController extends Controller
         $title = "Update ".$subadminName->name." Subadmin Roles/Permission";
         $subadminAccount = "Subadmin Account :<strong>&nbsp;".$subadminName->name."</strong>";  
 
-        return view('admin.subadmins.update_roles', compact('id','title','subadminAccount', 'subadminRoles'));
+        return view('admin.subadmins.update_roles', compact('id', 'title', 'subadminAccount', 'subadminRoles'));
 
         /*
             Laravel 10 Tutorial #29 - Roles and Permissions in Laravel 10 (V) - Set Permissions for Sub Admins
@@ -521,7 +521,7 @@ class AdminController extends Controller
         //get a list to make checkbox is checked
         $subadminRoles = AdminsRole::where('subadmin_id', $id)->get();
 
-        return view('admin.subadmins.update_roles', compact('id','title','subadminAccount', 'subadminRoles'));
+        return view('admin.subadmins.update_roles', compact('id', 'title', 'subadminAccount', 'subadminRoles'));
 
         /*
             Laravel 10 Tutorial #29 - Roles and Permissions in Laravel 10 (V) - Set Permissions for Sub Admins

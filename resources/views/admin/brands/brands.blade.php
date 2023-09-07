@@ -29,12 +29,12 @@
             @include('admin.includes.messages')
             
             <div class="card">
-              {{-- @if ($brandsModule['edit_access'] == 1 || $brandsModule['full_access'] == 1) --}}
+              @if ($brandsModule['edit_access'] == 1 || $brandsModule['full_access'] == 1)
                 <div class="card-header">
                   <h3 class="card-title">Brands</h3> 
                   <a href="{{url('admin/add-edit-brand')}}" class="btn btn-primary btn-block" style="max-width: 150px; float:right; display:inline-block">Add Brand</a>               
                 </div>
-              {{-- @endif --}}
+              @endif
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="brands" class="table table-bordered table-striped">
@@ -44,7 +44,9 @@
                       <th>Name</th>
                       <th>URL</th>
                       <th>Created On</th>
-                      <th>Actions</th>
+                      @if ($brandsModule['edit_access'] == 1 || $brandsModule['full_access'] == 1)
+                        <th>Actions</th>
+                      @endif
                     </tr>
                   </thead>
                   <tbody>
@@ -54,31 +56,33 @@
                         <td>{{$brd->brand_name}}</td>
                         <td>{{$brd->url}}</td>
                         <td>{{date("j F Y, g:i a", strtotime($brd->created_at))}}</td>
-                        <td>
-                          {{-- @if ($brandsModule['edit_access'] == 1 || $brandsModule['full_access'] == 1) --}}
-                            @if ($brd->status == 1)
-                              {{-- Please refer to custom.js on layout for updateBrandStatus --}}
-                              <a href="javascript:void(0)" class="updateBrandStatus" id="brand-{{$brd->id}}" brand_id="{{$brd->id}}" style="color:#007bff">
-                                <i class="fas fa-toggle-on" status="Active"></i>
-                              </a>                            
-                            @else
-                              <a href="javascript:void(0)" class="updateBrandStatus" id="brand-{{$brd->id}}" brand_id="{{$brd->id}}" style="color: grey">
-                                <i class="fas fa-toggle-off" status="Inactive"></i>
+                        @if ($brandsModule['edit_access'] == 1 || $brandsModule['full_access'] == 1)
+                          <td>
+                            @if ($brandsModule['edit_access'] == 1 || $brandsModule['full_access'] == 1)
+                              @if ($brd->status == 1)
+                                {{-- Please refer to custom.js on layout for updateBrandStatus --}}
+                                <a href="javascript:void(0)" class="updateBrandStatus" id="brand-{{$brd->id}}" brand_id="{{$brd->id}}" style="color:#007bff">
+                                  <i class="fas fa-toggle-on" status="Active"></i>
+                                </a>                            
+                              @else
+                                <a href="javascript:void(0)" class="updateBrandStatus" id="brand-{{$brd->id}}" brand_id="{{$brd->id}}" style="color: grey">
+                                  <i class="fas fa-toggle-off" status="Inactive"></i>
+                                </a>
+                              @endif
+                              &nbsp;&nbsp;                            
+                            @endif
+                            @if ($brandsModule['edit_access'] == 1 || $brandsModule['full_access'] == 1)
+                              <a href="{{url('admin/add-edit-brand/'.$brd->id)}}" style="color:#007bff"><i class="fas fa-edit"></i></a>
+                              &nbsp;&nbsp;
+                            @endif
+                            @if ($brandsModule['full_access'] == 1)
+                              {{-- for SweetAlert2 --}}
+                              <a href="javascript:void(0)" record="brand" recordid="{{$brd->id}}" name="{{$brd->brand_name}} Brand" class="confirmDelete" title="Delete Brand" style="color:#007bff">
+                                <i class="fas fa-trash"></i>
                               </a>
                             @endif
-                            &nbsp;&nbsp;                            
-                          {{-- @endif --}}
-                          {{-- @if ($brandsModule['edit_access'] == 1 || $brandsModule['full_access'] == 1) --}}
-                            <a href="{{url('admin/add-edit-brand/'.$brd->id)}}" style="color:#007bff"><i class="fas fa-edit"></i></a>
-                            &nbsp;&nbsp;
-                          {{-- @endif
-                          @if ($brandsModule['full_access'] == 1) --}}
-                            {{-- for SweetAlert2 --}}
-                            <a href="javascript:void(0)" record="brand" recordid="{{$brd->id}}" name="{{$brd->brand_name}} Brand" class="confirmDelete" title="Delete Brand" style="color:#007bff">
-                              <i class="fas fa-trash"></i>
-                            </a>
-                          {{-- @endif --}}
-                        </td>
+                          </td>
+                        @endif
                       </tr> 
                     @endforeach
                   </tbody>
@@ -88,7 +92,9 @@
                       <th>Name</th>
                       <th>URL</th>
                       <th>Created On</th>
-                      <th>Actions</th>
+                      @if ($brandsModule['edit_access'] == 1 || $brandsModule['full_access'] == 1)
+                        <th>Actions</th>
+                      @endif
                     </tr>
                   </tfoot>
                 </table>
