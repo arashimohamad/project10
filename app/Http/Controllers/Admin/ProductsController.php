@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\AdminsRole;
@@ -158,6 +159,7 @@ class ProductsController extends Controller
 
             // Add or update data
             $product->category_id       = $data['categoryID'];
+            $product->brand_id          = $data['prodbrand_id'];
             $product->product_name      = $data['prodname'];
             $product->product_code      = $data['prodcode'];
             $product->product_color     = $data['prodcolor'];
@@ -298,12 +300,15 @@ class ProductsController extends Controller
 
             //Edit Product Attributes
             //Loop product attributes that user inserted
-            foreach ($data['attributeID'] as $akey => $attribute) {
-                if (!empty($attribute)) {
-                    ProductsAttribute::where(['id'=>$data['attributeID'][$akey]])->update([           //$key based on name="attributeID[]" ---> bracket [] is refer to key
-                        'price'=>$data['attr_price'][$akey],
-                        'stock'=>$data['attr_stock'][$akey] 
-                    ]);
+            //Check if attributeID is not empty or not
+            if(isset($data['attributeID'])){
+                foreach ($data['attributeID'] as $akey => $attribute) {
+                    if (!empty($attribute)) {
+                        ProductsAttribute::where(['id'=>$data['attributeID'][$akey]])->update([           //$key based on name="attributeID[]" ---> bracket [] is refer to key
+                            'price'=>$data['attr_price'][$akey],
+                            'stock'=>$data['attr_stock'][$akey] 
+                        ]);
+                    }
                 }
             }
 
@@ -313,12 +318,15 @@ class ProductsController extends Controller
         //Get Categories and their Sub Categories
         //Recall the getCategories() function from the Category Model and
         //After that you can create a dropdown menu in the blade
-        $getCategories = Category::getCategories();         
+        $getCategories = Category::getCategories(); 
+        
+        //Get Brand
+        $getBrands = Brand::where('status', 1)->orderBy('brand_name', 'ASC')->get();
         
         //Product filter that perform on product model
         $productsFilters = Product::productsFilters();
         
-        return view('admin.products.add_edit_product', compact('title', 'product', 'getCategories', 'productsFilters'));
+        return view('admin.products.add_edit_product', compact('title', 'product', 'getCategories', 'getBrands', 'productsFilters'));
     }  
     
     public function updateAttributeStatus(Request $request)              
