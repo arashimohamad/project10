@@ -356,10 +356,10 @@ class AdminController extends Controller
         //please refer to https://www.itsolutionstuff.com/post/how-to-delete-file-from-public-folder-storage-folder-in-laravelexample.html
     }
 
-    public function updateRole(Request $request, $id)                      //$id merujuk kpd subadmin_id
+    public function updateRole(Request $request, $id)           //$id is refer to subadmin_id
     {         
         if ($request->isMethod('post')) {
-            $data = $request->all();     //dd($data);  //echo "<pre>"; print_r($data); die();
+            $data = $request->all();                            //dd($data);  //echo "<pre>"; print_r($data); die();
 
             //We are going to make subadmin roles & permission empty b4 assigning a new permission 
             //Delete all earlier roles for Subadmin. We want 1 data ONLY exist in AdminsRole table if user save it many times
@@ -372,15 +372,7 @@ class AdminController extends Controller
                 if (isset($value['view'])) {
                     //dd($key);                                 //cms_pages
                     //echo "<pre>"; print_r($value); die();      
-                    $view = $value['view'];                     //Array ([view] => 1) 
-                    /*
-                        Penerangan: 
-                        Array ([view] => 1) bersamaan dengan $data[$key][$value] = $data['cms_pages']['view'] = 1, rujuk OPTION 2.
-                        $key = 'cms_pages'
-                        $value = 'view'  ---> 'view/edit/full' ini drpd blade 
-                        $data[$key][$value] = $data['cms_pages']['view'] = ['cms_pages']['view'] = 1
-                        $key telah termasuk secara automatik ada pun $value['view'] = 1 
-                    */
+                    $view = $value['view'];                     //Array ([view] => 1)                     
                 } else {
                     $view = 0;
                 }
@@ -395,16 +387,35 @@ class AdminController extends Controller
                     $full = $value['full'];
                 } else {
                     $full = 0;
-                }                
+                }   
+                
+                AdminsRole::where('sudadmin_id', $id)->insert([
+                    'subadmin_id' => $id,
+                    'module'      => $key,
+                    'view_access' => $view,
+                    'edit_access' => $edit,
+                    'full_access' => $full,
+                ]);
+
+                /*
+                    Penerangan: 
+                    Array ([view] => 1) bersamaan dengan $data[$key][$value] = $data['cms_pages']['view'] = 1, rujuk OPTION 2.
+                    $key = 'cms_pages' ---> nama module (cms_pages/categories/products/brands)
+                    $value = 'view'  ---> 'view/edit/full' ini drpd blade 
+                    $data[$key][$value] = $data['cms_pages']['view'] = ['cms_pages']['view'] = 1
+                    $key telah termasuk secara automatik ada pun $value['view'] = 1 
+                */
             }
 
-            $role = new AdminsRole;
-            $role->subadmin_id  = $id;
-            $role->module       = $key;                         //$key based on name="products[view]" ---> "products" is refer to the key. Refer to penerangan above
-            $role->view_access  = $view;                        //name="products[view]" value="1/0"
-            $role->edit_access  = $edit;                        //name="products[edit]" value="1/0"
-            $role->full_access  = $full;                        //name="products[full]" value="1/0"
-            $role->save();
+            /*
+                $role = new AdminsRole;
+                $role->subadmin_id  = $id;
+                $role->module       = $key;                         //$key based on name="products[view]" ---> "products" is refer to the key. Refer to penerangan above
+                $role->view_access  = $view;                        //name="products[view]" value="1/0"
+                $role->edit_access  = $edit;                        //name="products[edit]" value="1/0"
+                $role->full_access  = $full;                        //name="products[full]" value="1/0"
+                $role->save();
+            */
             
             /*  
                 //OPTION 2

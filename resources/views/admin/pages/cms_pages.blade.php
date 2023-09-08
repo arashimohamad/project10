@@ -44,7 +44,9 @@
                       <th>Title</th>
                       <th>URL</th>
                       <th>Created On</th>
-                      <th>Actions</th>
+                      @if ($pagesModule['edit_access'] == 1 || $pagesModule['full_access'] == 1)
+                        <th>Actions</th>
+                      @endif
                     </tr>
                   </thead>
                   <tbody>
@@ -55,35 +57,37 @@
                         <td>{{$page->title}}</td>
                         <td>{{$page->url}}</td>
                         <td>{{date("j F Y, g:i a", strtotime($page->created_at))}}</td>
-                        <td>                 
+                        @if ($pagesModule['edit_access'] == 1 || $pagesModule['full_access'] == 1)
+                          <td>                 
 
-                          @if ($pagesModule['edit_access'] == 1 || $pagesModule['full_access'] == 1)
-                            @if ($page->status == 1)
-                              {{-- Please refer to custom.js on layout for updateCmsPageStatus --}}
-                              <a href="javascript:void(0)" class="updateCmsPageStatus" id="page-{{$page->id}}" page_id="{{$page->id}}" style="color:#007bff">
-                                <i class="fas fa-toggle-on" status="Active"></i>
-                              </a>                            
-                            @else
-                              <a href="javascript:void(0)" class="updateCmsPageStatus" id="page-{{$page->id}}" page_id="{{$page->id}}" style="color: grey">
-                                <i class="fas fa-toggle-off" status="Inactive"></i>
-                              </a>
+                            @if ($pagesModule['edit_access'] == 1 || $pagesModule['full_access'] == 1)
+                              @if ($page->status == 1)
+                                {{-- Please refer to custom.js on layout for updateCmsPageStatus --}}
+                                <a href="javascript:void(0)" class="updateCmsPageStatus" id="page-{{$page->id}}" page_id="{{$page->id}}" style="color:#007bff">
+                                  <i class="fas fa-toggle-on" status="Active"></i>
+                                </a>                            
+                              @else
+                                <a href="javascript:void(0)" class="updateCmsPageStatus" id="page-{{$page->id}}" page_id="{{$page->id}}" style="color: grey">
+                                  <i class="fas fa-toggle-off" status="Inactive"></i>
+                                </a>
+                              @endif
+                              &nbsp;&nbsp;                            
+                              <a href="{{url('admin/add-edit-cms-page/'.$page->id)}}" style="color:#007bff"><i class="fas fa-edit"></i></a>
+                              &nbsp;&nbsp;
                             @endif
-                            &nbsp;&nbsp;                            
-                            <a href="{{url('admin/add-edit-cms-page/'.$page->id)}}" style="color:#007bff"><i class="fas fa-edit"></i></a>
-                            &nbsp;&nbsp;
-                          @endif
-                          @if ($pagesModule['full_access'] == 1)
-                            {{-- for SweetAlert2 --}}
-                            <a href="javascript:void(0)" record="cms-page" recordid="{{$page->id}}" name="{{$page->title}} Page" class="confirmDelete" title="Delete CMS Page" style="color:#007bff">
-                            <i class="fas fa-trash"></i>
-                            </a>
-                            {{-- for normal alert
-                            <a class="confirmDelete" name="CMS Page" title="Delete CMS Page" href="{{url('admin/delete-edit-cms-page/'.$page->id)}}" style="color:#007bff">
-                            <i class="fas fa-trash"></i>
-                            </a> --}}
-                          @endif
-                          
-                        </td>
+                            @if ($pagesModule['full_access'] == 1)
+                              {{-- for SweetAlert2 --}}
+                              <a href="javascript:void(0)" record="cms-page" recordid="{{$page->id}}" name="{{$page->title}} Page" class="confirmDelete" title="Delete CMS Page" style="color:#007bff">
+                              <i class="fas fa-trash"></i>
+                              </a>
+                              {{-- for normal alert
+                              <a class="confirmDelete" name="CMS Page" title="Delete CMS Page" href="{{url('admin/delete-edit-cms-page/'.$page->id)}}" style="color:#007bff">
+                              <i class="fas fa-trash"></i>
+                              </a> --}}
+                            @endif
+                            
+                          </td>
+                        @endif
                       </tr> 
 
                       {{-- Option 2 - $CmsPages = CmsPage::get()->toArray();
@@ -103,7 +107,9 @@
                       <th>Title</th>
                       <th>URL</th>
                       <th>Created On</th>
-                      <th>Actions</th>
+                      @if ($pagesModule['edit_access'] == 1 || $pagesModule['full_access'] == 1)
+                        <th>Actions</th>
+                      @endif
                     </tr>
                   </tfoot>
                 </table>
