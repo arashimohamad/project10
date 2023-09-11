@@ -89,6 +89,40 @@ INSERT INTO `admins_roles` VALUES
 UNLOCK TABLES;
 
 --
+-- Table structure for table `banners`
+--
+
+DROP TABLE IF EXISTS `banners`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `banners` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `image` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `link` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  `alt` varchar(255) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `banners`
+--
+
+LOCK TABLES `banners` WRITE;
+/*!40000 ALTER TABLE `banners` DISABLE KEYS */;
+INSERT INTO `banners` VALUES
+(1,'sitemaker-slider-banner-1.png','Slider','','T-Shirts Collection','T-Shirts Collection',1,1,'2023-09-11 07:36:46','2023-09-11 07:36:46'),
+(2,'sitemaker-slider-banner-2.png','Slider','','Women Collection','Women Collection',2,1,'2023-09-11 07:36:46','2023-09-11 07:36:46');
+/*!40000 ALTER TABLE `banners` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `brands`
 --
 
@@ -290,7 +324,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) NOT NULL,
   `batch` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -311,7 +345,8 @@ INSERT INTO `migrations` VALUES
 (9,'2023_08_16_104036_create_products_table',5),
 (10,'2023_08_20_144501_create_products_images_table',6),
 (11,'2023_08_22_005139_create_products_attributes_table',7),
-(12,'2023_08_24_235418_create_brands_table',8);
+(12,'2023_08_24_235418_create_brands_table',8),
+(14,'2023_09_11_151936_create_banners_table',9);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -538,4 +573,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-09  1:40:47
+-- Dump completed on 2023-09-11 15:45:19
