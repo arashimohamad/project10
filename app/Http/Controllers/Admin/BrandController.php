@@ -215,25 +215,5 @@ class BrandController extends Controller
         $deleteLogo = Brand::where('id', $id)->update(['brand_logo'=>'']);
 
         return redirect()->back()->with('success_message', 'Brand logo deleted successfully!'); 
-    }
-
-    public function FunctionName5(Request $request)
-    {
-        #Session::put('page', 'brands'); 
-    }
-
-    public function FunctionName6(Request $request)
-    {
-        #Session::put('page', 'brands'); 
-    }
-
-    public function FunctionName7(Request $request)
-    {
-        #Session::put('page', 'brands'); 
-    }
-
-    public function FunctionName8(Request $request)
-    {
-        #Session::put('page', 'brands'); 
-    }
+    }    
 }

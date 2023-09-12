@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\CmsPageController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -96,6 +97,13 @@ Route::group(['prefix' => 'admin'], function () {                               
         Route::match(['get', 'post'], 'add-edit-brand/{id?}', [BrandController::class, 'addEditBrand']);
         Route::get('delete-brand-image/{id?}', [BrandController::class, 'deleteBrandImage']);
         Route::get('delete-brand-logo/{id?}', [BrandController::class, 'deleteBrandLogo']);
+
+        #Banners 
+        Route::get('banners', [BannersController::class, 'banners']);
+        Route::post('update-banner-status', [BannersController::class, 'updateBannerStatus'])->name('banners.updateBannerStatus');
+        Route::get('delete-banner/{id?}', [BannersController::class, 'deleteBanner']);
+        Route::match(['get', 'post'], 'add-edit-banner/{id?}', [BannersController::class, 'addEditBanner']);
+        Route::get('delete-banner-image/{id?}', [BannersController::class, 'deleteBannerImage']);
 
     });    
 });                                        

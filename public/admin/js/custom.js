@@ -149,7 +149,6 @@ $(".updateBrandStatus").click(function () {
     });
 });
 
-
 //Update Product Status (products.blade.php) 
 $(".updateProductStatus").click(function () {
     var status = $(this).children("i").attr("status");
@@ -175,6 +174,41 @@ $(".updateProductStatus").click(function () {
                 );
             } else if (resp["status"] == 1) {
                 $("#product-" + product_id).html(
+                    "<i class='fas fa-toggle-on' status='Active' style='color:#007bff'></i>"
+                );
+            }
+        },
+        error: function () {
+            alert("Error");
+        },
+    });
+});
+
+//Update Banner Status (banners.blade.php) 
+$(".updateBannerStatus").click(function () {
+    var status = $(this).children("i").attr("status");
+    //alert(status);
+    //"this" refer to <a href=""></a>. "children" refer to <i class=""></i>. attr "status" refer to <i class="" status="Active"></i>
+    var banner_id = $(this).attr("banner_id");
+    //"this" refer to <a href=""></a>. attr "banner_id" refer to banner_id in the link <a href="" banner_id="{{$bnr->id}}">
+    //alert(banner_id);   
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "post",
+        url: "../admin/update-banner-status",
+        data: {
+            status: status,
+            banner_id: banner_id,
+        },
+        success: function (resp) {
+            if (resp["status"] == 0) {
+                $("#banner-" + banner_id).html(
+                    "<i class='fas fa-toggle-off' status='Inactive' style='color:grey'></i>"
+                );
+            } else if (resp["status"] == 1) {
+                $("#banner-" + banner_id).html(
                     "<i class='fas fa-toggle-on' status='Active' style='color:#007bff'></i>"
                 );
             }
