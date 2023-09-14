@@ -38,75 +38,57 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
-              <div class="col-12">
+              <div class="col-6">
                 
                 @include('admin.includes.messages')
 
-                <form id="brandForm" name="brandForm" 
-                  @if (empty($brand['id']))
-                    action="{{url('admin/add-edit-brand')}}"                  
+                <form id="bannerForm" name="bannerForm" 
+                  @if (empty($banner['id']))
+                    action="{{url('admin/add-edit-banner')}}"                  
                   @else
-                    action="{{url('admin/add-edit-brand/'.$brand['id'])}}"
+                    action="{{url('admin/add-edit-banner/'.$banner['id'])}}"
                   @endif 
                   method="post" enctype="multipart/form-data">
                   @csrf
                   <div class="card-body">
                     <div class="form-group">
-                      <label for="bdname">Brand Name*</label>
-                      <input type="text" class="form-control" id="bdname" name="bdname" placeholder="Enter Brand Name" @if (!empty($brand['brand_name'])) value="{{$brand['brand_name']}}" @else value="{{old('bdname')}}" @endif> 
+                      <label for="bannertype">Banner Type*</label>
+                      <select class="form-control" name="bannertype" id="bannertype">
+                        <option value="">Select</option>
+                        <option @if (!empty($banner['type']) && $banner['type'] == 'Slider') selected @endif value="Slider">Slider</option>
+                        <option @if (!empty($banner['type']) && $banner['type'] == 'Fix 1') selected @endif value="Fix 1">Fix 1</option>
+                        <option @if (!empty($banner['type']) && $banner['type'] == 'Fix 2') selected @endif value="Fix 2">Fix 2</option>
+                        <option @if (!empty($banner['type']) && $banner['type'] == 'Fix 3') selected @endif value="Fix 3">Fix 3</option>
+                        <option @if (!empty($banner['type']) && $banner['type'] == 'Fix 4') selected @endif value="Fix 4">Fix 4</option>
+                      </select>                      
                     </div>
                     <div class="form-group">
-                      <label for="bdimage">Brand Image</label>
-                      <input type="file" class="form-control" id="bdimage" name="bdimage">                     
-                      @if (!empty($brand['brand_image']))
+                      <label for="bannerimage">Banner Image</label>
+                      <input type="file" class="form-control" id="bannerimage" name="bannerimage">                     
+                      @if (!empty($banner['image']))
                         <br>
-                        <a href="{{url('/front/images/brands/'. $brand['brand_image'])}}" target="_blank">
-                          <img style="width: 80px; margin: 10px" src="{{URL::asset('/front/images/brands/'. $brand['brand_image'])}}">
+                        <a href="{{url('/front/images/banners/'. $banner['image'])}}" target="_blank">
+                          <img style="width: 80px; margin: 10px" src="{{URL::asset('/front/images/banners/'. $banner['image'])}}">
                         </a>                       
-                        <input type="hidden" name="hidden_image" value="{{$brand['brand_image']}}">
-                        <a href="javascript:void(0)" record="brand-image" recordid="{{$brand->id}}" name="{{$brand->brand_image}}" class="confirmDeleteImage" title="Delete Brand Image" style="color:#007bff">
-                          <i class="fas fa-trash" style="color: white"></i>
-                        </a>
+                        <input type="hidden" name="hidden_image" value="{{$banner['image']}}">
                       @endif
-                    </div>                    
+                    </div>                                        
                     <div class="form-group">
-                      <label for="bdlogo">Brand Logo</label>
-                      <input type="file" class="form-control" id="bdlogo" name="bdlogo">                     
-                      @if (!empty($brand['brand_logo']))
-                        <br>
-                        <a href="{{url('/front/images/brands/'. $brand['brand_logo'])}}" target="_blank">
-                          <img style="width: 80px; margin: 10px" src="{{URL::asset('/front/images/brands/'. $brand['brand_logo'])}}">
-                        </a>                       
-                        <input type="hidden" name="hidden_logo" value="{{$brand['brand_logo']}}">
-                        <a href="javascript:void(0)" record="brand-logo" recordid="{{$brand->id}}" name="{{$brand->brand_logo}}" class="confirmDeleteImage" title="Delete Brand Logo" style="color:#007bff">
-                          <i class="fas fa-trash" style="color: white"></i>
-                        </a>
-                      @endif
+                      <label for="bannertitle">Banner Title</label>
+                      <input type="text" class="form-control" id="bannertitle" name="bannertitle" placeholder="Enter Banner Title" @if (!empty($banner['title'])) value="{{$banner['title']}}" @else value="{{old('bannertitle')}}" @endif> 
                     </div>
                     <div class="form-group">
-                      <label for="bddiscount">Brand Discount</label>
-                      <input type="text" class="form-control" id="bddiscount" name="bddiscount" placeholder="Enter Brand Discount" @if (!empty($brand['brand_discount'])) value="{{$brand['brand_discount']}}" @else value="{{old('bddiscount')}}" @endif>                    
+                      <label for="banneralt">Banner Alt</label>
+                      <input type="text" class="form-control" id="banneralt" name="banneralt" placeholder="Enter Banner Alt" @if (!empty($banner['alt'])) value="{{$banner['alt']}}" @else value="{{old('banneralt')}}" @endif> 
                     </div>
                     <div class="form-group">
-                      <label for="url">Brand URL*</label>
-                      <input type="text" class="form-control" id="url" name="url" placeholder="Enter Brand URL" @if (!empty($brand['url'])) value="{{$brand['url']}}" @else value="{{old('url')}}" @endif>
+                      <label for="bannerlink">Banner Link</label>
+                      <input type="text" class="form-control" id="bannerlink" name="bannerlink" placeholder="Enter Banner Link" @if (!empty($banner['link'])) value="{{$banner['link']}}" @else value="{{old('bannerlink')}}" @endif> 
                     </div>
                     <div class="form-group">
-                      <label for="description">Brand Description*</label>
-                      <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter Brand Description">@if (!empty($brand['description'])) {{$brand['description']}} @else {{old('description')}} @endif</textarea>
-                    </div>
-                    <div class="form-group">
-                      <label for="metatitle">Meta Title</label>
-                      <input type="text" class="form-control" id="metatitle" name="metatitle" placeholder="Enter Meta Title" @if (!empty($brand['meta_title'])) value="{{$brand['meta_title']}}" @else value="{{old('metatitle')}}" @endif>
-                    </div>
-                    <div class="form-group">
-                      <label for="metadesc">Meta Description</label>
-                      <input type="text" class="form-control" id="metadesc" name="metadesc" placeholder="Enter Meta Description" @if (!empty($brand['meta_description'])) value="{{$brand['meta_description']}}" @else value="{{old('metadesc')}}" @endif>
-                    </div>
-                    <div class="form-group">
-                      <label for="metakey">Meta Keywords</label>
-                      <input type="text" class="form-control" id="metakey" name="metakey" placeholder="Enter Meta Keywords" @if (!empty($brand['meta_keywords'])) value="{{$brand['meta_keywords']}}" @else value="{{old('metakey')}}" @endif>
-                    </div>
+                      <label for="bannersort">Banner Sort</label>
+                      <input type="number" class="form-control" id="bannersort" name="bannersort" placeholder="Enter Banner Sort" @if (!empty($banner['sort'])) value="{{$banner['sort']}}" @else value="{{old('bannersort')}}" @endif> 
+                    </div>                   
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </div>

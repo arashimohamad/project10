@@ -8,12 +8,14 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Session;
 
 class BannersController extends Controller
 {    
     public function banners()
     {
-        // Session::put('page', 'banners');                                    //Session::put setara dgn $request->session()->put('page', 'banners');
+        Session::put('page', 'banners');                                    //Session::put setara dgn $request->session()->put('page', 'banners');
         $banners = Banner::get();
 
         //Set Admin/Subadmins Permission for Banner
@@ -58,7 +60,87 @@ class BannersController extends Controller
 
     public function addEditBanner(Request $request, $id=null)               // id = null sbb data tiada lagi
     {
-        # code...
+        //Add dan Edit buat kat sini        
+        Session::put('page', 'banners');     
+
+        if ($id == "") {
+            $title = 'Add Banner';
+            $banner = new Banner;
+            $message = 'Banner added successfully!';
+        } else {
+            $title = 'Edit Banner';
+            $banner = Banner::find($id);
+            $message = 'Banner updated successfully!';
+        }
+
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            //echo"<pre>"; print_r($data); die;
+
+            //Banner Validation            
+            $rules = [
+                'bannertype'  => 'required',
+                'bannerimage' => 'required',                               
+            ];
+
+            $customMessages = [
+                'bannertype.required'  =>  'Banner Type is required',
+                'bannerimage.required' =>  'Banner Image is required',                
+            ];
+
+            $this->validate($request, $rules, $customMessages);           
+
+            //Upload Banner Image
+            if ($request->hasfile('bannerimage')) {
+                $image_tmp = $request->file('bannerimage');
+                if ($image_tmp->isValid()) {
+                    // Get image extension
+                    $extension = $image_tmp->getClientOriginalExtension();
+
+                    //Generate New Image Name
+                    $imageName = rand(111,99999).'.'.$extension;        //123.jpg
+                    $image_path = 'front/images/banners/'.$imageName;        
+
+                    //Upload the Banner Image   
+                    Image::make($image_tmp)->save($image_path);         //save image path on table admins
+                    $banner->image = $imageName;
+                }            
+            }else if(!empty($data['hidden_image'])){
+                $banner->image = $data['hidden_image'];
+            }else{
+                $banner->image = "";
+            }
+
+            //Isu kat sini bila update banner, maka banner yg sebelumnya masih lagi disimpan dlm image_path. 
+            //Jika 10x update, maka akan ada 10 banner. 
+            //Untuk itu kena checking sebelum update dgn laksanakan auto delete banner lama sebelum simpan banner baru
+            
+            //checking data is coming or not
+            if (!isset($data['bannertitle'])) {
+                $data['bannertitle'] = "";
+            }
+
+            if (!isset($data['banneralt'])) {
+                $data['banneralt'] = "";
+            }
+
+            if (!isset($data['bannerlink'])) {
+                $data['bannerlink'] = "";
+            }
+            
+            // add or edit process
+            $banner->type   = $data['bannertype'];
+            $banner->title  = $data['bannertitle'];            
+            $banner->alt    = $data['banneralt'];
+            $banner->link   = $data['bannerlink'];
+            $banner->sort   = $data['bannersort'];            
+            $banner->status = 1;                            // Default = 1
+            $banner->save();
+
+            return redirect('admin/banners')->with('success_message', $message);            
+        }
+
+        return view('admin.banners.add_edit_banner', compact('title', 'banner'));        
     }
 
     public function deleteBanner($id)                                       // deleteBanner - Option 1
@@ -69,47 +151,47 @@ class BannersController extends Controller
         //Get Banner Image Path
         $banner_path = public_path().'/front/images/banners/'.$bannerImage->image;
         
-        //Delete Brand Image from product folder if exists        
+        //Delete Banner Image from product folder if exists        
         if (File::exists($banner_path)) {
             File::delete($banner_path);
         }
     
-        //Delete Brand Image Name from brands table             
+        //Delete Banner Image Name from banners table             
         $bannerImage->delete();
         return redirect()->back()->with('success_message', 'Banner deleted successfully!');
     }
 
     public function deleteBanner1($id)                                      // deleteBanner - Option 2
     {
-        //Get Brand Image
-        $brandImage = Banner::where('id', $id)->first();
+        //Get Banner Image
+        $bannerImage = Banner::where('id', $id)->first();
 
-        //Get Brand Image Path
+        //Get Banner Image Path
         $banner_path = 'front/images/banners/';
 
-        //Delete Brand Image from product folder if exists
-        if (file_exists($banner_path.$brandImage->image)) {
-            unlink($banner_path.$brandImage->image);
+        //Delete Banner Image from product folder if exists
+        if (file_exists($banner_path.$bannerImage->image)) {
+            unlink($banner_path.$bannerImage->image);
         }
 
-        //Delete Brand Image Name from brands table
-        $brandImage->delete();
+        //Delete Banner Image Name from banners table
+        $bannerImage->delete();
 
-        return redirect()->back()->with('success_message', 'Brand image deleted successfully!'); 
+        return redirect()->back()->with('success_message', 'Banner image deleted successfully!'); 
     }
 
     public function deleteBannerImage($id)
     {
-        //Get Brand Image
+        //Get Banner Image
         
 
-        //Get Brand Image Path
+        //Get Banner Image Path
     
 
-        //Delete Brand Image from product folder if exists
+        //Delete Banner Image from product folder if exists
         
     
-        //Delete Brand Image Name from brands table
+        //Delete Banner Image Name from banners table
 
         return redirect()->back()->with('success_message', 'Banner deleted successfully!');
     }
