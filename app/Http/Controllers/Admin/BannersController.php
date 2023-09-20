@@ -183,15 +183,18 @@ class BannersController extends Controller
     public function deleteBannerImage($id)
     {
         //Get Banner Image
-        
+        $bannerImage = Banner::select('image')->where('id', $id)->first();
 
         //Get Banner Image Path
-    
+        $banner_path = public_path().'/front/images/banners/'.$bannerImage->image;
 
         //Delete Banner Image from product folder if exists
-        
+        if (File::exists($banner_path)) {
+            File::delete($banner_path);
+        }
     
         //Delete Banner Image Name from banners table
+        $deleteImage = Banner::where('id', $id)->update(['image'=>'']);
 
         return redirect()->back()->with('success_message', 'Banner deleted successfully!');
     }

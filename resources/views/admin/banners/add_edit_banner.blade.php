@@ -71,6 +71,9 @@
                           <img style="width: 80px; margin: 10px" src="{{URL::asset('/front/images/banners/'. $banner['image'])}}">
                         </a>                       
                         <input type="hidden" name="hidden_image" value="{{$banner['image']}}">
+                        <a href="javascript:void(0)" record="banner-image" recordid="{{$banner->id}}" name="{{$banner->image}}" class="confirmDeleteImage" title="Delete Banner Image" style="color:#007bff">
+                          <i class="fas fa-trash" style="color: white"></i>
+                        </a>
                       @endif
                     </div>                                        
                     <div class="form-group">
