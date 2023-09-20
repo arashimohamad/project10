@@ -73,8 +73,8 @@
 73	Laravel 10 Tutorial #73	
 74	Laravel 10 Tutorial #74	
 75	Laravel 10 Tutorial #75	
-76	Laravel 10 Tutorial #76	- part 1, done
-77	Laravel 10 Tutorial #77	
+76	Laravel 10 Tutorial #76	
+77	Laravel 10 Tutorial #77	- Done (Steps to Download SiteMakers E-commerce HTML Template FREE in just 5 min)
 78	Laravel 10 Tutorial #78	
 79	Laravel 10 Tutorial #79	
 80	Laravel 10 Tutorial #80	
