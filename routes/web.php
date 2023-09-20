@@ -104,7 +104,6 @@ Route::group(['prefix' => 'admin'], function () {                               
         Route::get('delete-banner/{id?}', [BannersController::class, 'deleteBanner']);
         Route::match(['get', 'post'], 'add-edit-banner/{id?}', [BannersController::class, 'addEditBanner']);
         Route::get('delete-banner-image/{id?}', [BannersController::class, 'deleteBannerImage']);
-
     });    
 });                                        
 
