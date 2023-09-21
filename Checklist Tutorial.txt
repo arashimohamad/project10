@@ -75,8 +75,8 @@
 75	Laravel 10 Tutorial #75	
 76	Laravel 10 Tutorial #76	
 77	Laravel 10 Tutorial #77	
-78	Laravel 10 Tutorial #78	- Done
-79	Laravel 10 Tutorial #79	
+78	Laravel 10 Tutorial #78	
+79	Laravel 10 Tutorial #79	- Done
 80	Laravel 10 Tutorial #80	
 81	Laravel 10 Tutorial #81	
 82	Laravel 10 Tutorial #82	

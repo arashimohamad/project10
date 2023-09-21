@@ -29,14 +29,15 @@
         <div class="row">
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box">
-              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">CPU Traffic</span>
-                <span class="info-box-number">
-                  10
-                  <small>%</small>
-                </span>
+              <span class="info-box-icon bg-info elevation-1"><i class="fas fa-tasks"></i></span>
+              <a href="{{ url('admin/categories') }}" style="color:white">
+                <div class="info-box-content">
+                  <span class="info-box-text">Categories</span>
+                  <span class="info-box-number">
+                    {{$categoriesCount}}
+                    <small></small>
+                  </span>
+                </a>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -45,12 +46,13 @@
           <!-- /.col -->
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Likes</span>
-                <span class="info-box-number">41,410</span>
-              </div>
+              <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-th-list"></i></span>
+              <a href="{{ url('admin/brands') }}" style="color:white">
+                <div class="info-box-content">
+                  <span class="info-box-text">Brands</span>
+                  <span class="info-box-number">{{$brandsCount}}</span>
+                </div>
+              </a>
               <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
@@ -62,12 +64,13 @@
 
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
-              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">Sales</span>
-                <span class="info-box-number">760</span>
-              </div>
+              <span class="info-box-icon bg-success elevation-1"><i class="fas fa-tshirt"></i></span>
+              <a href="{{ url('admin/products') }}" style="color:white">
+                <div class="info-box-content">
+                  <span class="info-box-text">Product</span>
+                  <span class="info-box-number">{{$productsCount}}</span>
+                </div>
+              </a>
               <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->
@@ -76,11 +79,12 @@
           <div class="col-12 col-sm-6 col-md-3">
             <div class="info-box mb-3">
               <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-              <div class="info-box-content">
-                <span class="info-box-text">New Members</span>
-                <span class="info-box-number">2,000</span>
-              </div>
+              <a href="{{ url('admin/users') }}" style="color:white">
+                <div class="info-box-content">
+                  <span class="info-box-text">Users</span>
+                  <span class="info-box-number">{{$usersCount}}</span>
+                </div>
+              </a>
               <!-- /.info-box-content -->
             </div>
             <!-- /.info-box -->

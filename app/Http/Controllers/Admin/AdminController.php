@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use Validator;
+use App\Models\User;
 use App\Models\Admin;
+use App\Models\Brand;
+use App\Models\Product;
+use App\Models\Category;
 use App\Models\AdminsRole;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -26,7 +30,13 @@ class AdminController extends Controller
         //This session::put purpose to make menu became highlight after user click on menu/submenu
         Session::put('page', 'dashboard');
 
-        return view('admin.dashboard');
+        //To count users, brands,, products and categories
+        $usersCount = User::get()->count();
+        $brandsCount = Brand::get()->count();
+        $productsCount = Product::get()->count();
+        $categoriesCount = Category::get()->count();
+
+        return view('admin.dashboard', compact('usersCount','brandsCount','productsCount','categoriesCount'));
     }
 
     public function login(Request $request) 
