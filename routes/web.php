@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\CmsPageController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -39,6 +40,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// FRONT
+Route::group([],function () {
+    Route::get('/', [IndexController::class, 'index']);
+});
+
+// ADMIN
 Route::group(['prefix' => 'admin'], function () {                                             // Option 1     
     Route::match(['get', 'post'], 'login', [AdminController::class, 'login']);                // match(['get', 'post'] digunakan krn pd ui ada get dan ada post
     //Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
