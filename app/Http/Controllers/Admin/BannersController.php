@@ -77,18 +77,21 @@ class BannersController extends Controller
             $data = $request->all();
             //echo"<pre>"; print_r($data); die;
 
-            //Banner Validation            
-            $rules = [
-                'bannertype'  => 'required',
-                'bannerimage' => 'required',                               
-            ];
+            //Banner Validation and Checking if id is NULL then display validate
+            if ($id == "") {            
+                $rules = [
+                    'bannertype'  => 'required',
+                    'bannerimage' => 'required',                               
+                ];
 
-            $customMessages = [
-                'bannertype.required'  =>  'Banner Type is required',
-                'bannerimage.required' =>  'Banner Image is required',                
-            ];
+                $customMessages = [
+                    'bannertype.required'  =>  'Banner Type is required',
+                    'bannerimage.required' =>  'Banner Image is required',                
+                ];
+                
+                $this->validate($request, $rules, $customMessages);           
+            }
 
-            $this->validate($request, $rules, $customMessages);           
 
             //Upload Banner Image
             if ($request->hasfile('bannerimage')) {

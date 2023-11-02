@@ -56,10 +56,8 @@
                       <select class="form-control" name="bannertype" id="bannertype">
                         <option value="">Select</option>
                         <option @if (!empty($banner['type']) && $banner['type'] == 'Slider') selected @endif value="Slider">Slider</option>
-                        <option @if (!empty($banner['type']) && $banner['type'] == 'Fix 1') selected @endif value="Fix 1">Fix 1</option>
-                        <option @if (!empty($banner['type']) && $banner['type'] == 'Fix 2') selected @endif value="Fix 2">Fix 2</option>
-                        <option @if (!empty($banner['type']) && $banner['type'] == 'Fix 3') selected @endif value="Fix 3">Fix 3</option>
-                        <option @if (!empty($banner['type']) && $banner['type'] == 'Fix 4') selected @endif value="Fix 4">Fix 4</option>
+                        <option @if (!empty($banner['type']) && $banner['type'] == 'Fix') selected @endif value="Fix">Fix</option>
+                        {{-- the reason is to use Fix as a common value because the image column is not the same. So it will be managed in another way --}}
                       </select>                      
                     </div>
                     <div class="form-group">
