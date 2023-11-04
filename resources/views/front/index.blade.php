@@ -42,6 +42,7 @@
             <div class="section__content">
                 <div class="container">
                     <div class="row">
+                        {{-- Option 1 --}}
                         @foreach ($homeFixBanners as $sliderBanner)
                             @if (isset($sliderBanner->image))
                                 <div class="col-lg-5 col-md-5 u-s-m-b-30">
@@ -53,7 +54,18 @@
                                 </div>                            
                             @endif                            
                         @endforeach
-                        {{-- @if (isset($homeFixBanners[1]['image']))
+                        
+                        {{-- Option 2
+                        @if (isset($homeFixBanners[0]['image']))
+                        <div class="col-lg-5 col-md-5 u-s-m-b-30">
+                            <a class="collection" href="{{$homeFixBanners[0]['link']}}" title="{{ $homeFixBanners[0]['title'] }}"> 
+                                <div class="aspect aspect--bg-grey aspect--square">
+                                    <img class="aspect__img collection__img" src="{{asset('front/images/banners/'.$homeFixBanners[0]['image'])}}" alt="$homeFixBanners[0]['alt']">
+                                </div>
+                            </a>
+                        </div>                            
+                        @endif
+                        @if (isset($homeFixBanners[1]['image']))
                             <div class="col-lg-7 col-md-7 u-s-m-b-30">
                                 <a class="collection" href="{{$homeFixBanners[1]['link']}}" title="{{ $homeFixBanners[1]['title'] }}"> 
                                     <div class="aspect aspect--bg-grey aspect--1286-890">
