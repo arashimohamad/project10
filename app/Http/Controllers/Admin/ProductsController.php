@@ -166,8 +166,13 @@ class ProductsController extends Controller
             $product->family_color      = $data['familycolor'];
             $product->group_code        = $data['groupcode'];
             $product->product_price     = $data['prodprice'];
-            $product->product_discount  = $data['proddiscount'];        //If the data HAS a value, then "discount type = product". If there is NO data, then "discount type = category"
 
+            if ($data['proddiscount'] != "") {
+                $product->product_discount  = $data['proddiscount'];        //If the data HAS a value, then "discount type = product". If there is NO data, then "discount type = category"                
+            } else {
+                $product->product_discount  = 0.00;
+            }
+            
             //Calculate discount and must check if it has a discount/not for Product and Category
             if (!empty($data['proddiscount']) && $data['proddiscount'] > 0) {
                 // Product Discount

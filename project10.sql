@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 04, 2023 at 03:33 PM
+-- Generation Time: Nov 04, 2023 at 06:33 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -384,7 +384,11 @@ INSERT INTO `products` (`id`, `category_id`, `brand_id`, `product_name`, `produc
 (3, 9, NULL, 'Green Women T-Shirt', 'GWT011', 'Dark Gren', 'Black', '1000', 40.00, NULL, 'category', 32.00, '100', NULL, 'Women Shirt', 'TESTING', 'tshirts', 'Polyester', 'Printed', 'Short Sleeve', 'Slim', 'Formal', 'tshirt', 'good tshirts', 'tshirt', 'Yes', 1, '2023-08-17 11:34:17', '2023-08-18 18:38:24'),
 (4, 8, NULL, 'Yellow T-Shirt', 'YT001', 'Yellow', 'Yellow', '10', 70.00, NULL, 'category', 56.00, NULL, '701721522.mp4', 'TEST', 'TEST', 'TEST', 'Cotton', 'Plain', 'Short Sleeve', 'Regular', 'Casual', 'TEST', 'TEST', 'TEST', 'Yes', 1, '2023-08-18 04:03:43', '2023-08-21 16:34:04'),
 (5, 8, 4, 'Green Casual T-Shirt', 'GCT001', 'Green', 'Green', NULL, 10.00, NULL, 'category', 8.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 1, '2023-08-22 10:28:39', '2023-09-08 00:12:31'),
-(7, 8, 2, 'Gap T-shirt', 'GT01', 'Blue', 'Blue', '4500', 50.00, 10.00, 'product', 45.00, '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 1, '2023-09-08 00:15:06', '2023-09-08 00:15:06');
+(7, 8, 2, 'Gap T-shirt', 'GT01', 'Blue', 'Blue', '4500', 50.00, 10.00, 'product', 45.00, '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 1, '2023-09-08 00:15:06', '2023-09-08 00:15:06'),
+(12, 8, 1, 'Red Casual T-shirt', 'RCT001', 'Red', 'Red', NULL, 110.00, 0.00, 'category', 88.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
+(13, 8, 2, 'Gap T-shirt', 'GT01', 'Blue', 'Blue', '45000', 120.00, 10.00, 'product', 108.00, '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 1, '2023-11-04 16:52:21', '2023-11-04 17:24:47'),
+(14, 8, 2, 'Gap Blue T-Shirt', 'GBT001', 'Blue', 'Blue', '45000', 130.00, 10.00, 'product', 117.00, '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 1, '2023-11-04 17:08:40', '2023-11-04 17:23:42'),
+(15, 8, 2, 'Red Gap T-shirt', 'RGT01', 'Red', 'Red', NULL, 140.00, 15.00, 'product', 119.00, '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 1, '2023-11-04 17:10:50', '2023-11-04 17:22:45');
 
 -- --------------------------------------------------------
 
@@ -417,7 +421,10 @@ INSERT INTO `products_attributes` (`id`, `product_id`, `size`, `sku`, `price`, `
 (5, 1, 'Double Extra Large', 'BT001XXL', 30.00, 30, 1, '2023-08-21 17:15:35', '2023-08-21 17:15:35'),
 (6, 5, 'Small', 'GCT001S', 10.00, 100, 1, '2023-08-22 10:28:39', '2023-09-08 00:12:31'),
 (7, 5, 'Medium', 'GCT001M', 15.00, 60, 1, '2023-08-22 10:28:39', '2023-09-08 00:12:31'),
-(8, 5, 'Large', 'GCT001L', 20.00, 80, 1, '2023-08-22 10:28:39', '2023-09-08 00:12:31');
+(8, 5, 'Large', 'GCT001L', 20.00, 80, 1, '2023-08-22 10:28:39', '2023-09-08 00:12:31'),
+(15, 12, 'Small', 'RCT001S', 120.00, 100, 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
+(16, 12, 'Medium', 'RCT001M', 130.00, 100, 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
+(17, 12, 'Large', 'RCT001L', 135.00, 100, 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59');
 
 -- --------------------------------------------------------
 
@@ -442,7 +449,9 @@ CREATE TABLE `products_images` (
 
 INSERT INTO `products_images` (`id`, `product_id`, `image`, `image_sort`, `status`, `created_at`, `updated_at`) VALUES
 (1, 4, 'product-4188587.jpg', 2, 1, '2023-08-21 16:34:05', '2023-08-21 16:34:17'),
-(2, 4, 'product-5974464.jpg', 1, 1, '2023-08-21 16:34:05', '2023-08-21 16:34:17');
+(2, 4, 'product-5974464.jpg', 1, 1, '2023-08-21 16:34:05', '2023-08-21 16:34:17'),
+(8, 14, 'product-6893143.jpg', 0, 1, '2023-11-04 17:08:41', '2023-11-04 17:23:42'),
+(9, 15, 'product-6729803.jpg', 0, 1, '2023-11-04 17:10:50', '2023-11-04 17:22:45');
 
 -- --------------------------------------------------------
 
@@ -629,19 +638,19 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `products_attributes`
 --
 ALTER TABLE `products_attributes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `products_images`
 --
 ALTER TABLE `products_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
