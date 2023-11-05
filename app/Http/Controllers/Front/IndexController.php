@@ -22,9 +22,12 @@ class IndexController extends Controller
         
         //Get best seller and we includes the brand + image products. Please refer function brand and images from Product Model
         $bestSellers = Product::with(['brand', 'images'])->where( ['status' => 1, 'is_bestseller' => 'Yes'] )->inRandomOrder()->limit(4)->get();  
-        //dd($bestSellers);
-        
-        return view('front.index', compact('homeSliderBanners', 'homeFixBanners', 'newProducts', 'bestSellers'));
+
+        //Get discounted and we includes the brand + image products. Please refer function brand and images from Product Model
+        $discountedProducts = Product::with(['brand', 'images'])->where('status', 1)->where('product_discount', '>', 0)->inRandomOrder()->limit(4)->get();
+        //dd($discountedProducts);
+
+        return view('front.index', compact('homeSliderBanners', 'homeFixBanners', 'newProducts', 'bestSellers', 'discountedProducts'));
     }
 
     public function A()
