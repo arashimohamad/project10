@@ -138,7 +138,7 @@
                             </div>
                             <div class="filter__grid-wrapper u-s-m-t-30">
                                 <div class="row">
-                                    {{-- New Arrivals Products --}}
+                                    {{-- New Arrivals Products--}}
                                     @foreach ($newProducts as $product)
                                         <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item newarrivals">
                                             <div class="product-o product-o--hover-on product-o--radius">
@@ -169,6 +169,8 @@
                                             </div>
                                         </div>                                        
                                     @endforeach
+
+                                    {{-- Best Sellers Products--}}
                                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item bestsellers">
                                         <div class="product-o product-o--hover-on product-o--radius">
                                             <div class="product-o__wrap">
@@ -237,6 +239,8 @@
                                             <span class="product-o__discount">₹1000.00.00</span></span>
                                         </div>
                                     </div>
+
+                                    {{--  Discounted Products --}}
                                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item discountedproducts">
                                         <div class="product-o product-o--hover-on product-o--radius">
                                             <div class="product-o__wrap">
@@ -305,6 +309,8 @@
                                             <span class="product-o__discount">₹1000.00.00</span></span>
                                         </div>
                                     </div>
+                                    
+                                    {{-- Featured Products --}}
                                     <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 u-s-m-b-30 filter__item featuredproducts">
                                         <div class="product-o product-o--hover-on product-o--radius">
                                             <div class="product-o__wrap">
