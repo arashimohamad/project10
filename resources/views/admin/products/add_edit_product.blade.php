@@ -343,6 +343,13 @@
                     </div>
                   </div>
                   <div class="form-group">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="isbestseller" name="isbestseller" value="Yes" 
+                      @if (!empty($product['is_bestseller'] && $product['is_bestseller'] == "Yes")) {{"checked"}} @endif>
+                      <label class="form-check-label">Best Seller</label>
+                    </div>
+                  </div>
+                  <div class="form-group">
                     <button type="submit" class="btn btn-primary">Submit</button>
                   </div>
                 </div>

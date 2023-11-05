@@ -80,8 +80,8 @@
 80	Laravel 10 Tutorial #80	
 81	Laravel 10 Tutorial #81	
 82	Laravel 10 Tutorial #82	
-83	Laravel 10 Tutorial #83	- Done
-84	Laravel 10 Tutorial #84	
+83	Laravel 10 Tutorial #83	
+84	Laravel 10 Tutorial #84	- Done
 85	Laravel 10 Tutorial #85	
 86	Laravel 10 Tutorial #86	
 87	Laravel 10 Tutorial #87	

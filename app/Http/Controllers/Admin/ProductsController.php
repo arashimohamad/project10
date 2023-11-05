@@ -157,6 +157,12 @@ class ProductsController extends Controller
                 $product->is_featured = "No";
             }
 
+            if (!empty($data['isbestseller'])) {
+                $product->is_bestseller = $data['isbestseller'];                
+            } else {
+                $product->is_bestseller = "No";
+            }
+
             // Add or update data
             $product->category_id       = $data['categoryID'];
             $product->brand_id          = $data['prodbrand_id'];
