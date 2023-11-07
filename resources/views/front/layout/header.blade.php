@@ -768,7 +768,7 @@
                             {{-- Category > Sub Category > Sub Sub Category  --}}
                             @foreach ($categories as $category)
                                 <li class="has-dropdown">
-                                    <a href="{{ url($category->url) }}">
+                                    <a href="#">
                                         {{ strtoupper($category->category_name) }}
                                         <i @if (count($category->subcategories)) class="fas fa-angle-down u-s-m-l-6" @endif></i>                                        
                                     </a>

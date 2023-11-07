@@ -54,7 +54,7 @@ class Category extends Model
 
     public static function categoryDetails($url)
     {
-        $categoryDetails = Category::select('id', 'category_name', 'url')
+        $categoryDetails = Category::select('id', 'parent_id', 'category_name','url')
                             ->with('subcategories')->where('url', $url)
                             ->first()->toArray();        
 
@@ -66,7 +66,24 @@ class Category extends Model
         foreach ($categoryDetails['subcategories'] as $subcat) {                        // Get category id (4) > subcategory id (8,15,16) > subsubcategory id (if existed)
             $catIds[] = $subcat['id'];                                                  // Output: men > tshirts/shirts/jackets/etc... > subsubcategory id (if existed)
         }
+
+        // Breadcrumbs Display
+        if ($categoryDetails['parent_id'] == 0 || $categoryDetails['parent_id'] == 1 || $categoryDetails['parent_id'] == 2 || $categoryDetails['parent_id'] == 3|| $categoryDetails['parent_id'] == 7) {
+            # Only Show Main Category in Breadcrumb
+            $breadcrumbs = '<a class="gl-tag btn--e-brand-shadow" href="'.url($categoryDetails['url']).'">'
+                                .$categoryDetails['category_name'].
+                            '</a>';
+        } else {
+            # Show Main + Sub Category in Breadcrumb
+            $parentCategory = Category::select('category_name', 'url')->where('id', $categoryDetails['parent_id'])->first();
         
-        return array('catIds'=>$catIds, 'categoryDetails'=>$categoryDetails);           // return ouput to the function listing() under Front/ProductController
+            $breadcrumbs = '<a class="gl-tag btn--e-brand-shadow" href="'.url($parentCategory['url']).'">'
+                                .$parentCategory['category_name'].
+                            '</a><a class="gl-tag btn--e-brand-shadow" href="'.url($categoryDetails['url']).'">'
+                                .$categoryDetails['category_name'].
+                            '</a>';                            
+        }
+        
+        return array('catIds'=>$catIds, 'categoryDetails'=>$categoryDetails, 'breadcrumbs'=>$breadcrumbs);           // return ouput to the function listing() under Front/ProductController
     }
 }
