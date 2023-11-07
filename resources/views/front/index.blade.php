@@ -1,5 +1,4 @@
 @extends('front.layout.layout')
-
 @section('content')
     <div class="app-content">
         <!--====== Primary Slider ======-->

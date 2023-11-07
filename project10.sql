@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 05, 2023 at 04:46 PM
+-- Generation Time: Nov 07, 2023 at 07:59 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -381,8 +381,8 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `category_id`, `brand_id`, `product_name`, `product_code`, `product_color`, `family_color`, `group_code`, `product_price`, `product_discount`, `discount_type`, `final_price`, `product_weight`, `product_video`, `description`, `wash_care`, `search_keywords`, `fabric`, `pattern`, `sleeve`, `fit`, `occasion`, `meta_title`, `meta_description`, `meta_keywords`, `is_featured`, `is_bestseller`, `status`, `created_at`, `updated_at`) VALUES
-(1, 8, 1, 'Blue T-Shirt', 'BT001', 'Dark Blue', 'Blue', 'TSHIRT0000', 150.00, 10.00, 'product', 135.00, '500', '', 'Test Product', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-08-16 03:44:29', '2023-11-05 12:31:15'),
-(2, 8, 0, 'Red T-Shirt', 'RT001', 'Red', 'Red', 'TSHIRT0000', 100.00, 0.00, '', 100.00, '400', '', 'Test Product', '', '', '', '', '', '', '', '', '', '', 'No', 'No', 1, '2023-08-16 03:44:29', '2023-08-16 06:44:53'),
+(1, 15, 1, 'Blue T-Shirt', 'BT001', 'Dark Blue', 'Blue', 'TSHIRT0000', 150.00, 10.00, 'product', 135.00, '500', '', 'Test Product', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-08-16 03:44:29', '2023-11-07 07:56:19'),
+(2, 8, 5, 'Red T-Shirt', 'RT001', 'Red', 'Red', 'TSHIRT0000', 100.00, 0.00, 'category', 80.00, '400', '', 'Test Product', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-08-16 03:44:29', '2023-11-07 07:45:14'),
 (3, 9, 4, 'Green Women T-Shirt', 'GWT011', 'Dark Gren', 'Black', '1000', 40.00, 0.00, 'category', 32.00, '100', NULL, 'Women Shirt', 'TESTING', 'tshirts', 'Polyester', 'Printed', 'Short Sleeve', 'Slim', 'Formal', 'tshirt', 'good tshirts', 'tshirt', 'Yes', 'No', 1, '2023-08-17 11:34:17', '2023-11-05 13:45:30'),
 (4, 8, 3, 'Yellow T-Shirt', 'YT001', 'Yellow', 'Yellow', '10', 70.00, 0.00, 'category', 56.00, NULL, '701721522.mp4', 'TEST', 'TEST', 'TEST', 'Cotton', 'Plain', 'Short Sleeve', 'Regular', 'Casual', 'TEST', 'TEST', 'TEST', 'Yes', 'No', 1, '2023-08-18 04:03:43', '2023-11-05 13:46:01'),
 (5, 8, 4, 'Green Casual T-Shirt', 'GCT001', 'Green', 'Green', NULL, 10.00, NULL, 'category', 8.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-08-22 10:28:39', '2023-09-08 00:12:31'),
@@ -390,7 +390,7 @@ INSERT INTO `products` (`id`, `category_id`, `brand_id`, `product_name`, `produc
 (12, 8, 1, 'Red Casual T-shirt', 'RCT001', 'Red', 'Red', NULL, 110.00, 0.00, 'category', 88.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
 (13, 8, 2, 'Gap T-shirt', 'GT01', 'Blue', 'Blue', '45000', 120.00, 10.00, 'product', 108.00, '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'No', 1, '2023-11-04 16:52:21', '2023-11-05 14:30:10'),
 (14, 8, 2, 'Gap Blue T-Shirt', 'GBT001', 'Blue', 'Blue', '45000', 130.00, 10.00, 'product', 117.00, '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-11-04 17:08:40', '2023-11-05 14:14:39'),
-(15, 8, 2, 'Red Gap T-shirt', 'RGT01', 'Red', 'Red', NULL, 140.00, 15.00, 'product', 119.00, '100', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-11-04 17:10:50', '2023-11-05 13:44:00');
+(15, 8, 2, 'Red Gap T-shirt', 'RGT01', 'Red', 'Red', NULL, 140.00, 15.00, 'product', 119.00, '100', NULL, 'This is Red Gap T-shirt. Very Good T-shirt and was created by pure cotton.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-11-04 17:10:50', '2023-11-07 07:54:06');
 
 -- --------------------------------------------------------
 
@@ -416,11 +416,11 @@ CREATE TABLE `products_attributes` (
 --
 
 INSERT INTO `products_attributes` (`id`, `product_id`, `size`, `sku`, `price`, `stock`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Small', 'BT001S', 10.00, 100, 1, '2023-08-21 17:15:35', '2023-11-05 12:31:15'),
-(2, 1, 'Medium', 'BT001M', 15.00, 80, 1, '2023-08-21 17:15:35', '2023-11-05 12:31:15'),
-(3, 1, 'Large', 'BT001L', 20.00, 60, 1, '2023-08-21 17:15:35', '2023-11-05 12:31:15'),
-(4, 1, 'Extra Large', 'BT001XL', 25.00, 40, 1, '2023-08-21 17:15:35', '2023-11-05 12:31:15'),
-(5, 1, 'Double Extra Large', 'BT001XXL', 30.00, 30, 1, '2023-08-21 17:15:35', '2023-11-05 12:31:15'),
+(1, 1, 'Small', 'BT001S', 10.00, 100, 1, '2023-08-21 17:15:35', '2023-11-07 07:56:19'),
+(2, 1, 'Medium', 'BT001M', 15.00, 80, 1, '2023-08-21 17:15:35', '2023-11-07 07:56:19'),
+(3, 1, 'Large', 'BT001L', 20.00, 60, 1, '2023-08-21 17:15:35', '2023-11-07 07:56:19'),
+(4, 1, 'Extra Large', 'BT001XL', 25.00, 40, 1, '2023-08-21 17:15:35', '2023-11-07 07:56:19'),
+(5, 1, 'Double Extra Large', 'BT001XXL', 30.00, 30, 1, '2023-08-21 17:15:35', '2023-11-07 07:56:19'),
 (6, 5, 'Small', 'GCT001S', 10.00, 100, 1, '2023-08-22 10:28:39', '2023-09-08 00:12:31'),
 (7, 5, 'Medium', 'GCT001M', 15.00, 60, 1, '2023-08-22 10:28:39', '2023-09-08 00:12:31'),
 (8, 5, 'Large', 'GCT001L', 20.00, 80, 1, '2023-08-22 10:28:39', '2023-09-08 00:12:31'),
@@ -451,7 +451,7 @@ CREATE TABLE `products_images` (
 
 INSERT INTO `products_images` (`id`, `product_id`, `image`, `image_sort`, `status`, `created_at`, `updated_at`) VALUES
 (8, 14, 'product-6893143.jpg', 0, 1, '2023-11-04 17:08:41', '2023-11-05 14:14:39'),
-(9, 15, 'product-6729803.jpg', 0, 1, '2023-11-04 17:10:50', '2023-11-05 13:44:00'),
+(9, 15, 'product-6729803.jpg', 0, 1, '2023-11-04 17:10:50', '2023-11-07 07:54:06'),
 (10, 4, 'product-3202221.jpg', 1, 1, '2023-11-05 14:10:13', '2023-11-05 14:12:36');
 
 -- --------------------------------------------------------
