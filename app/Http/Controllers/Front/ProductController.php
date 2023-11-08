@@ -6,11 +6,12 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
 
 class ProductController extends Controller
 {
-    public function listing()
+    public function listing(Request $request)
     {
         $url = Route::getFacadeRoot()->current()->uri;
 
@@ -38,20 +39,20 @@ class ProductController extends Controller
             //dd($categoryProducts);
 
             // Update Query For Products Sorting
-            if (isset($_GET['sort']) && !empty($_GET['sort'])) {                                    // we can use request->input('sort') instead of $_GET['sort'], but must include ublic function listing(Request $request)
-                if ($_GET['sort'] == "product_latest") {
+            if (isset($request['sort']) && !empty($request['sort'])) {                                    // we can use request->input('sort') instead of $request['sort'], but must include ublic function listing(Request $request)
+                if ($request['sort'] == "product_latest") {
                     $categoryProducts->orderBy('id', 'DESC');
-                } else if ($_GET['sort'] == "best_selling") {
+                } else if ($request['sort'] == "best_selling") {
                     $categoryProducts->where('is_bestseller', 'Yes');
-                } else if ($_GET['sort'] == "best_rating") {
+                } else if ($request['sort'] == "best_rating") {
                     $categoryProducts->orderBy('id', 'DESC');
-                } else if ($_GET['sort'] == "lowest_price") {
+                } else if ($request['sort'] == "lowest_price") {
                     $categoryProducts->orderBy('final_price', 'ASC');
-                } else if ($_GET['sort'] == "highest_price") {
+                } else if ($request['sort'] == "highest_price") {
                     $categoryProducts->orderBy('final_price', 'DESC');
-                } else if ($_GET['sort'] == "featured_items") {
+                } else if ($request['sort'] == "featured_items") {
                     $categoryProducts->where('is_featured', 'Yes');
-                } else if ($_GET['sort'] == "discounted_items") {
+                } else if ($request['sort'] == "discounted_items") {
                     $categoryProducts->where('product_discount', '>', 0);
                 } else {
                     $categoryProducts->orderBy('id', 'DESC');                                       // original query for orderBy('id', 'DESC')
@@ -60,7 +61,13 @@ class ProductController extends Controller
 
             $categoryProducts = $categoryProducts->paginate(6);
 
-            return view('front.products.listing', compact('categoryDetails', 'categoryProducts', 'url'));
+            if ($request->ajax()) {
+                return response()->json([
+                    'view' => (String)View::make('front.products.ajax_products_listing', compact('categoryDetails', 'categoryProducts', 'url'))
+                ]);
+            } else {
+                return view('front.products.listing', compact('categoryDetails', 'categoryProducts', 'url'));                
+            }
 
         } else {
             

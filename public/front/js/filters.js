@@ -2,8 +2,8 @@
 $(document).ready(function() {
 
   	// Filters for Laravel 10 E-commerce Website from Youtube.com/StackDevelopers
-
-  	var queryStringObject = {};
+    
+    var queryStringObject = {};
     if ($('.filtertrue').length > 0) {
         RefreshFilters("no");
         popTriggerList(); 
@@ -158,10 +158,10 @@ function RefreshFilters(type) {
         /*var minprice = $('#minprice').val();
         var maxprice= $('#maxprice').val();
         if(minprice!=""&& maxprice!=""){
-          queryStringObject["minmax"] = [minprice+"-"+maxprice];
-          if(minprice==""&& maxprice==""){
-              delete queryStringObject["minmax"];
-          }
+            queryStringObject["minmax"] = [minprice+"-"+maxprice];
+            if(minprice==""&& maxprice==""){
+                delete queryStringObject["minmax"];
+            }
         }*/
         if (type === "yes") {
             filterproducts(queryStringObject);

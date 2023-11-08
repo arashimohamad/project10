@@ -60,7 +60,9 @@
         <!--====== App ======-->
         <script src="{{url('front/js/app.js')}}"></script>
         <!--====== Custom JS For Front ======-->
-        <script src="{{asset('front/js/custom.js')}}"></script>
+        {{-- <script src="{{asset('front/js/custom.js')}}"></script> --}}
+        <!--====== Filters Products ======-->
+        <script src="{{asset('front/js/filters.js')}}"></script>
         <!--====== Noscript ======-->
         <noscript>
             <div class="app-setting">
