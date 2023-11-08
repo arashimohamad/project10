@@ -59,6 +59,8 @@
         <script src="{{url('front/js/jquery.shopnav.js')}}"></script>
         <!--====== App ======-->
         <script src="{{url('front/js/app.js')}}"></script>
+        <!--====== Custom JS For Front ======-->
+        <script src="{{asset('front/js/custom.js')}}"></script>
         <!--====== Noscript ======-->
         <noscript>
             <div class="app-setting">

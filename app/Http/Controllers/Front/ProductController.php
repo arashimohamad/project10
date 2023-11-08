@@ -32,14 +32,35 @@ class ProductController extends Controller
             $categoryProducts = Product::with(['brand', 'images'])
                                 ->whereIn('category_id', $categoryDetails['catIds'])                // whereIn - Compare category_id on product table vs id on category table
                                 ->where('brand_id','>', 0)                                          // brand_id > 0 because may be user forgot to / not select brand during add/update products. So we filter here
-                                ->where('status', 1)
-                                ->orderBy('id', 'DESC')
-                                ->paginate(6);
+                                ->where('status', 1);                                
                                 //->get();
                                 //->get()->toArray(); 
             //dd($categoryProducts);
 
-            return view('front.products.listing', compact('categoryDetails', 'categoryProducts'));
+            // Update Query For Products Sorting
+            if (isset($_GET['sort']) && !empty($_GET['sort'])) {                                    // we can use request->input('sort') instead of $_GET['sort'], but must include ublic function listing(Request $request)
+                if ($_GET['sort'] == "product_latest") {
+                    $categoryProducts->orderBy('id', 'DESC');
+                } else if ($_GET['sort'] == "best_selling") {
+                    $categoryProducts->where('is_bestseller', 'Yes');
+                } else if ($_GET['sort'] == "best_rating") {
+                    $categoryProducts->orderBy('id', 'DESC');
+                } else if ($_GET['sort'] == "lowest_price") {
+                    $categoryProducts->orderBy('final_price', 'ASC');
+                } else if ($_GET['sort'] == "highest_price") {
+                    $categoryProducts->orderBy('final_price', 'DESC');
+                } else if ($_GET['sort'] == "featured_items") {
+                    $categoryProducts->where('is_featured', 'Yes');
+                } else if ($_GET['sort'] == "discounted_items") {
+                    $categoryProducts->where('product_discount', '>', 0);
+                } else {
+                    $categoryProducts->orderBy('id', 'DESC');                                       // original query for orderBy('id', 'DESC')
+                }
+            }
+
+            $categoryProducts = $categoryProducts->paginate(6);
+
+            return view('front.products.listing', compact('categoryDetails', 'categoryProducts', 'url'));
 
         } else {
             

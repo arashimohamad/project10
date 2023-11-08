@@ -68,7 +68,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{asset('admin/js/pages/dashboard2.js')}}"></script>
 
-<!-- Custom JS -->
+<!-- Custom JS For Admin -->
 <script src="{{asset('admin/js/custom.js')}}"></script>
 
 <!-- DataTables  & Plugins -->
