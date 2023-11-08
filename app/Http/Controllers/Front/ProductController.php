@@ -34,7 +34,8 @@ class ProductController extends Controller
                                 ->where('brand_id','>', 0)                                          // brand_id > 0 because may be user forgot to / not select brand during add/update products. So we filter here
                                 ->where('status', 1)
                                 ->orderBy('id', 'DESC')
-                                ->get();
+                                ->paginate(6);
+                                //->get();
                                 //->get()->toArray(); 
             //dd($categoryProducts);
 
