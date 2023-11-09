@@ -28,6 +28,7 @@ class ProductController extends Controller
 
             // Get Category Detail and categoryDetails($url) get from App\Models\Category;
             $categoryDetails = Category::categoryDetails($url);
+            //dd($categoryDetails);
             
             // Get Category and their Sub Category Products
             $categoryProducts = Product::with(['brand', 'images'])
@@ -57,6 +58,12 @@ class ProductController extends Controller
                 } else {
                     $categoryProducts->orderBy('id', 'DESC');                                       // original query for orderBy('id', 'DESC')
                 }
+            }
+
+            // Update Query For Product Colors Filter
+            if (isset($request['color']) && !empty($request['color'])) {                            // we can use request->input('color') instead of $request['sort'], but must include ublic function listing(Request $request)
+                $color = explode('~', $request['color']);                                           // https://myfixsys.net/project10/public/men?color=Black~Blue~Green
+                $categoryProducts->whereIn('products.family_color', $color);
             }
 
             $categoryProducts = $categoryProducts->paginate(6);
