@@ -29,13 +29,13 @@ class ProductsFilter extends Model
         $getProductIds = Product::select('id')
                         ->whereIn('category_id', $catIds)                             
                         ->pluck('id');                                            
-        //dd($getProductIds);
+        
         $getProductSizes = ProductsAttribute::select('size')                           
                             ->where('status', 1)
                             ->whereIn('product_id', $getProductIds) 
                             ->groupBy('size')             
                             ->pluck('size');                                  
-        //dd($getProductSizes);
+        
         return $getProductSizes;
     }
 
@@ -43,8 +43,7 @@ class ProductsFilter extends Model
     {
         $getProductIds = Product::select('id')
                         ->whereIn('category_id', $catIds)                             
-                        ->pluck('id');                                            
-        //dd($getProductIds);
+                        ->pluck('id'); 
         
         $getProductBrandIds = Product::select('brand_id')                           
                             ->whereIn('id', $getProductIds)                          
@@ -57,7 +56,7 @@ class ProductsFilter extends Model
                             ->orderBy('brand_name', 'ASC')             
                             ->get()                                                    // use on blade ----> $brand->brand_name 
                             ->toArray();                                               // use on blade ----> $brand['brand_name'] 
-        //dd($getProductBrands);
+                            
         return $getProductBrands;
     }
 }

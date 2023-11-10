@@ -284,21 +284,34 @@
                     <span class="fas fa-minus shop-w__toggle" data-target="#s-price" data-toggle="collapse"></span>
                 </div>
                 <div class="shop-w__wrap collapse show" id="s-price">
-                    <form class="shop-w__form-p">
-                        <div class="shop-w__form-p-wrap">
-                            <div>
-                                <label for="price-min"></label>
-                                <input class="input-text input-text--primary-style" type="text" id="price-min" placeholder="Min">
-                            </div>
-                            <div>
-                                <label for="price-max"></label>
-                                <input class="input-text input-text--primary-style" type="text" id="price-max" placeholder="Max">
-                            </div>
-                            <div>
-                                <button class="btn btn--icon fas fa-angle-right btn--e-transparent-platinum-b-2" type="submit"></button>
-                            </div>
-                        </div>
-                    </form>
+                    @php $getPrices = ['1-100', '101-200', '201-300', '301-400', '401-500']; @endphp
+                    <ul class="shop-w__list gl-scroll">
+                        @foreach ($getPrices as $key => $price)
+                            <?php
+                                // Highlight price selector
+                                if (isset($_GET['price']) && !empty($_GET['price'])) {                                                               
+                                    $prices = explode('~', $_GET['price']);  
+                                    if (!empty($prices) && in_array($price, $prices)) {
+                                        $priceChecked = "checked";
+                                    } else {
+                                        $priceChecked = "";
+                                    }
+                                } else {
+                                    $priceChecked = "";
+                                }
+                            ?>
+                            <li>
+                                <!--====== Check Box ======-->
+                                <div class="check-box">
+                                    <input type="checkbox" id="price{{$key}}" name="price" value="{{$price}}" class="filterAjax" {{ $priceChecked  }}>
+                                    <div class="check-box__state check-box__state--primary">                                        
+                                        <label class="check-box__label" for="price{{$key}}">{{$price}}</label>
+                                    </div>
+                                </div>
+                                <!--====== End - Check Box ======-->
+                            </li>                        
+                        @endforeach
+                    </ul>
                 </div>
             </div>
         </div>

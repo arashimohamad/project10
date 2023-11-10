@@ -79,6 +79,14 @@ class ProductController extends Controller
                 $categoryProducts->whereIn('products.brand_id', $brands);
             }
 
+            // Update Query For Product Prices Filter
+            if (isset($request['price']) && !empty($request['price'])) {   
+                $request['price'] = str_replace("~", "-", $request['price']);                               // convert ~ to - as https://myfixsys.net/project10/public/tshirts?price=101-200~201-300 
+                $prices = explode('-', $request['price']);
+                $count = count($prices);                                       
+                $categoryProducts->whereBetween('products.final_price', [$prices[0],$prices[$count-1]]);    // $count will start from 0, so we must minus 1    
+            }
+
             $categoryProducts = $categoryProducts->paginate(6);
 
             if ($request->ajax()) {
