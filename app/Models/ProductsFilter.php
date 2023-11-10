@@ -23,4 +23,19 @@ class ProductsFilter extends Model
 
         return $getProductColors;
     }
+
+    public static function getSizes($catIds)
+    {
+        $getProductIds = Product::select('id')
+                        ->whereIn('category_id', $catIds)                             
+                        ->pluck('id');                                            
+        //dd($getProductIds);
+        $getProductSizes = ProductsAttribute::select('size')                           
+                            ->where('status', 1)
+                            ->whereIn('product_id', $getProductIds) 
+                            ->groupBy('size')             
+                            ->pluck('size');                                  
+        //dd($getProductSizes);
+        return $getProductSizes;
+    }
 }

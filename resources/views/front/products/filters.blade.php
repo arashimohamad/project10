@@ -207,37 +207,33 @@
                     <span class="fas fa-minus shop-w__toggle" data-target="#s-size" data-toggle="collapse"></span>
                 </div>
                 <div class="shop-w__wrap collapse show" id="s-size">
+                    @php $getSizes = ProductsFilter::getSizes($categoryDetails['catIds']); @endphp
                     <ul class="shop-w__list gl-scroll">
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="small">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="small">Small</label>
+                        @foreach ($getSizes as $key => $size)
+                            <?php
+                                // Highlight size selector
+                                if (isset($_GET['size']) && !empty($_GET['size'])) {                            
+                                    $colors = explode('~', $_GET['size']);  
+                                    if (!empty($sizes) && in_array($size, $sizes)) {
+                                        $sizeChecked = "checked";
+                                    } else {
+                                        $sizeChecked = "";
+                                    }
+                                } else {
+                                    $sizeChecked = "";
+                                }
+                            ?>
+                            <li>
+                                <!--====== Check Box ======-->
+                                <div class="check-box">
+                                    <input type="checkbox" id="size{{$key}}" name="size" value="{{$size}}" class="filterAjax" {{ $sizeChecked }}>
+                                    <div class="check-box__state check-box__state--primary">                                        
+                                        <label class="check-box__label" for="size{{$key}}">{{$size}}</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="medium">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="medium">Medium</label>
-                                </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="large">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="large">Large</label>
-                                </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
+                                <!--====== End - Check Box ======-->
+                            </li>                        
+                        @endforeach
                     </ul>
                 </div>
             </div>

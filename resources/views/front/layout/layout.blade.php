@@ -37,7 +37,7 @@
             @include('front.layout.footer')
             <!--====== Modal Section ======-->
             <!--====== Newsletter Subscribe Modal ======-->
-            @include('front.newsletter')
+            {{-- @include('front.newsletter') --}}
             <!--====== End - Newsletter Subscribe Modal ======-->
             <!--====== End - Modal Section ======-->
         </div>

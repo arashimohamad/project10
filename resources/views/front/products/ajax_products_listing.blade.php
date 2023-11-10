@@ -3,11 +3,21 @@
         <div class="product-m">
             <div class="product-m__thumb">
                 <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                    {{-- Option 1 --}}
+                    {{-- Special case on filter size. For id = 4 for size, the system reads the id as product_id in the products_attributes table. 
+                    That's why the id is correct, but another picture comes out using id=4 on the products table. Dizziness --}}
                     @if (isset($product['images']['0']['image']) && !empty($product['images']['0']['image']))
                         <img class="aspect__img" src="{{asset('front/images/products/small/'.$product['images']['0']['image'])}}" alt="">                                                            
                     @else
                         <img class="aspect__img" src="{{asset('front/images/product/sitemakers-tshirt.png')}}" alt="">
                     @endif
+
+                    {{-- Option 2
+                    @if (isset($product->images['0']->image) && !empty($product->images['0']->image))
+                        <img class="aspect__img" src="{{asset('front/images/products/small/'.$product->images['0']->image)}}" alt="">                                                            
+                    @else
+                        <img class="aspect__img" src="{{asset('front/images/product/sitemakers-tshirt.png')}}" alt="">
+                    @endif --}}
                 </a>
                 <div class="product-m__quick-look">
                     <a class="fas fa-search" data-modal="modal" data-modal-id="#quick-look" data-tooltip="tooltip" data-placement="top" title="Quick Look"></a>
@@ -59,10 +69,14 @@
             
             if (!isset($_GET['color'])) {
                 $_GET['color'] = "";
-            }            
+            }   
+            
+            if (!isset($_GET['size'])) {
+                $_GET['size'] = "";
+            }  
         ?>        
         <!--====== Pagination ======-->
-        {{ $categoryProducts->appends(['sort'=>$_GET['sort'], 'color'=>$_GET['color']])->links() }}
+        {{ $categoryProducts->appends(['sort'=>$_GET['sort'], 'color'=>$_GET['color'], 'size'=>$_GET['size']])->links() }}
         <!--====== End - Pagination ======-->
     </div>
 

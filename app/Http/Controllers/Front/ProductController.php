@@ -34,7 +34,7 @@ class ProductController extends Controller
             $categoryProducts = Product::with(['brand', 'images'])
                                 ->whereIn('category_id', $categoryDetails['catIds'])                // whereIn - Compare category_id on product table vs id on category table
                                 ->where('brand_id','>', 0)                                          // brand_id > 0 because may be user forgot to / not select brand during add/update products. So we filter here
-                                ->where('status', 1);                                
+                                ->where('products.status', 1);                                
                                 //->get();
                                 //->get()->toArray(); 
             //dd($categoryProducts);
@@ -56,7 +56,7 @@ class ProductController extends Controller
                 } else if ($request['sort'] == "discounted_items") {
                     $categoryProducts->where('product_discount', '>', 0);
                 } else {
-                    $categoryProducts->orderBy('id', 'DESC');                                       // original query for orderBy('id', 'DESC')
+                    $categoryProducts->orderBy('products.id', 'DESC');                                       // original query for orderBy('id', 'DESC')
                 }
             }
 
@@ -64,6 +64,13 @@ class ProductController extends Controller
             if (isset($request['color']) && !empty($request['color'])) {                            // we can use request->input('color') instead of $request['sort'], but must include ublic function listing(Request $request)
                 $color = explode('~', $request['color']);                                           // https://myfixsys.net/project10/public/men?color=Black~Blue~Green
                 $categoryProducts->whereIn('products.family_color', $color);
+            }
+
+            // Update Query For Product Sizes Filter
+            if (isset($request['size']) && !empty($request['size'])) {                            
+                $sizes = explode('~', $request['size']);                                           
+                $categoryProducts->join('products_attributes','products_attributes.product_id','=','products.id')
+                                ->whereIn('products_attributes.size', $sizes);
             }
 
             $categoryProducts = $categoryProducts->paginate(6);
