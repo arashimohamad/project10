@@ -38,4 +38,26 @@ class ProductsFilter extends Model
         //dd($getProductSizes);
         return $getProductSizes;
     }
+
+    public static function getBrands($catIds)
+    {
+        $getProductIds = Product::select('id')
+                        ->whereIn('category_id', $catIds)                             
+                        ->pluck('id');                                            
+        //dd($getProductIds);
+        
+        $getProductBrandIds = Product::select('brand_id')                           
+                            ->whereIn('id', $getProductIds)                          
+                            ->groupBy('brand_id')                                
+                            ->pluck('brand_id');       
+
+        $getProductBrands = Brand::select('id','brand_name')                           
+                            ->where('status', 1)
+                            ->whereIn('id', $getProductBrandIds) 
+                            ->orderBy('brand_name', 'ASC')             
+                            ->get()                                                    // use on blade ----> $brand->brand_name 
+                            ->toArray();                                               // use on blade ----> $brand['brand_name'] 
+        //dd($getProductBrands);
+        return $getProductBrands;
+    }
 }

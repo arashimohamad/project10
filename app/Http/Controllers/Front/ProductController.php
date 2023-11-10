@@ -73,6 +73,12 @@ class ProductController extends Controller
                                 ->whereIn('products_attributes.size', $sizes);
             }
 
+            // Update Query For Product Brands Filter
+            if (isset($request['brand']) && !empty($request['brand'])) {                            
+                $brands = explode('~', $request['brand']);                                           
+                $categoryProducts->whereIn('products.brand_id', $brands);
+            }
+
             $categoryProducts = $categoryProducts->paginate(6);
 
             if ($request->ajax()) {

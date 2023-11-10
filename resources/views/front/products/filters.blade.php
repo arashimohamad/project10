@@ -245,57 +245,34 @@
                     <span class="fas fa-minus shop-w__toggle" data-target="#s-brand" data-toggle="collapse"></span>
                 </div>
                 <div class="shop-w__wrap collapse show" id="s-brand">
+                    @php $getBrands = ProductsFilter::getBrands($categoryDetails['catIds']); @endphp
                     <ul class="shop-w__list gl-scroll">
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="arrow">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="arrow">Arrow</label>
+                        @foreach ($getBrands as $key => $brand)
+                            <?php
+                                // Highlight brand selector
+                                if (isset($_GET['brand']) && !empty($_GET['brand'])) {  
+                                    //echo $brand['id']; die;                          
+                                    $brands = explode('~', $_GET['brand']);  
+                                    if (!empty($brands) && in_array($brand['id'], $brands)) {
+                                        $brandChecked = "checked";
+                                    } else {
+                                        $brandChecked = "";
+                                    }
+                                } else {
+                                    $brandChecked = "";
+                                }
+                            ?>
+                            <li>
+                                <!--====== Check Box ======-->
+                                <div class="check-box">
+                                    <input type="checkbox" id="brand{{$key}}" name="brand" value="{{$brand['id']}}" class="filterAjax" {{ $brandChecked }}>
+                                    <div class="check-box__state check-box__state--primary">
+                                        <label class="check-box__label" for="brand{{$key}}">{{ $brand['brand_name'] }}</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="gap">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="gap">Gap</label>
-                                </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="nike">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="nike">Nike</label>
-                                </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="puma">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="puma">Puma</label>
-                                </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="fila">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="fila">Fila</label>
-                                </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
+                                <!--====== End - Check Box ======-->
+                            </li>
+                        @endforeach                        
                     </ul>
                 </div>
             </div>
