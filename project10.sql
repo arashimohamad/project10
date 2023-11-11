@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 10, 2023 at 05:39 PM
+-- Generation Time: Nov 11, 2023 at 12:44 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -301,7 +301,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (11, '2023_08_22_005139_create_products_attributes_table', 7),
 (12, '2023_08_24_235418_create_brands_table', 8),
 (14, '2023_09_11_151936_create_banners_table', 9),
-(19, '2023_11_05_194912_update_products_table', 10);
+(19, '2023_11_05_194912_update_products_table', 10),
+(20, '2023_11_11_081425_create_products_filters_table', 11);
 
 -- --------------------------------------------------------
 
@@ -428,6 +429,45 @@ INSERT INTO `products_attributes` (`id`, `product_id`, `size`, `sku`, `price`, `
 (15, 12, 'Small', 'RCT001S', 120.00, 100, 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
 (16, 12, 'Medium', 'RCT001M', 130.00, 100, 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
 (17, 12, 'Large', 'RCT001L', 135.00, 100, 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `products_filters`
+--
+
+DROP TABLE IF EXISTS `products_filters`;
+CREATE TABLE `products_filters` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `filter_name` varchar(255) DEFAULT NULL,
+  `filter_value` varchar(255) DEFAULT NULL,
+  `sort` int(11) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `products_filters`
+--
+
+INSERT INTO `products_filters` (`id`, `filter_name`, `filter_value`, `sort`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Fabric', 'Cotton', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(2, 'Fabric', 'Polyester', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(3, 'Fabric', 'Wool', 3, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(4, 'Sleeve', 'Full Sleeve', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(5, 'Sleeve', 'Half Sleeve', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(6, 'Sleeve', 'Short Sleeve', 3, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(7, 'Sleeve', 'Sleeveless', 4, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(8, 'Pattern', 'Checked', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(9, 'Pattern', 'Plain', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(10, 'Pattern', 'Printed', 3, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(11, 'Pattern', 'Self', 4, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(12, 'Pattern', 'Solid', 5, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(13, 'Fit', 'Regular', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(14, 'Fit', 'Slim', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(15, 'Occasion', 'Casual', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(16, 'Occasion', 'Formal', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48');
 
 -- --------------------------------------------------------
 
@@ -560,6 +600,12 @@ ALTER TABLE `products_attributes`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `products_filters`
+--
+ALTER TABLE `products_filters`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `products_images`
 --
 ALTER TABLE `products_images`
@@ -628,7 +674,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -647,6 +693,12 @@ ALTER TABLE `products`
 --
 ALTER TABLE `products_attributes`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `products_filters`
+--
+ALTER TABLE `products_filters`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `products_images`
