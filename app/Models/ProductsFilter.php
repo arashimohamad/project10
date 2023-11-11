@@ -35,7 +35,7 @@ class ProductsFilter extends Model
                             ->where('status', 1)
                             ->whereIn('product_id', $getProductIds) 
                             ->groupBy('size')             
-                            ->pluck('size');                                  
+                            ->pluck('size');
         
         return $getProductSizes;
     }
@@ -112,5 +112,19 @@ class ProductsFilter extends Model
         $productFilters = array_filter(Arr::flatten($productFilters));
 
         return $productFilters;
+    }
+
+    public static function filterTypes()                                               // Part 1.2 - Fabric (cottom/polyester),Fit (regular/slim), etc...
+    {
+        $filterTypes = ProductsFilter::select('filter_name')
+                        ->where('status', 1)
+                        ->groupBy('filter_name')
+                        ->get()
+                        ->toArray();
+        //dd($filterTypes);
+        
+        $filterTypes = Arr::flatten($filterTypes);
+
+        return $filterTypes;
     }
 }

@@ -82,10 +82,34 @@
             if (!isset($_GET['price'])) {
                 $_GET['price'] = "";
             }
+
+            if (!isset($_GET['Fabric'])) {
+                $_GET['Fabric'] = "";
+            }
+
+            if (!isset($_GET['Sleeve'])) {
+                $_GET['Sleeve'] = "";
+            }
+
+            if (!isset($_GET['Pattern'])) {
+                $_GET['Pattern'] = "";
+            }
+
+            if (!isset($_GET['Fit'])) {
+                $_GET['Fit'] = "";
+            }
+
+            if (!isset($_GET['Occasion'])) {
+                $_GET['Occasion'] = "";
+            }
         ?>        
         <!--====== Pagination ======-->
         {{ $categoryProducts->appends([
-            'sort'=>$_GET['sort'], 'color'=>$_GET['color'], 'size'=>$_GET['size'], 'brand'=>$_GET['brand'], 'price'=>$_GET['price']
+            'sort'=>$_GET['sort'], 'color'=>$_GET['color'], 
+            'size'=>$_GET['size'], 'brand'=>$_GET['brand'], 
+            'price'=>$_GET['price'], 'Fabric'=>$_GET['Fabric'], 
+            'Sleeve'=>$_GET['Sleeve'], 'Pattern'=>$_GET['Pattern'], 
+            'Fit'=>$_GET['Fit'], 'Occasion'=>$_GET['Occasion']
             ])->links() 
         }}
         <!--====== End - Pagination ======-->

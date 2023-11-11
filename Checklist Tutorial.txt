@@ -95,8 +95,8 @@
 95	Laravel 10 Tutorial #95	
 96	Laravel 10 Tutorial #96	
 97	Laravel 10 Tutorial #97	
-98	Laravel 10 Tutorial #98	- Done
-99	Laravel 10 Tutorial #99	
+98	Laravel 10 Tutorial #98	
+99	Laravel 10 Tutorial #99	- Done
 100	Laravel 10 Tutorial #100
 101	Laravel 10 Tutorial #101
 102	Laravel 10 Tutorial #102

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Models\ProductsFilter;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
@@ -34,10 +35,7 @@ class ProductController extends Controller
             $categoryProducts = Product::with(['brand', 'images'])
                                 ->whereIn('category_id', $categoryDetails['catIds'])                // whereIn - Compare category_id on product table vs id on category table
                                 ->where('brand_id','>', 0)                                          // brand_id > 0 because may be user forgot to / not select brand during add/update products. So we filter here
-                                ->where('products.status', 1);                                
-                                //->get();
-                                //->get()->toArray(); 
-            //dd($categoryProducts);
+                                ->where('products.status', 1);                       
 
             // Update Query For Products Sorting
             if (isset($request['sort']) && !empty($request['sort'])) {                                    // we can use request->input('sort') instead of $request['sort'], but must include ublic function listing(Request $request)
@@ -70,7 +68,8 @@ class ProductController extends Controller
             if (isset($request['size']) && !empty($request['size'])) {                            
                 $sizes = explode('~', $request['size']);                                           
                 $categoryProducts->join('products_attributes','products_attributes.product_id','=','products.id')
-                                ->whereIn('products_attributes.size', $sizes);
+                                ->whereIn('products_attributes.size', $sizes)
+                                ->groupBy('products_attributes.product_id');
             }
 
             // Update Query For Product Brands Filter
@@ -85,6 +84,15 @@ class ProductController extends Controller
                 $prices = explode('-', $request['price']);
                 $count = count($prices);                                       
                 $categoryProducts->whereBetween('products.final_price', [$prices[0],$prices[$count-1]]);    // $count will start from 0, so we must minus 1    
+            }
+
+            // Update Query For Product Dynamic Filter
+            $filterTypes = ProductsFilter::filterTypes();
+            foreach ($filterTypes as $key => $filter) {
+                if ($request->$filter) {
+                    $explodeFilterVals = explode('~', $request->$filter);
+                    $categoryProducts->whereIn($filter, $explodeFilterVals);
+                }                 
             }
 
             $categoryProducts = $categoryProducts->paginate(6);
