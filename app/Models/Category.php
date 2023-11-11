@@ -55,7 +55,7 @@ class Category extends Model
     public static function categoryDetails($url)
     {
         $categoryDetails = Category::select('id', 'parent_id', 'category_name','url')
-                            ->with('subcategories')->where('url', $url)
+                            ->with('subcategories', 'parentcategory')->where('url', $url)
                             ->first()->toArray();        
 
         // Take 1 array, let's say as $catIds to get subcategory (tshirts/shirts/jackets/etc...)

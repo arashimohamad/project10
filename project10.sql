@@ -1,29 +1,35 @@
--- MariaDB dump 10.19-11.2.1-MariaDB, for Win64 (AMD64)
+-- phpMyAdmin SQL Dump
+-- version 5.2.1
+-- https://www.phpmyadmin.net/
 --
--- Host: localhost    Database: project10
--- ------------------------------------------------------
--- Server version	11.2.1-MariaDB-log
+-- Host: localhost:3306
+-- Generation Time: Nov 11, 2023 at 11:46 PM
+-- Server version: 11.2.1-MariaDB-log
+-- PHP Version: 8.2.4
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8mb4 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Database: `project10`
+--
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `admins`
 --
 
 DROP TABLE IF EXISTS `admins`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admins` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `mobile` varchar(255) DEFAULT NULL,
@@ -32,71 +38,58 @@ CREATE TABLE `admins` (
   `image` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `admins_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admins`
 --
 
-LOCK TABLES `admins` WRITE;
-/*!40000 ALTER TABLE `admins` DISABLE KEYS */;
-INSERT INTO `admins` VALUES
-(1,'Eric','admin','0133311920','admin@admin.com','$2y$10$9lebGDOPEzuPr49Hhfk/LOC9401o6N8xLRq2ty45Nq46PynQ2Dr/W','23593.jpg',1,'2023-05-20 10:59:46','2023-05-20 10:59:46'),
-(2,'Lisa','subadmin','0111111111','lisa@admin.com','$2y$10$9lebGDOPEzuPr49Hhfk/LOC9401o6N8xLRq2ty45Nq46PynQ2Dr/W',NULL,1,'2023-05-20 10:59:46','2023-05-22 04:59:19'),
-(3,'John','subadmin','0111111112','john@admin.com','$2y$10$9lebGDOPEzuPr49Hhfk/LOC9401o6N8xLRq2ty45Nq46PynQ2Dr/W',NULL,1,'2023-05-20 10:59:46','2023-05-22 04:59:21');
-/*!40000 ALTER TABLE `admins` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `admins` (`id`, `name`, `type`, `mobile`, `email`, `password`, `image`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Eric', 'admin', '0133311920', 'admin@admin.com', '$2y$10$9lebGDOPEzuPr49Hhfk/LOC9401o6N8xLRq2ty45Nq46PynQ2Dr/W', '23593.jpg', 1, '2023-05-20 10:59:46', '2023-05-20 10:59:46'),
+(2, 'Lisa', 'subadmin', '0111111111', 'lisa@admin.com', '$2y$10$9lebGDOPEzuPr49Hhfk/LOC9401o6N8xLRq2ty45Nq46PynQ2Dr/W', NULL, 1, '2023-05-20 10:59:46', '2023-05-22 04:59:19'),
+(3, 'John', 'subadmin', '0111111112', 'john@admin.com', '$2y$10$9lebGDOPEzuPr49Hhfk/LOC9401o6N8xLRq2ty45Nq46PynQ2Dr/W', NULL, 1, '2023-05-20 10:59:46', '2023-05-22 04:59:21');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `admins_roles`
 --
 
 DROP TABLE IF EXISTS `admins_roles`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `admins_roles` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `subadmin_id` int(11) DEFAULT NULL COMMENT 'admin_id',
   `module` varchar(255) DEFAULT NULL,
   `view_access` varchar(255) DEFAULT NULL,
   `edit_access` varchar(255) DEFAULT NULL,
   `full_access` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `admins_roles`
 --
 
-LOCK TABLES `admins_roles` WRITE;
-/*!40000 ALTER TABLE `admins_roles` DISABLE KEYS */;
-INSERT INTO `admins_roles` VALUES
-(18,3,'subadmin_id','0','0','0','2023-08-24 15:24:38','2023-08-24 15:24:38'),
-(74,2,'_token','0','0','0','2023-09-08 17:21:43','2023-09-08 17:21:43'),
-(75,2,'subadmin_id','0','0','0','2023-09-08 17:21:43','2023-09-08 17:21:43'),
-(76,2,'cms_pages','1','1','0','2023-09-08 17:21:43','2023-09-08 17:21:43'),
-(77,2,'categories','1','0','1','2023-09-08 17:21:43','2023-09-08 17:21:43'),
-(78,2,'products','0','1','0','2023-09-08 17:21:43','2023-09-08 17:21:43'),
-(79,2,'brands','1','1','1','2023-09-08 17:21:43','2023-09-08 17:21:43');
-/*!40000 ALTER TABLE `admins_roles` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `admins_roles` (`id`, `subadmin_id`, `module`, `view_access`, `edit_access`, `full_access`, `created_at`, `updated_at`) VALUES
+(18, 3, 'subadmin_id', '0', '0', '0', '2023-08-24 15:24:38', '2023-08-24 15:24:38'),
+(74, 2, '_token', '0', '0', '0', '2023-09-08 17:21:43', '2023-09-08 17:21:43'),
+(75, 2, 'subadmin_id', '0', '0', '0', '2023-09-08 17:21:43', '2023-09-08 17:21:43'),
+(76, 2, 'cms_pages', '1', '1', '0', '2023-09-08 17:21:43', '2023-09-08 17:21:43'),
+(77, 2, 'categories', '1', '0', '1', '2023-09-08 17:21:43', '2023-09-08 17:21:43'),
+(78, 2, 'products', '0', '1', '0', '2023-09-08 17:21:43', '2023-09-08 17:21:43'),
+(79, 2, 'brands', '1', '1', '1', '2023-09-08 17:21:43', '2023-09-08 17:21:43');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `banners`
 --
 
 DROP TABLE IF EXISTS `banners`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `banners` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `image` varchar(255) DEFAULT NULL,
   `type` varchar(255) DEFAULT NULL,
   `link` varchar(255) DEFAULT NULL,
@@ -105,37 +98,31 @@ CREATE TABLE `banners` (
   `sort` int(11) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `banners`
 --
 
-LOCK TABLES `banners` WRITE;
-/*!40000 ALTER TABLE `banners` DISABLE KEYS */;
-INSERT INTO `banners` VALUES
-(1,'84766.png','Slider','winter','Winter Collection','Winter Collection',1,1,'2023-09-11 07:36:46','2023-11-02 16:18:32'),
-(2,'84571.png','Slider','women','Women Collection','Women Collection',2,1,'2023-11-02 16:20:16','2023-11-02 16:20:16'),
-(3,'96889.png','Slider','t-shirts','T-Shirts Collection','T-Shirts Collection',3,1,'2023-11-02 16:21:16','2023-11-02 16:21:16'),
-(4,'7075.png','Fix','new','New Collection','New Collection',1,1,'2023-11-02 16:24:10','2023-11-02 16:24:10'),
-(5,'7336.png','Fix','sale','Sale','Sale',2,1,'2023-11-02 16:25:23','2023-11-02 16:25:23'),
-(6,'34633.png','Fix','men','Men Collection','Men Collection',3,1,'2023-11-02 16:26:47','2023-11-02 16:26:47'),
-(7,'8238.png','Fix','new','New Arrivals','New Arrivals',4,1,'2023-11-02 16:27:23','2023-11-02 16:27:23');
-/*!40000 ALTER TABLE `banners` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `banners` (`id`, `image`, `type`, `link`, `title`, `alt`, `sort`, `status`, `created_at`, `updated_at`) VALUES
+(1, '84766.png', 'Slider', 'winter', 'Winter Collection', 'Winter Collection', 1, 1, '2023-09-11 07:36:46', '2023-11-02 16:18:32'),
+(2, '84571.png', 'Slider', 'women', 'Women Collection', 'Women Collection', 2, 1, '2023-11-02 16:20:16', '2023-11-02 16:20:16'),
+(3, '96889.png', 'Slider', 't-shirts', 'T-Shirts Collection', 'T-Shirts Collection', 3, 1, '2023-11-02 16:21:16', '2023-11-02 16:21:16'),
+(4, '7075.png', 'Fix', 'new', 'New Collection', 'New Collection', 1, 1, '2023-11-02 16:24:10', '2023-11-02 16:24:10'),
+(5, '7336.png', 'Fix', 'sale', 'Sale', 'Sale', 2, 1, '2023-11-02 16:25:23', '2023-11-02 16:25:23'),
+(6, '34633.png', 'Fix', 'men', 'Men Collection', 'Men Collection', 3, 1, '2023-11-02 16:26:47', '2023-11-02 16:26:47'),
+(7, '8238.png', 'Fix', 'new', 'New Arrivals', 'New Arrivals', 4, 1, '2023-11-02 16:27:23', '2023-11-02 16:27:23');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `brands`
 --
 
 DROP TABLE IF EXISTS `brands`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `brands` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `brand_name` varchar(255) DEFAULT NULL,
   `brand_image` varchar(255) DEFAULT NULL,
   `brand_logo` varchar(255) DEFAULT NULL,
@@ -147,36 +134,30 @@ CREATE TABLE `brands` (
   `meta_keywords` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `brands`
 --
 
-LOCK TABLES `brands` WRITE;
-/*!40000 ALTER TABLE `brands` DISABLE KEYS */;
-INSERT INTO `brands` VALUES
-(1,'Arrow','','',0.00,'','arrow','','','',1,'2023-08-27 16:10:12','2023-09-07 23:36:58'),
-(2,'Gap','','',0.00,'','gap','','','',1,'2023-08-27 16:10:12','2023-09-07 23:36:58'),
-(3,'Monte Carlo','','',0.00,'','monte-carlo','','','',1,'2023-08-27 16:10:12','2023-08-27 16:10:12'),
-(4,'Nike','','',0.00,'','nike','','','',1,'2023-08-27 16:10:12','2023-08-27 16:10:12'),
-(5,'Puma','','',0.00,'','puma','','','',1,'2023-08-27 16:10:12','2023-09-07 23:36:56'),
-(6,'Fila','2087.jpg','88749.png',10.00,'Fila shoes are available','fila','Fila Shoes','Fila Shoes','fila,shoes',1,'2023-09-03 02:29:37','2023-09-07 23:36:55');
-/*!40000 ALTER TABLE `brands` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `brands` (`id`, `brand_name`, `brand_image`, `brand_logo`, `brand_discount`, `description`, `url`, `meta_title`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Arrow', '', '', 0.00, '', 'arrow', '', '', '', 1, '2023-08-27 16:10:12', '2023-09-07 23:36:58'),
+(2, 'Gap', '', '', 0.00, '', 'gap', '', '', '', 1, '2023-08-27 16:10:12', '2023-09-07 23:36:58'),
+(3, 'Monte Carlo', '', '', 0.00, '', 'monte-carlo', '', '', '', 1, '2023-08-27 16:10:12', '2023-08-27 16:10:12'),
+(4, 'Nike', '', '', 0.00, '', 'nike', '', '', '', 1, '2023-08-27 16:10:12', '2023-08-27 16:10:12'),
+(5, 'Puma', '', '', 0.00, '', 'puma', '', '', '', 1, '2023-08-27 16:10:12', '2023-09-07 23:36:56'),
+(6, 'Fila', '2087.jpg', '88749.png', 10.00, 'Fila shoes are available', 'fila', 'Fila Shoes', 'Fila Shoes', 'fila,shoes', 1, '2023-09-03 02:29:37', '2023-09-07 23:36:55');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `categories`
 --
 
 DROP TABLE IF EXISTS `categories`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `categories` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `parent_id` int(11) NOT NULL,
   `category_name` varchar(255) DEFAULT NULL,
   `category_image` varchar(255) DEFAULT NULL,
@@ -188,41 +169,35 @@ CREATE TABLE `categories` (
   `meta_keywords` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `categories`
 --
 
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES
-(1,0,'Clothing',NULL,0,NULL,'clothing',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 23:10:18'),
-(2,0,'Electronics',NULL,0,NULL,'electronics',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 23:10:26'),
-(3,0,'Appliances',NULL,0,NULL,'appliances',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),
-(4,1,'Men',NULL,0,NULL,'men',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),
-(5,1,'Women',NULL,0,NULL,'women',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),
-(6,1,'Kids',NULL,0,NULL,'kids',NULL,NULL,NULL,1,'2023-06-07 02:20:51','2023-06-07 02:20:51'),
-(7,0,'Accessories','65511.jpg',10,'This is accessories','accessories','Accessories','Accessories info','accessories',0,'2023-06-19 05:48:15','2023-11-04 15:29:52'),
-(8,4,'T-Shirts','',20,NULL,'tshirts',NULL,NULL,NULL,1,'2023-06-19 11:00:06','2023-08-18 10:19:40'),
-(9,5,'Women Shirts','60955.jpg',20,'Women Shirts','women-shirts','Women Shirts','women shirts are available','women shirts',1,'2023-06-19 11:35:48','2023-06-20 03:01:04'),
-(15,4,'Shirts','',0,NULL,'shirts',NULL,NULL,NULL,1,'2023-11-04 15:27:29','2023-11-04 15:27:29'),
-(16,4,'Jackets','',0,NULL,'jackets',NULL,NULL,NULL,1,'2023-11-04 15:28:32','2023-11-04 15:28:32');
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `categories` (`id`, `parent_id`, `category_name`, `category_image`, `category_discount`, `description`, `url`, `meta_title`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
+(1, 0, 'Clothing', NULL, 0, NULL, 'clothing', NULL, NULL, NULL, 1, '2023-06-07 02:20:51', '2023-06-07 23:10:18'),
+(2, 0, 'Electronics', NULL, 0, NULL, 'electronics', NULL, NULL, NULL, 1, '2023-06-07 02:20:51', '2023-06-07 23:10:26'),
+(3, 0, 'Appliances', NULL, 0, NULL, 'appliances', NULL, NULL, NULL, 1, '2023-06-07 02:20:51', '2023-06-07 02:20:51'),
+(4, 1, 'Men', NULL, 0, NULL, 'men', NULL, NULL, NULL, 1, '2023-06-07 02:20:51', '2023-06-07 02:20:51'),
+(5, 1, 'Women', NULL, 0, NULL, 'women', NULL, NULL, NULL, 1, '2023-06-07 02:20:51', '2023-06-07 02:20:51'),
+(6, 1, 'Kids', NULL, 0, NULL, 'kids', NULL, NULL, NULL, 1, '2023-06-07 02:20:51', '2023-06-07 02:20:51'),
+(7, 0, 'Accessories', '65511.jpg', 10, 'This is accessories', 'accessories', 'Accessories', 'Accessories info', 'accessories', 0, '2023-06-19 05:48:15', '2023-11-04 15:29:52'),
+(8, 4, 'T-Shirts', '', 20, NULL, 'tshirts', NULL, NULL, NULL, 1, '2023-06-19 11:00:06', '2023-08-18 10:19:40'),
+(9, 5, 'Women Shirts', '60955.jpg', 20, 'Women Shirts', 'women-shirts', 'Women Shirts', 'women shirts are available', 'women shirts', 1, '2023-06-19 11:35:48', '2023-06-20 03:01:04'),
+(15, 4, 'Shirts', '', 0, NULL, 'shirts', NULL, NULL, NULL, 1, '2023-11-04 15:27:29', '2023-11-04 15:27:29'),
+(16, 4, 'Jackets', '', 0, NULL, 'jackets', NULL, NULL, NULL, 1, '2023-11-04 15:28:32', '2023-11-04 15:28:32');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `cms_pages`
 --
 
 DROP TABLE IF EXISTS `cms_pages`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `cms_pages` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `title` varchar(255) DEFAULT NULL,
   `description` text DEFAULT NULL,
   `url` varchar(255) DEFAULT NULL,
@@ -231,200 +206,146 @@ CREATE TABLE `cms_pages` (
   `meta_keywords` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `cms_pages`
 --
 
-LOCK TABLES `cms_pages` WRITE;
-/*!40000 ALTER TABLE `cms_pages` DISABLE KEYS */;
-INSERT INTO `cms_pages` VALUES
-(1,'Terms & Conditions','Testing','terms-conditions','Testing','Testing','Testing',1,'2023-05-18 17:32:25','2023-06-07 20:03:41'),
-(2,'Privacy Policy','Testing','privacy-policy','Testing','Testing','Testing',1,'2023-05-18 17:33:01','2023-05-18 17:33:01'),
-(3,'About Us','Aydentech content provides Laravel Training','about-us','About Us','Aydentech provides Laravel Tutorial','aydentech, about us, laravel',1,'2023-05-18 17:33:55','2023-05-18 17:41:20');
-/*!40000 ALTER TABLE `cms_pages` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `cms_pages` (`id`, `title`, `description`, `url`, `meta_title`, `meta_description`, `meta_keywords`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Terms & Conditions', 'Testing', 'terms-conditions', 'Testing', 'Testing', 'Testing', 1, '2023-05-18 17:32:25', '2023-06-07 20:03:41'),
+(2, 'Privacy Policy', 'Testing', 'privacy-policy', 'Testing', 'Testing', 'Testing', 1, '2023-05-18 17:33:01', '2023-05-18 17:33:01'),
+(3, 'About Us', 'Aydentech content provides Laravel Training', 'about-us', 'About Us', 'Aydentech provides Laravel Tutorial', 'aydentech, about us, laravel', 1, '2023-05-18 17:33:55', '2023-05-18 17:41:20');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `colors`
 --
 
 DROP TABLE IF EXISTS `colors`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `colors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL,
   `color_name` varchar(255) DEFAULT NULL,
   `color_code` varchar(255) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL COMMENT 'Active-1, Disable-0',
   `created_at` datetime DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `colors`
 --
 
-LOCK TABLES `colors` WRITE;
-/*!40000 ALTER TABLE `colors` DISABLE KEYS */;
-INSERT INTO `colors` VALUES
-(1,'Black','#000000',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(2,'Blue','#0000FF',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(3,'Brown','#964B00',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(4,'Grey','#808080',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(5,'Green','#00FF00',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(6,'Multi','',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(7,'Olive','#808000',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(8,'Orange','#FFA500',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(9,'Pink ','#FFC0CB',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(10,'Purple','#800080',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(11,'Red','#FF0000',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(12,'White','#FFFFFF',1,'2023-08-20 00:00:00','2023-08-19 16:00:00'),
-(13,'Yellow','#FFFF00',1,'2023-08-20 00:00:00','2023-08-19 16:00:00');
-/*!40000 ALTER TABLE `colors` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `colors` (`id`, `color_name`, `color_code`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Black', '#000000', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(2, 'Blue', '#0000FF', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(3, 'Brown', '#964B00', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(4, 'Grey', '#808080', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(5, 'Green', '#00FF00', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(6, 'Multi', '', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(7, 'Olive', '#808000', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(8, 'Orange', '#FFA500', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(9, 'Pink ', '#FFC0CB', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(10, 'Purple', '#800080', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(11, 'Red', '#FF0000', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(12, 'White', '#FFFFFF', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00'),
+(13, 'Yellow', '#FFFF00', 1, '2023-08-20 00:00:00', '2023-08-19 16:00:00');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `failed_jobs`
 --
 
 DROP TABLE IF EXISTS `failed_jobs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `failed_jobs` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `uuid` varchar(255) NOT NULL,
   `connection` text NOT NULL,
   `queue` text NOT NULL,
   `payload` longtext NOT NULL,
   `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+  `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `failed_jobs`
---
-
-LOCK TABLES `failed_jobs` WRITE;
-/*!40000 ALTER TABLE `failed_jobs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `failed_jobs` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `migrations`
 --
 
 DROP TABLE IF EXISTS `migrations`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `migrations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `batch` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `migrations`
 --
 
-LOCK TABLES `migrations` WRITE;
-/*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES
-(1,'2014_10_12_000000_create_users_table',1),
-(2,'2014_10_12_100000_create_password_reset_tokens_table',1),
-(3,'2019_08_19_000000_create_failed_jobs_table',1),
-(4,'2019_12_14_000001_create_personal_access_tokens_table',1),
-(5,'2023_05_09_062716_create_admins_table',1),
-(6,'2023_05_17_013024_create_cms_pages_table',2),
-(7,'2023_05_23_113937_create_admins_roles_table',3),
-(8,'2023_06_07_091414_create_categories_table',4),
-(9,'2023_08_16_104036_create_products_table',5),
-(10,'2023_08_20_144501_create_products_images_table',6),
-(11,'2023_08_22_005139_create_products_attributes_table',7),
-(12,'2023_08_24_235418_create_brands_table',8),
-(14,'2023_09_11_151936_create_banners_table',9),
-(19,'2023_11_05_194912_update_products_table',10),
-(20,'2023_11_11_081425_create_products_filters_table',11);
-/*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+(1, '2014_10_12_000000_create_users_table', 1),
+(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(3, '2019_08_19_000000_create_failed_jobs_table', 1),
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2023_05_09_062716_create_admins_table', 1),
+(6, '2023_05_17_013024_create_cms_pages_table', 2),
+(7, '2023_05_23_113937_create_admins_roles_table', 3),
+(8, '2023_06_07_091414_create_categories_table', 4),
+(9, '2023_08_16_104036_create_products_table', 5),
+(10, '2023_08_20_144501_create_products_images_table', 6),
+(11, '2023_08_22_005139_create_products_attributes_table', 7),
+(12, '2023_08_24_235418_create_brands_table', 8),
+(14, '2023_09_11_151936_create_banners_table', 9),
+(19, '2023_11_05_194912_update_products_table', 10),
+(20, '2023_11_11_081425_create_products_filters_table', 11);
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `password_reset_tokens`
 --
 
 DROP TABLE IF EXISTS `password_reset_tokens`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `password_reset_tokens` (
   `email` varchar(255) NOT NULL,
   `token` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`email`)
+  `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `password_reset_tokens`
---
-
-LOCK TABLES `password_reset_tokens` WRITE;
-/*!40000 ALTER TABLE `password_reset_tokens` DISABLE KEYS */;
-/*!40000 ALTER TABLE `password_reset_tokens` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `personal_access_tokens`
 --
 
 DROP TABLE IF EXISTS `personal_access_tokens`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) unsigned NOT NULL,
+  `tokenable_id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `token` varchar(64) NOT NULL,
   `abilities` text DEFAULT NULL,
   `last_used_at` timestamp NULL DEFAULT NULL,
   `expires_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `personal_access_tokens`
---
-
-LOCK TABLES `personal_access_tokens` WRITE;
-/*!40000 ALTER TABLE `personal_access_tokens` DISABLE KEYS */;
-/*!40000 ALTER TABLE `personal_access_tokens` ENABLE KEYS */;
-UNLOCK TABLES;
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `products`
 --
 
 DROP TABLE IF EXISTS `products`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `category_id` int(11) DEFAULT NULL,
   `brand_id` int(11) DEFAULT NULL,
   `product_name` varchar(255) DEFAULT NULL,
@@ -453,43 +374,37 @@ CREATE TABLE `products` (
   `is_bestseller` enum('No','Yes') DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products`
 --
 
-LOCK TABLES `products` WRITE;
-/*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES
-(1,8,1,'Blue T-Shirt','BT001','Dark Blue','Blue','TSHIRT0000',150.00,10.00,'product',135.00,'500','','Test Product',NULL,NULL,'Cotton','Plain','Full Sleeve','Regular','Casual',NULL,NULL,NULL,'Yes','Yes',1,'2023-08-16 03:44:29','2023-11-11 10:23:14'),
-(2,8,5,'Red T-Shirt','RT001','Red','Red','TSHIRT0000',100.00,0.00,'category',80.00,'400','','Test Product',NULL,NULL,'Polyester','Plain','Half Sleeve','Slim','Casual',NULL,NULL,NULL,'No','No',1,'2023-08-16 03:44:29','2023-11-11 10:25:02'),
-(3,9,4,'Green Women T-Shirt','GWT011','Dark Green','Green','1000',40.00,0.00,'category',32.00,'100',NULL,'Women Shirt','TESTING','tshirts','Polyester','Printed','Short Sleeve','Slim','Formal','tshirt','good tshirts','tshirt','Yes','No',1,'2023-08-17 11:34:17','2023-11-11 09:38:58'),
-(4,8,3,'Yellow T-Shirt','YT001','Yellow','Yellow','10',70.00,0.00,'category',56.00,NULL,'701721522.mp4','TEST','TEST','TEST','Cotton',NULL,NULL,NULL,NULL,'TEST','TEST','TEST','Yes','No',1,'2023-08-18 04:03:43','2023-11-11 13:26:48'),
-(5,8,4,'Grey Casual T-Shirt','GRCT001','Grey','Grey',NULL,10.00,0.00,'category',8.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'No','No',1,'2023-08-22 10:28:39','2023-11-11 13:38:11'),
-(7,8,1,'Green T-shirt','GT011','Green','Green','4500',70.00,10.00,'product',63.00,'100',NULL,NULL,NULL,NULL,'Cotton',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'No','No',1,'2023-09-08 00:15:06','2023-11-11 13:30:54'),
-(12,8,1,'Red Casual T-shirt','RCT001','Red','Red',NULL,110.00,0.00,'category',88.00,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'No','No',1,'2023-11-04 16:50:18','2023-11-04 17:32:59'),
-(13,8,2,'Gap T-shirt','GT01','Blue','Blue','45000',120.00,10.00,'product',108.00,'100',NULL,NULL,NULL,NULL,'Cotton',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Yes','No',1,'2023-11-04 16:52:21','2023-11-11 13:42:58'),
-(14,8,2,'Gap Blue T-Shirt','GBT001','Blue','Blue','45000',130.00,10.00,'product',117.00,'100',NULL,NULL,NULL,NULL,'Cotton',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Yes','Yes',1,'2023-11-04 17:08:40','2023-11-11 13:43:15'),
-(15,8,2,'Red Gap T-shirt','RGT01','Red','Red',NULL,140.00,15.00,'product',119.00,'100',NULL,'This is Red Gap T-shirt. Very Good T-shirt and was created by pure cotton.',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Yes','Yes',1,'2023-11-04 17:10:50','2023-11-07 07:54:06'),
-(16,8,5,'Black Puma T-shirt','BLPT001','Black','Black','45000',160.00,10.00,'product',144.00,'100',NULL,NULL,NULL,NULL,'Cotton',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'No','No',1,'2023-11-09 15:09:40','2023-11-11 13:27:54'),
-(17,9,1,'Women Red Shirt','WRS001','Red','Red','45000',190.00,10.00,'product',171.00,'100',NULL,NULL,NULL,NULL,'Wool',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'No','No',1,'2023-11-11 13:33:29','2023-11-11 13:33:29'),
-(18,8,6,'Grey T-Shirt','GT001','Grey','Grey',NULL,170.00,0.00,'category',136.00,'100',NULL,NULL,NULL,NULL,'Cotton',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'No','No',1,'2023-11-11 13:37:49','2023-11-11 13:40:57');
-/*!40000 ALTER TABLE `products` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `products` (`id`, `category_id`, `brand_id`, `product_name`, `product_code`, `product_color`, `family_color`, `group_code`, `product_price`, `product_discount`, `discount_type`, `final_price`, `product_weight`, `product_video`, `description`, `wash_care`, `search_keywords`, `fabric`, `pattern`, `sleeve`, `fit`, `occasion`, `meta_title`, `meta_description`, `meta_keywords`, `is_featured`, `is_bestseller`, `status`, `created_at`, `updated_at`) VALUES
+(1, 8, 1, 'Blue T-Shirt', 'BT001', 'Dark Blue', 'Blue', 'TSHIRT0000', 150.00, 10.00, 'product', 135.00, '500', '', 'Test Product', NULL, NULL, 'Cotton', 'Plain', 'Full Sleeve', 'Regular', 'Casual', NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-08-16 03:44:29', '2023-11-11 10:23:14'),
+(2, 8, 5, 'Red T-Shirt', 'RT001', 'Red', 'Red', 'TSHIRT0000', 100.00, 0.00, 'category', 80.00, '400', '', 'Test Product', NULL, NULL, 'Polyester', 'Plain', 'Half Sleeve', 'Slim', 'Casual', NULL, NULL, NULL, 'No', 'No', 1, '2023-08-16 03:44:29', '2023-11-11 10:25:02'),
+(3, 9, 4, 'Green Women T-Shirt', 'GWT011', 'Dark Green', 'Green', '1000', 40.00, 0.00, 'category', 32.00, '100', NULL, 'Women Shirt', 'TESTING', 'tshirts', 'Polyester', 'Printed', 'Short Sleeve', 'Slim', 'Formal', 'tshirt', 'good tshirts', 'tshirt', 'Yes', 'No', 1, '2023-08-17 11:34:17', '2023-11-11 09:38:58'),
+(4, 8, 3, 'Yellow T-Shirt', 'YT001', 'Yellow', 'Yellow', '10', 70.00, 0.00, 'category', 56.00, NULL, '701721522.mp4', 'TEST', 'TEST', 'TEST', 'Cotton', NULL, NULL, NULL, NULL, 'TEST', 'TEST', 'TEST', 'Yes', 'No', 1, '2023-08-18 04:03:43', '2023-11-11 13:26:48'),
+(5, 8, 4, 'Grey Casual T-Shirt', 'GRCT001', 'Grey', 'Grey', NULL, 10.00, 0.00, 'category', 8.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-08-22 10:28:39', '2023-11-11 13:38:11'),
+(7, 8, 1, 'Green T-shirt', 'GT011', 'Green', 'Green', '4500', 70.00, 10.00, 'product', 63.00, '100', NULL, NULL, NULL, NULL, 'Cotton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-09-08 00:15:06', '2023-11-11 13:30:54'),
+(12, 8, 1, 'Red Casual T-shirt', 'RCT001', 'Red', 'Red', NULL, 110.00, 0.00, 'category', 88.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
+(13, 8, 2, 'Gap T-shirt', 'GT01', 'Blue', 'Blue', '45000', 120.00, 10.00, 'product', 108.00, '100', NULL, NULL, NULL, NULL, 'Cotton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'No', 1, '2023-11-04 16:52:21', '2023-11-11 13:42:58'),
+(14, 8, 2, 'Gap Blue T-Shirt', 'GBT001', 'Blue', 'Blue', '45000', 130.00, 10.00, 'product', 117.00, '100', NULL, NULL, NULL, NULL, 'Cotton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-11-04 17:08:40', '2023-11-11 13:43:15'),
+(15, 8, 2, 'Red Gap T-shirt', 'RGT01', 'Red', 'Red', NULL, 140.00, 15.00, 'product', 119.00, '100', NULL, 'This is Red Gap T-shirt. Very Good T-shirt and was created by pure cotton.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-11-04 17:10:50', '2023-11-07 07:54:06'),
+(16, 8, 5, 'Black Puma T-shirt', 'BLPT001', 'Black', 'Black', '45000', 160.00, 10.00, 'product', 144.00, '100', NULL, NULL, NULL, NULL, 'Cotton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-11-09 15:09:40', '2023-11-11 13:27:54'),
+(17, 9, 1, 'Women Red Shirt', 'WRS001', 'Red', 'Red', '45000', 190.00, 10.00, 'product', 171.00, '100', NULL, NULL, NULL, NULL, 'Wool', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-11-11 13:33:29', '2023-11-11 13:33:29'),
+(18, 8, 6, 'Grey T-Shirt', 'GT001', 'Grey', 'Grey', NULL, 170.00, 0.00, 'category', 136.00, '100', NULL, NULL, NULL, NULL, 'Cotton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-11-11 13:37:49', '2023-11-11 13:40:57');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `products_attributes`
 --
 
 DROP TABLE IF EXISTS `products_attributes`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products_attributes` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   `size` varchar(255) DEFAULT NULL,
   `sku` varchar(255) DEFAULT NULL,
@@ -497,150 +412,314 @@ CREATE TABLE `products_attributes` (
   `stock` int(11) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products_attributes`
 --
 
-LOCK TABLES `products_attributes` WRITE;
-/*!40000 ALTER TABLE `products_attributes` DISABLE KEYS */;
-INSERT INTO `products_attributes` VALUES
-(1,1,'Small','BT001S',10.00,100,1,'2023-08-21 17:15:35','2023-11-11 18:31:52'),
-(2,1,'Medium','BT001M',15.00,80,1,'2023-08-21 17:15:35','2023-11-11 18:31:52'),
-(3,1,'Large','BT001L',20.00,60,1,'2023-08-21 17:15:35','2023-11-11 18:31:52'),
-(4,4,'Extra Large','YT001XL',25.00,40,1,'2023-08-21 17:15:35','2023-11-11 18:24:04'),
-(5,1,'Double Extra Large','BT001XXL',45.00,30,1,'2023-08-21 17:15:35','2023-11-11 18:31:52'),
-(6,5,'Small','GCT001S',10.00,100,1,'2023-08-22 10:28:39','2023-11-11 13:38:11'),
-(7,5,'Medium','GCT001M',15.00,60,1,'2023-08-22 10:28:39','2023-11-11 13:38:11'),
-(8,5,'Large','GCT001L',20.00,80,1,'2023-08-22 10:28:39','2023-11-11 13:38:11'),
-(15,12,'Small','RCT001S',120.00,100,1,'2023-11-04 16:50:18','2023-11-04 17:32:59'),
-(16,12,'Medium','RCT001M',130.00,100,1,'2023-11-04 16:50:18','2023-11-04 17:32:59'),
-(17,12,'Large','RCT001L',135.00,100,1,'2023-11-04 16:50:18','2023-11-04 17:32:59'),
-(18,4,'Small','YT001S',50.00,10,1,'2023-11-11 18:12:52','2023-11-11 18:26:35'),
-(19,4,'Medium','YT001M',60.00,20,1,'2023-11-11 18:12:52','2023-11-11 18:26:35'),
-(20,4,'Large','YT001L',70.00,15,1,'2023-11-11 18:26:35','2023-11-11 18:26:35'),
-(21,1,'Extra Large','BT001XL',30.00,10,1,'2023-11-11 18:26:35','2023-11-11 18:31:52');
-/*!40000 ALTER TABLE `products_attributes` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `products_attributes` (`id`, `product_id`, `size`, `sku`, `price`, `stock`, `status`, `created_at`, `updated_at`) VALUES
+(1, 1, 'Small', 'BT001S', 10.00, 100, 1, '2023-08-21 17:15:35', '2023-11-11 18:31:52'),
+(2, 1, 'Medium', 'BT001M', 15.00, 80, 1, '2023-08-21 17:15:35', '2023-11-11 18:31:52'),
+(3, 1, 'Large', 'BT001L', 20.00, 60, 1, '2023-08-21 17:15:35', '2023-11-11 18:31:52'),
+(4, 4, 'Extra Large', 'YT001XL', 25.00, 40, 1, '2023-08-21 17:15:35', '2023-11-11 18:24:04'),
+(5, 1, 'Double Extra Large', 'BT001XXL', 45.00, 30, 1, '2023-08-21 17:15:35', '2023-11-11 18:31:52'),
+(6, 5, 'Small', 'GCT001S', 10.00, 100, 1, '2023-08-22 10:28:39', '2023-11-11 13:38:11'),
+(7, 5, 'Medium', 'GCT001M', 15.00, 60, 1, '2023-08-22 10:28:39', '2023-11-11 13:38:11'),
+(8, 5, 'Large', 'GCT001L', 20.00, 80, 1, '2023-08-22 10:28:39', '2023-11-11 13:38:11'),
+(15, 12, 'Small', 'RCT001S', 120.00, 100, 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
+(16, 12, 'Medium', 'RCT001M', 130.00, 100, 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
+(17, 12, 'Large', 'RCT001L', 135.00, 100, 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
+(18, 4, 'Small', 'YT001S', 50.00, 10, 1, '2023-11-11 18:12:52', '2023-11-11 18:26:35'),
+(19, 4, 'Medium', 'YT001M', 60.00, 20, 1, '2023-11-11 18:12:52', '2023-11-11 18:26:35'),
+(20, 4, 'Large', 'YT001L', 70.00, 15, 1, '2023-11-11 18:26:35', '2023-11-11 18:26:35'),
+(21, 1, 'Extra Large', 'BT001XL', 30.00, 10, 1, '2023-11-11 18:26:35', '2023-11-11 18:31:52');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `products_filters`
 --
 
 DROP TABLE IF EXISTS `products_filters`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products_filters` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `filter_name` varchar(255) DEFAULT NULL,
   `filter_value` varchar(255) DEFAULT NULL,
   `sort` int(11) DEFAULT NULL,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products_filters`
 --
 
-LOCK TABLES `products_filters` WRITE;
-/*!40000 ALTER TABLE `products_filters` DISABLE KEYS */;
-INSERT INTO `products_filters` VALUES
-(1,'Fabric','Cotton',1,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(2,'Fabric','Polyester',2,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(3,'Fabric','Wool',3,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(4,'Sleeve','Full Sleeve',1,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(5,'Sleeve','Half Sleeve',2,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(6,'Sleeve','Short Sleeve',3,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(7,'Sleeve','Sleeveless',4,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(8,'Pattern','Checked',1,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(9,'Pattern','Plain',2,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(10,'Pattern','Printed',3,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(11,'Pattern','Self',4,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(12,'Pattern','Solid',5,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(13,'Fit','Regular',1,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(14,'Fit','Slim',2,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(15,'Occasion','Casual',1,1,'2023-11-11 00:41:48','2023-11-11 00:41:48'),
-(16,'Occasion','Formal',2,1,'2023-11-11 00:41:48','2023-11-11 00:41:48');
-/*!40000 ALTER TABLE `products_filters` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `products_filters` (`id`, `filter_name`, `filter_value`, `sort`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Fabric', 'Cotton', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(2, 'Fabric', 'Polyester', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(3, 'Fabric', 'Wool', 3, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(4, 'Sleeve', 'Full Sleeve', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(5, 'Sleeve', 'Half Sleeve', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(6, 'Sleeve', 'Short Sleeve', 3, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(7, 'Sleeve', 'Sleeveless', 4, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(8, 'Pattern', 'Checked', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(9, 'Pattern', 'Plain', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(10, 'Pattern', 'Printed', 3, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(11, 'Pattern', 'Self', 4, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(12, 'Pattern', 'Solid', 5, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(13, 'Fit', 'Regular', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(14, 'Fit', 'Slim', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(15, 'Occasion', 'Casual', 1, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(16, 'Occasion', 'Formal', 2, 1, '2023-11-11 00:41:48', '2023-11-11 00:41:48'),
+(17, 'Occasion', 'Party', 3, 1, '2011-11-23 00:41:00', '2011-11-23 00:41:00');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `products_images`
 --
 
 DROP TABLE IF EXISTS `products_images`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `products_images` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `product_id` int(11) DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
   `image_sort` int(11) DEFAULT 0,
   `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `products_images`
 --
 
-LOCK TABLES `products_images` WRITE;
-/*!40000 ALTER TABLE `products_images` DISABLE KEYS */;
-INSERT INTO `products_images` VALUES
-(8,14,'product-6893143.jpg',0,1,'2023-11-04 17:08:41','2023-11-11 13:43:15'),
-(9,15,'product-6729803.jpg',2,1,'2023-11-04 17:10:50','2023-11-10 02:22:02'),
-(11,4,'product-882432.jpg',0,1,'2023-11-11 18:10:48','2023-11-11 18:26:35');
-/*!40000 ALTER TABLE `products_images` ENABLE KEYS */;
-UNLOCK TABLES;
+INSERT INTO `products_images` (`id`, `product_id`, `image`, `image_sort`, `status`, `created_at`, `updated_at`) VALUES
+(8, 14, 'product-6893143.jpg', 0, 1, '2023-11-04 17:08:41', '2023-11-11 13:43:15'),
+(9, 15, 'product-6729803.jpg', 2, 1, '2023-11-04 17:10:50', '2023-11-10 02:22:02'),
+(11, 4, 'product-882432.jpg', 0, 1, '2023-11-11 18:10:48', '2023-11-11 18:26:35');
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `users`
+-- Indexes for dumped tables
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admins_email_unique` (`email`);
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+--
+-- Indexes for table `admins_roles`
+--
+ALTER TABLE `admins_roles`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `banners`
+--
+ALTER TABLE `banners`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `brands`
+--
+ALTER TABLE `brands`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cms_pages`
+--
+ALTER TABLE `cms_pages`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `colors`
+--
+ALTER TABLE `colors`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indexes for table `migrations`
+--
+ALTER TABLE `migrations`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `password_reset_tokens`
+--
+ALTER TABLE `password_reset_tokens`
+  ADD PRIMARY KEY (`email`);
+
+--
+-- Indexes for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+  ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indexes for table `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products_attributes`
+--
+ALTER TABLE `products_attributes`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products_filters`
+--
+ALTER TABLE `products_filters`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `products_images`
+--
+ALTER TABLE `products_images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `users_email_unique` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `admins_roles`
+--
+ALTER TABLE `admins_roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84;
+
+--
+-- AUTO_INCREMENT for table `banners`
+--
+ALTER TABLE `banners`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `brands`
+--
+ALTER TABLE `brands`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
+--
+-- AUTO_INCREMENT for table `cms_pages`
+--
+ALTER TABLE `cms_pages`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `colors`
+--
+ALTER TABLE `colors`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `failed_jobs`
+--
+ALTER TABLE `failed_jobs`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `migrations`
+--
+ALTER TABLE `migrations`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `personal_access_tokens`
+--
+ALTER TABLE `personal_access_tokens`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+
+--
+-- AUTO_INCREMENT for table `products_attributes`
+--
+ALTER TABLE `products_attributes`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+
+--
+-- AUTO_INCREMENT for table `products_filters`
+--
+ALTER TABLE `products_filters`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `products_images`
+--
+ALTER TABLE `products_images`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2023-11-12  2:45:52
