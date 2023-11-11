@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Arr;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductsFilter extends Model
 {
@@ -46,9 +47,9 @@ class ProductsFilter extends Model
                         ->pluck('id'); 
         
         $getProductBrandIds = Product::select('brand_id')                           
-                            ->whereIn('id', $getProductIds)                          
-                            ->groupBy('brand_id')                                
-                            ->pluck('brand_id');       
+                                ->whereIn('id', $getProductIds)                          
+                                ->groupBy('brand_id')                                
+                                ->pluck('brand_id');       
 
         $getProductBrands = Brand::select('id','brand_name')                           
                             ->where('status', 1)
@@ -58,5 +59,58 @@ class ProductsFilter extends Model
                             ->toArray();                                               // use on blade ----> $brand['brand_name'] 
                             
         return $getProductBrands;
+    }
+
+    public static function getDynamicFilters($catIds)                                  // Part 1.0 - Fabric,Sleeve, Fit, Occasion, Pattern , etc...
+    {
+        $getProductIds = Product::select('id')
+                        ->whereIn('category_id', $catIds)                             
+                        ->pluck('id'); 
+        
+        $getFilterColumns = ProductsFilter::select('filter_name')
+                            ->pluck('filter_name')
+                            ->toArray();
+        
+        if (count($getFilterColumns) > 0) {
+            $getFilterValues = Product::select($getFilterColumns)
+                                ->where('status', 1)
+                                ->whereIn('id', $getProductIds)
+                                ->get()
+                                ->toArray();
+        } else {
+
+            $getFilterValues = Product::where('status', 1)
+                                ->whereIn('id', $getProductIds)
+                                ->get()
+                                ->toArray();
+        }
+
+        //Syntax array_filter(array, callbackfunction, flag) --->w3school
+        //Syntax array_filter( array $array [, callable $callback [, int $flag = 0 ]]): array
+        //Syntax array_unique( array $array [, int $sort_flags = SORT_STRING ])
+        $getFilterValues = array_filter(array_unique(Arr::flatten($getFilterValues)));   
+        
+        $getCategoryFilterColumns = ProductsFilter::select('filter_name')
+                                    ->where('status', 1)
+                                    ->whereIn('filter_value', $getFilterValues)
+                                    ->groupBy('filter_name')
+                                    ->orderBy('sort', 'ASC')
+                                    ->pluck('filter_name')
+                                    ->toArray();
+
+        return $getCategoryFilterColumns;
+    }
+
+    public static function selectedFilters($catIds, $filter_name)                      // Part 1.1 - Fabric (cottom/polyester),Fit (regular/slim), etc...
+    {
+        $productFilters = Product::select($filter_name)
+                            ->whereIn('category_id', $catIds)
+                            ->groupBy($filter_name)
+                            ->get()
+                            ->toArray();
+        
+        $productFilters = array_filter(Arr::flatten($productFilters));
+
+        return $productFilters;
     }
 }

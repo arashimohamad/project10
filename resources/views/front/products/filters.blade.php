@@ -352,47 +352,46 @@
                 </div>
             </div>
         </div>
-        <div class="u-s-m-b-30">
-            <div class="shop-w shop-w--style">
-                <div class="shop-w__intro-wrap">
-                    <h1 class="shop-w__h">FABRIC</h1>
-                    <span class="fas fa-minus collapsed shop-w__toggle" data-target="#s-fabric" data-toggle="collapse"></span>
+        @php $getDynamicFilters = ProductsFilter::getDynamicFilters($categoryDetails['catIds']); @endphp
+        @foreach ($getDynamicFilters as $key => $filter)
+            <div class="u-s-m-b-30">
+                <div class="shop-w shop-w--style">
+                    <div class="shop-w__intro-wrap">
+                        <h1 class="shop-w__h">{{ ucwords($filter) }}</h1>
+                        <span class="fas fa-minus collapsed shop-w__toggle" data-target="#s-filter{{$key}}" data-toggle="collapse"></span>
+                    </div>
+                    <div class="shop-w__wrap collapse" id="s-filter{{$key}}">                   
+                        <ul class="shop-w__list gl-scroll">
+                            @php $filterValues = ProductsFilter::selectedFilters($categoryDetails['catIds'], $filter); @endphp
+                            @foreach ($filterValues as $fkey => $filterValue) 
+                                <?php /*
+                                    // Highlight filter value selector
+                                    if (isset($_GET['color']) && !empty($_GET['color'])) {                            
+                                        $colors = explode('~', $_GET['color']);  
+                                        if (!empty($colors) && in_array($color, $colors)) {
+                                            $colorChecked = "checked";
+                                        } else {
+                                            $colorChecked = "";
+                                        }
+                                    } else {
+                                        $colorChecked = "";
+                                    }
+                                */?>
+                                <li>
+                                    <!--====== Check Box ======-->
+                                    <div class="check-box">
+                                        <input type="checkbox" id="filtervalue{{$fkey}}" name="filter" value="{{$filterValue}}" class="filterAjax">
+                                        <div class="check-box__state check-box__state--primary">
+                                            <label class="check-box__label" for="xs">{{ $filterValue }}</label>
+                                        </div>
+                                    </div>
+                                    <!--====== End - Check Box ======-->
+                                </li>        
+                            @endforeach
+                        </ul>
+                    </div>
                 </div>
-                <div class="shop-w__wrap collapse" id="s-fabric">
-                    <ul class="shop-w__list gl-scroll">
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="xs">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="xs">Cotton</label>
-                                </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="small">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="small">Polyester</label>
-                                </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>
-                        <li>
-                            <!--====== Check Box ======-->
-                            <div class="check-box">
-                                <input type="checkbox" id="medium">
-                                <div class="check-box__state check-box__state--primary">
-                                    <label class="check-box__label" for="medium">Wool</label>
-                                </div>
-                            </div>
-                            <!--====== End - Check Box ======-->
-                        </li>                        
-                    </ul>
-                </div>
-            </div>
-        </div>
+            </div>            
+        @endforeach
     </div>
 </div>
