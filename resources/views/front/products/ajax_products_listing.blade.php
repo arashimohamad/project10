@@ -2,7 +2,7 @@
     <div class="col-lg-4 col-md-6 col-sm-6">
         <div class="product-m">
             <div class="product-m__thumb">
-                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="product-detail.html">
+                <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{{ url('product/'.$product->id) }}">
                     {{-- Option 1 --}}
                     {{-- Special case on filter size. For id = 4 for size, the system reads the id as product_id in the products_attributes table. 
                     That's why the id is correct, but another picture comes out using id=4 on the products table. Dizziness --}}

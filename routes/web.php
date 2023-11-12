@@ -51,6 +51,9 @@ Route::group([],function () {
     foreach ($catUrls as $key => $url) {        
         Route::get($url, [ProductController::class, 'listing']);
     }
+
+    // Product Detail Page
+    Route::get('product/{id}', [ProductController::class, 'detail']);
     
 });
 

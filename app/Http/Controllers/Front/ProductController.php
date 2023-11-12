@@ -111,4 +111,9 @@ class ProductController extends Controller
 
         }                
     }
+
+    public function detail()
+    {
+        return view('front.products.detail');
+    }
 }
