@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 11, 2023 at 11:46 PM
+-- Generation Time: Nov 13, 2023 at 12:50 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -499,8 +499,10 @@ CREATE TABLE `products_images` (
 
 INSERT INTO `products_images` (`id`, `product_id`, `image`, `image_sort`, `status`, `created_at`, `updated_at`) VALUES
 (8, 14, 'product-6893143.jpg', 0, 1, '2023-11-04 17:08:41', '2023-11-11 13:43:15'),
-(9, 15, 'product-6729803.jpg', 2, 1, '2023-11-04 17:10:50', '2023-11-10 02:22:02'),
-(11, 4, 'product-882432.jpg', 0, 1, '2023-11-11 18:10:48', '2023-11-11 18:26:35');
+(9, 15, 'product-6729803.jpg', 0, 1, '2023-11-04 17:10:50', '2023-11-13 00:05:40'),
+(11, 4, 'product-882432.jpg', 0, 1, '2023-11-11 18:10:48', '2023-11-11 18:26:35'),
+(12, 15, 'product-1697623.jpg', 0, 1, '2023-11-13 00:04:57', '2023-11-13 00:05:40'),
+(13, 15, 'product-2349149.jpg', 0, 1, '2023-11-13 00:05:18', '2023-11-13 00:05:40');
 
 -- --------------------------------------------------------
 
@@ -711,7 +713,7 @@ ALTER TABLE `products_filters`
 -- AUTO_INCREMENT for table `products_images`
 --
 ALTER TABLE `products_images`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `users`

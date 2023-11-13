@@ -95,7 +95,7 @@ class ProductController extends Controller
                 }                 
             }
 
-            $categoryProducts = $categoryProducts->paginate(6);
+            $categoryProducts = $categoryProducts->paginate(12);
 
             if ($request->ajax()) {
                 return response()->json([
@@ -112,8 +112,17 @@ class ProductController extends Controller
         }                
     }
 
-    public function detail()
+    public function detail($id)
     {
-        return view('front.products.detail');
+        $productDetails = Product::with(['category','brand','images','attributes'])
+                            ->find($id)
+                            ->toArray();
+        //dd($productDetails);
+
+        // Get Category Detail and categoryDetails($url) get from App\Models\Category;
+        $categoryDetails = Category::categoryDetails($productDetails['category']['url']);                  // To perform breadcrumb links
+        //dd($categoryDetails);
+
+        return view('front.products.detail', compact('productDetails', 'categoryDetails'));
     }
 }
