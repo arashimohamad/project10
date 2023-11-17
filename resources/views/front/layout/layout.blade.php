@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <![endif]-->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
         <meta name="description" content="">
         <meta name="author" content="SiteMakers.in">
         <link href="images/favicon.png" rel="shortcut icon">
@@ -60,7 +61,7 @@
         <!--====== App ======-->
         <script src="{{url('front/js/app.js')}}"></script>
         <!--====== Custom JS For Front ======-->
-        {{-- <script src="{{asset('front/js/custom.js')}}"></script> --}}
+        <script src="{{asset('front/js/custom.js')}}"></script>
         <!--====== Filters Products ======-->
         <script src="{{asset('front/js/filters.js')}}"></script>
         <!--====== Noscript ======-->

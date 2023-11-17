@@ -54,6 +54,9 @@ Route::group([],function () {
 
     // Product Detail Page
     Route::get('product/{id}', [ProductController::class, 'detail']);
+
+    // Get Product Attribute Price
+    Route::post('get-attribute-size', [ProductController::class, 'getAttributePrice']);
     
 });
 

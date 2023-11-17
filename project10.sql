@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 13, 2023 at 12:50 AM
+-- Generation Time: Nov 17, 2023 at 09:02 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -391,7 +391,7 @@ INSERT INTO `products` (`id`, `category_id`, `brand_id`, `product_name`, `produc
 (12, 8, 1, 'Red Casual T-shirt', 'RCT001', 'Red', 'Red', NULL, 110.00, 0.00, 'category', 88.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-11-04 16:50:18', '2023-11-04 17:32:59'),
 (13, 8, 2, 'Gap T-shirt', 'GT01', 'Blue', 'Blue', '45000', 120.00, 10.00, 'product', 108.00, '100', NULL, NULL, NULL, NULL, 'Cotton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'No', 1, '2023-11-04 16:52:21', '2023-11-11 13:42:58'),
 (14, 8, 2, 'Gap Blue T-Shirt', 'GBT001', 'Blue', 'Blue', '45000', 130.00, 10.00, 'product', 117.00, '100', NULL, NULL, NULL, NULL, 'Cotton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-11-04 17:08:40', '2023-11-11 13:43:15'),
-(15, 8, 2, 'Red Gap T-shirt', 'RGT01', 'Red', 'Red', NULL, 140.00, 15.00, 'product', 119.00, '100', NULL, 'This is Red Gap T-shirt. Very Good T-shirt and was created by pure cotton.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-11-04 17:10:50', '2023-11-07 07:54:06'),
+(15, 8, 2, 'Red Gap T-shirt', 'RGT01', 'Red', 'Red', NULL, 140.00, 15.00, 'product', 119.00, '100', NULL, 'This is Red Gap T-shirt. Very Good T-shirt and was created by pure cotton.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Yes', 'Yes', 1, '2023-11-04 17:10:50', '2023-11-17 08:56:59'),
 (16, 8, 5, 'Black Puma T-shirt', 'BLPT001', 'Black', 'Black', '45000', 160.00, 10.00, 'product', 144.00, '100', NULL, NULL, NULL, NULL, 'Cotton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-11-09 15:09:40', '2023-11-11 13:27:54'),
 (17, 9, 1, 'Women Red Shirt', 'WRS001', 'Red', 'Red', '45000', 190.00, 10.00, 'product', 171.00, '100', NULL, NULL, NULL, NULL, 'Wool', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-11-11 13:33:29', '2023-11-11 13:33:29'),
 (18, 8, 6, 'Grey T-Shirt', 'GT001', 'Grey', 'Grey', NULL, 170.00, 0.00, 'category', 136.00, '100', NULL, NULL, NULL, NULL, 'Cotton', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'No', 'No', 1, '2023-11-11 13:37:49', '2023-11-11 13:40:57');
@@ -434,7 +434,10 @@ INSERT INTO `products_attributes` (`id`, `product_id`, `size`, `sku`, `price`, `
 (18, 4, 'Small', 'YT001S', 50.00, 10, 1, '2023-11-11 18:12:52', '2023-11-11 18:26:35'),
 (19, 4, 'Medium', 'YT001M', 60.00, 20, 1, '2023-11-11 18:12:52', '2023-11-11 18:26:35'),
 (20, 4, 'Large', 'YT001L', 70.00, 15, 1, '2023-11-11 18:26:35', '2023-11-11 18:26:35'),
-(21, 1, 'Extra Large', 'BT001XL', 30.00, 10, 1, '2023-11-11 18:26:35', '2023-11-11 18:31:52');
+(21, 1, 'Extra Large', 'BT001XL', 30.00, 10, 1, '2023-11-11 18:26:35', '2023-11-11 18:31:52'),
+(22, 15, 'Small', 'RGT01-S', 140.00, 18, 1, '2023-11-17 06:33:52', '2023-11-17 08:56:59'),
+(23, 15, 'Medium', 'RGT01-M', 160.00, 15, 1, '2023-11-17 06:33:52', '2023-11-17 08:56:59'),
+(24, 15, 'Large', 'RGT01-L', 180.00, 22, 1, '2023-11-17 06:33:52', '2023-11-17 08:56:59');
 
 -- --------------------------------------------------------
 
@@ -499,10 +502,10 @@ CREATE TABLE `products_images` (
 
 INSERT INTO `products_images` (`id`, `product_id`, `image`, `image_sort`, `status`, `created_at`, `updated_at`) VALUES
 (8, 14, 'product-6893143.jpg', 0, 1, '2023-11-04 17:08:41', '2023-11-11 13:43:15'),
-(9, 15, 'product-6729803.jpg', 0, 1, '2023-11-04 17:10:50', '2023-11-13 00:05:40'),
+(9, 15, 'product-6729803.jpg', 0, 1, '2023-11-04 17:10:50', '2023-11-17 08:56:59'),
 (11, 4, 'product-882432.jpg', 0, 1, '2023-11-11 18:10:48', '2023-11-11 18:26:35'),
-(12, 15, 'product-1697623.jpg', 0, 1, '2023-11-13 00:04:57', '2023-11-13 00:05:40'),
-(13, 15, 'product-2349149.jpg', 0, 1, '2023-11-13 00:05:18', '2023-11-13 00:05:40');
+(12, 15, 'product-1697623.jpg', 0, 1, '2023-11-13 00:04:57', '2023-11-17 08:56:59'),
+(13, 15, 'product-2349149.jpg', 0, 1, '2023-11-13 00:05:18', '2023-11-17 08:56:59');
 
 -- --------------------------------------------------------
 
@@ -701,7 +704,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `products_attributes`
 --
 ALTER TABLE `products_attributes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `products_filters`
