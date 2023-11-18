@@ -125,11 +125,9 @@ class ProductController extends Controller
                             }])
                             ->find($id)
                             ->toArray();
-        //dd($productDetails);
 
         // Get Category Detail and categoryDetails($url) get from App\Models\Category;
         $categoryDetails = Category::categoryDetails($productDetails['category']['url']);                  // To perform breadcrumb links
-        //dd($categoryDetails);
 
         // Get Group Code Product (Product Color)
         $groupProducts = array();
@@ -138,10 +136,19 @@ class ProductController extends Controller
             $groupProducts = Product::select('id', 'product_color')->where('id', '!=', $id)
                                 ->where(['group_code'=>$productDetails['group_code'] , 'status' => 1])
                                 ->get()->toArray();
-            //dd($groupProducts);
-        }         
+        }
+        
+        // Get Related Products (RELATED PRODUCTS PRODUCTS THAT YOU ALSO LIKE TO BUY)
+        $relatedProducts = Product::with('brand', 'images')
+                            ->where('category_id', $productDetails['category']['id'])
+                            ->where('id', '!=', $id)
+                            ->limit(4)
+                            ->inRandomOrder()
+                            ->get()
+                            ->toArray();        
+        //dd($relatedProducts);
 
-        return view('front.products.detail', compact('productDetails', 'categoryDetails', 'groupProducts'));
+        return view('front.products.detail', compact('productDetails', 'categoryDetails', 'groupProducts', 'relatedProducts'));
     }
     
     public function getAttributePrice(Request $request)

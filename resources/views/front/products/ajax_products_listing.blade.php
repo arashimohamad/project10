@@ -32,7 +32,7 @@
                     {{--<a href="shop-side-version-2.html">{{ $product['brand']['brand_name'] }}</a>  Option 2 --}}
                 </div>
                 <div class="product-m__name">
-                    <a href="product-detail.html">{{ $product->product_name }}</a>
+                    <a href="{{ url('product/'.$product['id']) }}">{{ $product->product_name }}</a>
                 </div>
                 <div class="product-m__rating gl-rating-style">
                     <i class="fas fa-star"></i>
