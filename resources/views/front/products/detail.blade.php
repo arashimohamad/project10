@@ -105,41 +105,40 @@
 
                                     <a class="s-gplus--color-hover" href="#"><i class="fab fa-google-plus-g"></i></a></li>
                             </ul>
-                        </div>
+                        </div>                
                         <div class="u-s-m-b-15">
                             <form class="pd-detail__form">
-                                <div class="u-s-m-b-15">
-
-                                    <span class="pd-detail__label u-s-m-b-8">Color:</span>
-                                    <div class="pd-detail__color">
-                                        <div class="color__radio">
-                                            <input type="radio" id="jet" name="color" checked>
-                                            <label class="color__radio-label" for="jet" style="background-color: #000000"></label></div>
-                                        <a href="product-detail2.html"><div class="color__radio">
-                                            <label class="color__radio-label" for="folly" style="background-color: #735240"></label>
-                                        </div></a>
-                                        <a href="product-detail2.html"><div class="color__radio">
-                                            <label class="color__radio-label" for="yellow" style="background-color: #158F8B"></label>
-                                        </div></a>
-                                        <a href="product-detail2.html"><div class="color__radio">
-                                            <label class="color__radio-label" for="granite-gray" style="background-color: #FC2767"></label>
-                                        </div></a>
-                                        <a href="product-detail2.html"><div class="color__radio">
-                                            <label class="color__radio-label" for="space-cadet" style="background-color: #5370FE"></label>
-                                        </div></a>
+                                @if (count($groupProducts) > 0)
+                                    <div class="u-s-m-b-15">
+                                        <span class="pd-detail__label u-s-m-b-8">Color:</span>
+                                        <div class="pd-detail__color">                                        
+                                            @foreach ($groupProducts as $product)
+                                                <a href="{{ url('product/'.$product['id']) }}">
+                                                    <div class="color__radio">
+                                                        <label class="color__radio-label" for="folly" style="background-color: {{ $product['product_color'] }}"></label>
+                                                    </div>
+                                                </a>                                        
+                                            @endforeach
+                                        </div>                                        
                                     </div>
-                                </div>
+                                @endif
                                 <div class="u-s-m-b-15">
-                                    <span class="pd-detail__label u-s-m-b-8">Size:</span>
-                                    <div class="pd-detail__size">
-                                        @foreach ($productDetails['attributes'] as $attribute)
-                                        <div class="size__radio">
-                                            <input type="radio" id="{{ $attribute['size'] }}" name="size" value="{{ $attribute['size'] }}" 
-                                            product-id="{{ $productDetails['id'] }}" class="getPrice" checked>
-                                            <label class="size__radio-label" for="{{ $attribute['size'] }}">{{ $attribute['size'] }}</label>
-                                        </div>   
-                                        @endforeach                                     
-                                    </div>
+                                    <span class="pd-detail__label u-s-m-b-8">Size:
+                                        @if (count($productDetails['attributes']) == 0)
+                                            Size Not Available
+                                        @endif
+                                    </span>
+                                    @if (count($productDetails['attributes']) > 0)
+                                        <div class="pd-detail__size">
+                                            @foreach ($productDetails['attributes'] as $attribute)
+                                                <div class="size__radio">
+                                                    <input type="radio" id="{{ $attribute['size'] }}" name="size" value="{{ $attribute['size'] }}" 
+                                                    product-id="{{ $productDetails['id'] }}" class="getPrice" checked>
+                                                    <label class="size__radio-label" for="{{ $attribute['size'] }}">{{ $attribute['size'] }}</label>
+                                                </div>   
+                                            @endforeach                                     
+                                        </div>                                   
+                                    @endif
                                 </div>
                                 <div class="pd-detail-inline-2">
                                     <div class="u-s-m-b-15">
@@ -295,15 +294,15 @@
                                 <div class="pd-tab__tag">
                                     <h2 class="u-s-m-b-15">PRODUCT VIDEO</h2>
                                     <div class="u-s-m-b-15">
-                                        <video width="400" controls>
-                                          <source src="video/sample.mp4" type="video/mp4">
-                                        
-                                          Your browser does not support HTML video.
-                                        </video>
-
+                                        @if (!empty($productDetails['product_video']))
+                                            <video width="400" controls>
+                                                <source src="{{ asset('front/videos/products/'.$productDetails['product_video']) }}" type="video/mp4">
+                                            </video>
+                                        @else
+                                            Please upload a video or your browser does not support HTML video.
+                                        @endif
                                     </div>
-
-                                    <span class="gl-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span>
+                                    {{-- <span class="gl-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</span> --}}
                                 </div>
                             </div>
                             <!--====== End - Tab 2 ======-->

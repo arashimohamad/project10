@@ -114,7 +114,15 @@ class ProductController extends Controller
 
     public function detail($id)
     {
-        $productDetails = Product::with(['category','brand','images','attributes'])
+        $productCount = Product::where('id', $id)->where('status', 1)->count();                            
+        if ($productCount == 0) {                                                                         // If product status = 0, then route will be 404
+            abort('404');
+        }
+
+        $productDetails = Product::with(['category','brand','images',
+                            'attributes'=>function($query) {                                              // do not display sizes if stock = 0 and status=0
+                                $query->where('stock', '>', 0)->where('status', 1);
+                            }])
                             ->find($id)
                             ->toArray();
         //dd($productDetails);
@@ -123,7 +131,17 @@ class ProductController extends Controller
         $categoryDetails = Category::categoryDetails($productDetails['category']['url']);                  // To perform breadcrumb links
         //dd($categoryDetails);
 
-        return view('front.products.detail', compact('productDetails', 'categoryDetails'));
+        // Get Group Code Product (Product Color)
+        $groupProducts = array();
+
+        if (!empty($productDetails['group_code'])) {
+            $groupProducts = Product::select('id', 'product_color')->where('id', '!=', $id)
+                                ->where(['group_code'=>$productDetails['group_code'] , 'status' => 1])
+                                ->get()->toArray();
+            //dd($groupProducts);
+        }         
+
+        return view('front.products.detail', compact('productDetails', 'categoryDetails', 'groupProducts'));
     }
     
     public function getAttributePrice(Request $request)
