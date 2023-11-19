@@ -6,9 +6,11 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\ProductsFilter;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -115,6 +117,7 @@ class ProductController extends Controller
     public function detail($id)
     {
         $productCount = Product::where('id', $id)->where('status', 1)->count();                            
+        
         if ($productCount == 0) {                                                                         // If product status = 0, then route will be 404
             abort('404');
         }
@@ -138,7 +141,8 @@ class ProductController extends Controller
                                 ->get()->toArray();
         }
         
-        // Get Related Products (RELATED PRODUCTS PRODUCTS THAT YOU ALSO LIKE TO BUY)
+        // RELATED PRODUCTS - PRODUCTS THAT YOU ALSO LIKE TO BUY        
+        // Get Related Products 
         $relatedProducts = Product::with('brand', 'images')
                             ->where('category_id', $productDetails['category']['id'])
                             ->where('id', '!=', $id)
@@ -146,9 +150,42 @@ class ProductController extends Controller
                             ->inRandomOrder()
                             ->get()
                             ->toArray();        
-        //dd($relatedProducts);
+        
+        // CUSTOMERS WHO VIEWED THIS ITEM ALSO VIEWED
+        // Set Session for Recentyly Viewed Items 
+        if (empty(Session::get('session_id'))) {
+            $session_id = md5(uniqid(rand(),true));                                                         // Get new session id
+        }else {
+            $session_id = Session::get('session_id');                                                       // Get session id previously
+        }
 
-        return view('front.products.detail', compact('productDetails', 'categoryDetails', 'groupProducts', 'relatedProducts'));
+        Session::put('session_id', $session_id);                                                            // Temporary save
+        
+        // Insert product in recently_viewed_items table if not already exists
+        $countRecentlyViewedTtems = DB::table('recently_viewed_items')                                      // Count recently_viewed_items existed or not
+                                    ->where(['product_id' => $id, 'session_id' => $session_id])
+                                    ->count();
+    
+        if ($countRecentlyViewedTtems == 0) {                                                               // if recently_viewed_items equal 0, then insert the new product_id and session_id
+            DB::table('recently_viewed_items')
+            ->insert(['product_id' => $id, 'session_id' => $session_id]);
+        }
+
+        // Get Recently Viewed Product Ids
+        $recentProductIds = DB::table('recently_viewed_items')                                              // Product Ids on recently_viewed_items table
+                            ->select('product_id')
+                            ->where('product_id', '!=', $id)
+                            ->where('session_id', $session_id)
+                            ->inRandomOrder()->get()
+                            ->take(4)->pluck('product_id');
+        
+        // Get Recently Viewed Product
+        $recentlyViewedProducts = Product::with('brand', 'images')
+                                    ->whereIn('id', $recentProductIds)                                      //to match id with $recentProductIds
+                                    ->get()
+                                    ->toArray();  
+    
+        return view('front.products.detail', compact('productDetails', 'categoryDetails', 'groupProducts', 'relatedProducts', 'recentlyViewedProducts'));
     }
     
     public function getAttributePrice(Request $request)

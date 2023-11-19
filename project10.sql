@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 18, 2023 at 07:53 AM
+-- Generation Time: Nov 19, 2023 at 08:00 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -302,7 +302,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (12, '2023_08_24_235418_create_brands_table', 8),
 (14, '2023_09_11_151936_create_banners_table', 9),
 (19, '2023_11_05_194912_update_products_table', 10),
-(20, '2023_11_11_081425_create_products_filters_table', 11);
+(20, '2023_11_11_081425_create_products_filters_table', 11),
+(21, '2023_11_19_150446_create_recently_viewed_items_table', 12);
 
 -- --------------------------------------------------------
 
@@ -512,6 +513,21 @@ INSERT INTO `products_images` (`id`, `product_id`, `image`, `image_sort`, `statu
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `recently_viewed_items`
+--
+
+DROP TABLE IF EXISTS `recently_viewed_items`;
+CREATE TABLE `recently_viewed_items` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `session_id` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -626,6 +642,12 @@ ALTER TABLE `products_images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `recently_viewed_items`
+--
+ALTER TABLE `recently_viewed_items`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -688,7 +710,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -719,6 +741,12 @@ ALTER TABLE `products_filters`
 --
 ALTER TABLE `products_images`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `recently_viewed_items`
+--
+ALTER TABLE `recently_viewed_items`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
