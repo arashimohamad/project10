@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 28, 2023 at 04:13 PM
+-- Generation Time: Nov 28, 2023 at 07:19 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -166,6 +166,14 @@ CREATE TABLE `carts` (
   `created_at` timestamp NULL DEFAULT current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `carts`
+--
+
+INSERT INTO `carts` (`id`, `session_id`, `user_id`, `product_id`, `product_size`, `product_qty`, `created_at`, `updated_at`) VALUES
+(1, '259d8f63cb65a10b4676e44a99b94f91', NULL, 15, 'Small', 1, '2023-11-28 19:15:07', '2023-11-28 19:15:07'),
+(2, '259d8f63cb65a10b4676e44a99b94f91', NULL, 15, 'Medium', 2, '2023-11-28 19:15:12', '2023-11-28 19:15:12');
 
 -- --------------------------------------------------------
 
@@ -557,7 +565,10 @@ INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_
 (6, 15, '259d8f63cb65a10b4676e44a99b94f91', '2023-11-28 15:15:00', '2023-11-28 15:15:00'),
 (7, 15, 'f827568de9da6875841ee19357910728', '2023-11-28 15:33:20', '2023-11-28 15:33:20'),
 (8, 15, '29b64eef1141360873e83ea8ce2f5d8d', '2023-11-28 15:47:48', '2023-11-28 15:47:48'),
-(9, 15, '1874c67ef2cc02093c0c363755e1adba', '2023-11-28 15:51:31', '2023-11-28 15:51:31');
+(9, 15, '1874c67ef2cc02093c0c363755e1adba', '2023-11-28 15:51:31', '2023-11-28 15:51:31'),
+(10, 15, 'ec22a71c6819c6d97126a01f5332505b', '2023-11-28 17:11:59', '2023-11-28 17:11:59'),
+(11, 15, 'd8471667e4b23cf77fb898bf6e58a6f6', '2023-11-28 17:50:59', '2023-11-28 17:50:59'),
+(12, 15, '2b54d5a290b9fb29af4fedb1340bb91e', '2023-11-28 19:06:16', '2023-11-28 19:06:16');
 
 -- --------------------------------------------------------
 
@@ -726,7 +737,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -792,7 +803,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `users`

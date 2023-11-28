@@ -50,6 +50,8 @@
                     <!--====== Product Right Side Details ======-->
                     <div class="pd-detail">
                         <div>
+                            <div class="print-error-msg" style="display: none">{{-- display error message here --}}</div>
+                            <div class="print-success-msg" style="display: none">{{-- display success message here --}}</div>
                             <span class="pd-detail__name">{{ $productDetails['product_name'] }}</span>
                         </div>
                         <div>

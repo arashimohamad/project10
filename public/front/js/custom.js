@@ -27,8 +27,7 @@ $(document).ready(function () {
             }, error:function() {
                 alert("Error");
             }
-        });
-        
+        });        
     });
 
     // Add to Cart JQuery function
@@ -41,13 +40,30 @@ $(document).ready(function () {
             url: "../add-to-cart",
             data: formData,
             success: function (resp) {
-                alert(resp);
+                //alert(resp);
+                if (resp['status'] == true) {
+                    $('.print-success-msg').show();
+                    $('.print-success-msg').delay(3000).fadeOut('slow');
+                    $('.print-success-msg').html(                                            
+                        "<div class='success'>" + 
+                            "<span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>" + 
+                            resp['message'] + 
+                        "</div>"
+                    );                    
+                } else {
+                    $('.print-error-msg').show();
+                    $('.print-error-msg').delay(3000).fadeOut('slow');
+                    $('.print-error-msg').html(                                            
+                        "<div class='alert'>" + 
+                            "<span class='closebtn' onclick='this.parentElement.style.display='none';'>&times;</span>" + 
+                            resp['message'] + 
+                        "</div>"
+                    );
+                }
             }, error:function(){
                 alert("Error");
             }
-        });
-        
+        });        
     });
-
 });
 

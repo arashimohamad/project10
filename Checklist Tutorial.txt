@@ -104,8 +104,8 @@
 104	Laravel 10 Tutorial #104 
 105	Laravel 10 Tutorial #105 
 106	Laravel 10 Tutorial #106 
-107	Laravel 10 Tutorial #107 - Done     (Checking cart data using html only, not use data(s) from cart table)
-108	Laravel 10 Tutorial #108
+107	Laravel 10 Tutorial #107            (Checking cart data using html only, not use data(s) from cart table)
+108	Laravel 10 Tutorial #108 - Done     (Very tricky for that tutorial, must plan before do that) 
 109	Laravel 10 Tutorial #109
 110	Laravel 10 Tutorial #110
 111	Laravel 10 Tutorial #111
