@@ -200,4 +200,12 @@ class ProductController extends Controller
             return $getAttributePrice;
         }
     }
+
+    public function addToCart(Request $request)
+    {
+        if ($request->isMethod('post')) {                                                       // To check what is returning we are post method 
+            $data = $request->all();
+            echo "<pre>"; print_r($data); die;                                                  // Array ([product_id] => 15,[size] => Small,[qty] => 2)
+        }
+    }
 }

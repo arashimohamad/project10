@@ -57,6 +57,9 @@ Route::group([],function () {
 
     // Get Product Attribute Price
     Route::post('get-attribute-size', [ProductController::class, 'getAttributePrice']);
+
+    // Add to Cart
+    Route::post('/add-to-cart', [ProductController::class, 'addToCart']);
     
 });
 

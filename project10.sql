@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 19, 2023 at 08:00 AM
+-- Generation Time: Nov 28, 2023 at 04:13 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -148,6 +148,24 @@ INSERT INTO `brands` (`id`, `brand_name`, `brand_image`, `brand_logo`, `brand_di
 (4, 'Nike', '', '', 0.00, '', 'nike', '', '', '', 1, '2023-08-27 16:10:12', '2023-08-27 16:10:12'),
 (5, 'Puma', '', '', 0.00, '', 'puma', '', '', '', 1, '2023-08-27 16:10:12', '2023-09-07 23:36:56'),
 (6, 'Fila', '2087.jpg', '88749.png', 10.00, 'Fila shoes are available', 'fila', 'Fila Shoes', 'Fila Shoes', 'fila,shoes', 1, '2023-09-03 02:29:37', '2023-09-07 23:36:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `carts`
+--
+
+DROP TABLE IF EXISTS `carts`;
+CREATE TABLE `carts` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `session_id` varchar(255) DEFAULT NULL,
+  `user_id` int(11) DEFAULT NULL,
+  `product_id` int(11) DEFAULT NULL,
+  `product_size` varchar(255) DEFAULT NULL,
+  `product_qty` int(11) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -303,7 +321,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (14, '2023_09_11_151936_create_banners_table', 9),
 (19, '2023_11_05_194912_update_products_table', 10),
 (20, '2023_11_11_081425_create_products_filters_table', 11),
-(21, '2023_11_19_150446_create_recently_viewed_items_table', 12);
+(21, '2023_11_19_150446_create_recently_viewed_items_table', 12),
+(22, '2023_11_28_231758_create_carts_table', 13);
 
 -- --------------------------------------------------------
 
@@ -525,6 +544,21 @@ CREATE TABLE `recently_viewed_items` (
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `recently_viewed_items`
+--
+
+INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_at`, `updated_at`) VALUES
+(1, 19, 'dec3a972d146e176f27ff7c468429de5', '2023-11-19 14:06:22', '2023-11-19 14:06:22'),
+(2, 15, 'dec3a972d146e176f27ff7c468429de5', '2023-11-19 14:06:32', '2023-11-19 14:06:32'),
+(3, 14, 'dec3a972d146e176f27ff7c468429de5', '2023-11-19 14:07:19', '2023-11-19 14:07:19'),
+(4, 1, 'dec3a972d146e176f27ff7c468429de5', '2023-11-19 14:31:51', '2023-11-19 14:31:51'),
+(5, 4, '259d8f63cb65a10b4676e44a99b94f91', '2023-11-28 15:14:53', '2023-11-28 15:14:53'),
+(6, 15, '259d8f63cb65a10b4676e44a99b94f91', '2023-11-28 15:15:00', '2023-11-28 15:15:00'),
+(7, 15, 'f827568de9da6875841ee19357910728', '2023-11-28 15:33:20', '2023-11-28 15:33:20'),
+(8, 15, '29b64eef1141360873e83ea8ce2f5d8d', '2023-11-28 15:47:48', '2023-11-28 15:47:48'),
+(9, 15, '1874c67ef2cc02093c0c363755e1adba', '2023-11-28 15:51:31', '2023-11-28 15:51:31');
+
 -- --------------------------------------------------------
 
 --
@@ -570,6 +604,12 @@ ALTER TABLE `banners`
 -- Indexes for table `brands`
 --
 ALTER TABLE `brands`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `carts`
+--
+ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -683,6 +723,12 @@ ALTER TABLE `brands`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
@@ -710,7 +756,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -746,7 +792,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`

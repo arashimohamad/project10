@@ -30,4 +30,24 @@ $(document).ready(function () {
         });
         
     });
+
+    // Add to Cart JQuery function
+    $('#addToCart').submit(function () { 
+        // alert("Haha");
+        var formData = $(this).serialize();
+        $.ajax({
+            headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
+            type: "post",
+            url: "../add-to-cart",
+            data: formData,
+            success: function (resp) {
+                alert(resp);
+            }, error:function(){
+                alert("Error");
+            }
+        });
+        
+    });
+
 });
+

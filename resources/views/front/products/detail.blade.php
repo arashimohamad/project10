@@ -107,7 +107,8 @@
                             </ul>
                         </div>                
                         <div class="u-s-m-b-15">
-                            <form class="pd-detail__form">
+                            <form class="pd-detail__form" id="addToCart" name="addToCart" action="javascript:;">  {{-- action="javasript:;" is to stop from submit data --}}
+                                <input type="hidden" name="product_id" value="{{ $productDetails['id'] }}">
                                 @if (count($groupProducts) > 0)
                                     <div class="u-s-m-b-15">
                                         <span class="pd-detail__label u-s-m-b-8">Color:</span>
@@ -133,7 +134,7 @@
                                             @foreach ($productDetails['attributes'] as $attribute)
                                                 <div class="size__radio">
                                                     <input type="radio" id="{{ $attribute['size'] }}" name="size" value="{{ $attribute['size'] }}" 
-                                                    product-id="{{ $productDetails['id'] }}" class="getPrice" checked>
+                                                    product-id="{{ $productDetails['id'] }}" class="getPrice" required>
                                                     <label class="size__radio-label" for="{{ $attribute['size'] }}">{{ $attribute['size'] }}</label>
                                                 </div>   
                                             @endforeach                                     
@@ -148,7 +149,7 @@
 
                                             <span class="input-counter__minus fas fa-minus"></span>
 
-                                            <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
+                                            <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000" id="qty" name="qty">
 
                                             <span class="input-counter__plus fas fa-plus"></span></div>
                                         <!--====== End - Input Counter ======-->
