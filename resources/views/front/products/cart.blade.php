@@ -1,3 +1,4 @@
+@php use App\Models\Product; @endphp
 @extends('front.layout.layout')
 @section('content')
 <!--====== App Content ======-->
@@ -14,7 +15,7 @@
                         <ul class="breadcrumb__list">
                             <li class="has-separator">
 
-                                <a href="index.html">Home</a></li>
+                                <a href="{{ url('/') }}">Home</a></li>
                             <li class="is-marked">
 
                                 <a href="cart.html">Cart</a></li>
@@ -53,7 +54,11 @@
                         <div class="table-responsive">
                             <table class="table-p">
                                 <tbody>
+                                    @php $total_price = 0; @endphp
                                     @foreach ($getCartItems as $item)
+                                        @php
+                                            $getAttributePrice = Product::getAttributePrice($item['product_id'], $item['product_size']);
+                                        @endphp
                                         <!--====== Row ======-->
                                         <tr>
                                             <td>
@@ -85,8 +90,15 @@
                                                 </div>
                                             </td>
                                             <td>
-                                                <span class="table-p__price">RM{{ $item['product']['final_price'] * $item['product_qty'] }}</span>
-                                                </td>
+                                                {{-- <span class="table-p__price">RM{{ $item['product']['final_price'] * $item['product_qty'] }}</span> --}}
+                                                <div class="pd-detail__inline getAttributePrice">
+                                                    <span class="pd-detail__price" style="font-size: 14px">RM{{ $getAttributePrice['final_price'] * $item['product_qty']}}</span>
+                                                    @if ($getAttributePrice['discount'] > 0)
+                                                        <span class="pd-detail__discount">({{$getAttributePrice['discount_percent']}}% OFF)</span>
+                                                        <del class="pd-detail__del">RM{{ $getAttributePrice['product_price'] * $item['product_qty']}}</del>
+                                                    @endif
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="table-p__input-counter-wrap">
                                                     <!--====== Input Counter ======-->
@@ -103,9 +115,12 @@
                                                 </div>
                                             </td>
                                         </tr>
-                                        <!--====== End - Row ======-->                                        
+                                        <!--====== End - Row ======--> 
+                                        @php
+                                            $total_price = $total_price + ($getAttributePrice['final_price'] * $item['product_qty'] );
+                                            //dd($total_price);
+                                        @endphp                                       
                                     @endforeach
-
                                 </tbody>
                             </table>
                         </div>
@@ -174,23 +189,23 @@
                                             <table class="f-cart__table">
                                                 <tbody>
                                                     <tr>
-                                                        <td>SUBTOTAL</td>
-                                                        <td>₹2700</td>
+                                                        <td>SUBTOTAL (RM)</td>
+                                                        <td>{{ $total_price }}</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>COUPON DISCOUNT</td>
-                                                        <td>₹0</td>
+                                                        <td>COUPON DISCOUNT (RM)</td>
+                                                        <td>0</td>
                                                     </tr>
                                                     <tr>
                                                         <td>GRAND TOTAL</td>
-                                                        <td>₹2700</td>
+                                                        <td>RM{{ $total_price }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
                                         <div>
-
-                                            <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button></div>
+                                            <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

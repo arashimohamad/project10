@@ -11,7 +11,7 @@
             <!--====== Primary Nav ======-->
             <div class="primary-nav">
                 <!--====== Main Logo ======-->
-                <a class="main-logo" href="index.html">
+                <a class="main-logo" href="{{ url('/') }}">
                 <img src="{{asset('front/images/logo/logo-1.png')}}" alt=""></a>
                 <!--====== End - Main Logo ======-->
                 <!--====== Search Form ======-->
@@ -763,7 +763,7 @@
                         <!--====== List ======-->
                         <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
                             <li>
-                                <a href="shop-side-version-2.html">NEW ARRIVALS</a>
+                                <a href="{{ url('/') }}">NEW ARRIVALS</a>
                             </li>
                             {{-- Category > Sub Category > Sub Sub Category  --}}
                             @foreach ($categories as $category)
