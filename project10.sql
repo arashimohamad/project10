@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 28, 2023 at 07:19 PM
+-- Generation Time: Dec 03, 2023 at 03:18 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -172,8 +172,9 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `session_id`, `user_id`, `product_id`, `product_size`, `product_qty`, `created_at`, `updated_at`) VALUES
-(1, '259d8f63cb65a10b4676e44a99b94f91', NULL, 15, 'Small', 1, '2023-11-28 19:15:07', '2023-11-28 19:15:07'),
-(2, '259d8f63cb65a10b4676e44a99b94f91', NULL, 15, 'Medium', 2, '2023-11-28 19:15:12', '2023-11-28 19:15:12');
+(1, '5e4f4ab997e12f0aac4bde8c738c21e3', NULL, 15, 'Medium', 1, '2023-12-03 14:04:49', '2023-12-03 14:04:49'),
+(2, '5e4f4ab997e12f0aac4bde8c738c21e3', NULL, 14, 'Medium', 1, '2023-12-03 14:05:19', '2023-12-03 14:05:19'),
+(3, '5e4f4ab997e12f0aac4bde8c738c21e3', NULL, 1, 'Small', 2, '2023-12-03 15:15:21', '2023-12-03 15:15:21');
 
 -- --------------------------------------------------------
 
@@ -466,7 +467,9 @@ INSERT INTO `products_attributes` (`id`, `product_id`, `size`, `sku`, `price`, `
 (21, 1, 'Extra Large', 'BT001XL', 30.00, 10, 1, '2023-11-11 18:26:35', '2023-11-11 18:31:52'),
 (22, 15, 'Small', 'RGT01-S', 140.00, 18, 1, '2023-11-17 06:33:52', '2023-11-18 07:52:45'),
 (23, 15, 'Medium', 'RGT01-M', 160.00, 7, 1, '2023-11-17 06:33:52', '2023-11-18 07:52:45'),
-(24, 15, 'Large', 'RGT01-L', 180.00, 22, 1, '2023-11-17 06:33:52', '2023-11-18 07:52:45');
+(24, 15, 'Large', 'RGT01-L', 180.00, 22, 1, '2023-11-17 06:33:52', '2023-11-18 07:52:45'),
+(25, 14, 'Small', 'GBT001-S', 130.00, 10, 1, '2023-12-03 13:55:04', '2023-12-03 13:55:04'),
+(26, 14, 'Medium', 'GBT001-M', 140.00, 20, 1, '2023-12-03 13:55:04', '2023-12-03 13:55:04');
 
 -- --------------------------------------------------------
 
@@ -530,7 +533,7 @@ CREATE TABLE `products_images` (
 --
 
 INSERT INTO `products_images` (`id`, `product_id`, `image`, `image_sort`, `status`, `created_at`, `updated_at`) VALUES
-(8, 14, 'product-6893143.jpg', 0, 1, '2023-11-04 17:08:41', '2023-11-18 03:34:46'),
+(8, 14, 'product-6893143.jpg', 0, 1, '2023-11-04 17:08:41', '2023-12-03 13:55:04'),
 (9, 15, 'product-6729803.jpg', 0, 1, '2023-11-04 17:10:50', '2023-11-18 07:52:45'),
 (11, 4, 'product-882432.jpg', 0, 1, '2023-11-11 18:10:48', '2023-11-11 18:26:35'),
 (12, 15, 'product-1697623.jpg', 0, 1, '2023-11-13 00:04:57', '2023-11-18 07:52:45'),
@@ -568,7 +571,10 @@ INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_
 (9, 15, '1874c67ef2cc02093c0c363755e1adba', '2023-11-28 15:51:31', '2023-11-28 15:51:31'),
 (10, 15, 'ec22a71c6819c6d97126a01f5332505b', '2023-11-28 17:11:59', '2023-11-28 17:11:59'),
 (11, 15, 'd8471667e4b23cf77fb898bf6e58a6f6', '2023-11-28 17:50:59', '2023-11-28 17:50:59'),
-(12, 15, '2b54d5a290b9fb29af4fedb1340bb91e', '2023-11-28 19:06:16', '2023-11-28 19:06:16');
+(12, 15, '2b54d5a290b9fb29af4fedb1340bb91e', '2023-11-28 19:06:16', '2023-11-28 19:06:16'),
+(13, 15, '5e4f4ab997e12f0aac4bde8c738c21e3', '2023-12-03 13:32:42', '2023-12-03 13:32:42'),
+(14, 14, '5e4f4ab997e12f0aac4bde8c738c21e3', '2023-12-03 13:52:06', '2023-12-03 13:52:06'),
+(15, 1, '5e4f4ab997e12f0aac4bde8c738c21e3', '2023-12-03 15:15:10', '2023-12-03 15:15:10');
 
 -- --------------------------------------------------------
 
@@ -737,7 +743,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -785,7 +791,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `products_attributes`
 --
 ALTER TABLE `products_attributes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `products_filters`
@@ -803,7 +809,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -53,129 +53,58 @@
                         <div class="table-responsive">
                             <table class="table-p">
                                 <tbody>
-
-                                    <!--====== Row ======-->
-                                    <tr>
-                                        <td>
-                                            <div class="table-p__box">
-                                                <div class="table-p__img-wrap">
-                                                    <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt.png')}}" alt=""></div>
-                                                <div class="table-p__info">
-                                                    <span class="table-p__name">
-                                                        <a href="product-detail.html">Product Name</a></span>
-                                                    <span class="table-p__category">
-                                                        <a href="shop-side-version-2.html">Brand Name</a></span>
-                                                    <ul class="table-p__variant-list">
-                                                        <li>
-                                                            <span>Size: Large</span></li>
-                                                        <li>
-                                                            <span>Color: Red</span>
-                                                        </li>
-                                                    </ul>
+                                    @foreach ($getCartItems as $item)
+                                        <!--====== Row ======-->
+                                        <tr>
+                                            <td>
+                                                <div class="table-p__box">
+                                                    <div class="table-p__img-wrap">
+                                                        @if (isset($item['product']['images']['0']['image']) && !empty($item['product']['images']['0']['image']))
+                                                            <a href="{{ url('product/'.$item['product']['id']) }}">
+                                                                <img class="u-img-fluid" src="{{asset('front/images/products/small/'.$item['product']['images']['0']['image'])}}" alt="">
+                                                            </a>
+                                                        @else
+                                                            <a href="{{ url('product/'.$item['product']['id']) }}">
+                                                                <img class="u-img-fluid" src="{{asset('front/images/product/sitemakers-tshirt.png')}}" alt="">
+                                                            </a>
+                                                        @endif
+                                                    </div>
+                                                    <div class="table-p__info">
+                                                        <span class="table-p__name">
+                                                            <a href="{{ url('product/'.$item['product']['id']) }}">{{ $item['product']['product_name'] }}</a></span>
+                                                        <span class="table-p__category">
+                                                            <a href="shop-side-version-2.html">{{ $item['product']['brand']['brand_name'] }}</a></span>
+                                                        <ul class="table-p__variant-list">
+                                                            <li>
+                                                                <span>Size: {{ $item['product_size'] }}</span></li>
+                                                            <li>
+                                                                <span>Color: {{ $item['product']['product_color']}}</span>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="table-p__price">₹900.00</span></td>
-                                        <td>
-                                            <div class="table-p__input-counter-wrap">
-                                                <!--====== Input Counter ======-->
-                                                <div class="input-counter">
-                                                    <span class="input-counter__minus fas fa-minus"></span>
-                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
-                                                    <span class="input-counter__plus fas fa-plus"></span></div>
-                                                <!--====== End - Input Counter ======-->
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-p__del-wrap">
-                                                <a class="far fa-trash-alt table-p__delete-link" href="#"></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!--====== End - Row ======-->
-
-                                    <!--====== Row ======-->
-                                    <tr>
-                                        <td>
-                                            <div class="table-p__box">
-                                                <div class="table-p__img-wrap">
-                                                    <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt.png')}}" alt=""></div>
-                                                <div class="table-p__info">
-                                                    <span class="table-p__name">
-                                                        <a href="product-detail.html">Product Name</a></span>
-                                                    <span class="table-p__category">
-                                                        <a href="shop-side-version-2.html">Brand Name</a></span>
-                                                    <ul class="table-p__variant-list">
-                                                        <li>
-                                                            <span>Size: Large</span></li>
-                                                        <li>
-                                                            <span>Color: Red</span>
-                                                        </li>
-                                                    </ul>
+                                            </td>
+                                            <td>
+                                                <span class="table-p__price">RM{{ $item['product']['final_price'] * $item['product_qty'] }}</span>
+                                                </td>
+                                            <td>
+                                                <div class="table-p__input-counter-wrap">
+                                                    <!--====== Input Counter ======-->
+                                                    <div class="input-counter">
+                                                        <span class="input-counter__minus fas fa-minus"></span>
+                                                        <input class="input-counter__text input-counter--text-primary-style" type="text" value="{{ $item['product_qty'] }}" data-min="1" data-max="1000">
+                                                        <span class="input-counter__plus fas fa-plus"></span></div>
+                                                    <!--====== End - Input Counter ======-->
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="table-p__price">₹900.00</span></td>
-                                        <td>
-                                            <div class="table-p__input-counter-wrap">
-                                                <!--====== Input Counter ======-->
-                                                <div class="input-counter">
-                                                    <span class="input-counter__minus fas fa-minus"></span>
-                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
-                                                    <span class="input-counter__plus fas fa-plus"></span></div>
-                                                <!--====== End - Input Counter ======-->
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-p__del-wrap">
-                                                <a class="far fa-trash-alt table-p__delete-link" href="#"></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!--====== End - Row ======-->
-
-                                    <!--====== Row ======-->
-                                    <tr>
-                                        <td>
-                                            <div class="table-p__box">
-                                                <div class="table-p__img-wrap">
-                                                    <img class="u-img-fluid" src="{{ asset('front/images/product/sitemakers-tshirt.png')}}" alt=""></div>
-                                                <div class="table-p__info">
-                                                    <span class="table-p__name">
-                                                        <a href="product-detail.html">Product Name</a></span>
-                                                    <span class="table-p__category">
-                                                        <a href="shop-side-version-2.html">Brand Name</a></span>
-                                                    <ul class="table-p__variant-list">
-                                                        <li>
-                                                            <span>Size: Large</span></li>
-                                                        <li>
-                                                            <span>Color: Red</span>
-                                                        </li>
-                                                    </ul>
+                                            </td>
+                                            <td>
+                                                <div class="table-p__del-wrap">
+                                                    <a class="far fa-trash-alt table-p__delete-link" href="#"></a>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span class="table-p__price">₹900.00</span></td>
-                                        <td>
-                                            <div class="table-p__input-counter-wrap">
-                                                <!--====== Input Counter ======-->
-                                                <div class="input-counter">
-                                                    <span class="input-counter__minus fas fa-minus"></span>
-                                                    <input class="input-counter__text input-counter--text-primary-style" type="text" value="1" data-min="1" data-max="1000">
-                                                    <span class="input-counter__plus fas fa-plus"></span></div>
-                                                <!--====== End - Input Counter ======-->
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="table-p__del-wrap">
-                                                <a class="far fa-trash-alt table-p__delete-link" href="#"></a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <!--====== End - Row ======-->
+                                            </td>
+                                        </tr>
+                                        <!--====== End - Row ======-->                                        
+                                    @endforeach
 
                                 </tbody>
                             </table>
