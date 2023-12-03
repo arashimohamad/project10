@@ -273,4 +273,9 @@ class ProductController extends Controller
             return response()->json(['status'=>true, 'message'=>$message]);
         }
     }
+    
+    public function cart(Request $request)
+    {
+        return view('front.products.cart');
+    }
 }
