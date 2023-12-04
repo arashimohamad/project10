@@ -108,8 +108,8 @@
 108	Laravel 10 Tutorial #108            (Very tricky for that tutorial, must plan before do that) 
 109	Laravel 10 Tutorial #109 
 110	Laravel 10 Tutorial #110 
-111	Laravel 10 Tutorial #111 - Done
-112	Laravel 10 Tutorial #112
+111	Laravel 10 Tutorial #111 
+112	Laravel 10 Tutorial #112 - Done
 113	Laravel 10 Tutorial #113
 114	Laravel 10 Tutorial #114
 115	Laravel 10 Tutorial #115

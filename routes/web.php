@@ -63,6 +63,9 @@ Route::group([],function () {
 
     // Shopping Cart
     Route::get('cart', [ProductController::class, 'cart']);
+
+    // Update Cart Item
+    Route::post('update-cart-item-qty', [ProductController::class, 'updateCartItemQty']);
     
 });
 
