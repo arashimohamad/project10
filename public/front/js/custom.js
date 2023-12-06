@@ -67,7 +67,7 @@ $(document).ready(function () {
     });
 
     // Update Cart Items Quantity
-    $(".updateCartItem").click(function () { 
+    $(document).on('click','.updateCartItem', function(){
         if ($(this).hasClass('fa-plus')) {
             // Get qty
             var quantity = $(this).data('qty');
@@ -80,11 +80,12 @@ $(document).ready(function () {
             // Get qty
             var quantity = $(this).data('qty');
             
-            // CHeck Qty at least 1 
+            // Check Qty at least 1 
             if (quantity <= 1) {
                 alert("Item Quantity Must Be 1 Or Greater!");
                 return false;
             }
+
             // Decrease the Qty by 1
             new_qty = parseInt(quantity) - 1;
         }
@@ -100,15 +101,11 @@ $(document).ready(function () {
                 qty:new_qty,
             },
             success: function (resp) {
-                alert(resp);
+                //alert(resp);
+                $("#appendCartItems").html(resp.view);
             }, error:function () {  
                 alert("Error");
             }
         });
-
-
     });
-
-
 });
-

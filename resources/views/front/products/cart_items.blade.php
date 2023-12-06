@@ -100,7 +100,8 @@
                                                 <div class="input-counter">
                                                     <span class="input-counter__minus fas fa-minus updateCartItem qtyMinus" data-cartid="{{ $item['id'] }}" data-qty="{{ $item['product_qty'] }}"></span>
                                                     <input class="input-counter__text input-counter--text-primary-style" type="text" value="{{ $item['product_qty'] }}" data-min="1" data-max="1000">
-                                                    <span class="input-counter__plus fas fa-plus updateCartItem qtyPlus" data-cartid="{{ $item['id'] }}" data-qty="{{ $item['product_qty'] }}"></span></div>
+                                                    <span class="input-counter__plus fas fa-plus updateCartItem qtyPlus" data-cartid="{{ $item['id'] }}" data-qty="{{ $item['product_qty'] }}"></span>
+                                                </div>
                                                 <!--====== End - Input Counter ======-->
                                             </div>
                                         </td>

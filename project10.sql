@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 04, 2023 at 10:23 AM
+-- Generation Time: Dec 06, 2023 at 07:25 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -569,7 +569,16 @@ INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_
 (16, 4, 'faf32c65f7779acaf7c0eb23f12ecf16', '2023-12-04 09:28:00', '2023-12-04 09:28:00'),
 (17, 15, 'faf32c65f7779acaf7c0eb23f12ecf16', '2023-12-04 09:28:06', '2023-12-04 09:28:06'),
 (18, 14, 'faf32c65f7779acaf7c0eb23f12ecf16', '2023-12-04 09:28:25', '2023-12-04 09:28:25'),
-(19, 1, 'faf32c65f7779acaf7c0eb23f12ecf16', '2023-12-04 09:28:49', '2023-12-04 09:28:49');
+(19, 1, 'faf32c65f7779acaf7c0eb23f12ecf16', '2023-12-04 09:28:49', '2023-12-04 09:28:49'),
+(20, 14, 'a6db50c0a545f3066ceedd27288bd176', '2023-12-05 15:44:08', '2023-12-05 15:44:08'),
+(21, 15, 'a6db50c0a545f3066ceedd27288bd176', '2023-12-05 15:44:22', '2023-12-05 15:44:22'),
+(22, 14, '7d7919799703f269d6fe30e9ff1cd17b', '2023-12-05 16:19:02', '2023-12-05 16:19:02'),
+(23, 15, '7d7919799703f269d6fe30e9ff1cd17b', '2023-12-05 16:19:19', '2023-12-05 16:19:19'),
+(24, 4, 'a6db50c0a545f3066ceedd27288bd176', '2023-12-05 16:30:53', '2023-12-05 16:30:53'),
+(25, 14, '8cdeef8dbe1f68c455cc75781879807a', '2023-12-06 18:02:53', '2023-12-06 18:02:53'),
+(26, 15, '8cdeef8dbe1f68c455cc75781879807a', '2023-12-06 18:03:16', '2023-12-06 18:03:16'),
+(27, 14, '21350941a14dadab99f5e1a6cd2fce43', '2023-12-06 18:24:01', '2023-12-06 18:24:01'),
+(28, 15, '21350941a14dadab99f5e1a6cd2fce43', '2023-12-06 18:24:16', '2023-12-06 18:24:16');
 
 -- --------------------------------------------------------
 
@@ -804,7 +813,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`
