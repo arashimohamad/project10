@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 06, 2023 at 07:25 PM
+-- Generation Time: Dec 08, 2023 at 07:49 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -459,7 +459,7 @@ INSERT INTO `products_attributes` (`id`, `product_id`, `size`, `sku`, `price`, `
 (22, 15, 'Small', 'RGT01-S', 140.00, 18, 1, '2023-11-17 06:33:52', '2023-11-18 07:52:45'),
 (23, 15, 'Medium', 'RGT01-M', 160.00, 7, 1, '2023-11-17 06:33:52', '2023-11-18 07:52:45'),
 (24, 15, 'Large', 'RGT01-L', 180.00, 22, 1, '2023-11-17 06:33:52', '2023-11-18 07:52:45'),
-(25, 14, 'Small', 'GBT001-S', 130.00, 10, 1, '2023-12-03 13:55:04', '2023-12-03 13:55:04'),
+(25, 14, 'Small', 'GBT001-S', 130.00, 10, 1, '2023-12-03 13:55:04', '2023-12-08 07:46:36'),
 (26, 14, 'Medium', 'GBT001-M', 140.00, 20, 1, '2023-12-03 13:55:04', '2023-12-03 13:55:04');
 
 -- --------------------------------------------------------
@@ -578,7 +578,9 @@ INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_
 (25, 14, '8cdeef8dbe1f68c455cc75781879807a', '2023-12-06 18:02:53', '2023-12-06 18:02:53'),
 (26, 15, '8cdeef8dbe1f68c455cc75781879807a', '2023-12-06 18:03:16', '2023-12-06 18:03:16'),
 (27, 14, '21350941a14dadab99f5e1a6cd2fce43', '2023-12-06 18:24:01', '2023-12-06 18:24:01'),
-(28, 15, '21350941a14dadab99f5e1a6cd2fce43', '2023-12-06 18:24:16', '2023-12-06 18:24:16');
+(28, 15, '21350941a14dadab99f5e1a6cd2fce43', '2023-12-06 18:24:16', '2023-12-06 18:24:16'),
+(29, 14, '442ed5f4466df4e970cbde028b9e9e3e', '2023-12-08 06:57:14', '2023-12-08 06:57:14'),
+(30, 15, '442ed5f4466df4e970cbde028b9e9e3e', '2023-12-08 06:57:32', '2023-12-08 06:57:32');
 
 -- --------------------------------------------------------
 
@@ -813,7 +815,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `users`

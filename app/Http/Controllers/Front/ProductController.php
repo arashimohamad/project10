@@ -286,6 +286,36 @@ class ProductController extends Controller
             $data = $request->all();
             //echo "<pre>"; print_r($data); die;
 
+            // Get Cart Details
+            $cartDetails = Cart::find($data['cartid']);
+
+            // Get Available Product Stock
+            $availableStock = ProductsAttribute::select('stock')
+                                ->where(['product_id'=>$cartDetails['product_id'],'size'=>$cartDetails['product_size']])
+                                ->first()->toArray();
+            // echo "<pre>"; print_r($availableStock); die;
+
+            // Check if desired Stock form user is available
+            if ($data['qty'] > $availableStock['stock']) {
+                $getCartItems = Cart::getCartItems();                                            // Please refer getCartItems form Cart Model
+                return response()->json([
+                    'status' => false, 
+                    'message'=> "Product Stock is not available!",
+                    'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                ]);
+            } 
+            
+            // Check if product Size is available
+            $availableSize = ProductsAttribute::where(['product_id'=>$cartDetails['product_id'],'size'=>$cartDetails['product_size'], 'status'=>1])->count();
+            if ($availableSize == 0) {
+                $getCartItems = Cart::getCartItems();                                            // Please refer getCartItems form Cart Model
+                return response()->json([
+                    'status' => false, 
+                    'message'=> "Product Size is not available. Please remove and choose another one!",
+                    'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                ]);
+            }
+
             // Update the Cart Item Qty
             Cart::where('id', $data['cartid'])->update(['product_qty' => $data['qty']]);
 

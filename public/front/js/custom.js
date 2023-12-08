@@ -102,6 +102,9 @@ $(document).ready(function () {
             },
             success: function (resp) {
                 //alert(resp);
+                if (resp.status == false) {
+                    alert(resp.message);    
+                }
                 $("#appendCartItems").html(resp.view);
             }, error:function () {  
                 alert("Error");
