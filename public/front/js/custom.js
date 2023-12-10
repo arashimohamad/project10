@@ -111,4 +111,31 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Delete Cart Item
+    $(document).on('click','.deleteCartItem', function(){
+
+        var cartid = $(this).data('cartid');
+        var notify = confirm("Are you sure to remove this Cart Item?");
+
+        if (notify) {
+            $.ajax({
+                headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
+                type: 'post',
+                url: 'delete-cart-item',
+                data: {
+                    cartid:cartid,                
+                },
+    
+                success: function (resp) {
+                    //alert(resp);                
+                    $("#appendCartItems").html(resp.view);
+                }, 
+    
+                error:function () {  
+                    alert("Error");
+                }
+            });            
+        }
+    });
 });

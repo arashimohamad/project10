@@ -111,8 +111,8 @@
 111	Laravel 10 Tutorial #111 
 112	Laravel 10 Tutorial #112            
 113	Laravel 10 Tutorial #113            Don't use $(".updateCartItem").click(function () {} but you MUST USE $(document).on('click','.updateCartItem', function(){} for custom.js so that your Input Counter button can worked properly
-114	Laravel 10 Tutorial #114 - Done
-115	Laravel 10 Tutorial #115
+114	Laravel 10 Tutorial #114 
+115	Laravel 10 Tutorial #115 - Done
 116	Laravel 10 Tutorial #116
 117	Laravel 10 Tutorial #117
 118	Laravel 10 Tutorial #118

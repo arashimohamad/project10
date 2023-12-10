@@ -319,8 +319,57 @@ class ProductController extends Controller
             // Update the Cart Item Qty
             Cart::where('id', $data['cartid'])->update(['product_qty' => $data['qty']]);
 
-            // Fet Updated Cart Items
+            // Get Updated Cart Items
             $getCartItems = Cart::getCartItems();  
+
+            // Return the Updated Cart Item via Ajax
+            return response()->json([
+                'status' => true, 
+                'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+            ]);
+        }
+    }
+
+    public function deleteCartItem(Request $request)                        // First Option
+    {
+        if ($request->ajax()) {
+            $data = $request->all();
+            
+            // Delete Cart
+            Cart::where('id', $data['cartid'])->delete();
+
+            // Get Updated Cart Items
+            $getCartItems = Cart::getCartItems();
+
+            // Return the Updated Cart Item via Ajax
+            return response()->json([
+                'status' => true, 
+                'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+            ]);
+        }
+    }
+
+    public function deleteCartItem2(Request $request)                      // Second Option
+    {
+        if ($request->ajax()) {
+            $data = $request->all();
+
+            if (Auth::check()) {               
+                
+                // User is logged in, we take user_id
+                $user_id = Auth::user()->id;
+                $deleteCartItem = Cart::where(['id' => $data['cartid'], 'user_id' => $user_id])->delete();                
+
+            }else{
+                
+                //User is not logged in, we take a session
+                $user_id = 0;
+                $deleteCartItem = Cart::where('id', $data['cartid'])->delete();
+
+            }
+
+            // Get Updated Cart Items
+            $getCartItems = Cart::getCartItems();         
 
             // Return the Updated Cart Item via Ajax
             return response()->json([
