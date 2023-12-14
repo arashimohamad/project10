@@ -24,7 +24,9 @@ $(document).ready(function () {
                 } else {
                     $('.getAttributePrice').html("<span class='pd-detail__price'>RM"+resp['final_price']+"</span>");
                 }
-            }, error:function() {
+            }, 
+            
+            error:function() {
                 alert("Error");
             }
         });        
@@ -40,7 +42,8 @@ $(document).ready(function () {
             url: "../add-to-cart",
             data: formData,
             success: function (resp) {
-                //alert(resp);
+                //alert(resp['status]);
+                $(".totalCartItems").html(resp['totalCartItems']);
                 if (resp['status'] == true) {
                     $('.print-success-msg').show();
                     $('.print-success-msg').delay(3000).fadeOut('slow');
@@ -60,7 +63,9 @@ $(document).ready(function () {
                         "</div>"
                     );
                 }
-            }, error:function(){
+            }, 
+            
+            error:function(){
                 alert("Error");
             }
         });        
@@ -102,11 +107,14 @@ $(document).ready(function () {
             },
             success: function (resp) {
                 //alert(resp);
+                $(".totalCartItems").html(resp.totalCartItems);
                 if (resp.status == false) {
                     alert(resp.message);    
                 }
                 $("#appendCartItems").html(resp.view);
-            }, error:function () {  
+            }, 
+            
+            error:function () {  
                 alert("Error");
             }
         });
@@ -128,7 +136,8 @@ $(document).ready(function () {
                 },
     
                 success: function (resp) {
-                    //alert(resp);                
+                    //alert(resp);
+                    $(".totalCartItems").html(resp.totalCartItems);                
                     $("#appendCartItems").html(resp.view);
                 }, 
     

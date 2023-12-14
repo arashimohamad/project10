@@ -1,0 +1,73 @@
+Helper.php is dedicated for this Project100
+Path : project10\app\Helpers
+
+Laravel Shopping Cart (VIII) | Laravel Helpers | Create Helper Function for Cart Items Count
+
+In Part 116 of the Laravel 10 Tutorial to make the E-commerce Website in Laravel, we will continue working on the Laravel shopping cart page where we will show cart items. 
+
+In this video, we will create Helpers where we can create all common functions.
+
+We will create common function totalCartItems in Helpers file that we can use anywhere in our website to show total items added in user shopping cart.
+
+1) Create Helpers folder and Helper.php file :-
+First of all, we will create Helpers folder under /app/ and Helper.php file under Helpers folder
+
+2) Update composer.json file :-
+Now, update composer.json file to include Helper.php file path
+
+"autoload": {
+        "psr-4": {
+            "App\\": "app/",
+            "Database\\Factories\\": "database/factories/",
+            "Database\\Seeders\\": "database/seeders/"
+        },
+        "files": [
+            "app/Helpers/helper.php"
+        ]
+    },
+
+
+3) Run below composer command :-
+composer dump-autoload
+
+Administrator@sayang-pc MINGW64 /c/laragon/www/project10 (main)
+$ composer dump-autoload
+Generating optimized autoload files
+> Illuminate\Foundation\ComposerScripts::postAutoloadDump
+> @php artisan package:discover --ansi
+
+   INFO  Discovering packages.  
+
+  intervention/image .......................................................................................................................... DONE
+  laravel/sail ................................................................................................................................ DONE
+  laravel/sanctum ............................................................................................................................. DONE
+  laravel/tinker .............................................................................................................................. DONE
+  nesbot/carbon ............................................................................................................................... DONE
+  nunomaduro/collision ........................................................................................................................ DONE
+  nunomaduro/termwind ......................................................................................................................... DONE
+  spatie/laravel-ignition ..................................................................................................................... DONE
+
+Generated optimized autoload files containing 5932 classes
+
+Administrator@sayang-pc MINGW64 /c/laragon/www/project10 (main)
+$ 
+
+4) Create totalCartItems function :-
+Now we will create totalCartItems function in Helper.php file in which we will return total cart items count based on user id if user logged in otherwise session id if user not logged in.
+
+5) Include Cart model :-
+Also include Cart model to Helper.php file
+
+6) Update header.blade.php file :-
+Now we will call totalCartItems function at header.blade.php file to display total cart items count added by the user along with the shopping cart link. We will also add totalCartItems class so that we can update total cart items count via ajax as well.
+
+7) Update updateCartItemQty function :-
+Now we will update updateCartItemQty function located at ProductsController to call totalCartItems function to get total cart items count and return to Ajax response from where we will display with class totalCartItems.
+
+8) Update deleteCartItem function :-
+Now we will update deleteCartItem function to call totalCartItems function to get total cart items count and return to Ajax response from where we will display with class totalCartItems.
+
+9) Update custom.js file :-
+Finally, we will update "Update Cart Items" and "Delete Cart Items" jQuery located at custom.js file to get totalCartItems in response and display with class totalCartItems.
+
+Now check in video, We able to show total cart items count at header, sidebar and in shopping cart. Count updates without refresh.

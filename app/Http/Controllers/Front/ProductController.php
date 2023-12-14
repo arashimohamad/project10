@@ -208,7 +208,7 @@ class ProductController extends Controller
     {
         if ($request->isMethod('post')) {                                                       // To check what is returning we are post method 
             $data = $request->all();
-            // echo "<pre>"; print_r($data); die;                                                  // Array ([product_id] => 15,[size] => Small,[qty] => 2)
+            // echo "<pre>"; print_r($data); die;                                               // Array ([product_id] => 15,[size] => Small,[qty] => 2)
 
             // Check Product Stock
             $productStock = ProductsAttribute::productStock($data['product_id'],$data['size']);
@@ -269,8 +269,11 @@ class ProductController extends Controller
             $item->product_qty = $data['qty'];            
             $item->save();
 
+            // Get Total Cart Items
+            $totalCartItems = totalCartItems();                                                 //$totalCartItems() come from \app\Helpers\helper.php
+
             $message = "Product added successfully in Cart! <a href='../cart' style='color:#ffffff; text-decoration:underline'>View Cart</a>";
-            return response()->json(['status'=>true, 'message'=>$message]);
+            return response()->json(['status'=>true, 'message'=>$message, 'totalCartItems'=>$totalCartItems]);
         }
     }
     
@@ -322,9 +325,13 @@ class ProductController extends Controller
             // Get Updated Cart Items
             $getCartItems = Cart::getCartItems();  
 
+            // Get Total Cart Items
+            $totalCartItems = totalCartItems();                                                 //$totalCartItems() come from \app\Helpers\helper.php
+
             // Return the Updated Cart Item via Ajax
             return response()->json([
                 'status' => true, 
+                'totalCartItems' => $totalCartItems,
                 'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
             ]);
         }
@@ -341,15 +348,19 @@ class ProductController extends Controller
             // Get Updated Cart Items
             $getCartItems = Cart::getCartItems();
 
+            // Get Total Cart Items
+            $totalCartItems = totalCartItems();                                                 //$totalCartItems() come from \app\Helpers\helper.php
+
             // Return the Updated Cart Item via Ajax
             return response()->json([
                 'status' => true, 
+                'totalCartItems' => $totalCartItems,
                 'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
             ]);
         }
     }
 
-    public function deleteCartItem2(Request $request)                      // Second Option
+    public function deleteCartItemSecondOption(Request $request)                      // Second Option
     {
         if ($request->ajax()) {
             $data = $request->all();
@@ -371,9 +382,13 @@ class ProductController extends Controller
             // Get Updated Cart Items
             $getCartItems = Cart::getCartItems();         
 
+            // Get Total Cart Items
+            $totalCartItems = totalCartItems();                                                 //$totalCartItems() come from \app\Helpers\helper.php
+
             // Return the Updated Cart Item via Ajax
             return response()->json([
                 'status' => true, 
+                'totalCartItems' => $totalCartItems,
                 'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
             ]);
         }
