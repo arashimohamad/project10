@@ -38,8 +38,8 @@ class ProductController extends Controller
             
             // Get Category and their Sub Category Products
             $categoryProducts = Product::with(['brand', 'images'])
-                                ->whereIn('category_id', $categoryDetails['catIds'])                // whereIn - Compare category_id on product table vs id on category table
-                                ->where('brand_id','>', 0)                                          // brand_id > 0 because may be user forgot to / not select brand during add/update products. So we filter here
+                                ->whereIn('category_id', $categoryDetails['catIds'])                      // whereIn - Compare category_id on product table vs id on category table
+                                ->where('brand_id','>', 0)                                                // brand_id > 0 because may be user forgot to / not select brand during add/update products. So we filter here
                                 ->where('products.status', 1);                       
 
             // Update Query For Products Sorting
@@ -59,13 +59,13 @@ class ProductController extends Controller
                 } else if ($request['sort'] == "discounted_items") {
                     $categoryProducts->where('product_discount', '>', 0);
                 } else {
-                    $categoryProducts->orderBy('products.id', 'DESC');                                       // original query for orderBy('id', 'DESC')
+                    $categoryProducts->orderBy('products.id', 'DESC');                                     // original query for orderBy('id', 'DESC')
                 }
             }
 
             // Update Query For Product Colors Filter
-            if (isset($request['color']) && !empty($request['color'])) {                            // we can use request->input('color') instead of $request['sort'], but must include ublic function listing(Request $request)
-                $color = explode('~', $request['color']);                                           // https://myfixsys.net/project10/public/men?color=Black~Blue~Green
+            if (isset($request['color']) && !empty($request['color'])) {                                   // we can use request->input('color') instead of $request['sort'], but must include ublic function listing(Request $request)
+                $color = explode('~', $request['color']);                                                  // https://myfixsys.net/project10/public/men?color=Black~Blue~Green
                 $categoryProducts->whereIn('products.family_color', $color);
             }
 
@@ -133,7 +133,7 @@ class ProductController extends Controller
                             ->toArray();
 
         // Get Category Detail and categoryDetails($url) get from App\Models\Category;
-        $categoryDetails = Category::categoryDetails($productDetails['category']['url']);                  // To perform breadcrumb links
+        $categoryDetails = Category::categoryDetails($productDetails['category']['url']);                 // To perform breadcrumb links
 
         // Get Group Code Product (Product Color)
         $groupProducts = array();
@@ -157,25 +157,25 @@ class ProductController extends Controller
         // CUSTOMERS WHO VIEWED THIS ITEM ALSO VIEWED
         // Set Session for Recentyly Viewed Items 
         if (empty(Session::get('session_id'))) {
-            $session_id = md5(uniqid(rand(),true));                                                         // Get new session id
+            $session_id = md5(uniqid(rand(),true));                                                       // Get new session id
         }else {
-            $session_id = Session::get('session_id');                                                       // Get session id previously
+            $session_id = Session::get('session_id');                                                     // Get session id previously
         }
 
-        Session::put('session_id', $session_id);                                                            // Temporary save
+        Session::put('session_id', $session_id);                                                          // Temporary save
         
         // Insert product in recently_viewed_items table if not already exists
-        $countRecentlyViewedTtems = DB::table('recently_viewed_items')                                      // Count recently_viewed_items existed or not
+        $countRecentlyViewedTtems = DB::table('recently_viewed_items')                                    // Count recently_viewed_items existed or not
                                     ->where(['product_id' => $id, 'session_id' => $session_id])
                                     ->count();
     
-        if ($countRecentlyViewedTtems == 0) {                                                               // if recently_viewed_items equal 0, then insert the new product_id and session_id
+        if ($countRecentlyViewedTtems == 0) {                                                             // if recently_viewed_items equal 0, then insert the new product_id and session_id
             DB::table('recently_viewed_items')
             ->insert(['product_id' => $id, 'session_id' => $session_id]);
         }
 
         // Get Recently Viewed Product Ids
-        $recentProductIds = DB::table('recently_viewed_items')                                              // Product Ids on recently_viewed_items table
+        $recentProductIds = DB::table('recently_viewed_items')                                            // Product Ids on recently_viewed_items table
                             ->select('product_id')
                             ->where('product_id', '!=', $id)
                             ->where('session_id', $session_id)
@@ -184,7 +184,7 @@ class ProductController extends Controller
         
         // Get Recently Viewed Product
         $recentlyViewedProducts = Product::with('brand', 'images')
-                                    ->whereIn('id', $recentProductIds)                                      //to match id with $recentProductIds
+                                    ->whereIn('id', $recentProductIds)                                    // to match id with $recentProductIds
                                     ->get()
                                     ->toArray();  
     
@@ -206,9 +206,9 @@ class ProductController extends Controller
 
     public function addToCart(Request $request)
     {
-        if ($request->isMethod('post')) {                                                       // To check what is returning we are post method 
+        if ($request->isMethod('post')) {                                                                 // To check what is returning we are post method 
             $data = $request->all();
-            // echo "<pre>"; print_r($data); die;                                               // Array ([product_id] => 15,[size] => Small,[qty] => 2)
+            // echo "<pre>"; print_r($data); die;                                                         // Array ([product_id] => 15,[size] => Small,[qty] => 2)
 
             // Check Product Stock
             $productStock = ProductsAttribute::productStock($data['product_id'],$data['size']);
@@ -260,7 +260,7 @@ class ProductController extends Controller
             $item = new Cart;
             $item->session_id = $session_id;
 
-            if (Auth::check()) {                                            // if user logged in
+            if (Auth::check()) {                                                                          // if user logged in
                 $item->user_id = Auth::user()->id;               
             }
 
@@ -270,16 +270,19 @@ class ProductController extends Controller
             $item->save();
 
             // Get Total Cart Items
-            $totalCartItems = totalCartItems();                                                 //$totalCartItems() come from \app\Helpers\helper.php
+            $totalCartItems = totalCartItems();                                                           // $totalCartItems() come from \app\Helpers\helper.php
+
+            $getCartItems = getCartItems();                                                               // getCartItems() come from \app\Helpers\helper.php
 
             $message = "Product added successfully in Cart! <a href='../cart' style='color:#ffffff; text-decoration:underline'>View Cart</a>";
-            return response()->json(['status'=>true, 'message'=>$message, 'totalCartItems'=>$totalCartItems]);
+            return response()->json(['status'=>true, 'message'=>$message, 'totalCartItems'=>$totalCartItems, 'getCartItems'=>$getCartItems]);
         }
     }
     
     public function cart(Request $request)
     {
-        $getCartItems = Cart::getCartItems();
+        //$getCartItems = Cart::getCartItems();                                                           // First tutorial
+        $getCartItems = getCartItems();                                                                   // getCartItems() come from \app\Helpers\helper.php
         return view('front.products.cart', compact('getCartItems'));
     }
 
@@ -300,22 +303,26 @@ class ProductController extends Controller
 
             // Check if desired Stock form user is available
             if ($data['qty'] > $availableStock['stock']) {
-                $getCartItems = Cart::getCartItems();                                            // Please refer getCartItems form Cart Model
+                //$getCartItems = Cart::getCartItems();                                                   // Please refer getCartItems form Cart Model
+                $getCartItems = getCartItems();                                                           // getCartItems() come from \app\Helpers\helper.php
                 return response()->json([
                     'status' => false, 
                     'message'=> "Product Stock is not available!",
-                    'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                    'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                    'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
                 ]);
             } 
             
             // Check if product Size is available
             $availableSize = ProductsAttribute::where(['product_id'=>$cartDetails['product_id'],'size'=>$cartDetails['product_size'], 'status'=>1])->count();
             if ($availableSize == 0) {
-                $getCartItems = Cart::getCartItems();                                            // Please refer getCartItems form Cart Model
+                //$getCartItems = Cart::getCartItems();                                                   // Please refer getCartItems form Cart Model
+                $getCartItems = getCartItems();                                                           // getCartItems() come from \app\Helpers\helper.php
                 return response()->json([
                     'status' => false, 
                     'message'=> "Product Size is not available. Please remove and choose another one!",
-                    'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                    'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                    'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
                 ]);
             }
 
@@ -323,21 +330,23 @@ class ProductController extends Controller
             Cart::where('id', $data['cartid'])->update(['product_qty' => $data['qty']]);
 
             // Get Updated Cart Items
-            $getCartItems = Cart::getCartItems();  
+            //$getCartItems = Cart::getCartItems();                                                        // Please refer getCartItems form Cart Model
+            $getCartItems = getCartItems();                                                                // getCartItems() come from \app\Helpers\helper.php
 
             // Get Total Cart Items
-            $totalCartItems = totalCartItems();                                                 //$totalCartItems() come from \app\Helpers\helper.php
+            $totalCartItems = totalCartItems();                                                            // $totalCartItems() come from \app\Helpers\helper.php
 
             // Return the Updated Cart Item via Ajax
             return response()->json([
                 'status' => true, 
                 'totalCartItems' => $totalCartItems,
-                'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
             ]);
         }
     }
 
-    public function deleteCartItem(Request $request)                        // First Option
+    public function deleteCartItem(Request $request)                                                       // First Option
     {
         if ($request->ajax()) {
             $data = $request->all();
@@ -346,21 +355,23 @@ class ProductController extends Controller
             Cart::where('id', $data['cartid'])->delete();
 
             // Get Updated Cart Items
-            $getCartItems = Cart::getCartItems();
+            //$getCartItems = Cart::getCartItems();                                                        // Please refer getCartItems form Cart Model
+            $getCartItems = getCartItems();                                                                // getCartItems() come from \app\Helpers\helper.php
 
             // Get Total Cart Items
-            $totalCartItems = totalCartItems();                                                 //$totalCartItems() come from \app\Helpers\helper.php
+            $totalCartItems = totalCartItems();                                                            // totalCartItems() come from \app\Helpers\helper.php
 
             // Return the Updated Cart Item via Ajax
             return response()->json([
                 'status' => true, 
                 'totalCartItems' => $totalCartItems,
-                'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
             ]);
         }
     }
 
-    public function deleteCartItemSecondOption(Request $request)                      // Second Option
+    public function deleteCartItemSecondOption(Request $request)                                           // Second Option
     {
         if ($request->ajax()) {
             $data = $request->all();
@@ -380,16 +391,18 @@ class ProductController extends Controller
             }
 
             // Get Updated Cart Items
-            $getCartItems = Cart::getCartItems();         
+            //$getCartItems = Cart::getCartItems();                                                      // Please refer getCartItems form Cart Model
+            $getCartItems = getCartItems();                                                              // getCartItems() come from \app\Helpers\helper.php
 
             // Get Total Cart Items
-            $totalCartItems = totalCartItems();                                                 //$totalCartItems() come from \app\Helpers\helper.php
+            $totalCartItems = totalCartItems();                                                          //totalCartItems() come from \app\Helpers\helper.php
 
             // Return the Updated Cart Item via Ajax
             return response()->json([
                 'status' => true, 
                 'totalCartItems' => $totalCartItems,
-                'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems'))
+                'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
             ]);
         }
     }

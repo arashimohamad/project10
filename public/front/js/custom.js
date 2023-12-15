@@ -44,6 +44,8 @@ $(document).ready(function () {
             success: function (resp) {
                 //alert(resp['status]);
                 $(".totalCartItems").html(resp['totalCartItems']);
+                $("#appendCartItems").html(resp.view);
+                $("#appendMiniCartItems").html(resp.minicartview);
                 if (resp['status'] == true) {
                     $('.print-success-msg').show();
                     $('.print-success-msg').delay(3000).fadeOut('slow');
@@ -112,6 +114,7 @@ $(document).ready(function () {
                     alert(resp.message);    
                 }
                 $("#appendCartItems").html(resp.view);
+                $("#appendMiniCartItems").html(resp.minicartview);
             }, 
             
             error:function () {  
@@ -139,6 +142,7 @@ $(document).ready(function () {
                     //alert(resp);
                     $(".totalCartItems").html(resp.totalCartItems);                
                     $("#appendCartItems").html(resp.view);
+                    $("#appendMiniCartItems").html(resp.minicartview);
                 }, 
     
                 error:function () {  

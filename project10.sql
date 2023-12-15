@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 10, 2023 at 06:23 PM
+-- Generation Time: Dec 15, 2023 at 12:41 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -588,7 +588,10 @@ INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_
 (35, 1, '75f0d0054b55a985ed719b960d26b83d', '2023-12-10 17:59:02', '2023-12-10 17:59:02'),
 (36, 2, '75f0d0054b55a985ed719b960d26b83d', '2023-12-10 18:07:17', '2023-12-10 18:07:17'),
 (37, 7, '75f0d0054b55a985ed719b960d26b83d', '2023-12-10 18:07:35', '2023-12-10 18:07:35'),
-(38, 13, '75f0d0054b55a985ed719b960d26b83d', '2023-12-10 18:07:45', '2023-12-10 18:07:45');
+(38, 13, '75f0d0054b55a985ed719b960d26b83d', '2023-12-10 18:07:45', '2023-12-10 18:07:45'),
+(39, 15, 'cb16c63137338b54ea0159f0a8786921', '2023-12-14 17:02:45', '2023-12-14 17:02:45'),
+(40, 15, '999ed90cb73bc94188478fbdba2d0415', '2023-12-14 23:58:14', '2023-12-14 23:58:14'),
+(41, 1, '999ed90cb73bc94188478fbdba2d0415', '2023-12-15 00:34:30', '2023-12-15 00:34:30');
 
 -- --------------------------------------------------------
 
@@ -823,7 +826,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `users`
