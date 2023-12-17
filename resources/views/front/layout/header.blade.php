@@ -878,7 +878,7 @@
                                 <a href="wishlist.html"><i class="far fa-heart"></i></a>
                             </li>
                             <li class="has-dropdown">
-                                <a class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
+                                <a href="{{ url('cart') }}" class="mini-cart-shop-link"><i class="fas fa-shopping-bag"></i>
                                 <span class="total-item-round totalCartItems">{{ $totalCartItems }}</span></a>
                                 <!--====== Dropdown ======-->
                                 <span class="js-menu-toggle"></span>

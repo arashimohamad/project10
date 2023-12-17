@@ -29,3 +29,16 @@ function getCartItems() {
     }
     return $getCartItems;
 }
+
+// Empty Cart
+function emptyCart() {
+    if (Auth::check()) {
+        // If the user is logged in, check from Auth (user_id)
+        $user_id  = Auth::user()->id;
+        Cart::with('product')->where('user_id', $user_id)->delete();                                                // Cart::with('product') call function product() in Cart Model
+    }else{
+        // If the user is not logged in, check from Session (session_id)
+        $session_id  = Session::get('session_id');
+        Cart::with('product')->where('session_id', $session_id)->delete();                                          // Cart::with('product') call function product() in Cart Model
+    }
+}

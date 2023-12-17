@@ -69,6 +69,9 @@ Route::group([],function () {
 
     // Delete Cart Item
     Route::post('delete-cart-item', [ProductController::class, 'deleteCartItem']);
+
+    // Empty Cart
+    Route::post('empty-cart', [ProductController::class, 'emptyCart']);
     
 });
 

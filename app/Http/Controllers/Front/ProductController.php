@@ -371,6 +371,30 @@ class ProductController extends Controller
         }
     }
 
+    public function emptyCart(Request $request)
+    {
+        if ($request->ajax()) {
+            
+            // Empty Cart
+            emptyCart();                                                                                   // emptyCart() come from \app\Helpers\helper.php
+
+            // Get Updated Cart Items
+            //$getCartItems = Cart::getCartItems();                                                        // Please refer getCartItems form Cart Model
+            $getCartItems = getCartItems();                                                                // getCartItems() come from \app\Helpers\helper.php
+
+            // Get Total Cart Items
+            $totalCartItems = totalCartItems();                                                            // totalCartItems() come from \app\Helpers\helper.php
+
+            // Return the Updated Cart Item via Ajax
+            return response()->json([
+                'status' => true, 
+                'totalCartItems' => $totalCartItems,
+                'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+            ]);
+        }
+    }
+
     public function deleteCartItemSecondOption(Request $request)                                           // Second Option
     {
         if ($request->ajax()) {

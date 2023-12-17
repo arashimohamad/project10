@@ -151,4 +151,29 @@ $(document).ready(function () {
             });            
         }
     });
+
+    // Empty Cart
+    $(document).on('click', '.emptyCart', function(){        
+        
+        var notify = confirm("Are you sure to empty your cart?");
+
+        if (notify) {
+            $.ajax({
+                headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
+                type: 'post',
+                url: 'empty-cart',    
+                success: function (resp) {
+                    //alert(resp);
+                    $(".totalCartItems").html(resp.totalCartItems);                
+                    $("#appendCartItems").html(resp.view);
+                    $("#appendMiniCartItems").html(resp.minicartview);
+                }, 
+    
+                error:function () {  
+                    alert("Error");
+                }
+            });            
+        }
+    });
+
 });

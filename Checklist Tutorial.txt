@@ -114,8 +114,8 @@
 114	Laravel 10 Tutorial #114 
 115	Laravel 10 Tutorial #115
 116	Laravel 10 Tutorial #116            Please refer Helper.php by this path project10\app\Helpers . Helper.php we can call it as a global function and can use anywhere on webpage
-117	Laravel 10 Tutorial #117 - Done     To change from $getCartItems = Cart::getCartItems() TO $getCartItems = getCartItems() --> getCartItems() now in Helper.php as a global function. Please refer path project10\app\Helpers
-118	Laravel 10 Tutorial #118
+117	Laravel 10 Tutorial #117            To change from $getCartItems = Cart::getCartItems() TO $getCartItems = getCartItems() --> getCartItems() now in Helper.php as a global function. Please refer path project10\app\Helpers
+118	Laravel 10 Tutorial #118 - Done
 119	Laravel 10 Tutorial #119
 120	Laravel 10 Tutorial #120
 121	Laravel 10 Tutorial #121
