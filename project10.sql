@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 15, 2023 at 12:41 AM
+-- Generation Time: Dec 22, 2023 at 10:43 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -322,7 +322,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (19, '2023_11_05_194912_update_products_table', 10),
 (20, '2023_11_11_081425_create_products_filters_table', 11),
 (21, '2023_11_19_150446_create_recently_viewed_items_table', 12),
-(22, '2023_11_28_231758_create_carts_table', 13);
+(22, '2023_11_28_231758_create_carts_table', 13),
+(23, '2023_12_22_182659_add_columns_to_users_table', 14);
 
 -- --------------------------------------------------------
 
@@ -591,7 +592,9 @@ INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_
 (38, 13, '75f0d0054b55a985ed719b960d26b83d', '2023-12-10 18:07:45', '2023-12-10 18:07:45'),
 (39, 15, 'cb16c63137338b54ea0159f0a8786921', '2023-12-14 17:02:45', '2023-12-14 17:02:45'),
 (40, 15, '999ed90cb73bc94188478fbdba2d0415', '2023-12-14 23:58:14', '2023-12-14 23:58:14'),
-(41, 1, '999ed90cb73bc94188478fbdba2d0415', '2023-12-15 00:34:30', '2023-12-15 00:34:30');
+(41, 1, '999ed90cb73bc94188478fbdba2d0415', '2023-12-15 00:34:30', '2023-12-15 00:34:30'),
+(42, 14, '7f90b366abe58e9867f7c3f1addc307a', '2023-12-17 13:18:43', '2023-12-17 13:18:43'),
+(43, 15, '7f90b366abe58e9867f7c3f1addc307a', '2023-12-17 13:18:53', '2023-12-17 13:18:53');
 
 -- --------------------------------------------------------
 
@@ -603,10 +606,17 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `country` varchar(255) DEFAULT NULL,
+  `postcode` varchar(255) DEFAULT NULL,
+  `mobile` varchar(255) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -790,7 +800,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -826,7 +836,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -2,6 +2,7 @@
 
 use App\Models\Category;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Front\IndexController;
@@ -46,6 +47,10 @@ Route::get('/', function () {
 Route::group([],function () {
     Route::get('/', [IndexController::class, 'index']);
 
+    ###############################################################
+    ####################   PRODUCT AND CART    $###################
+    ###############################################################
+
     // Listing/Categories Routes (Parent>SubCategory>SubSubCategory)
     $catUrls = Category::select('url')->where('status', 1)->get()->pluck('url');                                // Get all urls
     foreach ($catUrls as $key => $url) {        
@@ -72,6 +77,16 @@ Route::group([],function () {
 
     // Empty Cart
     Route::post('empty-cart', [ProductController::class, 'emptyCart']);
+
+    ###############################################################
+    ####################      USER LOGIN       $###################
+    ###############################################################
+    
+    //User Login
+    Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser']);
+
+    //User Register
+    Route::match(['get', 'post'], 'user/register', [UserController::class, 'registerUser']);
     
 });
 
