@@ -176,4 +176,25 @@ $(document).ready(function () {
         }
     });
 
+    //User Register Form Validation
+    $("#registerForm").submit(function () { 
+        var formData = $("#registerForm").serialize();          // serialize use to take all data from form
+        /*alert(formData); return false;*/                      // return false use to pause for view the output
+
+        $.ajax({
+            type: 'post',
+            url: '../user/register',
+            data: formData,
+            success: function (resp) {
+                //alert(resp);
+                window.location.href=resp.redirectUrl;          // redirect to cart
+            },
+            error: function (resp) {
+                alert("Error");
+            }
+        });
+    });
+
+
+
 });
