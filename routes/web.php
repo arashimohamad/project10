@@ -82,12 +82,14 @@ Route::group([],function () {
     ####################      USER LOGIN       $###################
     ###############################################################
     
-    //User Login
+    // User Login
     Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser']);
 
-    //User Register
+    // User Register
     Route::match(['get', 'post'], 'user/register', [UserController::class, 'registerUser']);
-    
+
+    // User Logout 
+    Route::match(['get', 'post'], 'user/logout', [UserController::class, 'logoutUser']);
 });
 
 // ADMIN

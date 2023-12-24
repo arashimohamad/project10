@@ -178,16 +178,28 @@ $(document).ready(function () {
 
     //User Register Form Validation
     $("#registerForm").submit(function () { 
-        var formData = $("#registerForm").serialize();          // serialize use to take all data from form
-        /*alert(formData); return false;*/                      // return false use to pause for view the output
+        var formData = $("#registerForm").serialize();              // serialize use to take all data from form
+        /*alert(formData); return false;*/                          // return false use to pause for view the output
 
         $.ajax({
             type: 'post',
             url: '../user/register',
             data: formData,
-            success: function (resp) {
+            success: function (data) {
                 //alert(resp);
-                window.location.href=resp.redirectUrl;          // redirect to cart
+                if (data.type == "validation") {
+                    $.each(data.errors, function (i, error) {                   //.each is same like loop
+                        $('#register-'+i).attr('style', 'color:red');
+                        $('#register-'+i).html(error);
+                        setTimeout(function(){
+                            $('#register-'+i).css({
+                                'display':'none',
+                            })
+                        }, 6000)
+                    });
+                } else if(data.type == "success") {
+                    window.location.href=data.redirectUrl;          // redirect to cart
+                }
             },
             error: function (resp) {
                 alert("Error");

@@ -117,8 +117,8 @@
 117	Laravel 10 Tutorial #117            To change from $getCartItems = Cart::getCartItems() TO $getCartItems = getCartItems() --> getCartItems() now in Helper.php as a global function. Please refer path project10\app\Helpers
 118	Laravel 10 Tutorial #118 
 119	Laravel 10 Tutorial #119 
-120	Laravel 10 Tutorial #120 - Done
-121	Laravel 10 Tutorial #121
+120	Laravel 10 Tutorial #120 
+121	Laravel 10 Tutorial #121 - Done
 122	Laravel 10 Tutorial #122
 123	Laravel 10 Tutorial #123
 124	Laravel 10 Tutorial #124
