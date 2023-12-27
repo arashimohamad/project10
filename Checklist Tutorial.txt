@@ -118,8 +118,8 @@
 118	Laravel 10 Tutorial #118 
 119	Laravel 10 Tutorial #119 
 120	Laravel 10 Tutorial #120 
-121	Laravel 10 Tutorial #121 - Done
-122	Laravel 10 Tutorial #122
+121	Laravel 10 Tutorial #121 
+122	Laravel 10 Tutorial #122 - Done     Configure mailtrap email settings and .env file. Login/register a new Mailtrap account at https://mailtrap.io/ to send and check emails offline
 123	Laravel 10 Tutorial #123
 124	Laravel 10 Tutorial #124
 125	Laravel 10 Tutorial #125

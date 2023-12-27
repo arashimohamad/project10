@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -42,6 +43,14 @@ class UserController extends Controller
     
                 //User can able to login as well with email after saving the data into the table
                 if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) {   
+
+                    // Send Register Email
+                    $email = $data['email'];
+                    $messageData = ['name'=>$data['name'], 'mobile'=>$data['mobile'], 'email'=>$data['email']];
+                    Mail::send('emails.register', $messageData, function ($message) use($email){
+                        $message->to($email)->subject('Welcome to ShopWise');
+                    });
+
                     $redirectUrl = url('cart');
                     return response()->json(['status'=>true, 'type'=>'success', 'redirectUrl'=>$redirectUrl]);
                 }
