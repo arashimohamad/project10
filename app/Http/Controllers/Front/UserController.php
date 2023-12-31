@@ -12,6 +12,38 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
     public function loginUser(Request $request){
+        if ($request->ajax()) {
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;  
+
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email|max:250|exists:users',                    //exists:users is to trigger whether email existed or not on users table
+                'password' => 'required|string|min:6'
+            ],
+            [
+                'email.exists' => 'Email does not exists'
+            ]);
+
+            if ($validator->passes()) {
+
+                if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) { 
+                    
+                    if (Auth::user()->status == 0) {
+                        Auth::logout();
+                        return response()->json(['status'=>false, 'type'=>'inactive', 'message'=>'Your account is not activated yet!']);
+                    }
+
+                    $redirectUrl = url('cart');
+                    return response()->json(['status'=>true, 'type'=>'success', 'redirectUrl'=>$redirectUrl]);
+                } else {
+                    return response()->json(['status'=>false, 'type'=>'incorrect', 'message'=>'You have entered invalid email or password!']);
+                }
+
+            } else {
+
+                return response()->json(['status'=>false, 'type'=>'error', 'errors'=>$validator->messages()]);
+            }
+        }
         return view('front.users.login');
     }
 
@@ -41,9 +73,7 @@ class UserController extends Controller
                 $user->status = 0;
                 $user->save();
     
-                // Activate the user only when user confirms his email account
-
-
+                // Activate the user only when user confirms his email account                
                 // Send Confirmation Email 
                 $email = $data['email'];
                 $messageData = ['name'=>$data['name'], 'email'=>$data['email'], 'code'=>base64_encode($data['email'])];         // We use code with encode email user that register

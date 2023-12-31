@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 31, 2023 at 01:48 PM
+-- Generation Time: Dec 31, 2023 at 04:37 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -622,6 +622,13 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `address`, `city`, `state`, `country`, `postcode`, `mobile`, `email`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Fariha Aamily Binti Mohd Farid', NULL, NULL, NULL, NULL, NULL, '01157911966', 'arid55@yahoo.com', NULL, '$2y$10$wHYKPvur1f5fXJsno/SCYuxSiAVFt/t8tTFSmqECr/iH2qJOzO0A2', NULL, 1, '2023-12-31 14:06:26', '2023-12-31 14:06:58');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -842,7 +849,7 @@ ALTER TABLE `recently_viewed_items`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

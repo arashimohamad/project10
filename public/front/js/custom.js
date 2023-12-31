@@ -178,8 +178,8 @@ $(document).ready(function () {
 
     //User Register Form Validation
     $("#registerForm").submit(function () { 
-        var formData = $("#registerForm").serialize();              // serialize use to take all data from form
-        /*alert(formData); return false;*/                          // return false use to pause for view the output
+        var formData = $("#registerForm").serialize();                          // serialize use to take all data from form
+        /*alert(formData); return false;*/                                      // return false use to pause for view the output
 
         $.ajax({
             type: 'post',
@@ -188,7 +188,7 @@ $(document).ready(function () {
             success: function (data) {
                 //alert(resp);
                 if (data.type == "validation") {
-                    $.each(data.errors, function (i, error) {                   //.each is same like loop
+                    $.each(data.errors, function (i, error) {                   // .each is same like loop
                         $('#register-'+i).attr('style', 'color:red');
                         $('#register-'+i).html(error);
                         setTimeout(function(){
@@ -198,7 +198,7 @@ $(document).ready(function () {
                         }, 6000)
                     });
                 } else if(data.type == "success") {
-                    //window.location.href=data.redirectUrl;          // redirect to cart
+                    //window.location.href=data.redirectUrl;                    // redirect to cart
                     $('#register-success').attr('style', 'color:green');
                     $('#register-success').html(data.message);
                 }
@@ -209,6 +209,42 @@ $(document).ready(function () {
         });
     });
 
-
+    // Login form validation
+    $("#loginForm").submit(function () { 
+        var formData = $(this).serialize();
+        $.ajax({
+            headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
+            type: 'post',
+            url: '../user/login',
+            data: formData,
+            success: function (resp) {
+                //alert(resp);
+                if (resp.type == "error") {
+                    $.each(resp.errors, function (i, error) {                   //.each is same like loop
+                        $('.login-'+i).attr('style', 'color:red');
+                        $('.login-'+i).html(error);
+                        setTimeout(function(){
+                            $('.login-'+i).css({
+                                'display':'none',
+                            })
+                        }, 6000)
+                    });
+                } else if (resp.type == "inactive") { 
+                    //alert(resp.message);                  
+                    $("#login-error").attr('style', 'color:red');
+                    $("#login-error").html(resp.message);    
+                } else if (resp.type == "incorrect") { 
+                    //alert(resp.message);                  
+                    $("#login-error").attr('style', 'color:red');
+                    $("#login-error").html(resp.message);    
+                } else if (resp.type == "success") {
+                    window.location.href=resp.redirectUrl;                      // redirect to cart
+                }
+            },
+            error: function() {
+                alert("Error");
+            }
+        });
+    });
 
 });

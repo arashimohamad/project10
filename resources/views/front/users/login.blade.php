@@ -53,43 +53,39 @@
                         <div class="l-f-o">
                             <div class="l-f-o__pad-box">
                                 <h1 class="gl-h1">I'M NEW CUSTOMER</h1>
-
                                 <span class="gl-text u-s-m-b-30">If you don't have an account with us, please create one.</span>
-                                <div class="u-s-m-b-15">
-
-                                    <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>
-                                    
+                                <div class="u-s-m-b-15"><a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>                                    
                                 <h1 class="gl-h1">SIGNIN</h1>
                                 @include('admin.includes.messages')
                                 <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>
-                                <form class="l-f-o__form">
+                                <form class="l-f-o__form" id="loginForm" action="javascript:;" method="POST">
+                                    @csrf
                                     <div class="u-s-m-b-30">
-
                                         <label class="gl-label" for="login-email">E-MAIL *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="login-email" placeholder="Enter E-mail"></div>
-                                    <div class="u-s-m-b-30">
-
-                                        <label class="gl-label" for="login-password">PASSWORD *</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="login-password" placeholder="Enter Password"></div>
-                                    <div class="gl-inline">
-                                        <div class="u-s-m-b-30">
-
-                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button></div>
-                                        <div class="u-s-m-b-30">
-
-                                            <a class="gl-link" href="lost-password.html">Lost Your Password?</a></div>
+                                        <input class="input-text input-text--primary-style" type="text" id="login-email" name="email" placeholder="Enter E-mail">
+                                        <p class="login-email"></p>
+                                        <p id="login-error"></p>
                                     </div>
                                     <div class="u-s-m-b-30">
-
+                                        <label class="gl-label" for="login-password">PASSWORD *</label>
+                                        <input class="input-text input-text--primary-style" type="password" id="login-password" name="password" placeholder="Enter Password">
+                                        <p class="login-password"></p>
+                                    </div>
+                                    <div class="gl-inline">
+                                        <div class="u-s-m-b-30">
+                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">LOGIN</button>
+                                        </div>
+                                        <div class="u-s-m-b-30">
+                                            <a class="gl-link" href="lost-password.html">Lost Your Password?</a>
+                                        </div>
+                                    </div>
+                                    <div class="u-s-m-b-30">
                                         <!--====== Check Box ======-->
                                         <div class="check-box">
-
                                             <input type="checkbox" id="remember-me">
                                             <div class="check-box__state check-box__state--primary">
-
-                                                <label class="check-box__label" for="remember-me">Remember Me</label></div>
+                                                <label class="check-box__label" for="remember-me">Remember Me</label>
+                                            </div>
                                         </div>
                                         <!--====== End - Check Box ======-->
                                     </div>
