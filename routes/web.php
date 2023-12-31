@@ -88,6 +88,9 @@ Route::group([],function () {
     // User Register
     Route::match(['get', 'post'], 'user/register', [UserController::class, 'registerUser']);
 
+    // User Confirm Account
+    Route::match(['get', 'post'], 'user/confirm/{code}', [UserController::class, 'confirmAccount']);
+
     // User Logout 
     Route::match(['get', 'post'], 'user/logout', [UserController::class, 'logoutUser']);
 });

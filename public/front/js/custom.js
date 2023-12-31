@@ -198,7 +198,9 @@ $(document).ready(function () {
                         }, 6000)
                     });
                 } else if(data.type == "success") {
-                    window.location.href=data.redirectUrl;          // redirect to cart
+                    //window.location.href=data.redirectUrl;          // redirect to cart
+                    $('#register-success').attr('style', 'color:green');
+                    $('#register-success').html(data.message);
                 }
             },
             error: function (resp) {
