@@ -26,6 +26,15 @@ class UserController extends Controller
 
             if ($validator->passes()) {
 
+                // Remember User Email and Password (Remember Me)
+                if (!empty($data['remember-me'])) {
+                    setcookie("user-email", $data['email'], time()+3600);           // 3600 second = 60 minutes and we can upgrade timing as we want
+                    setcookie("user-password", $data['password'], time()+3600);     // 3600 second = 60 minutes and we can upgrade timing as we want
+                } else {
+                    setcookie("user-email");                                        // if checkbox is not check for Remember Me at that time, we are ging to empty this cookies
+                    setcookie("user-password");
+                }                
+
                 if (Auth::attempt(['email' => $data['email'], 'password' => $data['password']])) { 
                     
                     if (Auth::user()->status == 0) {
