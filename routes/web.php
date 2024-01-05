@@ -93,6 +93,10 @@ Route::group([],function () {
 
     // User Logout 
     Route::match(['get', 'post'], 'user/logout', [UserController::class, 'logoutUser']);
+
+    // Forgot Password
+    Route::match(['get', 'post'], 'user/forgot-password', [UserController::class, 'forgotPassword']);
+
 });
 
 // ADMIN

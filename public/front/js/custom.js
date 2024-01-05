@@ -247,4 +247,36 @@ $(document).ready(function () {
         });
     });
 
+    // forgot form validation
+    $("#forgotForm").submit(function () { 
+        var formData = $(this).serialize();
+        $.ajax({
+            headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
+            type: 'post',
+            url: '../user/forgot-password',
+            data: formData,
+            success: function (resp) {
+                //alert(resp);
+                if (resp.type == "error") {
+                    $.each(resp.errors, function (i, error) {                   //.each is same like loop
+                        $('.forgot-'+i).attr('style', 'color:red');
+                        $('.forgot-'+i).html(error);
+                        setTimeout(function(){
+                            $('.forgot-'+i).css({
+                                'display':'none',
+                            })
+                        }, 6000)
+                    });
+                } else if (resp.type == "success") {
+                    //window.location.href=data.redirectUrl;                    // redirect to cart
+                    $("#forgot-success").attr('style', 'color:green');
+                    $("#forgot-success").html(resp.message);
+                }
+            },
+            error: function() {
+                alert("Error");
+            }
+        });
+    });
+
 });
