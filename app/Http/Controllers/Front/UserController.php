@@ -186,6 +186,36 @@ class UserController extends Controller
         }
     }
 
+    public function resetPassword(Request $request, $code=null){
+        if($request->ajax()) {
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;   
+
+            $email = base64_decode($data['code']);                                          // Decode the email
+            $userCount = User::where('email', $email)->count();                             // Check email whether is valid or not
+
+            if ($userCount) {
+                //Update New Password
+                User::where('email', $email)->update(['password'=>bcrypt($data['password'])]);
+
+                // Send Confirmation Email to User
+                $messageData = ['email' => $email];
+                Mail::send('emails.new_password_confirmation', $messageData, function ($message) use($email){
+                    $message->to($email)->subject('Password Updated - ShopWise');
+                });
+
+                // Show success message
+                return response()->json(['type'=>'success', 'message'=>'Password reset for your account. You can login now.']);
+
+            } else {
+                abort('404');
+            }   
+
+        } else {
+            return view('front.users.reset_password', compact('code'));
+        }
+    }
+
     public function logoutUser(Request $request){
         Auth::logout();
         return redirect('user/login'); 

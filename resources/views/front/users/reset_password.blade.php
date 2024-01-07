@@ -49,14 +49,15 @@
                         <div class="l-f-o">
                             <div class="l-f-o__pad-box">
                                 <h1 class="gl-h1">PASSWORD RESET</h1>
-                                <span class="gl-text u-s-m-b-30">Enter your email to reset your password.</span>                                
-                                <form class="l-f-o__form" id="forgotForm" action="javascript:;" method="post">
+                                <span class="gl-text u-s-m-b-30">Enter your new password.</span>                                
+                                <form class="l-f-o__form" id="resetPwdForm" action="javascript:;" method="post">
                                     @csrf
                                     <div class="u-s-m-b-30">
-                                        <label class="gl-label" for="reset-email">E-MAIL *</label>
-                                        <input class="input-text input-text--primary-style" type="text" id="user-email" name="email" placeholder="Enter E-mail">
-                                        <p class="forgot-email"></p>
-                                        <p class="forgot-success"></p>
+                                        <label class="gl-label" for="reset-password">NEW PASSWORD^</label>
+                                        <input class="input-text input-text--primary-style" type="password" id="reset-password" name="password" placeholder="Enter New Password">
+                                        <input type="hidden" id="code" name="code" value="{{ $code }}">
+                                        <p class="reset-password"></p>
+                                        <p class="reset-success"></p>
                                     </div>
                                     <div class="u-s-m-b-30">
                                         <button class="btn btn--e-transparent-brand-b-2" type="submit">SUBMIT</button>

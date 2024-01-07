@@ -123,8 +123,8 @@
 123	Laravel 10 Tutorial #123            Still using mailtrap.io to trigger incoming mail for user confirm their email so that they can login properly
 124	Laravel 10 Tutorial #124 
 125	Laravel 10 Tutorial #125            We use COOKIE browser for this exercise
-126	Laravel 10 Tutorial #126 - Done     Still use mailtrap.io to check reset password link to user email
-127	Laravel 10 Tutorial #127
+126	Laravel 10 Tutorial #126            Still use mailtrap.io to check reset password link to user email
+127	Laravel 10 Tutorial #127 - Done     Still use mailtrap.io to check reset password link and send confirmation to user email
 128	Laravel 10 Tutorial #128
 129	Laravel 10 Tutorial #129
 130	Laravel 10 Tutorial #130

@@ -269,8 +269,40 @@ $(document).ready(function () {
                     });
                 } else if (resp.type == "success") {
                     //window.location.href=data.redirectUrl;                    // redirect to cart
-                    $("#forgot-success").attr('style', 'color:green');
-                    $("#forgot-success").html(resp.message);
+                    $(".forgot-success").attr('style', 'color:green');
+                    $(".forgot-success").html(resp.message);
+                }
+            },
+            error: function() {
+                alert("Error");
+            }
+        });
+    });
+
+    // reset password form validation
+    $("#resetPwdForm").submit(function () { 
+        var formData = $(this).serialize();
+        $.ajax({
+            headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
+            type: 'post',
+            url: '../reset-password',                                           // link is not stable
+            data: formData,
+            success: function (resp) {
+                //alert(resp);
+                if (resp.type == "error") {
+                    $.each(resp.errors, function (i, error) {                   //.each is same like loop
+                        $('.reset-'+i).attr('style', 'color:red');
+                        $('.reset-'+i).html(error);
+                        setTimeout(function(){
+                            $('.reset-'+i).css({
+                                'display':'none',
+                            })
+                        }, 6000)
+                    });
+                } else if (resp.type == "success") {
+                    //window.location.href=data.redirectUrl;                    // redirect to cart
+                    $(".reset-success").attr('style', 'color:green');
+                    $(".reset-success").html(resp.message);
                 }
             },
             error: function() {

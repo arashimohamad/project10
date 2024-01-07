@@ -97,6 +97,9 @@ Route::group([],function () {
     // Forgot Password
     Route::match(['get', 'post'], 'user/forgot-password', [UserController::class, 'forgotPassword']);
 
+    // Reset Password (code is require only in GET reset password link that passing the code from mailbox to ui reset password)
+    Route::match(['get', 'post'], 'user/reset-password/{code?}', [UserController::class, 'resetPassword']);
+
 });
 
 // ADMIN
