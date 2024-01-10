@@ -35,6 +35,7 @@ $(document).ready(function () {
     // Add to Cart JQuery function
     $('#addToCart').submit(function () { 
         // alert("Haha");
+        $(".loader").show(); 
         var formData = $(this).serialize();
         $.ajax({
             headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
@@ -43,6 +44,7 @@ $(document).ready(function () {
             data: formData,
             success: function (resp) {
                 //alert(resp['status]);
+                $(".loader").hide(); 
                 $(".totalCartItems").html(resp['totalCartItems']);
                 $("#appendCartItems").html(resp.view);
                 $("#appendMiniCartItems").html(resp.minicartview);
@@ -68,6 +70,7 @@ $(document).ready(function () {
             }, 
             
             error:function(){
+                $(".loader").hide(); 
                 alert("Error");
             }
         });        
@@ -178,9 +181,9 @@ $(document).ready(function () {
 
     //User Register Form Validation
     $("#registerForm").submit(function () { 
+        $(".loader").show();       
         var formData = $("#registerForm").serialize();                          // serialize use to take all data from form
         /*alert(formData); return false;*/                                      // return false use to pause for view the output
-
         $.ajax({
             type: 'post',
             url: '../user/register',
@@ -188,6 +191,7 @@ $(document).ready(function () {
             success: function (data) {
                 //alert(resp);
                 if (data.type == "validation") {
+                    $(".loader").hide();       
                     $.each(data.errors, function (i, error) {                   // .each is same like loop
                         $('#register-'+i).attr('style', 'color:red');
                         $('#register-'+i).html(error);
@@ -198,9 +202,10 @@ $(document).ready(function () {
                         }, 6000)
                     });
                 } else if(data.type == "success") {
-                    //window.location.href=data.redirectUrl;                    // redirect to cart
+                    $(".loader").show();       
                     $('#register-success').attr('style', 'color:green');
                     $('#register-success').html(data.message);
+                    //window.location.href=data.redirectUrl;                    // redirect to cart
                 }
             },
             error: function (resp) {
@@ -249,6 +254,7 @@ $(document).ready(function () {
 
     // forgot form validation
     $("#forgotForm").submit(function () { 
+        $(".loader").show(); 
         var formData = $(this).serialize();
         $.ajax({
             headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
@@ -257,6 +263,7 @@ $(document).ready(function () {
             data: formData,
             success: function (resp) {
                 //alert(resp);
+                $(".loader").hide(); 
                 if (resp.type == "error") {
                     $.each(resp.errors, function (i, error) {                   //.each is same like loop
                         $('.forgot-'+i).attr('style', 'color:red');
@@ -268,12 +275,14 @@ $(document).ready(function () {
                         }, 6000)
                     });
                 } else if (resp.type == "success") {
-                    //window.location.href=data.redirectUrl;                    // redirect to cart
+                    $(".loader").hide(); 
                     $(".forgot-success").attr('style', 'color:green');
                     $(".forgot-success").html(resp.message);
+                    //window.location.href=data.redirectUrl;                    // redirect to cart
                 }
             },
             error: function() {
+                $(".loader").hide(); 
                 alert("Error");
             }
         });
@@ -281,6 +290,7 @@ $(document).ready(function () {
 
     // reset password form validation
     $("#resetPwdForm").submit(function () { 
+        $(".loader").show(); 
         var formData = $(this).serialize();
         $.ajax({
             headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
@@ -289,6 +299,7 @@ $(document).ready(function () {
             data: formData,
             success: function (resp) {
                 //alert(resp);
+                $(".loader").hide(); 
                 if (resp.type == "error") {
                     $.each(resp.errors, function (i, error) {                   //.each is same like loop
                         $('.reset-'+i).attr('style', 'color:red');
@@ -299,13 +310,14 @@ $(document).ready(function () {
                             })
                         }, 6000)
                     });
-                } else if (resp.type == "success") {
-                    //window.location.href=data.redirectUrl;                    // redirect to cart
+                } else if (resp.type == "success") {                    
                     $(".reset-success").attr('style', 'color:green');
                     $(".reset-success").html(resp.message);
+                    //window.location.href=data.redirectUrl;                    // redirect to cart
                 }
             },
             error: function() {
+                $(".loader").hide(); 
                 alert("Error");
             }
         });
