@@ -126,7 +126,7 @@
 126	Tutorial Completed #126            Still use mailtrap.io to check reset password link to user email
 127	Tutorial Completed #127            Still use mailtrap.io to check reset password link and send confirmation to user email
 128	Tutorial Completed #128            Put a loader to html and scripts for front page together with css
-129	Tutorial Completed #129 - Done
+129	Tutorial Completed #129 - Done     Releated to Authenticate.php. Must add name as a route (Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser'])->name('login');)
 130	Tutorial Completed #130
 131	Tutorial Completed #131
 132	Tutorial Completed #132
