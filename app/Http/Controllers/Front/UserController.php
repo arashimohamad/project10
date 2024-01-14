@@ -220,4 +220,8 @@ class UserController extends Controller
         Auth::logout();
         return redirect('user/login'); 
     }
+
+    public function account(){
+        echo "user profile confidential details"; die;
+    }
 }

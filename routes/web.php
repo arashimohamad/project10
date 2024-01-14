@@ -83,7 +83,7 @@ Route::group([],function () {
     ###############################################################
     
     // User Login
-    Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser']);
+    Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser'])->name('login');
 
     // User Register
     Route::match(['get', 'post'], 'user/register', [UserController::class, 'registerUser']);
@@ -91,8 +91,15 @@ Route::group([],function () {
     // User Confirm Account
     Route::match(['get', 'post'], 'user/confirm/{code}', [UserController::class, 'confirmAccount']);
 
-    // User Logout 
-    Route::match(['get', 'post'], 'user/logout', [UserController::class, 'logoutUser']);
+    Route::middleware(['auth'])->group(function () {
+        
+        // User Account
+        Route::match(['get', 'post'], 'user/account', [UserController::class, 'account']);
+        
+        // User Logout 
+        Route::match(['get', 'post'], 'user/logout', [UserController::class, 'logoutUser']);
+        
+    });
 
     // Forgot Password
     Route::match(['get', 'post'], 'user/forgot-password', [UserController::class, 'forgotPassword']);

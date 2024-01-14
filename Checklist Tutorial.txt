@@ -1,183 +1,183 @@
-1	Laravel 10 Tutorial #1	
-2	Laravel 10 Tutorial #2	
-3	Laravel 10 Tutorial #3	
-4	Laravel 10 Tutorial #4	
-5	Laravel 10 Tutorial #5	
-6	Laravel 10 Tutorial #6	
-7	Laravel 10 Tutorial #7	
-8	Laravel 10 Tutorial #8	
-9	Laravel 10 Tutorial #9	
-10	Laravel 10 Tutorial #10	
-11	Laravel 10 Tutorial #11	
-12	Laravel 10 Tutorial #12	
-13	Laravel 10 Tutorial #13	
-14	Laravel 10 Tutorial #14	
-15	Laravel 10 Tutorial #15	
-16	Laravel 10 Tutorial #16	
-17	Laravel 10 Tutorial #17	
-18	Laravel 10 Tutorial #18	
-19	Laravel 10 Tutorial #19	
-20	Laravel 10 Tutorial #20	
-21	Laravel 10 Tutorial #21	
-22	Laravel 10 Tutorial #22	
-23	Laravel 10 Tutorial #23	
-24	Laravel 10 Tutorial #24	
-25	Laravel 10 Tutorial #25	
-26	Laravel 10 Tutorial #26	
-27	Laravel 10 Tutorial #27	
-28	Laravel 10 Tutorial #28	
-29	Laravel 10 Tutorial #29	
-30	Laravel 10 Tutorial #30	
-31	Laravel 10 Tutorial #31	
-32	Laravel 10 Tutorial #32	
-33	Laravel 10 Tutorial #33	
-34	Laravel 10 Tutorial #34	
-35	Laravel 10 Tutorial #35	
-36	Laravel 10 Tutorial #36	
-37	Laravel 10 Tutorial #37	
-38	Laravel 10 Tutorial #38	
-39	Laravel 10 Tutorial #39	
-40	Laravel 10 Tutorial #40	
-41	Laravel 10 Tutorial #41	
-42	Laravel 10 Tutorial #42	
-43	Laravel 10 Tutorial #43	
-44	Laravel 10 Tutorial #44	
-45	Laravel 10 Tutorial #45	
-46	Laravel 10 Tutorial #46	
-47	Laravel 10 Tutorial #47	
-48	Laravel 10 Tutorial #48	
-49	Laravel 10 Tutorial #49	
-50	Laravel 10 Tutorial #50	
-51	Laravel 10 Tutorial #51	
-52	Laravel 10 Tutorial #52	
-53	Laravel 10 Tutorial #53	
-54	Laravel 10 Tutorial #54	
-55	Laravel 10 Tutorial #55	
-56	Laravel 10 Tutorial #56	
-57	Laravel 10 Tutorial #57	
-58	Laravel 10 Tutorial #58	
-59	Laravel 10 Tutorial #59	
-60	Laravel 10 Tutorial #60	
-61	Laravel 10 Tutorial #61	
-62	Laravel 10 Tutorial #62	
-63	Laravel 10 Tutorial #63	
-64	Laravel 10 Tutorial #64	
-65	Laravel 10 Tutorial #65	
-66	Laravel 10 Tutorial #66	
-67	Laravel 10 Tutorial #67	
-68	Laravel 10 Tutorial #68	
-69	Laravel 10 Tutorial #69	
-70	Laravel 10 Tutorial #70	
-71	Laravel 10 Tutorial #71	
-72	Laravel 10 Tutorial #72	
-73	Laravel 10 Tutorial #73	
-74	Laravel 10 Tutorial #74	
-75	Laravel 10 Tutorial #75	
-76	Laravel 10 Tutorial #76	
-77	Laravel 10 Tutorial #77	
-78	Laravel 10 Tutorial #78	
-79	Laravel 10 Tutorial #79	
-80	Laravel 10 Tutorial #80	
-81	Laravel 10 Tutorial #81	
-82	Laravel 10 Tutorial #82	
-83	Laravel 10 Tutorial #83	
-84	Laravel 10 Tutorial #84	
-85	Laravel 10 Tutorial #85	
-86	Laravel 10 Tutorial #86	
-87	Laravel 10 Tutorial #87	
-88	Laravel 10 Tutorial #88	
-89	Laravel 10 Tutorial #89	
-90	Laravel 10 Tutorial #90	
-91	Laravel 10 Tutorial #91	
-92	Laravel 10 Tutorial #92	
-93	Laravel 10 Tutorial #93	
-94	Laravel 10 Tutorial #94	
-95	Laravel 10 Tutorial #95	
-96	Laravel 10 Tutorial #96	
-97	Laravel 10 Tutorial #97	
-98	Laravel 10 Tutorial #98	
-99	Laravel 10 Tutorial #99	
-100	Laravel 10 Tutorial #100 
-101	Laravel 10 Tutorial #101 
-102	Laravel 10 Tutorial #102 
-103	Laravel 10 Tutorial #103 
-104	Laravel 10 Tutorial #104 
-105	Laravel 10 Tutorial #105 
-106	Laravel 10 Tutorial #106 
-107	Laravel 10 Tutorial #107            (Checking cart data using html only, not use data(s) from cart table)
-108	Laravel 10 Tutorial #108            (Very tricky for that tutorial, must plan before do that) 
-109	Laravel 10 Tutorial #109 
-110	Laravel 10 Tutorial #110 
-111	Laravel 10 Tutorial #111 
-112	Laravel 10 Tutorial #112            
-113	Laravel 10 Tutorial #113            Don't use $(".updateCartItem").click(function () {} but you MUST USE $(document).on('click','.updateCartItem', function(){} for custom.js so that your Input Counter button can worked properly
-114	Laravel 10 Tutorial #114 
-115	Laravel 10 Tutorial #115
-116	Laravel 10 Tutorial #116            Please refer Helper.php by this path project10\app\Helpers . Helper.php we can call it as a global function and can use anywhere on webpage
-117	Laravel 10 Tutorial #117            To change from $getCartItems = Cart::getCartItems() TO $getCartItems = getCartItems() --> getCartItems() now in Helper.php as a global function. Please refer path project10\app\Helpers
-118	Laravel 10 Tutorial #118 
-119	Laravel 10 Tutorial #119 
-120	Laravel 10 Tutorial #120 
-121	Laravel 10 Tutorial #121 
-122	Laravel 10 Tutorial #122            Configure mailtrap email settings and .env file. Login/register a new Mailtrap account at https://mailtrap.io/ to send and check emails offline.
-123	Laravel 10 Tutorial #123            Still using mailtrap.io to trigger incoming mail for user confirm their email so that they can login properly
-124	Laravel 10 Tutorial #124 
-125	Laravel 10 Tutorial #125            We use COOKIE browser for this exercise
-126	Laravel 10 Tutorial #126            Still use mailtrap.io to check reset password link to user email
-127	Laravel 10 Tutorial #127            Still use mailtrap.io to check reset password link and send confirmation to user email
-128	Laravel 10 Tutorial #128 - Done     Put a loader to html and scripts for front page together with css
-129	Laravel 10 Tutorial #129
-130	Laravel 10 Tutorial #130
-131	Laravel 10 Tutorial #131
-132	Laravel 10 Tutorial #132
-133	Laravel 10 Tutorial #133
-134	Laravel 10 Tutorial #134
-135	Laravel 10 Tutorial #135
-136	Laravel 10 Tutorial #136
-137	Laravel 10 Tutorial #137
-138	Laravel 10 Tutorial #138
-139	Laravel 10 Tutorial #139
-140	Laravel 10 Tutorial #140
-141	Laravel 10 Tutorial #141
-142	Laravel 10 Tutorial #142
-143	Laravel 10 Tutorial #143
-144	Laravel 10 Tutorial #144
-145	Laravel 10 Tutorial #145
-146	Laravel 10 Tutorial #146
-147	Laravel 10 Tutorial #147
-148	Laravel 10 Tutorial #148
-149	Laravel 10 Tutorial #149
-150	Laravel 10 Tutorial #150
-151	Laravel 10 Tutorial #151
-152	Laravel 10 Tutorial #152
-153	Laravel 10 Tutorial #153
-154	Laravel 10 Tutorial #154
-155	Laravel 10 Tutorial #155
-156	Laravel 10 Tutorial #156
-157	Laravel 10 Tutorial #157
-158	Laravel 10 Tutorial #158
-159	Laravel 10 Tutorial #159
-160	Laravel 10 Tutorial #160
-161	Laravel 10 Tutorial #161
-162	Laravel 10 Tutorial #162
-163	Laravel 10 Tutorial #163
-164	Laravel 10 Tutorial #164
-165	Laravel 10 Tutorial #165
-166	Laravel 10 Tutorial #166
-167	Laravel 10 Tutorial #167
-168	Laravel 10 Tutorial #168
-169	Laravel 10 Tutorial #169
-170	Laravel 10 Tutorial #170
-171	Laravel 10 Tutorial #171
-172	Laravel 10 Tutorial #172
-173	Laravel 10 Tutorial #173
-174	Laravel 10 Tutorial #174
-175	Laravel 10 Tutorial #175
-176	Laravel 10 Tutorial #176
-177	Laravel 10 Tutorial #177
-178	Laravel 10 Tutorial #178
-179	Laravel 10 Tutorial #179
-180	Laravel 10 Tutorial #180
+1	Tutorial Completed #1	
+2	Tutorial Completed #2	
+3	Tutorial Completed #3	
+4	Tutorial Completed #4	
+5	Tutorial Completed #5	
+6	Tutorial Completed #6	
+7	Tutorial Completed #7	
+8	Tutorial Completed #8	
+9	Tutorial Completed #9	
+10	Tutorial Completed #10	
+11	Tutorial Completed #11	
+12	Tutorial Completed #12	
+13	Tutorial Completed #13	
+14	Tutorial Completed #14	
+15	Tutorial Completed #15	
+16	Tutorial Completed #16	
+17	Tutorial Completed #17	
+18	Tutorial Completed #18	
+19	Tutorial Completed #19	
+20	Tutorial Completed #20	
+21	Tutorial Completed #21	
+22	Tutorial Completed #22	
+23	Tutorial Completed #23	
+24	Tutorial Completed #24	
+25	Tutorial Completed #25	
+26	Tutorial Completed #26	
+27	Tutorial Completed #27	
+28	Tutorial Completed #28	
+29	Tutorial Completed #29	
+30	Tutorial Completed #30	
+31	Tutorial Completed #31	
+32	Tutorial Completed #32	
+33	Tutorial Completed #33	
+34	Tutorial Completed #34	
+35	Tutorial Completed #35	
+36	Tutorial Completed #36	
+37	Tutorial Completed #37	
+38	Tutorial Completed #38	
+39	Tutorial Completed #39	
+40	Tutorial Completed #40	
+41	Tutorial Completed #41	
+42	Tutorial Completed #42	
+43	Tutorial Completed #43	
+44	Tutorial Completed #44	
+45	Tutorial Completed #45	
+46	Tutorial Completed #46	
+47	Tutorial Completed #47	
+48	Tutorial Completed #48	
+49	Tutorial Completed #49	
+50	Tutorial Completed #50	
+51	Tutorial Completed #51	
+52	Tutorial Completed #52	
+53	Tutorial Completed #53	
+54	Tutorial Completed #54	
+55	Tutorial Completed #55	
+56	Tutorial Completed #56	
+57	Tutorial Completed #57	
+58	Tutorial Completed #58	
+59	Tutorial Completed #59	
+60	Tutorial Completed #60	
+61	Tutorial Completed #61	
+62	Tutorial Completed #62	
+63	Tutorial Completed #63	
+64	Tutorial Completed #64	
+65	Tutorial Completed #65	
+66	Tutorial Completed #66	
+67	Tutorial Completed #67	
+68	Tutorial Completed #68	
+69	Tutorial Completed #69	
+70	Tutorial Completed #70	
+71	Tutorial Completed #71	
+72	Tutorial Completed #72	
+73	Tutorial Completed #73	
+74	Tutorial Completed #74	
+75	Tutorial Completed #75	
+76	Tutorial Completed #76	
+77	Tutorial Completed #77	
+78	Tutorial Completed #78	
+79	Tutorial Completed #79	
+80	Tutorial Completed #80	
+81	Tutorial Completed #81	
+82	Tutorial Completed #82	
+83	Tutorial Completed #83	
+84	Tutorial Completed #84	
+85	Tutorial Completed #85	
+86	Tutorial Completed #86	
+87	Tutorial Completed #87	
+88	Tutorial Completed #88	
+89	Tutorial Completed #89	
+90	Tutorial Completed #90	
+91	Tutorial Completed #91	
+92	Tutorial Completed #92	
+93	Tutorial Completed #93	
+94	Tutorial Completed #94	
+95	Tutorial Completed #95	
+96	Tutorial Completed #96	
+97	Tutorial Completed #97	
+98	Tutorial Completed #98	
+99	Tutorial Completed #99	
+100	Tutorial Completed #100 
+101	Tutorial Completed #101 
+102	Tutorial Completed #102 
+103	Tutorial Completed #103 
+104	Tutorial Completed #104 
+105	Tutorial Completed #105 
+106	Tutorial Completed #106 
+107	Tutorial Completed #107            (Checking cart data using html only, not use data(s) from cart table)
+108	Tutorial Completed #108            (Very tricky for that tutorial, must plan before do that) 
+109	Tutorial Completed #109 
+110	Tutorial Completed #110 
+111	Tutorial Completed #111 
+112	Tutorial Completed #112            
+113	Tutorial Completed #113            Don't use $(".updateCartItem").click(function () {} but you MUST USE $(document).on('click','.updateCartItem', function(){} for custom.js so that your Input Counter button can worked properly
+114	Tutorial Completed #114 
+115	Tutorial Completed #115
+116	Tutorial Completed #116            Please refer Helper.php by this path project10\app\Helpers . Helper.php we can call it as a global function and can use anywhere on webpage
+117	Tutorial Completed #117            To change from $getCartItems = Cart::getCartItems() TO $getCartItems = getCartItems() --> getCartItems() now in Helper.php as a global function. Please refer path project10\app\Helpers
+118	Tutorial Completed #118 
+119	Tutorial Completed #119 
+120	Tutorial Completed #120 
+121	Tutorial Completed #121 
+122	Tutorial Completed #122            Configure mailtrap email settings and .env file. Login/register a new Mailtrap account at https://mailtrap.io/ to send and check emails offline.
+123	Tutorial Completed #123            Still using mailtrap.io to trigger incoming mail for user confirm their email so that they can login properly
+124	Tutorial Completed #124 
+125	Tutorial Completed #125            We use COOKIE browser for this exercise
+126	Tutorial Completed #126            Still use mailtrap.io to check reset password link to user email
+127	Tutorial Completed #127            Still use mailtrap.io to check reset password link and send confirmation to user email
+128	Tutorial Completed #128            Put a loader to html and scripts for front page together with css
+129	Tutorial Completed #129 - Done
+130	Tutorial Completed #130
+131	Tutorial Completed #131
+132	Tutorial Completed #132
+133	Tutorial Completed #133
+134	Tutorial Completed #134
+135	Tutorial Completed #135
+136	Tutorial Completed #136
+137	Tutorial Completed #137
+138	Tutorial Completed #138
+139	Tutorial Completed #139
+140	Tutorial Completed #140
+141	Tutorial Completed #141
+142	Tutorial Completed #142
+143	Tutorial Completed #143
+144	Tutorial Completed #144
+145	Tutorial Completed #145
+146	Tutorial Completed #146
+147	Tutorial Completed #147
+148	Tutorial Completed #148
+149	Tutorial Completed #149
+150	Tutorial Completed #150
+151	Tutorial Completed #151
+152	Tutorial Completed #152
+153	Tutorial Completed #153
+154	Tutorial Completed #154
+155	Tutorial Completed #155
+156	Tutorial Completed #156
+157	Tutorial Completed #157
+158	Tutorial Completed #158
+159	Tutorial Completed #159
+160	Tutorial Completed #160
+161	Tutorial Completed #161
+162	Tutorial Completed #162
+163	Tutorial Completed #163
+164	Tutorial Completed #164
+165	Tutorial Completed #165
+166	Tutorial Completed #166
+167	Tutorial Completed #167
+168	Tutorial Completed #168
+169	Tutorial Completed #169
+170	Tutorial Completed #170
+171	Tutorial Completed #171
+172	Tutorial Completed #172
+173	Tutorial Completed #173
+174	Tutorial Completed #174
+175	Tutorial Completed #175
+176	Tutorial Completed #176
+177	Tutorial Completed #177
+178	Tutorial Completed #178
+179	Tutorial Completed #179
+180	Tutorial Completed #180
 
 
 Email : admin@admin.com / lisa@admin.com / john@admin.com
