@@ -202,7 +202,7 @@ $(document).ready(function () {
                         }, 6000)
                     });
                 } else if(data.type == "success") {
-                    $(".loader").show();       
+                    $(".loader").hide();       
                     $('#register-success').attr('style', 'color:green');
                     $('#register-success').html(data.message);
                     //window.location.href=data.redirectUrl;                    // redirect to cart
@@ -323,4 +323,39 @@ $(document).ready(function () {
         });
     });
 
+    // Account Form Validation
+    $("#account-success").hide();  
+    $("#accountForm").submit(function () { 
+        $(".loader").show();       
+        var formData = $(this).serialize();                                     // serialize use to take all data from form
+        /*alert(formData); return false;*/                                      // return false use to pause for view the output
+        $.ajax({
+            type: 'post',
+            url: '../user/account',
+            data: formData,
+            success: function (data) {
+                //alert(resp);
+                if (data.type == "validation") {
+                    $(".loader").hide();       
+                    $.each(data.errors, function (i, error) {                   // .each is same like loop
+                        $('#account-'+i).attr('style', 'color:red');
+                        $('#account-'+i).html(error);
+                        setTimeout(function(){
+                            $('#account-'+i).css({
+                                'display':'none',
+                            })
+                        }, 6000)
+                    });
+                } else if(data.type == "success") {
+                    $(".loader").hide();       
+                    $('#account-success').attr('style', 'color:green');
+                    $('#account-success').html(data.message);
+                    //window.location.href=data.redirectUrl;                    // redirect to cart
+                }
+            },
+            error: function (resp) {
+                alert("Error");
+            }
+        });
+    });
 });

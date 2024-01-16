@@ -126,8 +126,8 @@
 126	Tutorial Completed #126            Still use mailtrap.io to check reset password link to user email
 127	Tutorial Completed #127            Still use mailtrap.io to check reset password link and send confirmation to user email
 128	Tutorial Completed #128            Put a loader to html and scripts for front page together with css
-129	Tutorial Completed #129 - Done     Releated to Authenticate.php. Must add name as a route (Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser'])->name('login');)
-130	Tutorial Completed #130
+129	Tutorial Completed #129            Releated to Authenticate.php. Must add name as a route (Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser'])->name('login');)
+130	Tutorial Completed #130 - Done     Use UserController - public function registerUser() and User Register Form Validation (front: custom.js) as reference to create function account() and Account Form Validation (front: custom.js)
 131	Tutorial Completed #131
 132	Tutorial Completed #132
 133	Tutorial Completed #133
@@ -178,7 +178,78 @@
 178	Tutorial Completed #178
 179	Tutorial Completed #179
 180	Tutorial Completed #180
+181	Tutorial Completed #181
+182	Tutorial Completed #182
+183	Tutorial Completed #183
+184	Tutorial Completed #184
+185	Tutorial Completed #185
+186	Tutorial Completed #186
+187	Tutorial Completed #187
+188	Tutorial Completed #188
+189	Tutorial Completed #189
+190	Tutorial Completed #190
+191	Tutorial Completed #191
+192	Tutorial Completed #192
+193	Tutorial Completed #193
+194	Tutorial Completed #194
+195	Tutorial Completed #195
+196	Tutorial Completed #196
+197	Tutorial Completed #197
+198	Tutorial Completed #198
+199	Tutorial Completed #199
+200	Tutorial Completed #200
+201	Tutorial Completed #201
+202	Tutorial Completed #202
+203	Tutorial Completed #203
+204	Tutorial Completed #204
+205	Tutorial Completed #205
+206	Tutorial Completed #206
+207	Tutorial Completed #207
+208	Tutorial Completed #208
+209	Tutorial Completed #209
+210	Tutorial Completed #210
+211	Tutorial Completed #211
+212	Tutorial Completed #212
+213	Tutorial Completed #213
+214	Tutorial Completed #214
+215	Tutorial Completed #215
+216	Tutorial Completed #216
+217	Tutorial Completed #217
+218	Tutorial Completed #218
+219	Tutorial Completed #219
+220	Tutorial Completed #220
+221	Tutorial Completed #221
+222	Tutorial Completed #222
+223	Tutorial Completed #223
+224	Tutorial Completed #224
+225	Tutorial Completed #225
+226	Tutorial Completed #226
+227	Tutorial Completed #227
+228	Tutorial Completed #228
+229	Tutorial Completed #229
+230	Tutorial Completed #230
+231	Tutorial Completed #231
+232	Tutorial Completed #232
+233	Tutorial Completed #233
+234	Tutorial Completed #234
+235	Tutorial Completed #235
+236	Tutorial Completed #236
+237	Tutorial Completed #237
+238	Tutorial Completed #238
+239	Tutorial Completed #239
+240	Tutorial Completed #240
+241	Tutorial Completed #241
+242	Tutorial Completed #242
+243	Tutorial Completed #243
+244	Tutorial Completed #244
+245	Tutorial Completed #245
+246	Tutorial Completed #246
+247	Tutorial Completed #247
+248	Tutorial Completed #248
+249	Tutorial Completed #249
+250	Tutorial Completed #250
 
 
-Email : admin@admin.com / lisa@admin.com / john@admin.com
+
+Email : admin@admin.com / lisa@admin.com / john@admin.com / arid55@yahoo.com
 Password : 123456

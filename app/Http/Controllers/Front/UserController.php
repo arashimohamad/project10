@@ -221,7 +221,39 @@ class UserController extends Controller
         return redirect('user/login'); 
     }
 
-    public function account(){
-        echo "user profile confidential details"; die;
+    public function account(Request $request){
+        if ($request->ajax()) {
+            $data = $request->all();
+            // echo "<pre>"; print_r($data); die;
+            $validator = Validator::make($request->all(), [
+                'name' => 'required|string|max:250',
+                'city' => 'required|string|max:250',
+                'state' => 'required|string|max:250',
+                'address' => 'required|string|max:250',
+                'pincode' => 'required|string|max:250',
+                'mobile' => 'required|numeric',                                       //'required|numeric|digits:13'    
+            ]);
+
+            if ($validator->passes()) { 
+                // Update User Detail
+                User::where('id', Auth::user()->id)->update([
+                    'name' => $data['name'],
+                    'city' => $data['city'],
+                    'state' => $data['state'],
+                    'address' => $data['address'],
+                    'postcode' => $data['pincode'],
+                    'country' => $data['country'],
+                    'mobile' => $data['mobile'],
+                ]);
+
+                //Redirect back user with success message
+                return response()->json(['status'=>true, 'type'=>'success', 'message'=>'User Details Successfully Updated!']);
+            }else{
+                return response()->json(['status'=>false, 'type'=>'validation', 'errors'=>$validator->messages()]);
+            }
+        } else {
+            return view('front.users.account');            
+        }
+        
     }
 }

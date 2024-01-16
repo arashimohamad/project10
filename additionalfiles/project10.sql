@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 31, 2023 at 04:37 PM
+-- Generation Time: Jan 16, 2024 at 04:55 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -626,7 +626,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `address`, `city`, `state`, `country`, `postcode`, `mobile`, `email`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Fariha Aamily Binti Mohd Farid', NULL, NULL, NULL, NULL, NULL, '01157911966', 'arid55@yahoo.com', NULL, '$2y$10$wHYKPvur1f5fXJsno/SCYuxSiAVFt/t8tTFSmqECr/iH2qJOzO0A2', NULL, 1, '2023-12-31 14:06:26', '2023-12-31 14:06:58');
+(1, 'Fariha Aamily Binti Mohd Farid', 'A-30-06', 'Bukit Jalil', 'Kuala Lumpur', 'Malaysia', '57000', '01157911966', 'arid55@yahoo.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-16 16:49:58');
 
 --
 -- Indexes for dumped tables
