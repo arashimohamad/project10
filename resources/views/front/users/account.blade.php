@@ -86,21 +86,16 @@
                                             </div>
                                         </div>
                                         <div class="gl-inline">
-                                            {{-- <div class="u-s-m-b-30">
+                                            <div class="u-s-m-b-30">
                                                 <!--====== Select Box ======-->
-                                                <label class="gl-label" for="billing-country">COUNTRY *</label><select class="select-box select-box--primary-style" id="billing-country">
+                                                <label class="gl-label" for="billing-country">COUNTRY *</label>
+                                                <select class="select-box select-box--primary-style" id="billing-country" name="country" required>
                                                     <option selected value="">Choose Country</option>
-                                                    <option value="india">India</option>
-                                                    <option value="uae">United Arab Emirate (UAE)</option>
-                                                    <option value="uk">United Kingdom (UK)</option>
-                                                    <option value="us">United States (US)</option>
+                                                    @foreach ($countries as $country)
+                                                        <option value="{{ $country->country_name }}" @if ($country->country_name == Auth::user()->country) selected @endif>{{ $country->country_name }}</option>                                                        
+                                                    @endforeach                                                    
                                                 </select>
                                                 <!--====== End - Select Box ======-->
-                                                <p id="account-name"></p>
-                                            </div> --}}
-                                            <div class="u-s-m-b-30">
-                                                <label class="gl-label" for="billing-country">COUNTRY *</label>
-                                                <input class="input-text input-text--primary-style" type="text" id="billing-country" name="country" placeholder="COUNTRY" value="{{ Auth::user()->country }}">
                                                 <p id="account-country"></p>
                                             </div>
                                             <div class="u-s-m-b-30">

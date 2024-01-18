@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\User;
+use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -231,6 +232,7 @@ class UserController extends Controller
                 'state' => 'required|string|max:250',
                 'address' => 'required|string|max:250',
                 'pincode' => 'required|string|max:250',
+                'country' => 'required|string|max:250',
                 'mobile' => 'required|numeric',                                       //'required|numeric|digits:13'    
             ]);
 
@@ -252,7 +254,8 @@ class UserController extends Controller
                 return response()->json(['status'=>false, 'type'=>'validation', 'errors'=>$validator->messages()]);
             }
         } else {
-            return view('front.users.account');            
+            $countries = Country::where('status', 1)->get();
+            return view('front.users.account',compact('countries'));            
         }
         
     }

@@ -127,8 +127,8 @@
 127	Tutorial Completed #127            Still use mailtrap.io to check reset password link and send confirmation to user email
 128	Tutorial Completed #128            Put a loader to html and scripts for front page together with css
 129	Tutorial Completed #129            Releated to Authenticate.php. Must add name as a route (Route::match(['get', 'post'], 'user/login', [UserController::class, 'loginUser'])->name('login');)
-130	Tutorial Completed #130 - Done     Use UserController - public function registerUser() and User Register Form Validation (front: custom.js) as reference to create function account() and Account Form Validation (front: custom.js)
-131	Tutorial Completed #131
+130	Tutorial Completed #130            Use UserController - public function registerUser() and User Register Form Validation (front: custom.js) as reference to create function account() and Account Form Validation (front: custom.js)
+131	Tutorial Completed #131 - Done
 132	Tutorial Completed #132
 133	Tutorial Completed #133
 134	Tutorial Completed #134
