@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 18, 2024 at 06:20 AM
+-- Generation Time: Jan 18, 2024 at 07:22 AM
 -- Server version: 11.2.1-MariaDB-log
--- PHP Version: 8.2.4
+-- PHP Version: 7.4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `project10`
+-- Database: `ecommerce_project10`
 --
 
 -- --------------------------------------------------------
