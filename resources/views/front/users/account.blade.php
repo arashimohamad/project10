@@ -12,8 +12,8 @@
                 <div class="breadcrumb">
                     <div class="breadcrumb__wrap">
                         <ul class="breadcrumb__list">
-                            <li class="has-separator"><a href="index.html">Home</a></li>
-                            <li class="is-marked"><a href="dash-address-add.html">My Account</a></li>
+                            <li class="has-separator"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="is-marked"><a href="javascript:;">My Account</a></li>
                         </ul>
                     </div>
                 </div>
@@ -35,12 +35,12 @@
                             <!--====== Dashboard Features ======-->
                             <div class="dash__box dash__box--bg-white dash__box--shadow u-s-m-b-30">
                                 <div class="dash__pad-1">
-                                    <span class="dash__text u-s-m-b-16">Hello, Amit Gupta</span>
+                                    <span class="dash__text u-s-m-b-16">Hello, {{ Auth::user()->name }}</span>
                                     <ul class="dash__f-list">
-                                        <li><a href="account.html">My Billing/Contact Address</a></li>
+                                        <li><a href="javascript:;">My Billing / Contact Address</a></li>
                                         <li><a href="orders.html">My Orders</a></li>
                                         <li><a href="wishlist.html">My Wish List</a></li>
-                                        <li><a href="update-password.html">Update Password</a></li>
+                                        <li><a href="{{ url('user/update-password') }}">Update Password</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -50,10 +50,10 @@
                         <div class="col-lg-9 col-md-12">
                             <div class="dash__box dash__box--shadow dash__box--radius dash__box--bg-white">
                                 <div class="dash__pad-2">
-                                    <h1 class="dash__h1 u-s-m-b-14">My Billing/Contact Address</h1>
-                                    <span class="dash__text u-s-m-b-30">Please add your Billing/Contact details.</span>
+                                    <h1 class="dash__h1 u-s-m-b-14">My Billing / Contact Address</h1>
+                                    <span class="dash__text u-s-m-b-30">Please add your Billing / Contact details.</span>
                                     <p style="font-weight: bold; margin-top:10px" id="account-success"><br></p>
-                                    <p id="account-error"><br></p>
+                                    <p style="font-weight: bold; margin-top:10px" id="account-error"></p><br>
                                     <form class="dash-address-manipulation" id="accountForm" action="javascript:;" method="POST">
                                         @csrf
                                         <div class="gl-inline">
@@ -99,9 +99,9 @@
                                                 <p id="account-country"></p>
                                             </div>
                                             <div class="u-s-m-b-30">
-                                                <label class="gl-label" for="billing-pincode">PINCODE *</label>
-                                                <input class="input-text input-text--primary-style" type="text" id="billing-pincode" name="pincode" placeholder="PINCODE" value="{{ Auth::user()->postcode }}">
-                                                <p id="account-pincode"></p>
+                                                <label class="gl-label" for="billing-postcode">POSTCODE *</label>
+                                                <input class="input-text input-text--primary-style" type="text" id="billing-postcode" name="postcode" placeholder="POSTCODE" value="{{ Auth::user()->postcode }}">
+                                                <p id="account-postcode"></p>
                                             </div>
                                         </div>
                                         <div class="gl-inline">

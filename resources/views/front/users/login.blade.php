@@ -12,12 +12,8 @@
                 <div class="breadcrumb">
                     <div class="breadcrumb__wrap">
                         <ul class="breadcrumb__list">
-                            <li class="has-separator">
-
-                                <a href="index.html">Home</a></li>
-                            <li class="is-marked">
-
-                                <a href="signin.html">Signin</a></li>
+                            <li class="has-separator"><a href="{{ url('/') }}">Home</a></li>
+                            <li class="is-marked"><a href="javascript:;">Signin</a></li>
                         </ul>
                     </div>
                 </div>
@@ -54,7 +50,7 @@
                             <div class="l-f-o__pad-box">
                                 <h1 class="gl-h1">I'M NEW CUSTOMER</h1>
                                 <span class="gl-text u-s-m-b-30">If you don't have an account with us, please create one.</span>
-                                <div class="u-s-m-b-15"><a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>                                    
+                                <div class="u-s-m-b-15"><a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="{{ url('user/register') }}">CREATE AN ACCOUNT</a></div>                                    
                                 <h1 class="gl-h1">SIGNIN</h1>
                                 @include('admin.includes.messages')
                                 <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span>

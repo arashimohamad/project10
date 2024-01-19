@@ -12,12 +12,8 @@
                 <div class="breadcrumb">
                     <div class="breadcrumb__wrap">
                         <ul class="breadcrumb__list">
-                            <li class="has-separator">
-
-                                <a href="index.html">Home</a></li>
-                            <li class="is-marked">
-
-                                <a href="signup.html">Signup</a></li>
+                            <li class="has-separator"><a href="{{ url('/') }}">Home</a></li>                               
+                            <li class="is-marked"><a href="javascript:;">Signup</a></li>
                         </ul>
                     </div>
                 </div>
@@ -79,7 +75,7 @@
                                     <div class="u-s-m-b-15">
                                         <button class="btn btn--e-transparent-brand-b-2" type="submit">CREATE</button>
                                     </div>
-                                        <a class="gl-link" href="signin.html">Already have an Account? Login Now</a>
+                                        <a class="gl-link" href="{{ url('user/login') }}">Already have an Account? Login Now</a>
                                 </form>
                             </div>
                         </div>

@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 18, 2024 at 07:22 AM
+-- Generation Time: Jan 19, 2024 at 09:56 AM
 -- Server version: 11.2.1-MariaDB-log
--- PHP Version: 7.4.9
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -894,7 +894,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `address`, `city`, `state`, `country`, `postcode`, `mobile`, `email`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Fariha Aamily Binti Mohd Farid', 'A-30-06', 'Bukit Jalil', 'Kuala Lumpur', 'Malaysia', '57000', '01157911966', 'arid55@yahoo.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-18 06:14:27');
+(1, 'Fariha Aamily Binti Mohd Farid', 'A-30-06', 'Bukit Jalil', 'Kuala Lumpur', 'Malaysia', '57000', '0192949487', 'aamily@yahoo.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-19 08:35:53'),
+(2, 'Rosli Khamis Bin Kalamullah', 'No.20, Jalan Kenanga, Taman Kenanga', 'Gombak', 'Kuala Lumpur', 'Malaysia', '56100', '0123697895', 'rosli.khamis@gmail.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-18 06:14:27'),
+(3, 'Melati Binti Abdul Samad', 'Lot.78, Lorong Haji Taming, Kg. Rakit', 'Dungun', 'Terengganu', 'Malaysia', '75600', '0144447788', 'melati.samad@yahoo.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-18 06:14:27'),
+(4, 'Tuan Noor Hakimi Bin Tuan Mohd Faiz', 'No.14, Residensi Perindu, Jalan Bangi', 'Bangi ', 'Selangor', 'Malaysia', '54100', '0195566222', 'tuanhakimi@gmail.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-18 06:14:27');
 
 --
 -- Indexes for dumped tables
@@ -1129,7 +1132,7 @@ ALTER TABLE `recently_viewed_items`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

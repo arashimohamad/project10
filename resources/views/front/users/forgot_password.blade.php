@@ -12,8 +12,8 @@
                 <div class="breadcrumb">
                     <div class="breadcrumb__wrap">
                         <ul class="breadcrumb__list">
-                            <li class="has-separator"><a href="index.html">Home</a></li>     
-                            <li class="is-marked"><a href="lost-password.html">Reset</a></li>
+                            <li class="has-separator"><a href="{{ url('/') }}">Home</a></li>   
+                            <li class="is-marked"><a href="javascript:;">Reset</a></li>
                         </ul>
                     </div>
                 </div>
@@ -62,7 +62,7 @@
                                         <button class="btn btn--e-transparent-brand-b-2" type="submit">SUBMIT</button>
                                     </div>
                                     <div class="u-s-m-b-30">
-                                        <a class="gl-link" href="signin.html">Back to Login</a>
+                                        <a class="gl-link" href="{{ url('user/login') }}">Back to Login</a>
                                     </div>
                                 </form>
                             </div>

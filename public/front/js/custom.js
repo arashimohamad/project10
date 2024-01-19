@@ -247,6 +247,7 @@ $(document).ready(function () {
                 }
             },
             error: function() {
+                $(".loader").hide(); 
                 alert("Error");
             }
         });
@@ -325,6 +326,7 @@ $(document).ready(function () {
 
     // Account Form Validation
     $("#account-success").hide();  
+    $("#account-error").hide();  
     $("#accountForm").submit(function () { 
         $(".loader").show();       
         var formData = $(this).serialize();                                     // serialize use to take all data from form
@@ -354,6 +356,53 @@ $(document).ready(function () {
                 }
             },
             error: function (resp) {
+                $(".loader").hide(); 
+                alert("Error");
+            }
+        });
+    });
+
+    // User Update Password Validation
+    $("#password-success").hide();  
+    $("#password-error").hide();  
+    $("#passwordForm").submit(function () { 
+        $(".loader").show();       
+        var formData = $(this).serialize();                                     // serialize use to take all data from form
+        /*alert(formData); return false;*/                                      // return false use to pause for view the output
+        $.ajax({
+            type: 'post',
+            url: '../user/update-password',
+            data: formData,
+            success: function (data) {
+                //alert(resp);
+                if (data.type == "error") {
+                    $(".loader").hide();       
+                    $.each(data.errors, function (i, error) {                   // .each is same like loop
+                        $('#password-success').hide()
+                        $('#password-'+i).attr('style', 'color:red');
+                        $('#password-'+i).html(error);
+                        setTimeout(function(){
+                            $('#password-'+i).css({
+                                'display':'none',
+                            })
+                        }, 6000)
+                    });
+                } else if(data.type == "incorrect") {
+                    $(".loader").hide();       
+                    $('#password-success').hide()
+                    $('#password-error').attr('style', 'color:red');
+                    $('#password-error').html(data.message);
+                    //window.location.href=data.redirectUrl;                    // redirect to cart
+                } else if(data.type == "success") {
+                    $(".loader").hide();   
+                    $('#password-error').hide()    
+                    $('#password-success').attr('style', 'color:green');
+                    $('#password-success').html(data.message);
+                    //window.location.href=data.redirectUrl;                    // redirect to cart
+                }
+            },
+            error: function (resp) {
+                $(".loader").hide(); 
                 alert("Error");
             }
         });

@@ -7,6 +7,7 @@ use App\Models\Country;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,8 +21,7 @@ class UserController extends Controller
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email|max:250|exists:users',                    //exists:users is to trigger whether email existed or not on users table
                 'password' => 'required|string|min:6'
-            ],
-            [
+            ],[
                 'email.exists' => 'Email does not exists'
             ]);
 
@@ -45,8 +45,11 @@ class UserController extends Controller
 
                     $redirectUrl = url('cart');
                     return response()->json(['status'=>true, 'type'=>'success', 'redirectUrl'=>$redirectUrl]);
+
                 } else {
+
                     return response()->json(['status'=>false, 'type'=>'incorrect', 'message'=>'You have entered invalid email or password!']);
+
                 }
 
             } else {
@@ -65,8 +68,7 @@ class UserController extends Controller
                 'mobile' => 'required|numeric',                                       //'required|numeric|digits:13'
                 'email' => 'required|email|max:250|unique:users',
                 'password' => 'required|string|min:6'
-            ],
-            [
+            ],[
                 'email.email' => 'Please enter the valid Email'
             ]);
 
@@ -160,8 +162,7 @@ class UserController extends Controller
             // Check email is valid or not
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email|max:250|exists:users',                    //exists:users is to trigger whether email existed or not on users table                
-            ],
-            [
+            ],[
                 'email.exists' => 'Email does not exists'
             ]);
 
@@ -178,9 +179,10 @@ class UserController extends Controller
                 return response()->json(['type'=>'success', 'message'=>'We have e-mailed your password reset link']);
 
             } else {
+
                 return response()->json(['status'=>false, 'type'=>'error', 'errors'=>$validator->messages()]);
-            }
-            
+
+            }            
 
         } else {
             return view('front.users.forgot_password');
@@ -231,7 +233,7 @@ class UserController extends Controller
                 'city' => 'required|string|max:250',
                 'state' => 'required|string|max:250',
                 'address' => 'required|string|max:250',
-                'pincode' => 'required|string|max:250',
+                'postcode' => 'required|string|max:250',
                 'country' => 'required|string|max:250',
                 'mobile' => 'required|numeric',                                       //'required|numeric|digits:13'    
             ]);
@@ -243,20 +245,70 @@ class UserController extends Controller
                     'city' => $data['city'],
                     'state' => $data['state'],
                     'address' => $data['address'],
-                    'postcode' => $data['pincode'],
+                    'postcode' => $data['postcode'],
                     'country' => $data['country'],
                     'mobile' => $data['mobile'],
                 ]);
 
                 //Redirect back user with success message
                 return response()->json(['status'=>true, 'type'=>'success', 'message'=>'User Details Successfully Updated!']);
+
             }else{
+
                 return response()->json(['status'=>false, 'type'=>'validation', 'errors'=>$validator->messages()]);
+                
             }
         } else {
+
             $countries = Country::where('status', 1)->get();
-            return view('front.users.account',compact('countries'));            
-        }
-        
+            return view('front.users.account',compact('countries'));        
+
+        }        
+    }
+
+    public function updatePassword(Request $request){
+        if ($request->ajax()) {
+            $data = $request->all();
+            //echo "<pre>"; print_r($data); die;
+
+            $validator = Validator::make($request->all(), [
+                'current_password' => 'required',
+                'new_password' => 'required|min:6',
+                'confirm_password' => 'required|same:new_password',
+            ]);
+
+            if ($validator->passes()) { 
+                // Enter by the User in Update Password Form
+                $currentPassword = $data['current_password'];
+
+                // Get Current Passowrd form users table
+                $checkPassword = User::where('id', Auth::user()->id)->first();
+
+                // Compare Current Password
+                if (Hash::check($currentPassword, $checkPassword->password)) {
+                    // Update User Current Password
+                    $user = User::find(Auth::user()->id);
+                    $user->password = bcrypt($data['new_password']);
+                    $user->save();      
+
+                    //Redirect back user with success message
+                    return response()->json(['status'=>true, 'type'=>'success', 'message'=>'Your Password Is Successfully Updated!']);              
+                
+                } else {
+
+                    // Redirect back user with error message
+                    return response()->json(['type'=>'incorrect', 'message'=>'Your Current Password Is Incorrect!']);
+
+                } 
+
+            } else {
+
+                return response()->json(['type'=>'error', 'errors'=>$validator->messages()]);
+
+            }
+            
+        } else {
+            return view('front.users.update_password');                     
+        }        
     }
 }
