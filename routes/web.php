@@ -29,11 +29,12 @@ use App\Http\Controllers\Admin\ProductsController;
 Route::get('/clear-cache', function () {
     //Artisan::call('composer clear-cache');
     //Artisan ::call('key:generate');
+    //Artisan::call('composer dump-autoload');
     Artisan::call('cache:clear');
     Artisan::call('config:cache');
     Artisan::call('clear-compiled');
-    //Artisan::call('composer dump-autoload');
     Artisan::call('view:clear');    
+    Artisan::call('route:clear');
     Artisan::call('optimize:clear');
     Artisan::call('queue:restart');    
     return "Cache is cleared";

@@ -275,7 +275,12 @@ class ProductController extends Controller
             $getCartItems = getCartItems();                                                               // getCartItems() come from \app\Helpers\helper.php
 
             $message = "Product added successfully in Cart! <a href='../cart' style='color:#ffffff; text-decoration:underline'>View Cart</a>";
-            return response()->json(['status'=>true, 'message'=>$message, 'totalCartItems'=>$totalCartItems, 'getCartItems'=>$getCartItems]);
+            return response()->json([
+                'status'=>true, 'message'=>$message, 
+                'totalCartItems'=>$totalCartItems, 
+                'getCartItems'=>$getCartItems,
+                'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems')),
+            ]);
         }
     }
     
