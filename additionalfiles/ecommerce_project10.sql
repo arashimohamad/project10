@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 19, 2024 at 09:56 AM
+-- Generation Time: Jan 26, 2024 at 08:56 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -204,8 +204,8 @@ INSERT INTO `categories` (`id`, `parent_id`, `category_name`, `category_image`, 
 (7, 0, 'Accessories', '65511.jpg', 10, 'This is accessories', 'accessories', 'Accessories', 'Accessories info', 'accessories', 0, '2023-06-19 05:48:15', '2023-11-04 15:29:52'),
 (8, 4, 'T-Shirts', '', 20, NULL, 'tshirts', NULL, NULL, NULL, 1, '2023-06-19 11:00:06', '2023-08-18 10:19:40'),
 (9, 5, 'Women Shirts', '60955.jpg', 20, 'Women Shirts', 'women-shirts', 'Women Shirts', 'women shirts are available', 'women shirts', 1, '2023-06-19 11:35:48', '2023-06-20 03:01:04'),
-(15, 4, 'Shirts', '', 0, NULL, 'shirts', NULL, NULL, NULL, 1, '2023-11-04 15:27:29', '2023-11-04 15:27:29'),
-(16, 4, 'Jackets', '', 0, NULL, 'jackets', NULL, NULL, NULL, 1, '2023-11-04 15:28:32', '2023-11-04 15:28:32');
+(10, 4, 'Shirts', '', 0, NULL, 'shirts', NULL, NULL, NULL, 1, '2023-11-04 15:27:29', '2023-11-04 15:27:29'),
+(11, 4, 'Jackets', '', 0, NULL, 'jackets', NULL, NULL, NULL, 1, '2023-11-04 15:28:32', '2023-11-04 15:28:32');
 
 -- --------------------------------------------------------
 
@@ -542,6 +542,38 @@ INSERT INTO `countries` (`id`, `country_code`, `country_name`, `status`, `create
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `coupons`
+--
+
+DROP TABLE IF EXISTS `coupons`;
+CREATE TABLE `coupons` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `coupon_option` varchar(255) DEFAULT NULL,
+  `coupon_code` varchar(255) DEFAULT NULL,
+  `coupon_type` varchar(255) DEFAULT NULL,
+  `amount_type` varchar(255) DEFAULT NULL,
+  `amount` double(8,2) DEFAULT NULL,
+  `categories` text DEFAULT NULL,
+  `brands` text DEFAULT NULL,
+  `expiry_date` date DEFAULT NULL,
+  `users` text DEFAULT NULL,
+  `status` tinyint(4) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `coupons`
+--
+
+INSERT INTO `coupons` (`id`, `coupon_option`, `coupon_code`, `coupon_type`, `amount_type`, `amount`, `categories`, `brands`, `expiry_date`, `users`, `status`, `created_at`, `updated_at`) VALUES
+(1, 'Manual', 'test10', 'Single', 'Percentage', 10.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', '', 1, '2024-01-26 08:55:09', '2024-01-26 08:55:09'),
+(2, 'Manual', 'test20', 'Single', 'Percentage', 20.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', 'aamily@yahoo.com', 1, '2024-01-26 08:55:09', '2024-01-26 08:55:09'),
+(3, 'Automatic', 'ZT64qSOX', 'Multiple', 'Fixed', 100.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', '', 1, '2024-01-26 08:55:09', '2024-01-26 08:55:09');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `failed_jobs`
 --
 
@@ -591,7 +623,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2023_11_11_081425_create_products_filters_table', 11),
 (21, '2023_11_19_150446_create_recently_viewed_items_table', 12),
 (22, '2023_11_28_231758_create_carts_table', 13),
-(23, '2023_12_22_182659_add_columns_to_users_table', 14);
+(23, '2023_12_22_182659_add_columns_to_users_table', 14),
+(24, '2024_01_26_155305_create_coupons_table', 15);
 
 -- --------------------------------------------------------
 
@@ -862,7 +895,23 @@ INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_
 (40, 15, '999ed90cb73bc94188478fbdba2d0415', '2023-12-14 23:58:14', '2023-12-14 23:58:14'),
 (41, 1, '999ed90cb73bc94188478fbdba2d0415', '2023-12-15 00:34:30', '2023-12-15 00:34:30'),
 (42, 14, '7f90b366abe58e9867f7c3f1addc307a', '2023-12-17 13:18:43', '2023-12-17 13:18:43'),
-(43, 15, '7f90b366abe58e9867f7c3f1addc307a', '2023-12-17 13:18:53', '2023-12-17 13:18:53');
+(43, 15, '7f90b366abe58e9867f7c3f1addc307a', '2023-12-17 13:18:53', '2023-12-17 13:18:53'),
+(44, 15, '3df42341cda97259badfec20ef8126a2', '2024-01-25 07:47:02', '2024-01-25 07:47:02'),
+(45, 14, '3df42341cda97259badfec20ef8126a2', '2024-01-25 07:54:40', '2024-01-25 07:54:40'),
+(46, 4, '3df42341cda97259badfec20ef8126a2', '2024-01-25 08:09:51', '2024-01-25 08:09:51'),
+(47, 19, '3df42341cda97259badfec20ef8126a2', '2024-01-25 08:11:59', '2024-01-25 08:11:59'),
+(48, 4, '5f45f7477301e931d4dbdd12f4ff3924', '2024-01-25 08:19:38', '2024-01-25 08:19:38'),
+(49, 4, '10ac8b5744e720bf7dc997653bccfefe', '2024-01-25 08:23:20', '2024-01-25 08:23:20'),
+(50, 4, '1f0d2e783066326d9fbccd2fbb7e6515', '2024-01-25 08:28:41', '2024-01-25 08:28:41'),
+(51, 1, '3df42341cda97259badfec20ef8126a2', '2024-01-25 08:31:49', '2024-01-25 08:31:49'),
+(52, 18, '3df42341cda97259badfec20ef8126a2', '2024-01-25 08:32:11', '2024-01-25 08:32:11'),
+(53, 7, '3df42341cda97259badfec20ef8126a2', '2024-01-25 08:32:16', '2024-01-25 08:32:16'),
+(54, 2, '3df42341cda97259badfec20ef8126a2', '2024-01-25 08:32:20', '2024-01-25 08:32:20'),
+(55, 12, '3df42341cda97259badfec20ef8126a2', '2024-01-25 08:32:25', '2024-01-25 08:32:25'),
+(56, 14, '10fd8d15230a30644e646f3139e8e833', '2024-01-25 08:45:20', '2024-01-25 08:45:20'),
+(57, 4, '28447907feff7e6dcb5b7bcfd3f4377e', '2024-01-25 08:57:12', '2024-01-25 08:57:12'),
+(58, 4, 'c5275849003f4d29ddb0e1147f5f2e99', '2024-01-25 08:57:27', '2024-01-25 08:57:27'),
+(59, 14, '60423c3aeba729097251d9b7b58d8c38', '2024-01-25 09:26:51', '2024-01-25 09:26:51');
 
 -- --------------------------------------------------------
 
@@ -956,6 +1005,12 @@ ALTER TABLE `colors`
 -- Indexes for table `countries`
 --
 ALTER TABLE `countries`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `coupons`
+--
+ALTER TABLE `coupons`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1054,13 +1109,13 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `cms_pages`
@@ -1081,6 +1136,12 @@ ALTER TABLE `countries`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
 
 --
+-- AUTO_INCREMENT for table `coupons`
+--
+ALTER TABLE `coupons`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `failed_jobs`
 --
 ALTER TABLE `failed_jobs`
@@ -1090,7 +1151,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -1126,7 +1187,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `users`
