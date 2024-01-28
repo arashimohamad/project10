@@ -184,6 +184,41 @@ $(".updateProductStatus").click(function () {
     });
 });
 
+//Update Coupon Status (coupons.blade.php) 
+$(".updateCouponStatus").click(function () {
+    var status = $(this).children("i").attr("status");
+    //alert(status);
+    //"this" refer to <a href=""></a>. "children" refer to <i class=""></i>. attr "status" refer to <i class="" status="Active"></i>
+    var coupon_id = $(this).attr("coupon_id");
+    //"this" refer to <a href=""></a>. attr "coupon_id" refer to coupon_id in the link <a href="" coupon_id="{{$cpn->id}}">
+    //alert(coupon_id);
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "post",
+        url: "../admin/update-coupon-status",
+        data: {
+            status: status,
+            coupon_id: coupon_id,
+        },
+        success: function (resp) {
+            if (resp["status"] == 0) {
+                $("#coupon-" + coupon_id).html(
+                    "<i class='fas fa-toggle-off' status='Inactive' style='color:grey'></i>"
+                );
+            } else if (resp["status"] == 1) {
+                $("#coupon-" + coupon_id).html(
+                    "<i class='fas fa-toggle-on' status='Active' style='color:#007bff'></i>"
+                );
+            }
+        },
+        error: function () {
+            alert("Error");
+        },
+    });
+});
+
 //Update Banner Status (banners.blade.php) 
 $(".updateBannerStatus").click(function () {
     var status = $(this).children("i").attr("status");

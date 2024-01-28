@@ -120,7 +120,25 @@
                         @else
                           @php $fullBrands = "" @endphp
                         @endif
-                      @endif      
+                      @endif 
+                      
+                      @if ($role->module == "coupons")
+                        @if ($role->view_access == 1)
+                          @php $viewCoupons = "checked" @endphp
+                        @else
+                          @php $viewCoupons = "" @endphp
+                        @endif
+                        @if ($role->edit_access == 1)
+                          @php $editCoupons = "checked" @endphp
+                        @else
+                          @php $editCoupons = "" @endphp
+                        @endif
+                        @if ($role->full_access == 1)
+                          @php $fullCoupons = "checked" @endphp
+                        @else
+                          @php $fullCoupons = "" @endphp
+                        @endif
+                      @endif
                     
                     @endforeach                    
                   @endif
@@ -163,6 +181,15 @@
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <input type="checkbox" name="brands[full]" value="1" @isset($fullBrands) {{$fullBrands}} @endisset>&nbsp;Full Access
                     </div> 
+
+                    <div class="form-group col-md-6">
+                      <label for="coupons">Coupons:&nbsp;&nbsp;&nbsp;</label>
+                      <input type="checkbox" name="coupons[view]" value="1" @isset($viewCoupons) {{$viewCoupons}} @endisset>&nbsp;View Access
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="coupons[edit]" value="1" @isset($editCoupons) {{$editCoupons}} @endisset>&nbsp;View/Edit Access
+                      &nbsp;&nbsp;&nbsp;&nbsp;
+                      <input type="checkbox" name="coupons[full]" value="1" @isset($fullCoupons) {{$fullCoupons}} @endisset>&nbsp;Full Access
+                    </div>
                     
                     <div class="form-group col-md-6">
                       <button type="submit" class="btn btn-primary">Submit</button>
