@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jan 28, 2024 at 07:11 AM
+-- Generation Time: Feb 09, 2024 at 05:02 AM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -567,7 +567,7 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `coupon_option`, `coupon_code`, `coupon_type`, `amount_type`, `amount`, `categories`, `brands`, `expiry_date`, `users`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Manual', 'test10', 'Single', 'Percentage', 10.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', '', 1, '2024-01-26 08:55:09', '2024-01-26 08:55:09'),
+(1, 'Manual', 'test10', 'Single', 'Percentage', 10.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', '', 1, '2024-01-26 08:55:09', '2024-02-09 02:40:41'),
 (2, 'Manual', 'test20', 'Single', 'Percentage', 20.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', 'aamily@yahoo.com', 1, '2024-01-26 08:55:09', '2024-01-26 08:55:09'),
 (3, 'Automatic', 'ZT64qSOX', 'Multiple', 'Fixed', 100.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', '', 1, '2024-01-26 08:55:09', '2024-01-26 08:55:09');
 

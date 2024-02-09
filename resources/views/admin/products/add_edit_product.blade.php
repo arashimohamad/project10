@@ -39,7 +39,7 @@
         <!-- /.card-header -->
         <div class="card-body">
           <div class="row">
-            <div class="col-12">
+            <div class="col-md-6">
               
               @include('admin.includes.messages')
 
@@ -161,7 +161,7 @@
                   @if (count($product['attributes']) > 0)
                     <div class="form-group">
                       <label>Added Attributes</label>
-                      <table style="background-color: #52585E; width:40%;" cellpadding="5" border="0">                      
+                      <table style="background-color: #52585E; width:100%;" cellpadding="5" border="0">                      
                         <tr style="text-align: center">
                           <th>#</th>
                           <th>Size</th>
@@ -174,7 +174,7 @@
                           <input type="hidden" name="attributeID[]" value="{{$attribute['id']}}">
                           <tr>
                             <td style="text-align: center">{{$loop->iteration}}</td>
-                            <td>{{$attribute['size']}}</td>
+                            <td style="text-align: center">{{$attribute['size']}}</td>
                             <td style="text-align: center">{{$attribute['sku']}}</td>
                             <td style="text-align: center">
                               <input type="number" style="width:80px;" name="attr_price[]" value="{{$attribute['price']}}">

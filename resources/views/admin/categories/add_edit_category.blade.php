@@ -38,7 +38,7 @@
           <!-- /.card-header -->
           <div class="card-body">
             <div class="row">
-              <div class="col-12">
+              <div class="col-md-6">
                 
                 @include('admin.includes.messages')
 

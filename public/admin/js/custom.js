@@ -454,4 +454,14 @@ $(document).ready(function(){
         $(this).parent('div').remove(); //Remove field html
         x--; //Decrement field counter
     });
+
+    //Show/Hide Coupon Field for Manual/Automatic
+    $('#ManualCoupon').click(function(){ 
+        $('#couponField').show();        
+    });
+
+    $('#AutomaticCoupon').click(function(){ 
+        $('#couponField').hide();        
+    });
+
 });

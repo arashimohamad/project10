@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
+use App\Models\Brand;
 use App\Models\Coupon;
+use App\Models\Category;
 use App\Models\AdminsRole;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -58,7 +61,33 @@ class CouponsController extends Controller
 
     public function addEditCoupon(Request $request, $id=null)               // id = null sbb data tiada lagi
     {
-        //
+        if ($id = "") {
+            $title = "Add Coupon";
+            $coupon = new Coupon;                                           // add process
+            $message = "Coupon added successfully!";
+        } else {
+            $title = "Edit Coupon";
+            $coupon = Coupon::find($id);                                    // edit process
+            $message = "Coupon updated successfully";
+        }
+
+        if ($request->isMethod('post')) {
+            $data = $request->all();
+            echo '<pre>'; print_r($data); die;
+        }
+
+        //Get Categories and their Sub Categories
+        //Recall the getCategories() function from the Category Model and
+        //After that you can create a dropdown menu in the blade
+        $getCategories = Category::getCategories(); 
+        
+        //Get Brand
+        $getBrands = Brand::where('status', 1)->orderBy('brand_name', 'ASC')->get();
+
+        // Get User Emails
+        $getUsers = User::select('email')->where('status', 1)->get();
+        
+        return view('admin.coupons.add_edit_coupon', compact('title','coupon','message', 'getCategories', 'getBrands', 'getUsers'));
     }
 
     public function deleteCoupon($id)

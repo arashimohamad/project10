@@ -12,10 +12,10 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           @if (!empty(Auth::guard('admin')->user()->image)) 
-            <img src="{{URL::asset('/admin/photos/'.Auth::guard('admin')->user()->image)}}" class="img-circle elevation-2" alt="User Image">
-          @else
-            <img src="{{asset('admin/img/no-image.jpg')}}" class="img-circle elevation-2" alt="User Image">
-            {{-- <img src="{{asset('admin/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image"> --}}
+              <img src="{{URL::asset('/admin/photos/'.Auth::guard('admin')->user()->image)}}" class="img-circle elevation-2" alt="User Image">
+            @else
+              <img src="{{asset('admin/img/no-image.jpg')}}" class="img-circle elevation-2" alt="User Image">
+              {{-- <img src="{{asset('admin/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image"> --}}
           @endif
         </div>
         <div class="info">
@@ -28,9 +28,9 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
           @if (Session::get('page') == "dashboard")
-              @php $active = "active" @endphp
-          @else
-              @php $active = "" @endphp
+                @php $active = "active" @endphp
+            @else
+                @php $active = "" @endphp
           @endif
           <li class="nav-item">
             <a href="{{url('admin/dashboard')}}" class="nav-link {{$active}}">
@@ -41,9 +41,9 @@
                     
           @if (Auth::guard('admin')->user()->type == 'admin')
             @if (Session::get('page') == "update-password" || Session::get('page') == "update-details" || Session::get('page') == "subadmins")
-              @php $active = "active" @endphp
-            @else
-              @php $active = "" @endphp
+                @php $active = "active" @endphp
+              @else
+                @php $active = "" @endphp
             @endif
             <li class="nav-item menu-open">
               <a href="#" class="nav-link {{$active}}">
@@ -52,9 +52,9 @@
               </a>
               <ul class="nav nav-treeview">
                 @if (Session::get('page') == "update-password")
-                  @php $active = "active" @endphp
-                @else
-                  @php $active = "" @endphp
+                    @php $active = "active" @endphp
+                  @else
+                    @php $active = "" @endphp
                 @endif
                 <li class="nav-item">
                   <a href="{{url('admin/update-password')}}" class="nav-link {{$active}}">
@@ -63,9 +63,9 @@
                   </a>
                 </li>
                 @if (Session::get('page') == "update-details")
-                  @php $active = "active" @endphp
-                @else
-                  @php $active = "" @endphp
+                    @php $active = "active" @endphp
+                  @else
+                    @php $active = "" @endphp
                 @endif
                 <li class="nav-item">
                   <a href="{{url('admin/update-details')}}" class="nav-link {{$active}}">
@@ -74,9 +74,9 @@
                   </a>
                 </li> 
                 @if (Session::get('page') == "subadmins")
-                  @php $active = "active" @endphp
-                @else
-                  @php $active = "" @endphp
+                    @php $active = "active" @endphp
+                  @else
+                    @php $active = "" @endphp
                 @endif  
                 <li class="nav-item">
                   <a href="{{url('admin/subadmins')}}" class="nav-link {{$active}}">
@@ -90,9 +90,9 @@
 
           @if (Auth::guard('admin')->user()->type == 'admin')
             @if (Session::get('page') == "cms-pages")
-              @php $active = "active" @endphp
-            @else
-              @php $active = "" @endphp
+                @php $active = "active" @endphp
+              @else
+                @php $active = "" @endphp
             @endif
             <li class="nav-item menu-open">
               <a href="#" class="nav-link {{$active}}">
@@ -102,9 +102,9 @@
               </a>
               <ul class="nav nav-treeview">
                 @if (Session::get('page') == "cms-pages")
-                  @php $active = "active" @endphp
-                @else
-                  @php $active = "" @endphp
+                    @php $active = "active" @endphp
+                  @else
+                    @php $active = "" @endphp
                 @endif  
                 <li class="nav-item">
                   <a href="{{url('admin/cms-pages')}}" class="nav-link {{$active}}">                    
@@ -116,10 +116,10 @@
             </li>      
           @endif           
 
-          @if (Session::get('page') == "categories" || Session::get('page') == "brands" || Session::get('page') == "products" || Session::get('page') == "coupons")
-            @php $active = "active" @endphp
-          @else
-            @php $active = "" @endphp
+          @if (Session::get('page') == "categories" || Session::get('page') == "brands" || Session::get('page') == "products")
+              @php $active = "active" @endphp
+            @else
+              @php $active = "" @endphp
           @endif
           <li class="nav-item menu-open">
             <a href="#" class="nav-link {{$active}}">
@@ -127,6 +127,7 @@
               <p>Catalogue Management <i class="right fas fa-angle-left"></i></p>
             </a>
             <ul class="nav nav-treeview">
+
               @if (Session::get('page') == "categories")
                 @php $active = "active" @endphp
               @else
@@ -138,6 +139,7 @@
                   <p>Categories</p>
                 </a>
               </li>
+
               @if (Session::get('page') == "brands")
                 @php $active = "active" @endphp
               @else
@@ -149,6 +151,7 @@
                   <p>Brands</p>
                 </a>
               </li>
+              
               @if (Session::get('page') == "products")
                 @php $active = "active" @endphp
               @else
@@ -160,20 +163,10 @@
                   <p>Products</p>
                 </a>
               </li>
-              @if (Session::get('page') == "coupons")
-                @php $active = "active" @endphp
-              @else
-                @php $active = "" @endphp
-              @endif
-              <li class="nav-item">
-                <a href="{{url('admin/coupons')}}" class="nav-link {{$active}}">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Coupons</p>
-                </a>
-              </li>                              
+
             </ul>            
-          </li> 
-            
+          </li>             
+          
           @if (Auth::guard('admin')->user()->type == 'admin')
             @if (Session::get('page') == "banners")
               @php $active = "active" @endphp
@@ -200,7 +193,35 @@
                 </li>             
               </ul>            
             </li>      
-          @endif   
+          @endif
+          
+          @if (Auth::guard('admin')->user()->type == 'admin')
+            @if (Session::get('page') == "coupons")
+              @php $active = "active" @endphp
+            @else
+              @php $active = "" @endphp
+            @endif
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link {{$active}}">
+                <i class="nav-icon fas fa-dollar-sign"></i>
+                <p>Coupons Management<i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @if (Session::get('page') == "coupons")
+                  @php $active = "active" @endphp
+                @else
+                  @php $active = "" @endphp
+                @endif  
+                <li class="nav-item">
+                  <a href="{{url('admin/coupons')}}" class="nav-link {{$active}}">                    
+                  <i class="far fa-copy nav-icon"></i>
+                    <p>Coupons</p>
+                  </a>
+                </li>             
+              </ul>            
+            </li>      
+          @endif     
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
