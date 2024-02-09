@@ -60,7 +60,7 @@
                     <input type="radio" id="ManualCoupon" name="coupon_option" value="Manual">&nbsp;Manual&nbsp;&nbsp;                    
                   </div>
                   <div class="form-group" style="display: none" id="couponField">
-                    <label for="coupon_code">Coupon Code *</label>
+                    <label for="coupon_code">Coupon Code</label>
                     <input type="text" class="form-control" id="coupon_code" name="coupon_code" placeholder="Enter Coupon Code">                    
                   </div>
                   <div class="form-group">

@@ -133,8 +133,8 @@
 133	Tutorial Completed #133 
 134	Tutorial Completed #134 
 135	Tutorial Completed #135 
-136	Tutorial Completed #136 - Done
-137	Tutorial Completed #137
+136	Tutorial Completed #136 
+137	Tutorial Completed #137 - Done
 138	Tutorial Completed #138
 139	Tutorial Completed #139
 140	Tutorial Completed #140

@@ -7,6 +7,7 @@ use App\Models\Brand;
 use App\Models\Coupon;
 use App\Models\Category;
 use App\Models\AdminsRole;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -61,7 +62,7 @@ class CouponsController extends Controller
 
     public function addEditCoupon(Request $request, $id=null)               // id = null sbb data tiada lagi
     {
-        if ($id = "") {
+        if ($id == "") {
             $title = "Add Coupon";
             $coupon = new Coupon;                                           // add process
             $message = "Coupon added successfully!";
@@ -73,7 +74,73 @@ class CouponsController extends Controller
 
         if ($request->isMethod('post')) {
             $data = $request->all();
-            echo '<pre>'; print_r($data); die;
+            //echo '<pre>'; print_r($data); die;
+
+            // Coupon Validation
+            $rules = [
+                'coupon_categories' => 'required',  
+                'coupon_brands'     => 'required',
+                'coupon_option'     => 'required',
+                'coupon_type'       => 'required',
+                'coupon_amounttype' => 'required',
+                'coupon_amount'     => 'required|numeric',
+                'coupon_expirydate' => 'required',
+            ];
+
+            $customMessages = [
+                'coupon_categories.required' => 'Select Categories',
+                'coupon_brands.required'     => 'Select Brands',
+                'coupon_option.required'     => 'Select Coupon Option',
+                'coupon_type.required'       => 'Select Coupon Type',
+                'coupon_amounttype.required' => 'Select Coupon Amount Type',
+                'coupon_amount.required'     => 'Enter Amount',
+                'coupon_amount.numeric'      => 'Enter Valid Amount',
+                'coupon_expirydate.required' => 'Enter Expiry Date',
+            ];
+
+            $this->validate($request, $rules, $customMessages);
+
+            // Convert Categories Array to String
+            if (isset($data['coupon_categories'])) {
+                $categories = implode(',', $data['coupon_categories']);
+            } else {
+                $categories = "";
+            }
+
+            // Convert Brands Array to String
+            if (isset($data['coupon_brands'])) {
+                $brands = implode(',', $data['coupon_brands']);
+            } else {
+                $brands = "";
+            }
+
+            // Convert Users Array to String
+            if (isset($data['coupon_users'])) {
+                $users = implode(',', $data['coupon_users']);
+            } else {
+                $users = "";
+            }
+
+            // Generate Coupon Code 
+            if ($data['coupon_option'] == "Automatic") {
+                $coupon_code = Str::random(8);
+            } else {
+                $coupon_code = $data['coupon_code'];
+            }
+
+            $coupon->coupon_option = $data['coupon_option'];
+            $coupon->coupon_code = $coupon_code;
+            $coupon->categories = $categories;
+            $coupon->brands = $brands;
+            $coupon->users = $users;
+            $coupon->coupon_type = $data['coupon_type'];
+            $coupon->amount_type = $data['coupon_amounttype'];
+            $coupon->amount = $data['coupon_amount'];
+            $coupon->expiry_date = $data['coupon_expirydate'];
+            $coupon->status = 1;
+            $coupon->save();
+
+            return redirect('admin/coupons')->with('success_message', $message);
         }
 
         //Get Categories and their Sub Categories
