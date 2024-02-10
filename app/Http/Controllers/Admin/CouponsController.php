@@ -63,12 +63,18 @@ class CouponsController extends Controller
     public function addEditCoupon(Request $request, $id=null)               // id = null sbb data tiada lagi
     {
         if ($id == "") {
-            $title = "Add Coupon";
             $coupon = new Coupon;                                           // add process
+            $selCats = array();                                             // select Categories
+            $selBrands = array();                                           // select Brands
+            $selUsers = array();                                            // select Users
+            $title = "Add Coupon";
             $message = "Coupon added successfully!";
         } else {
-            $title = "Edit Coupon";
             $coupon = Coupon::find($id);                                    // edit process
+            $selCats = explode(",", $coupon['categories']);          // explode Categories (separate data by commas), we'ii use in_array on blade to call data
+            $selBrands = explode(",", $coupon['brands']);            // explode Brands (separate data by commas), we'ii use in_array on blade to call data
+            $selUsers = explode(",", $coupon['users']);              // explode Users (separate data by commas), we'ii use in_array on blade to call data
+            $title = "Edit Coupon";
             $message = "Coupon updated successfully";
         }
 
@@ -154,7 +160,7 @@ class CouponsController extends Controller
         // Get User Emails
         $getUsers = User::select('email')->where('status', 1)->get();
         
-        return view('admin.coupons.add_edit_coupon', compact('title','coupon','message', 'getCategories', 'getBrands', 'getUsers'));
+        return view('admin.coupons.add_edit_coupon', compact('title','coupon','message', 'getCategories', 'getBrands', 'getUsers', 'selCats', 'selBrands','selUsers',));
     }
 
     public function deleteCoupon($id)

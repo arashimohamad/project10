@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 09, 2024 at 10:52 AM
+-- Generation Time: Feb 10, 2024 at 12:00 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -577,7 +577,8 @@ INSERT INTO `coupons` (`id`, `coupon_option`, `coupon_code`, `coupon_type`, `amo
 (1, 'Manual', 'test10', 'Single Time', 'Percentage', 10.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', '', 1, '2024-01-26 08:55:09', '2024-02-09 02:40:41'),
 (2, 'Manual', 'test20', 'Single Time', 'Percentage', 20.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', 'aamily@yahoo.com', 1, '2024-01-26 08:55:09', '2024-01-26 08:55:09'),
 (3, 'Automatic', 'H8tPQqa7', 'Single Time', 'Percentage', 10.00, '1,4,8,10', '1,6', '2024-03-09', 'aamily@yahoo.com,rosli.khamis@gmail.com', 1, '2024-02-09 10:43:45', '2024-02-09 10:47:11'),
-(4, 'Manual', 'test21', 'Single Time', 'Fixed', 20.00, '1,4,8,10,11', '1,6,2', '2024-03-09', 'rosli.khamis@gmail.com,melati.samad@yahoo.com,tuanhakimi@gmail.com', 1, '2024-02-09 10:47:44', '2024-02-09 10:50:56');
+(4, 'Manual', 'test21', 'Single Time', 'Fixed', 20.00, '1,4,8,10,11', '1,6,2', '2024-03-09', 'rosli.khamis@gmail.com,melati.samad@yahoo.com,tuanhakimi@gmail.com', 1, '2024-02-09 10:47:44', '2024-02-09 10:50:56'),
+(5, 'Automatic', 'q4KnwnBn', 'Single Time', 'Percentage', 200.00, '1,4,8', '1,6', '2024-03-02', 'aamily@yahoo.com,rosli.khamis@gmail.com', 1, '2024-02-10 10:32:30', '2024-02-10 11:58:38');
 
 -- --------------------------------------------------------
 
@@ -1150,7 +1151,7 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
