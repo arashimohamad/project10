@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Cart;
+use App\Models\User;
 use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\Category;
@@ -450,7 +451,7 @@ class ProductController extends Controller
             $totalCartItems = totalCartItems();                                                           // $totalCartItems() come from \app\Helpers\helper.php
 
             // Verify Coupon whether is valid/not
-            $couponCount = Coupon::where('coupon_code', $data['code'])->where('status', 1)->count();
+            $couponCount = Coupon::where('coupon_code', $data['code'])->count();
             if ($couponCount == 0) {
                 return response()->json([
                     'status' => false,
@@ -459,12 +460,79 @@ class ProductController extends Controller
                     'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
                     'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
                 ]);
-            } else {
-                # check for other coupon conditions
-                echo "Coupon valid";    die;
-            }
-            
 
+            } else {
+                // check for other coupon conditions
+                //echo "Coupon valid"; die;
+                
+                // Get Coupon Detail
+                $couponDetails = Coupon::where('coupon_code', $data['code'])->first();
+
+                // If coupon is inactive
+                if ($couponDetails->status == 0) {
+                    $error_message = "The coupon is not active!";
+                } 
+                
+                // If coupon is expired
+                $expiry_date = $couponDetails->expiry_date;
+                $current_date = date('Y-m-d');
+                
+                if ($expiry_date < $current_date) {
+                    $error_message = "The coupon is expired!";
+                } 
+
+                // If coupon is from selected Categories
+                // Get all selected categories from coupon
+                $catArr = explode(",",$couponDetails->categories);               
+                
+                // To check if any cart item does not belong to coupon categories
+                foreach ($getCartItems as $key => $item) {
+                    if(!in_array($item['product']['category_id'], $catArr)) {
+                        $error_message = "The coupon code is not for one of the selected products!";
+                    }
+                }
+
+                // If coupon is from selected Brands
+                // Get all selected brands from coupon
+                $brandsArr = explode(",",$couponDetails->brands);               
+                
+                // To check if any cart item does not belong to coupon brands
+                foreach ($getCartItems as $key => $item) {
+                    if(!in_array($item['product']['brand_id'], $brandsArr)) {
+                        $error_message = "The coupon code is not for one of the selected brands!";
+                    }
+                }
+
+                // If coupon is from selected Users
+                // Get all selected users from coupon
+                $usersArr = explode(",",$couponDetails->users);
+
+                // Get user id by array
+                foreach ($usersArr as $key => $user) {
+                    $getUserID = User::select('id')->where('email', $user)->first();
+                    $userID[] = $getUserID->id;
+                }
+                
+                // To check if any cart item does not belong to coupon users
+                foreach ($getCartItems as $key => $item) {
+                    if (count($usersArr) > 0) {
+                        if(!in_array($item['user_id'], $userID)) {
+                            $error_message = "The coupon code is not for you. Try again with valid coupon code!";
+                        }
+                    }
+                }
+
+                // If error message is there
+                if(isset($error_message)) {
+                    return response()->json([
+                        'status' => false,
+                        'totalCartItems' => $totalCartItems,
+                        'message'=>$error_message,
+                        'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                        'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+                    ]);
+                }
+            }
         }
     }
 }

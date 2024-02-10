@@ -83,15 +83,28 @@ class CouponsController extends Controller
             //echo '<pre>'; print_r($data); die;
 
             // Coupon Validation
-            $rules = [
-                'coupon_categories' => 'required',  
-                'coupon_brands'     => 'required',
-                'coupon_option'     => 'required',
-                'coupon_type'       => 'required',
-                'coupon_amounttype' => 'required',
-                'coupon_amount'     => 'required|numeric',
-                'coupon_expirydate' => 'required',
-            ];
+            if ($id == "") {
+                $rules = [
+                    'coupon_categories' => 'required',  
+                    'coupon_brands'     => 'required',
+                    'coupon_option'     => 'required',
+                    'coupon_type'       => 'required',
+                    'coupon_amounttype' => 'required',
+                    'coupon_amount'     => 'required|numeric',
+                    'coupon_expirydate' => 'required',
+                    'coupon_code'       => 'unique:coupons',
+                ];
+            } else {
+                $rules = [
+                    'coupon_categories' => 'required',  
+                    'coupon_brands'     => 'required',
+                    'coupon_option'     => 'required',
+                    'coupon_type'       => 'required',
+                    'coupon_amounttype' => 'required',
+                    'coupon_amount'     => 'required|numeric',
+                    'coupon_expirydate' => 'required',
+                ];
+            }          
 
             $customMessages = [
                 'coupon_categories.required' => 'Select Categories',
@@ -101,7 +114,7 @@ class CouponsController extends Controller
                 'coupon_amounttype.required' => 'Select Coupon Amount Type',
                 'coupon_amount.required'     => 'Enter Amount',
                 'coupon_amount.numeric'      => 'Enter Valid Amount',
-                'coupon_expirydate.required' => 'Enter Expiry Date',
+                'coupon_expirydate.required' => 'Enter Expiry Date',                
             ];
 
             $this->validate($request, $rules, $customMessages);

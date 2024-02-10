@@ -136,8 +136,8 @@
 136	Tutorial Completed #136 
 137	Tutorial Completed #137 
 138	Tutorial Completed #138 
-139	Tutorial Completed #139 - Done
-140	Tutorial Completed #140
+139	Tutorial Completed #139 
+140	Tutorial Completed #140 - Done
 141	Tutorial Completed #141
 142	Tutorial Completed #142
 143	Tutorial Completed #143

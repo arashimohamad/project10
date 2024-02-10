@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 10, 2024 at 12:00 PM
+-- Generation Time: Feb 10, 2024 at 06:16 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -172,7 +172,9 @@ CREATE TABLE `carts` (
 --
 
 INSERT INTO `carts` (`id`, `session_id`, `user_id`, `product_id`, `product_size`, `product_qty`, `created_at`, `updated_at`) VALUES
-(16, '2d3e3bb444b39767e16494d34a3ab43a', NULL, 14, 'Small', 1, '2024-02-09 08:44:50', '2024-02-09 08:44:50');
+(16, '2d3e3bb444b39767e16494d34a3ab43a', NULL, 14, 'Small', 1, '2024-02-09 08:44:50', '2024-02-09 08:44:50'),
+(17, '33ce8fc88a40d0ddeafac981479054db', NULL, 14, 'Medium', 1, '2024-02-10 12:29:28', '2024-02-10 12:29:28'),
+(18, '33ce8fc88a40d0ddeafac981479054db', 1, 14, 'Medium', 1, '2024-02-10 14:27:09', '2024-02-10 14:27:09');
 
 -- --------------------------------------------------------
 
@@ -574,11 +576,11 @@ CREATE TABLE `coupons` (
 --
 
 INSERT INTO `coupons` (`id`, `coupon_option`, `coupon_code`, `coupon_type`, `amount_type`, `amount`, `categories`, `brands`, `expiry_date`, `users`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Manual', 'test10', 'Single Time', 'Percentage', 10.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', '', 1, '2024-01-26 08:55:09', '2024-02-09 02:40:41'),
+(1, 'Manual', 'test10', 'Single Time', 'Percentage', 10.00, '1,4,8,10,11,5,9,6', '6', '2024-12-31', 'aamily@yahoo.com', 1, '2024-01-26 08:55:09', '2024-02-10 17:59:58'),
 (2, 'Manual', 'test20', 'Single Time', 'Percentage', 20.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', 'aamily@yahoo.com', 1, '2024-01-26 08:55:09', '2024-01-26 08:55:09'),
 (3, 'Automatic', 'H8tPQqa7', 'Single Time', 'Percentage', 10.00, '1,4,8,10', '1,6', '2024-03-09', 'aamily@yahoo.com,rosli.khamis@gmail.com', 1, '2024-02-09 10:43:45', '2024-02-09 10:47:11'),
 (4, 'Manual', 'test21', 'Single Time', 'Fixed', 20.00, '1,4,8,10,11', '1,6,2', '2024-03-09', 'rosli.khamis@gmail.com,melati.samad@yahoo.com,tuanhakimi@gmail.com', 1, '2024-02-09 10:47:44', '2024-02-09 10:50:56'),
-(5, 'Automatic', 'q4KnwnBn', 'Single Time', 'Percentage', 200.00, '1,4,8', '1,6', '2024-03-02', 'aamily@yahoo.com,rosli.khamis@gmail.com', 1, '2024-02-10 10:32:30', '2024-02-10 11:58:38');
+(5, 'Automatic', 'f9OqsRz7', 'Single Time', 'Percentage', 200.00, '1,4,8', '1,6', '2024-03-09', 'aamily@yahoo.com,rosli.khamis@gmail.com', 1, '2024-02-10 10:32:30', '2024-02-10 17:46:09');
 
 -- --------------------------------------------------------
 
@@ -923,7 +925,8 @@ INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_
 (59, 14, '60423c3aeba729097251d9b7b58d8c38', '2024-01-25 09:26:51', '2024-01-25 09:26:51'),
 (61, 15, '2d3e3bb444b39767e16494d34a3ab43a', '2024-02-09 08:44:21', '2024-02-09 08:44:21'),
 (62, 19, '2d3e3bb444b39767e16494d34a3ab43a', '2024-02-09 08:44:27', '2024-02-09 08:44:27'),
-(63, 14, '2d3e3bb444b39767e16494d34a3ab43a', '2024-02-09 08:44:36', '2024-02-09 08:44:36');
+(63, 14, '2d3e3bb444b39767e16494d34a3ab43a', '2024-02-09 08:44:36', '2024-02-09 08:44:36'),
+(64, 14, '33ce8fc88a40d0ddeafac981479054db', '2024-02-10 12:29:17', '2024-02-10 12:29:17');
 
 -- --------------------------------------------------------
 
@@ -1121,7 +1124,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1199,7 +1202,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
 
 --
 -- AUTO_INCREMENT for table `users`

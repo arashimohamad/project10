@@ -410,7 +410,7 @@ $(document).ready(function () {
 
     // Apply Coupon
     $('#applyCoupon').click(function () { 
-        var user = $(this).attr("user");
+        var user = $(this).attr("user");              // form cart_items.blade.php
 
         if (user == 1) {
             // do nothing
@@ -419,7 +419,7 @@ $(document).ready(function () {
             return false;
         }
         
-        var code = $('#code').val();
+        var code = $('#code').val();                  // form cart_items.blade.php
 
         $.ajax({
             headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
@@ -430,7 +430,7 @@ $(document).ready(function () {
                 if (resp.status == false) {
                     //alert(resp.message);
                     $('.print-error-msg').show();
-                    $('.print-error-msg').delay(3000).fadeOut('slow');
+                    $('.print-error-msg').delay(5000).fadeOut('slow');
                     $('.print-error-msg').html("<div class='alert'>" + resp['message'] + "</div>");
                 } else {
                     
