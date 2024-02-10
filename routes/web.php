@@ -103,6 +103,9 @@ Route::group([],function () {
         
         // User Logout 
         Route::match(['get', 'post'], 'user/logout', [UserController::class, 'logoutUser']);
+
+        // Apply Coupon
+        Route::post('/apply-coupon', [ProductController::class, 'applyCoupon']);
         
     });
 

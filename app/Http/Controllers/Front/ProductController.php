@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Models\Cart;
+use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -433,6 +434,37 @@ class ProductController extends Controller
                 'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
                 'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
             ]);
+        }
+    }
+
+    public function applyCoupon(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = $request->all();
+            //echo '<pre>'; print_r($data); die;
+            
+            // Get Updated Cart Item
+            $getCartItems = getCartItems();                                                               // getCartItems() come from \app\Helpers\helper.php
+
+            // Get Total Cart Items
+            $totalCartItems = totalCartItems();                                                           // $totalCartItems() come from \app\Helpers\helper.php
+
+            // Verify Coupon whether is valid/not
+            $couponCount = Coupon::where('coupon_code', $data['code'])->where('status', 1)->count();
+            if ($couponCount == 0) {
+                return response()->json([
+                    'status' => false,
+                    'totalCartItems' => $totalCartItems,
+                    'message'=>'The coupon is not valid',
+                    'view' => (String)View::make('front.products.cart_items')->with(compact('getCartItems')),
+                    'minicartview' => (String)View::make('front.layout.header_cart_items')->with(compact('getCartItems'))
+                ]);
+            } else {
+                # check for other coupon conditions
+                echo "Coupon valid";    die;
+            }
+            
+
         }
     }
 }

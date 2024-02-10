@@ -75,7 +75,8 @@
                                                         <a href="shop-side-version-2.html">{{ $item['product']['brand']['brand_name'] }}</a></span>
                                                     <ul class="table-p__variant-list">
                                                         <li>
-                                                            <span>Size: {{ $item['product_size'] }}</span></li>
+                                                            <span>Size: {{ $item['product_size'] }}</span>
+                                                        </li>
                                                         <li>
                                                             <span>Color: {{ $item['product']['product_color']}}</span>
                                                         </li>
@@ -123,16 +124,16 @@
                 <div class="col-lg-12">
                     <div class="route-box">
                         <div class="route-box__g1">
-
-                            <a class="route-box__link" href="shop-side-version-2.html"><i class="fas fa-long-arrow-alt-left"></i>
-
-                                <span>CONTINUE SHOPPING</span></a></div>
+                            <a class="route-box__link" href="shop-side-version-2.html">
+                                <i class="fas fa-long-arrow-alt-left"></i>
+                                <span>CONTINUE SHOPPING</span>
+                            </a>
+                        </div>
                         <div class="route-box__g2">
-
-                            <a class="route-box__link emptyCart" href="javascript:;"><i class="fas fa-trash"></i>
+                            <a class="route-box__link emptyCart" href="javascript:;">
+                                <i class="fas fa-trash"></i>
                                 <span>CLEAR CART</span>
                             </a>
-
                             <!-- <a class="route-box__link" href="cart.html"><i class="fas fa-sync"></i>
                                 <span>UPDATE CART</span>
                             </a> -->
@@ -153,57 +154,55 @@
     <div class="section__content">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">
-                    <form class="f-cart">
-                        <div class="row">
-                            <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                <div class="col-lg-12 col-md-12 col-sm-12 u-s-m-b-30">                    
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                            <form class="f-cart" action="javascript:;" method="post">
+                                @csrf
                                 <div class="f-cart__pad-box">
-
-                                    <h1 class="gl-h1">APPLY COUPON CODE</h1>
-                                    
+                                    <h1 class="gl-h1">APPLY COUPON CODE</h1>                                    
                                     <div class="u-s-m-b-30">
-
                                         <label class="gl-label" for="shipping-zip">Enter Coupon Code to avail Discount</label>
-
-                                        <input class="input-text input-text--primary-style" type="text" id="shipping-zip" placeholder="Enter Coupon Code"></div>
+                                        <input class="input-text input-text--primary-style" type="text" id="code" name="code" placeholder="Enter Coupon Code">
+                                    </div>
                                     <div class="u-s-m-b-30">
-
-                                        <a class="f-cart__ship-link btn--e-transparent-brand-b-2" href="cart.html">APPLY</a></div>
-
+                                        <button id="applyCoupon" type="submit" class="f-cart__ship-link btn--e-transparent-brand-b-2" 
+                                        style="width: 100%" @if (Auth::check()) user="1" @endif>APPLY</button>
+                                        {{-- <a class="f-cart__ship-link btn--e-transparent-brand-b-2" href="cart.html">APPLY</a> --}}
+                                    </div>
                                     <!-- <span class="gl-text">Note: Any note can come here</span> -->
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                            </div>
-                            
-                            
-                            <div class="col-lg-4 col-md-6 u-s-m-b-30">
-                                <div class="f-cart__pad-box">
-                                    <div class="u-s-m-b-30">
-                                        <table class="f-cart__table">
-                                            <tbody>
-                                                <tr>
-                                                    <td>SUBTOTAL (RM)</td>
-                                                    <td>{{ $total_price }}</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>COUPON DISCOUNT (RM)</td>
-                                                    <td>0</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>GRAND TOTAL</td>
-                                                    <td>RM{{ $total_price }}</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div>
-                                        <button class="btn btn--e-brand-b-2" type="submit"> PROCEED TO CHECKOUT</button>
-                                    </div>
+                            </form>
+                        </div>
+
+                        <div class="col-lg-4 col-md-6 u-s-m-b-30"></div>               
+
+                        <div class="col-lg-4 col-md-6 u-s-m-b-30">
+                            <div class="f-cart__pad-box">
+                                <div class="u-s-m-b-30">
+                                    <table class="f-cart__table">
+                                        <tbody>
+                                            <tr>
+                                                <td>SUBTOTAL (RM)</td>
+                                                <td>{{ $total_price }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>COUPON DISCOUNT (RM)</td>
+                                                <td>0</td>
+                                            </tr>
+                                            <tr>
+                                                <td>GRAND TOTAL</td>
+                                                <td>RM{{ $total_price }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div>
+                                    <button type="submit" class="f-cart__ship-link btn--e-transparent-brand-b-2" style="width: 100%">PROCEED TO CHECKOUT</button>
                                 </div>
                             </div>
                         </div>
-                    </form>
+                    </div>                   
                 </div>
             </div>
         </div>

@@ -407,4 +407,40 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Apply Coupon
+    $('#applyCoupon').click(function () { 
+        var user = $(this).attr("user");
+
+        if (user == 1) {
+            // do nothing
+        } else {
+            alert("Please login to apply Coupon!");
+            return false;
+        }
+        
+        var code = $('#code').val();
+
+        $.ajax({
+            headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},
+            type: 'post',
+            url: 'apply-coupon',
+            data: {code:code},            
+            success: function (resp) {
+                if (resp.status == false) {
+                    //alert(resp.message);
+                    $('.print-error-msg').show();
+                    $('.print-error-msg').delay(3000).fadeOut('slow');
+                    $('.print-error-msg').html("<div class='alert'>" + resp['message'] + "</div>");
+                } else {
+                    
+                }
+            },
+
+            error: function () {
+                $(".loader").hide(); 
+                alert("Error");
+            }
+        });
+    });
 });
