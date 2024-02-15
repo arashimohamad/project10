@@ -47,7 +47,7 @@
             @endif
             <li class="nav-item menu-open">
               <a href="#" class="nav-link {{$active}}">
-                <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fas fa-user"></i>
                 <p>Admin Management<i class="right fas fa-angle-left"></i></p>
               </a>
               <ul class="nav nav-treeview">
@@ -165,7 +165,35 @@
               </li>
 
             </ul>            
-          </li>             
+          </li> 
+          
+          @if (Auth::guard('admin')->user()->type == 'admin')
+            @if (Session::get('page') == "users")
+              @php $active = "active" @endphp
+            @else
+              @php $active = "" @endphp
+            @endif
+            <li class="nav-item menu-open">
+              <a href="#" class="nav-link {{$active}}">
+                <i class="nav-icon fas fa-users"></i>
+                <p>Users Management<i class="right fas fa-angle-left"></i>
+                </p>
+              </a>
+              <ul class="nav nav-treeview">
+                @if (Session::get('page') == "users")
+                  @php $active = "active" @endphp
+                @else
+                  @php $active = "" @endphp
+                @endif  
+                <li class="nav-item">
+                  <a href="{{url('admin/users')}}" class="nav-link {{$active}}">                    
+                  <i class="far fa-copy nav-icon"></i>
+                    <p>Users</p>
+                  </a>
+                </li>             
+              </ul>            
+            </li>      
+          @endif
           
           @if (Auth::guard('admin')->user()->type == 'admin')
             @if (Session::get('page') == "banners")

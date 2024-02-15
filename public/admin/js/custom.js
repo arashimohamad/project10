@@ -149,6 +149,41 @@ $(".updateBrandStatus").click(function () {
     });
 });
 
+//Update User Status (users.blade.php) 
+$(".updateUserStatus").click(function () {
+    var status = $(this).children("i").attr("status");
+    //alert(status);
+    //"this" refer to <a href=""></a>. "children" refer to <i class=""></i>. attr "status" refer to <i class="" status="Active"></i>
+    var user_id = $(this).attr("user_id");
+    //"this" refer to <a href=""></a>. attr "user_id" refer to user_id in the link <a href="" user_id="{{$page->id}}">
+    //alert(user_id);
+    $.ajax({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        type: "post",
+        url: "../admin/update-user-status",
+        data: {
+            status: status,
+            user_id: user_id,
+        },
+        success: function (resp) {
+            if (resp["status"] == 0) {
+                $("#user-" + user_id).html(
+                    "<i class='fas fa-toggle-off' status='Inactive' style='color:grey'></i>"
+                );
+            } else if (resp["status"] == 1) {
+                $("#user-" + user_id).html(
+                    "<i class='fas fa-toggle-on' status='Active' style='color:#007bff'></i>"
+                );
+            }
+        },
+        error: function () {
+            alert("Error");
+        },
+    });
+});
+
 //Update Product Status (products.blade.php) 
 $(".updateProductStatus").click(function () {
     var status = $(this).children("i").attr("status");

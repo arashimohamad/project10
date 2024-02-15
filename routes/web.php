@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\UserController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\CmsPageController;
@@ -184,11 +185,15 @@ Route::group(['prefix' => 'admin'], function () {                               
         Route::match(['get', 'post'], 'add-edit-banner/{id?}', [BannersController::class, 'addEditBanner']);
         Route::get('delete-banner-image/{id?}', [BannersController::class, 'deleteBannerImage']);
 
-        #Couponss or Vouchers
+        #Coupons or Vouchers
         Route::get('coupons', [CouponsController::class, 'coupons']);
         Route::post('update-coupon-status', [CouponsController::class, 'updateCouponStatus']);
         Route::match(['get', 'post'], 'add-edit-coupon/{id?}', [CouponsController::class, 'addEditCoupon']);
         Route::get('delete-coupon/{id?}', [CouponsController::class, 'deleteCoupon']);
+
+        #Users
+        Route::get('users', [UsersController::class, 'users']);
+        Route::post('update-user-status', [UsersController::class, 'updateUserStatus']);
     });    
 });                                        
 
