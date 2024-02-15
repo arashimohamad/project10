@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 10, 2024 at 06:16 PM
+-- Generation Time: Feb 15, 2024 at 02:28 PM
 -- Server version: 11.2.1-MariaDB-log
 -- PHP Version: 8.2.4
 
@@ -174,7 +174,9 @@ CREATE TABLE `carts` (
 INSERT INTO `carts` (`id`, `session_id`, `user_id`, `product_id`, `product_size`, `product_qty`, `created_at`, `updated_at`) VALUES
 (16, '2d3e3bb444b39767e16494d34a3ab43a', NULL, 14, 'Small', 1, '2024-02-09 08:44:50', '2024-02-09 08:44:50'),
 (17, '33ce8fc88a40d0ddeafac981479054db', NULL, 14, 'Medium', 1, '2024-02-10 12:29:28', '2024-02-10 12:29:28'),
-(18, '33ce8fc88a40d0ddeafac981479054db', 1, 14, 'Medium', 1, '2024-02-10 14:27:09', '2024-02-10 14:27:09');
+(19, '387182378bfee330df244394a3705d50', NULL, 14, 'Medium', 1, '2024-02-15 09:46:59', '2024-02-15 09:46:59'),
+(24, '399757258245296aadd9819e41826d40', NULL, 15, 'Large', 2, '2024-02-15 11:08:03', '2024-02-15 11:08:03'),
+(25, '399757258245296aadd9819e41826d40', NULL, 14, 'Medium', 1, '2024-02-15 11:08:12', '2024-02-15 11:08:12');
 
 -- --------------------------------------------------------
 
@@ -577,9 +579,9 @@ CREATE TABLE `coupons` (
 
 INSERT INTO `coupons` (`id`, `coupon_option`, `coupon_code`, `coupon_type`, `amount_type`, `amount`, `categories`, `brands`, `expiry_date`, `users`, `status`, `created_at`, `updated_at`) VALUES
 (1, 'Manual', 'test10', 'Single Time', 'Percentage', 10.00, '1,4,8,10,11,5,9,6', '6', '2024-12-31', 'aamily@yahoo.com', 1, '2024-01-26 08:55:09', '2024-02-10 17:59:58'),
-(2, 'Manual', 'test20', 'Single Time', 'Percentage', 20.00, '1,2,3,4,5,6,7,8,9,10,11', '1,2', '2024-12-31', 'aamily@yahoo.com', 1, '2024-01-26 08:55:09', '2024-01-26 08:55:09'),
-(3, 'Automatic', 'H8tPQqa7', 'Single Time', 'Percentage', 10.00, '1,4,8,10', '1,6', '2024-03-09', 'aamily@yahoo.com,rosli.khamis@gmail.com', 1, '2024-02-09 10:43:45', '2024-02-09 10:47:11'),
-(4, 'Manual', 'test21', 'Single Time', 'Fixed', 20.00, '1,4,8,10,11', '1,6,2', '2024-03-09', 'rosli.khamis@gmail.com,melati.samad@yahoo.com,tuanhakimi@gmail.com', 1, '2024-02-09 10:47:44', '2024-02-09 10:50:56'),
+(2, 'Manual', 'test20', 'Single Time', 'Percentage', 20.00, '1,4,8,10,11,5,9,6,2,3', '1,2', '2024-12-31', 'aamily@yahoo.com', 1, '2024-01-26 08:55:09', '2024-02-15 11:21:30'),
+(3, 'Automatic', 'miaEHus5', 'Single Time', 'Percentage', 10.00, '1,4,8,10', '1,6,2,3', '2024-03-09', 'aamily@yahoo.com,rosli.khamis@gmail.com', 1, '2024-02-09 10:43:45', '2024-02-15 11:20:20'),
+(4, 'Manual', 'test21', 'Single Time', 'Fixed', 55.00, '1,4,8,10,11', '1,6,2,3', '2024-03-09', 'rosli.khamis@gmail.com,melati.samad@yahoo.com,tuanhakimi@gmail.com', 1, '2024-02-09 10:47:44', '2024-02-15 11:22:09'),
 (5, 'Automatic', 'f9OqsRz7', 'Single Time', 'Percentage', 200.00, '1,4,8', '1,6', '2024-03-09', 'aamily@yahoo.com,rosli.khamis@gmail.com', 1, '2024-02-10 10:32:30', '2024-02-10 17:46:09');
 
 -- --------------------------------------------------------
@@ -926,7 +928,13 @@ INSERT INTO `recently_viewed_items` (`id`, `product_id`, `session_id`, `created_
 (61, 15, '2d3e3bb444b39767e16494d34a3ab43a', '2024-02-09 08:44:21', '2024-02-09 08:44:21'),
 (62, 19, '2d3e3bb444b39767e16494d34a3ab43a', '2024-02-09 08:44:27', '2024-02-09 08:44:27'),
 (63, 14, '2d3e3bb444b39767e16494d34a3ab43a', '2024-02-09 08:44:36', '2024-02-09 08:44:36'),
-(64, 14, '33ce8fc88a40d0ddeafac981479054db', '2024-02-10 12:29:17', '2024-02-10 12:29:17');
+(64, 14, '33ce8fc88a40d0ddeafac981479054db', '2024-02-10 12:29:17', '2024-02-10 12:29:17'),
+(65, 14, '387182378bfee330df244394a3705d50', '2024-02-15 09:46:52', '2024-02-15 09:46:52'),
+(66, 15, '387182378bfee330df244394a3705d50', '2024-02-15 10:08:27', '2024-02-15 10:08:27'),
+(67, 19, '387182378bfee330df244394a3705d50', '2024-02-15 10:57:49', '2024-02-15 10:57:49'),
+(68, 15, '399757258245296aadd9819e41826d40', '2024-02-15 11:07:59', '2024-02-15 11:07:59'),
+(69, 14, '399757258245296aadd9819e41826d40', '2024-02-15 11:08:09', '2024-02-15 11:08:09'),
+(70, 4, '387182378bfee330df244394a3705d50', '2024-02-15 11:20:04', '2024-02-15 11:20:04');
 
 -- --------------------------------------------------------
 
@@ -958,8 +966,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `address`, `city`, `state`, `country`, `postcode`, `mobile`, `email`, `email_verified_at`, `password`, `remember_token`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Fariha Aamily Binti Mohd Farid', 'A-30-06', 'Bukit Jalil', 'Kuala Lumpur', 'Malaysia', '57000', '0192949487', 'aamily@yahoo.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-19 08:35:53'),
-(2, 'Rosli Khamis Bin Kalamullah', 'No.20, Jalan Kenanga, Taman Kenanga', 'Gombak', 'Kuala Lumpur', 'Malaysia', '56100', '0123697895', 'rosli.khamis@gmail.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-18 06:14:27'),
+(1, 'Fariha Aamily Binti Mohd Farid', 'A-30-06', 'Bukit Jalil', 'Kuala Lumpur', 'Malaysia', '57000', '0192949487', 'aamily@yahoo.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-02-15 13:16:46'),
+(2, 'Rosli Khamis Bin Kalamullah', 'No.20, Jalan Kenanga, Taman Kenanga', 'Gombak', 'Kuala Lumpur', 'Malaysia', '56100', '0123697895', 'rosli.khamis@gmail.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-02-15 13:16:45'),
 (3, 'Melati Binti Abdul Samad', 'Lot.78, Lorong Haji Taming, Kg. Rakit', 'Dungun', 'Terengganu', 'Malaysia', '75600', '0144447788', 'melati.samad@yahoo.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-18 06:14:27'),
 (4, 'Tuan Noor Hakimi Bin Tuan Mohd Faiz', 'No.14, Residensi Perindu, Jalan Bangi', 'Bangi ', 'Selangor', 'Malaysia', '54100', '0195566222', 'tuanhakimi@gmail.com', NULL, '$2y$10$3evYkK0J8Zd5.hK4.iOwR.OaqgCXPp0sd1b01G3LEdvfFiJJVyW2G', NULL, 1, '2023-12-31 14:06:26', '2024-01-18 06:14:27');
 
@@ -1124,7 +1132,7 @@ ALTER TABLE `brands`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -1202,7 +1210,7 @@ ALTER TABLE `products_images`
 -- AUTO_INCREMENT for table `recently_viewed_items`
 --
 ALTER TABLE `recently_viewed_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `users`
