@@ -91,12 +91,13 @@
   $(function () {   
     $('#cmspages').DataTable();
     $('#subadmins').DataTable();
-    $('#categories').DataTable();
-    $('#products').DataTable();
-    $('#brands').DataTable();
+    $('#categories').DataTable({order: [[0, 'desc']]});
+    $('#products').DataTable({order: [[0, 'desc']]});
+    $('#brands').DataTable({order: [[0, 'desc']]});
     $('#banners').DataTable();
-    $('#coupons').DataTable();
-    $('#users').DataTable();
+    $('#coupons').DataTable({order: [[0, 'desc']]});
+    $('#users').DataTable({order: [[0, 'desc']]});
+    //reference : https://datatables.net/examples/basic_init/table_sorting.html
   });
 </script>
 

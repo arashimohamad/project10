@@ -31,7 +31,7 @@
             <div class="card">
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="brands" class="table table-bordered table-striped">
+                <table id="users" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>#</th>
