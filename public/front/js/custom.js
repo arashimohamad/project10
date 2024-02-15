@@ -432,8 +432,25 @@ $(document).ready(function () {
                     $('.print-error-msg').show();
                     $('.print-error-msg').delay(5000).fadeOut('slow');
                     $('.print-error-msg').html("<div class='alert'>" + resp['message'] + "</div>");
-                } else {
-                    
+                } else if(resp.status == true){
+                    //alert(resp.message);
+                    if(resp.couponAmount > 0 ){
+                        $('.couponAmount').text("RM" + resp.couponAmount);
+                    } else {
+                        $('.couponAmount').text("RM0");
+                    }
+
+                    if(resp.grand_total > 0 ){
+                        $('.grandTotal').text("RM" + resp.grandTotal);
+                    } 
+
+                    $('.print-success-msg').show();
+                    $('.print-success-msg').delay(5000).fadeOut('slow');
+                    $('.print-success-msg').html("<div class='success'>" + resp['message'] + "</div>");
+
+                    $(".totalCartItems").html(resp.totalCartItems);                
+                    $("#appendCartItems").html(resp.view);
+                    $("#appendMiniCartItems").html(resp.minicartview);
                 }
             },
 
