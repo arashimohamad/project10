@@ -141,8 +141,8 @@
 141	Tutorial Completed #141 
 142	Tutorial Completed #142             reference : https://datatables.net/examples/basic_init/table_sorting.html
 143	Tutorial Completed #143         
-144	Tutorial Completed #144 - Done 
-145	Tutorial Completed #145
+144	Tutorial Completed #144  
+145	Tutorial Completed #145 - Done
 146	Tutorial Completed #146
 147	Tutorial Completed #147
 148	Tutorial Completed #148

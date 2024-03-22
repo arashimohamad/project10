@@ -107,6 +107,9 @@ Route::group([],function () {
 
         // Apply Coupon
         Route::post('/apply-coupon', [ProductController::class, 'applyCoupon']);
+
+        // Checkout
+        Route::match(['get', 'post'], '/checkout', [ProductController::class, 'checkout']);
         
     });
 

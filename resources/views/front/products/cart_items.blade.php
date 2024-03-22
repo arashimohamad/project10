@@ -167,7 +167,7 @@
                                     </div>
                                     <div class="u-s-m-b-30">
                                         <button id="applyCoupon" type="submit" class="f-cart__ship-link btn--e-transparent-brand-b-2" 
-                                        style="width: 100%" @if (Auth::check()) user="1" @endif>APPLY</button>
+                                        style="width: 100%; cursor:pointer" @if (Auth::check()) user="1" @endif>APPLY</button>
                                         {{-- <a class="f-cart__ship-link btn--e-transparent-brand-b-2" href="cart.html">APPLY</a> --}}
                                     </div>
                                     <!-- <span class="gl-text">Note: Any note can come here</span> -->
@@ -211,7 +211,11 @@
                                     </table>
                                 </div>
                                 <div>
-                                    <button type="submit" class="f-cart__ship-link btn--e-transparent-brand-b-2" style="width: 100%">PROCEED TO CHECKOUT</button>
+                                    <a href="{{ url('checkout') }}">
+                                        <button type="submit" class="f-cart__ship-link btn--e-transparent-brand-b-2" style="width: 100%; cursor:pointer">
+                                            PROCEED TO CHECKOUT
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

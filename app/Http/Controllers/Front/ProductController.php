@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\ProductsFilter;
+use App\Models\DeliveryAddress;
 use App\Models\ProductsAttribute;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -575,5 +576,15 @@ class ProductController extends Controller
                 }
             }
         }
+    }
+    
+    public function checkout()
+    {
+        // Fey Updated Cart Items
+        $getCartItems = getCartitems();
+
+        // Get Users Delivery Addresses
+        $deliveryAddresses = DeliveryAddress::deliveryAddresses();
+        return view('front.products.checkout', compact('getCartItems', 'deliveryAddresses'));
     }
 }
