@@ -23,7 +23,7 @@
                 </div>
                 <div class="mini-product__info-wrapper">
                     <span class="mini-product__category">
-                    <a href="#">{ $item['product']['brand']['brand_name'] }}</a></span>
+                    <a href="#">{{ $item['product']['brand']['brand_name'] }}</a></span>
                     <span class="mini-product__name">
                     <a href="{{ url('product/'.$item['product']['id']) }}">{{ $item['product']['product_name'] }}</a></span>
                     <span class="mini-product__quantity">{{ $item['product_qty'] }} x</span>
