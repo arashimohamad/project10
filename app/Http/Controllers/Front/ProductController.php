@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Front;
 use App\Models\Cart;
 use App\Models\User;
 use App\Models\Coupon;
+use App\Models\Country;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
@@ -585,6 +586,10 @@ class ProductController extends Controller
 
         // Get Users Delivery Addresses
         $deliveryAddresses = DeliveryAddress::deliveryAddresses();
-        return view('front.products.checkout', compact('getCartItems', 'deliveryAddresses'));
+
+        // Get All Conutries
+        $countries = Country::where('status', 1)->get();
+
+        return view('front.products.checkout', compact('getCartItems', 'deliveryAddresses', 'countries'));
     }
 }

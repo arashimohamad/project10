@@ -9,6 +9,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class DeliveryAddress extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'name',
+        'address',
+        'city',
+        'state',
+        'country',
+        'postcode',
+        'mobile',
+        'status'
+    ];
     
     public static function deliveryAddresses() {
         $user_id = Auth::user()->id;

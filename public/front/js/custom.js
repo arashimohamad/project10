@@ -460,4 +460,38 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Save Delivery Address
+    $('#deliveryForm').click(function () { 
+        $(".loader").show(); 
+        var formData = $('#deliveryAddressForm').serialize();
+        $.ajax({          
+            headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")},  
+            type: 'post',
+            url: 'save-delivery-address',
+            data: formData,
+            success: function (resp) {
+                //alert(resp);
+                if (resp.type=="error") {
+                    $(".loader").hide();
+                    $.each(resp.errors, function (i, error) { 
+                        $('#delivery-'+i).attr('style', 'color:red');
+                        $('#delivery-'+i).html(error);
+                        setTimeout(function() {
+                            $('#delivery-'+i).css('display:none')
+                        }, 4000);
+                    });
+                }else{
+                    $(".loader").hide();
+                    $('#deliveryAddressForm').trigger('reset');             // reset address form
+                    $('#deliveryAddresses').html(resp.view)
+                }
+            }, 
+
+            error:function() {
+                $(".loader").hide();
+                alert("Error");
+            }
+        });
+    });
 });

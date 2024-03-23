@@ -10,6 +10,7 @@ use App\Http\Controllers\Front\IndexController;
 use App\Http\Controllers\Admin\BannersController;
 use App\Http\Controllers\Admin\CmsPageController;
 use App\Http\Controllers\Admin\CouponsController;
+use App\Http\Controllers\Front\AddressController;
 use App\Http\Controllers\Front\ProductController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
@@ -110,6 +111,9 @@ Route::group([],function () {
 
         // Checkout
         Route::match(['get', 'post'], '/checkout', [ProductController::class, 'checkout']);
+
+        // Save Delivery Address
+        Route::post('/save-delivery-address', [AddressController::class, 'saveDeliveryAddress']);
         
     });
 
