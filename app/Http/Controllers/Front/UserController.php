@@ -9,7 +9,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Cart;
 
 class UserController extends Controller
 {
@@ -41,6 +43,13 @@ class UserController extends Controller
                     if (Auth::user()->status == 0) {
                         Auth::logout();
                         return response()->json(['status'=>false, 'type'=>'inactive', 'message'=>'Your account is not activated yet!']);
+                    }
+
+                    // Update User Cart with user id (Item MUST bind with user id)
+                    if (!empty(Session::get('session_id'))) {
+                        $user_id = Auth::user()->id;
+                        $session_id = Session::get('session_id');
+                        Cart::where('session_id', $session_id)->update(['user_id'=>$user_id]);
                     }
 
                     $redirectUrl = url('cart');
