@@ -119,7 +119,7 @@
                                 <div id="deliveryAddresses">
                                     @include('front.products.delivery_addresses')
                                 </div>
-                                <h1 class="checkout-f__h1">ADD NEW DELIVERY ADDRESS</h1>
+                                <h1 class="checkout-f__h1 deliveryText">ADD NEW DELIVERY ADDRESS</h1>
                                 <form class="checkout-f__delivery" id="deliveryAddressForm" method="post" action="javascript:;"> 
                                     @csrf
                                     <input type="hidden" id="delivery_id" name="delivery_id" value="">
@@ -129,7 +129,7 @@
                                         <div class="u-s-m-b-15">
                                             <label class="gl-label" for="delivery_name">NAME *</label>
                                             <input class="input-text input-text--primary-style" type="text" id="delivery_name" name="delivery_name">
-                                            <p id="deluvery-delivery_name"></p>
+                                            <p id="delivery-delivery_name"></p>
                                         </div>
                                         <!--====== End - NAME ======-->
 
@@ -137,7 +137,7 @@
                                         <div class="u-s-m-b-15">
                                             <label class="gl-label" for="delivery_address">ADDRESS *</label>
                                             <input class="input-text input-text--primary-style" type="text" id="delivery_address" name="delivery_address">
-                                            <p id="deluvery-delivery_address"></p>
+                                            <p id="delivery-delivery_address"></p>
                                         </div>
                                         <!--====== End - ADDRESS ======-->
 
@@ -145,7 +145,7 @@
                                         <div class="u-s-m-b-15">
                                             <label class="gl-label" for="delivery_city">CITY *</label>
                                             <input class="input-text input-text--primary-style" type="text" id="delivery_city" name="delivery_city">
-                                            <p id="deluvery-delivery_city"></p>
+                                            <p id="delivery-delivery_city"></p>
                                         </div>
                                         <!--====== End - CITY ======-->
 
@@ -153,7 +153,7 @@
                                         <div class="u-s-m-b-15">
                                             <label class="gl-label" for="delivery_state">STATE *</label>
                                             <input class="input-text input-text--primary-style" type="text" id="delivery_state" name="delivery_state">
-                                            <p id="deluvery-delivery_state"></p>
+                                            <p id="delivery-delivery_state"></p>
                                         </div>
                                         <!--====== End - STATE ======-->
 
@@ -170,7 +170,7 @@
                                                 @endforeach
                                                 
                                             </select>
-                                            <p id="deluvery-delivery_country"></p>
+                                            <p id="delivery-delivery_country"></p>
                                             <!--====== End - Select Box ======-->
                                         </div>
                                         <!--====== End - Country ======-->
@@ -179,7 +179,7 @@
                                         <div class="u-s-m-b-15">
                                             <label class="gl-label" for="deleivery_postcode">POSTCODE *</label>
                                             <input class="input-text input-text--primary-style" type="text" id="delivery_postcode" name="delivery_postcode">
-                                            <p id="deluvery-delivery_postcode"></p>
+                                            <p id="delivery-delivery_postcode"></p>
                                         </div>
                                         <!--====== End - PINCODE ======-->
 
@@ -187,7 +187,7 @@
                                         <div class="u-s-m-b-15">
                                             <label class="gl-label" for="delivery_mobile">MOBILE *</label>
                                             <input class="input-text input-text--primary-style" type="text" id="delivery_mobile" name="delivery_mobile">
-                                            <p id="deluvery-delivery_mobile"></p>
+                                            <p id="delivery-delivery_mobile"></p>
                                         </div>
                                         <!--====== End - MOBILE ======-->                                       
                                         

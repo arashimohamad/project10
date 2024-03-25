@@ -114,6 +114,12 @@ Route::group([],function () {
 
         // Save Delivery Address
         Route::post('/save-delivery-address', [AddressController::class, 'saveDeliveryAddress']);
+
+        // Get Delivery Address
+        Route::post('/get-delivery-address', [AddressController::class, 'getDeliveryAddress']);
+
+        // Remove Delivery Address
+        Route::post('/remove-delivery-address', [AddressController::class, 'removeDeliveryAddress']);
         
     });
 

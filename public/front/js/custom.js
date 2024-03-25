@@ -484,14 +484,56 @@ $(document).ready(function () {
                 }else{
                     $(".loader").hide();
                     $('#deliveryAddressForm').trigger('reset');             // reset address form
-                    $('#deliveryAddresses').html(resp.view)
+                    $('.deliveryText').text("ADD NEW DELIVERY ADDRESS");
+                    $('#deliveryAddresses').html(resp.view);
+                    window.location.reload(true);                           //Force a hard reload to clear the cache if supported by the browser
                 }
             }, 
-
             error:function() {
                 $(".loader").hide();
                 alert("Error");
             }
         });
     });
+
+    //Edit Delivery Address
+    $('.editAddress').click(function () { 
+        var address_id = $(this).data('addressid');
+        $.ajax({
+            headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")}, 
+            type: 'post',
+            url: "get-delivery-address",
+            data: { addressid : address_id },
+            success: function (resp) {
+                $('.deliveryText').text("EDIT DELIVERY ADDRESS");
+                $('[name=delivery_id]').val(resp.address['id']);
+                $('[name=delivery_name]').val(resp.address['name']);
+                $('[name=delivery_address]').val(resp.address['address']);
+                $('[name=delivery_city]').val(resp.address['city']);
+                $('[name=delivery_state]').val(resp.address['state']);
+                $('[name=delivery_country]').val(resp.address['country']);
+                $('[name=delivery_postcode]').val(resp.address['postcode']);
+                $('[name=delivery_mobile]').val(resp.address['mobile']);
+            },
+            error:function(){alert("Error");}
+        });        
+    });
+
+    //Remove Delivery Address
+    $('.deleteAddress').click(function () { 
+        var address_id = $(this).data('addressid');
+        if (confirm("Are you sure to remove this Address?")) {
+            $.ajax({
+                headers: {"X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")}, 
+                type: 'post',
+                url: "remove-delivery-address",
+                data: { addressid : address_id },
+                success: function (resp) {
+                    $('#deliveryAddresses').html(resp.view);
+                },
+                error:function(){alert("Error");}
+            });                    
+        }
+    });
+
 });

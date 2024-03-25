@@ -143,8 +143,8 @@
 143	Tutorial Completed #143         
 144	Tutorial Completed #144  
 145	Tutorial Completed #145 
-146	Tutorial Completed #146 - Done
-147	Tutorial Completed #147
+146	Tutorial Completed #146 
+147	Tutorial Completed #147 - Done
 148	Tutorial Completed #148
 149	Tutorial Completed #149
 150	Tutorial Completed #150
